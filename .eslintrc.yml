@@ -9,7 +9,7 @@ parserOptions:
   ecmaFeatures:
     jsx: true
   ecmaVersion: 6
-  sourseType: module
+  sourceType: module
 
 plugins: ['react']
 
