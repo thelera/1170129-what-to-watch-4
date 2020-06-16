@@ -3,15 +3,18 @@ import React from "react";
 import Main from "../main/main.jsx";
 import {FILM_NAMES} from "../../utils/consts.js";
 
+const titleHandler = () => {};
+
 const App = (props) => {
   const {filmName, filmGenre, filmYear, filmNames} = props;
 
   return (
     <Main
-      name = {filmName}
-      genre = {filmGenre}
-      year = {filmYear}
-      filmNames = {filmNames}
+      name={filmName}
+      genre={filmGenre}
+      year={filmYear}
+      filmNames={filmNames}
+      onTitleClick={titleHandler}
     />
   );
 };

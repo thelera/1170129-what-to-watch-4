@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {FILM_NAMES} from "../../utils/consts.js";
 
 const Main = (props) => {
-  const {name, genre, year, filmNames} = props;
+  const {name, genre, year, filmNames, onTitleClick} = props;
 
   return (
     <div>
@@ -107,7 +107,7 @@ const Main = (props) => {
                     <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
                   </div>
                   <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+                    <a className="small-movie-card__link" href="movie-page.html" onClick={onTitleClick}>{title}</a>
                   </h3>
                 </article>
               );
@@ -142,6 +142,7 @@ Main.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   filmNames: PropTypes.arrayOf(PropTypes.oneOf(FILM_NAMES)).isRequired,
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;
