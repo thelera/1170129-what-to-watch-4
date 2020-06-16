@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx"
+import App from "./app.jsx";
 
 const filmData = {
   name: `No Country for Old Men`,
@@ -9,23 +9,20 @@ const filmData = {
 };
 
 const FILM_NAMES = [
-  `The Man Who Would Be King`,
-  `Becket`,
-  `The Act Of Killing`,
-  `They Shoot Horses, Don't They?`,
-  `Donnie Darko`,
-  `The Doom Generation`,
-  `Smiley Face`,
+  `Fantastic Beasts`,
+  `Bohemian Rhapsody`,
+  `Macbeth`,
+  `Aviator`,
 ];
 
 it(`Render App`, () => {
   const tree = renderer.create(
-    <App
-      name={filmData.name}
-      genre={filmData.genre}
-      year={filmData.year}
-      filmNames={FILM_NAMES}
-    />
+      <App
+        filmName={filmData.name}
+        filmGenre={filmData.genre}
+        filmYear={filmData.year}
+        filmNames={FILM_NAMES}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

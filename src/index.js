@@ -11,10 +11,10 @@ const filmData = {
 
 ReactDOM.render(
     <App
-      filmName = {filmData.name}
-      filmGenre = {filmData.genre}
-      filmYear = {filmData.year}
-      filmNames = {FILM_NAMES}
+      filmName={filmData.name}
+      filmGenre={filmData.genre}
+      filmYear={filmData.year}
+      filmNames={FILM_NAMES}
     />,
     document.querySelector(`#root`)
 );
