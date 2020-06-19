@@ -259,12 +259,14 @@ exports[`Render App 1`] = `
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Bekket"
               height="175"
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
@@ -275,23 +277,24 @@ exports[`Render App 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
               onClick={[Function]}
             >
-              Fantastic Beasts
+              Bekket
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="The Doom Generation"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -300,23 +303,24 @@ exports[`Render App 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
               onClick={[Function]}
             >
-              Bohemian Rhapsody
+              The Doom Generation
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Patrool"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/macbeth.jpg"
               width="280"
             />
           </div>
@@ -325,35 +329,9 @@ exports[`Render App 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
               onClick={[Function]}
             >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              Aviator
+              Patrool
             </a>
           </h3>
         </article>

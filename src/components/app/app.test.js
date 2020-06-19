@@ -8,11 +8,19 @@ const filmData = {
   year: 2005,
 };
 
-const FILM_NAMES = [
-  `Fantastic Beasts`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
+const films = [
+  {
+    title: `Bekket`,
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  },
+  {
+    title: `The Doom Generation`,
+    image: `img/bohemian-rhapsody.jpg`,
+  },
+  {
+    title: `Patrool`,
+    image: `img/macbeth.jpg`,
+  },
 ];
 
 it(`Render App`, () => {
@@ -21,7 +29,7 @@ it(`Render App`, () => {
         filmName={filmData.name}
         filmGenre={filmData.genre}
         filmYear={filmData.year}
-        filmNames={FILM_NAMES}
+        filmsInfo={films}
       />
   ).toJSON();
 
