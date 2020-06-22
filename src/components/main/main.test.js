@@ -8,11 +8,19 @@ const filmData = {
   year: 2005,
 };
 
-const FILM_NAMES = [
-  `Fantastic Beasts`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
+const films = [
+  {
+    title: `Bekket`,
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  },
+  {
+    title: `The Doom Generation`,
+    image: `img/bohemian-rhapsody.jpg`,
+  },
+  {
+    title: `Patrool`,
+    image: `img/macbeth.jpg`,
+  },
 ];
 
 it(`<Main/> should render movie card and films catalog`, () => {
@@ -21,8 +29,8 @@ it(`<Main/> should render movie card and films catalog`, () => {
         name={filmData.name}
         genre={filmData.genre}
         year={filmData.year}
-        filmNames={FILM_NAMES}
-        onTitleClick={() => {}}
+        films={films}
+        onClick={() => {}}
       />
   ).toJSON();
 

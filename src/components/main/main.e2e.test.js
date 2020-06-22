@@ -3,11 +3,19 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
-const FILM_NAMES = [
-  `Fantastic Beasts`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
+const films = [
+  {
+    title: `Bekket`,
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  },
+  {
+    title: `The Doom Generation`,
+    image: `img/bohemian-rhapsody.jpg`,
+  },
+  {
+    title: `Patrool`,
+    image: `img/macbeth.jpg`,
+  },
 ];
 
 Enzyme.configure({
@@ -15,15 +23,15 @@ Enzyme.configure({
 });
 
 it(`Card title should be clicked`, () => {
-  const onTitleClick = jest.fn();
+  const onClick = jest.fn();
 
   const main = shallow(
       <Main
         name={`Aviator`}
         genre={`Action`}
         year={2010}
-        filmNames={FILM_NAMES}
-        onTitleClick={onTitleClick}
+        films={films}
+        onClick={onClick}
       />
   );
 
@@ -33,5 +41,5 @@ it(`Card title should be clicked`, () => {
     link.simulate(`click`);
   });
 
-  expect(onTitleClick.mock.calls.length).toBe(cardLink.length);
+  expect(onClick.mock.calls.length).toBe(cardLink.length);
 });

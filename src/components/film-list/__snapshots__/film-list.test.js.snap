@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmList is rendered correctly 1`] = `
+Array [
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <img
+        alt="Snatch"
+        height="175"
+        src="img/snatch.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        onClick={[Function]}
+      >
+        Snatch
+      </a>
+    </h3>
+  </article>,
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <img
+        alt="Aviator"
+        height="175"
+        src="img/aviator.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        onClick={[Function]}
+      >
+        Aviator
+      </a>
+    </h3>
+  </article>,
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <img
+        alt="Avatar"
+        height="175"
+        src="img/avatar.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        onClick={[Function]}
+      >
+        Avatar
+      </a>
+    </h3>
+  </article>,
+]
+`;
