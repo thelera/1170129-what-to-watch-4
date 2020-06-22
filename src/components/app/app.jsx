@@ -38,7 +38,7 @@ class App extends PureComponent {
       );
     }
 
-    return(
+    return (
       <FilmDetails
         backgroundImage={film.backgroundImage}
         description={film.description}
