@@ -6,7 +6,11 @@ const FilmCard = (props) => {
 
   return (
     <article className="small-movie-card catalog__movies-card"
-      onClick={onClick}
+      onClick={(evt) => {
+        evt.preventDefault();
+
+        onClick(index);
+      }}
       onMouseOver={() => {
         onHover(index);
       }}
