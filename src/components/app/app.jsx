@@ -65,7 +65,7 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/f">
+          <Route exact path="/dev-film-details">
             <FilmDetails
               backgroundImage={film.backgroundImage}
               description={film.description}
