@@ -46,7 +46,6 @@ class App extends PureComponent {
 
   render() {
     const {filmsInfo} = this.props;
-    const film = filmsInfo[0];
 
     return (
       <BrowserRouter>
@@ -56,16 +55,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film-details">
             <FilmDetails
-              backgroundImage={film.backgroundImage}
-              description={film.description}
-              director={film.director}
-              genres={film.genres}
-              ratingCount={film.ratingCount}
-              ratingLevel={film.ratingLevel}
-              ratingScore={film.ratingScore}
-              starring={film.starring}
-              title={film.title}
-              year={film.year}
+              film={filmsInfo[0]}
             />
           </Route>
         </Switch>

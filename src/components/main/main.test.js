@@ -31,8 +31,11 @@ it(`<Main/> should render movie card and films catalog`, () => {
         year={filmData.year}
         films={films}
         onClick={() => {}}
-      />
-  ).toJSON();
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

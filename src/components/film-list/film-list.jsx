@@ -21,14 +21,16 @@ class FilmList extends PureComponent {
     return (
       films.map((film, index) =>
         <FilmCard
-          image={film.image}
-          title={film.title}
+          film={film}
           index={index}
+          key={film.title + index}
           onClick={onClick}
           onHover={this._handleHover}
-          key={film.title + index}
-        />
-      )
+        />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
     );
   }
 }
