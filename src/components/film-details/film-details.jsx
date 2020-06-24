@@ -196,7 +196,7 @@ FilmDetails.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string,
     year: PropTypes.number,
-  }),
+  }).isRequired,
 };
 
 export default FilmDetails;
