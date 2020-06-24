@@ -22,17 +22,7 @@ const film = {
 it(`FilmDetails is rendered correctly`, () => {
   const tree = renderer.create(
       <FilmDetails
-        backgroundImage={film.backgroundImage}
-        description={film.description}
-        director={film.director}
-        genres={film.genres}
-        image={film.image}
-        ratingCount={film.ratingCount}
-        ratingLevel={film.ratingLevel}
-        ratingScore={film.ratingScore}
-        starring={film.starring}
-        title={film.title}
-        year={film.year}
+        film={film}
       />
   ).toJSON();
 

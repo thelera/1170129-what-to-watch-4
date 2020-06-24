@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const FilmDetails = (props) => {
-  const {backgroundImage, description, director, genres, image, ratingCount, ratingLevel, ratingScore, starring, title, year} = props;
+const FilmDetails = ({film}) => {
+  const {backgroundImage, description, director, genres, image, ratingCount, ratingLevel, ratingScore, starring, title, year} = film;
 
   return (
     <React.Fragment>
       <div className="visually-hidden">
-        {/* inject:svg */}<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"> <symbol id="add" viewBox="0 0 19 20">
-          {/* Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch */}
+        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"> <symbol id="add" viewBox="0 0 19 20">
           <title>+</title>
           <desc>Created with Sketch.</desc>
           <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -22,14 +21,13 @@ const FilmDetails = (props) => {
         </symbol><symbol id="in-list" viewBox="0 0 18 14">
           <path fillRule="evenodd" clipRule="evenodd" d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z" fill="#EEE5B5" />
         </symbol><symbol id="pause" viewBox="0 0 14 21">
-          {/* Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch */}
           <title>Artboard</title>
           <desc>Created with Sketch.</desc>
           <g id="Artboard" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <polygon id="Line" fill="#EEE5B5" fillRule="nonzero" points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21" />
             <polygon id="Line" fill="#EEE5B5" fillRule="nonzero" points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21" />
           </g>
-        </symbol></svg>{/* endinject */}
+        </symbol></svg>
       </div >
 
       <section className="movie-card movie-card--full">
@@ -186,17 +184,19 @@ const FilmDetails = (props) => {
 };
 
 FilmDetails.propTypes = {
-  backgroundImage: PropTypes.string,
-  description: PropTypes.arrayOf(PropTypes.string),
-  director: PropTypes.arrayOf(PropTypes.string),
-  genres: PropTypes.arrayOf(PropTypes.string),
-  image: PropTypes.string,
-  ratingCount: PropTypes.number,
-  ratingLevel: PropTypes.string,
-  ratingScore: PropTypes.number,
-  starring: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string,
-  year: PropTypes.number,
+  film: PropTypes.shape({
+    backgroundImage: PropTypes.string,
+    description: PropTypes.arrayOf(PropTypes.string),
+    director: PropTypes.arrayOf(PropTypes.string),
+    genres: PropTypes.arrayOf(PropTypes.string),
+    image: PropTypes.string,
+    ratingCount: PropTypes.number,
+    ratingLevel: PropTypes.string,
+    ratingScore: PropTypes.number,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+    year: PropTypes.number,
+  }),
 };
 
 export default FilmDetails;

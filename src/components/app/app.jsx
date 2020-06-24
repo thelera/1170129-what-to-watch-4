@@ -9,7 +9,7 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      filmIndex: -1,
+      filmIndex: null,
     };
 
     this._handleClick = this._handleClick.bind(this);
@@ -24,9 +24,8 @@ class App extends PureComponent {
   _renderApp() {
     const {filmName, filmGenre, filmYear, filmsInfo} = this.props;
     const {filmIndex} = this.state;
-    const film = filmsInfo[filmIndex];
 
-    if (filmIndex === -1) {
+    if (!filmIndex) {
       return (
         <Main
           name={filmName}
@@ -40,17 +39,7 @@ class App extends PureComponent {
 
     return (
       <FilmDetails
-        backgroundImage={film.backgroundImage}
-        description={film.description}
-        director={film.director}
-        genres={film.genres}
-        image={film.image}
-        ratingCount={film.ratingCount}
-        ratingLevel={film.ratingLevel}
-        ratingScore={film.ratingScore}
-        starring={film.starring}
-        title={film.title}
-        year={film.year}
+        film={filmsInfo[filmIndex]}
       />
     );
   }
