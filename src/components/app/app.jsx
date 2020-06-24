@@ -1,22 +1,78 @@
+import FilmDetails from "../film-details/film-details.jsx";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
-import React from "react";
+import React, {PureComponent} from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 
-const handleClick = () => {};
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-const App = (props) => {
-  const {filmName, filmGenre, filmYear, filmsInfo} = props;
+    this.state = {
+      filmIndex: null,
+    };
 
-  return (
-    <Main
-      name={filmName}
-      genre={filmGenre}
-      year={filmYear}
-      films={filmsInfo}
-      onClick={handleClick}
-    />
-  );
-};
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  _handleClick(index) {
+    this.setState({
+      filmIndex: index,
+    });
+  }
+
+  _renderApp() {
+    const {filmName, filmGenre, filmYear, filmsInfo} = this.props;
+    const {filmIndex} = this.state;
+
+    if (!filmIndex) {
+      return (
+        <Main
+          name={filmName}
+          genre={filmGenre}
+          year={filmYear}
+          films={filmsInfo}
+          onClick={this._handleClick}
+        />
+      );
+    }
+
+    return (
+      <FilmDetails
+        film={filmsInfo[filmIndex]}
+      />
+    );
+  }
+
+  render() {
+    const {filmsInfo} = this.props;
+    const film = filmsInfo[0];
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-film-details">
+            <FilmDetails
+              backgroundImage={film.backgroundImage}
+              description={film.description}
+              director={film.director}
+              genres={film.genres}
+              ratingCount={film.ratingCount}
+              ratingLevel={film.ratingLevel}
+              ratingScore={film.ratingScore}
+              starring={film.starring}
+              title={film.title}
+              year={film.year}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
   filmName: PropTypes.string.isRequired,

@@ -14,7 +14,7 @@ Enzyme.configure({
 
 it(`Film's index'll pass to handler if user hovers to film's card`, () => {
   const onHover = jest.fn((index) => index);
-  const cardIndex = Math.random(7);
+  const cardIndex = Math.round(Math.random(7));
 
   const filmCard = shallow(
       <FilmCard
@@ -26,8 +26,54 @@ it(`Film's index'll pass to handler if user hovers to film's card`, () => {
       />
   );
 
-  filmCard.simulate(`mouseover`, () => {});
+  const cardImage = filmCard.find(`.small-movie-card__image`);
+
+  cardImage.simulate(`mouseover`, () => {});
 
   expect(onHover).toHaveBeenCalledTimes(1);
   expect(onHover.mock.results[0].value).toBe(cardIndex);
+});
+
+it(`Film's detailed card opens if user clicks to film's image`, () => {
+  const onClick = jest.fn((index) => index);
+  const cardIndex = Math.round(Math.random(7));
+
+  const filmCard = shallow(
+      <FilmCard
+        image={film.image}
+        title={film.title}
+        index={cardIndex}
+        onClick={onClick}
+        onHover={() => {}}
+      />
+  );
+
+  const cardImage = filmCard.find(`.small-movie-card__image`);
+
+  cardImage.simulate(`click`);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick.mock.results[0].value).toBe(cardIndex);
+});
+
+it(`Film's detailed card opens if user clicks to film's title`, () => {
+  const onClick = jest.fn((index) => index);
+  const cardIndex = Math.round(Math.random(7));
+
+  const filmCard = shallow(
+      <FilmCard
+        image={film.image}
+        title={film.title}
+        index={cardIndex}
+        onClick={onClick}
+        onHover={() => {}}
+      />
+  );
+
+  const cardTitle = filmCard.find(`.small-movie-card__title`);
+
+  cardTitle.simulate(`click`);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick.mock.results[0].value).toBe(cardIndex);
 });

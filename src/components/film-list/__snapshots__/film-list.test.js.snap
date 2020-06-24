@@ -4,11 +4,11 @@ exports[`FilmList is rendered correctly 1`] = `
 Array [
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
+      onMouseOver={[Function]}
     >
       <img
         alt="Snatch"
@@ -19,10 +19,10 @@ Array [
     </div>
     <h3
       className="small-movie-card__title"
+      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        onClick={[Function]}
       >
         Snatch
       </a>
@@ -30,11 +30,11 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
+      onMouseOver={[Function]}
     >
       <img
         alt="Aviator"
@@ -45,10 +45,10 @@ Array [
     </div>
     <h3
       className="small-movie-card__title"
+      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        onClick={[Function]}
       >
         Aviator
       </a>
@@ -56,11 +56,11 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
+      onMouseOver={[Function]}
     >
       <img
         alt="Avatar"
@@ -71,10 +71,10 @@ Array [
     </div>
     <h3
       className="small-movie-card__title"
+      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        onClick={[Function]}
       >
         Avatar
       </a>
