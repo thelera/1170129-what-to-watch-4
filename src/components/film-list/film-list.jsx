@@ -26,11 +26,7 @@ class FilmList extends PureComponent {
           key={film.title + index}
           onClick={onClick}
           onHover={this._handleHover}
-        />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+        />)
     );
   }
 }

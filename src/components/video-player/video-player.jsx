@@ -24,20 +24,22 @@ class VideoPlayer extends PureComponent {
     video.poster = poster;
   }
 
-  componentDidUpdate() {
-    const {isPlaying, interval} = this.props;
+  componentDidUpdate(prevProps) {
+    const { isPlaying, interval } = this.props;
     const video = this._videoRef.current;
 
-    if (isPlaying) {
-      this.setState({isPlaying: true});
-      this.timerId = setTimeout(video.play.bind(video), interval);
-    } else {
-      if (this.timerId) {
+    if (this.props.isPlaying !== prevProps.isPlaying) {
+      if (isPlaying) {
+        this.setState({ isPlaying: true });
+        //video.play();
+        this.timerId = setTimeout(video.play.bind(video), interval);
+        const a = 0;
+      } else {
+        video.pause();
+        video.load();
+        this.setState({ isPlaying: false });
         clearTimeout(this.timerId);
       }
-      video.pause();
-      video.load();
-      this.setState({isPlaying: false});
     }
   }
 
