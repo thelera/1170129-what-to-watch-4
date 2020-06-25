@@ -22,14 +22,14 @@ class FilmCard extends PureComponent {
           onClick={() => {
             onClick(index);
           }}
-          onMouseOver={() => {
+          onMouseEnter={() => {
             this.setState({
               isPlaying: true,
             });
 
             onHover(index);
           }}
-          onMouseOut={() => {
+          onMouseLeave={() => {
             this.setState({
               isPlaying: false,
             });
