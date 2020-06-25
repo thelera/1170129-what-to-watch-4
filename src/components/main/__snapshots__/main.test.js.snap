@@ -263,8 +263,8 @@ exports[`<Main/> should render movie card and films catalog 1`] = `
           <div
             className="small-movie-card__image"
             onClick={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <video>
               Sorry, your browser doesn't support embedded videos.
@@ -287,8 +287,8 @@ exports[`<Main/> should render movie card and films catalog 1`] = `
           <div
             className="small-movie-card__image"
             onClick={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <video>
               Sorry, your browser doesn't support embedded videos.
@@ -311,8 +311,8 @@ exports[`<Main/> should render movie card and films catalog 1`] = `
           <div
             className="small-movie-card__image"
             onClick={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <video>
               Sorry, your browser doesn't support embedded videos.

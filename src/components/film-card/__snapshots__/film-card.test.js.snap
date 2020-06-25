@@ -7,8 +7,8 @@ exports[`FilmCard is rendered correctly 1`] = `
   <div
     className="small-movie-card__image"
     onClick={[Function]}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <video>
       Sorry, your browser doesn't support embedded videos.

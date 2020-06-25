@@ -27,7 +27,7 @@ it(`Film's index'll pass to handler if user hovers to film's card`, () => {
 
   const cardImage = filmCard.find(`.small-movie-card__image`);
 
-  cardImage.simulate(`mouseover`, () => {});
+  cardImage.simulate(`mouseenter`, () => {});
 
   expect(onHover).toHaveBeenCalledTimes(1);
   expect(onHover.mock.results[0].value).toBe(cardIndex);
