@@ -31,9 +31,7 @@ class VideoPlayer extends PureComponent {
     if (this.props.isPlaying !== prevProps.isPlaying) {
       if (isPlaying) {
         this.setState({ isPlaying: true });
-        //video.play();
         this.timerId = setTimeout(video.play.bind(video), interval);
-        const a = 0;
       } else {
         video.pause();
         video.load();
