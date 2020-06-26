@@ -4,19 +4,22 @@ import renderer from "react-test-renderer";
 
 const film = {
   image: `img/snatch.jpg`,
+  preview: `img/snatch.jpg`,
   title: `Snatch`,
 };
 
 it(`FilmCard is rendered correctly`, () => {
   const tree = renderer.create(
       <FilmCard
-        image={film.image}
-        title={film.title}
+        film={film}
         index={Math.random(7)}
         onClick={() => {}}
         onHover={() => {}}
-      />
-  ).toJSON();
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

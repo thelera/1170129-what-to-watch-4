@@ -263,14 +263,12 @@ exports[`<Main/> should render movie card and films catalog 1`] = `
           <div
             className="small-movie-card__image"
             onClick={[Function]}
-            onMouseOver={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <img
-              alt="Bekket"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -289,14 +287,12 @@ exports[`<Main/> should render movie card and films catalog 1`] = `
           <div
             className="small-movie-card__image"
             onClick={[Function]}
-            onMouseOver={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <img
-              alt="The Doom Generation"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
-            />
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -315,14 +311,12 @@ exports[`<Main/> should render movie card and films catalog 1`] = `
           <div
             className="small-movie-card__image"
             onClick={[Function]}
-            onMouseOver={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <img
-              alt="Patrool"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
-            />
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
           <h3
             className="small-movie-card__title"

@@ -18,8 +18,7 @@ it(`Film's index'll pass to handler if user hovers to film's card`, () => {
 
   const filmCard = shallow(
       <FilmCard
-        image={film.image}
-        title={film.title}
+        film={film}
         index={cardIndex}
         onClick={() => {}}
         onHover={onHover}
@@ -28,7 +27,7 @@ it(`Film's index'll pass to handler if user hovers to film's card`, () => {
 
   const cardImage = filmCard.find(`.small-movie-card__image`);
 
-  cardImage.simulate(`mouseover`, () => {});
+  cardImage.simulate(`mouseenter`, () => {});
 
   expect(onHover).toHaveBeenCalledTimes(1);
   expect(onHover.mock.results[0].value).toBe(cardIndex);
@@ -40,8 +39,7 @@ it(`Film's detailed card opens if user clicks to film's image`, () => {
 
   const filmCard = shallow(
       <FilmCard
-        image={film.image}
-        title={film.title}
+        film={film}
         index={cardIndex}
         onClick={onClick}
         onHover={() => {}}
@@ -62,8 +60,7 @@ it(`Film's detailed card opens if user clicks to film's title`, () => {
 
   const filmCard = shallow(
       <FilmCard
-        image={film.image}
-        title={film.title}
+        film={film}
         index={cardIndex}
         onClick={onClick}
         onHover={() => {}}

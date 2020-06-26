@@ -30,8 +30,11 @@ it(`Render App`, () => {
         filmGenre={filmData.genre}
         filmYear={filmData.year}
         filmsInfo={films}
-      />
-  ).toJSON();
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer is rendered correctly 1`] = `
+<video>
+  Sorry, your browser doesn't support embedded videos.
+</video>
+`;
