@@ -40,6 +40,7 @@ class App extends PureComponent {
     return (
       <FilmDetails
         film={filmsInfo[filmIndex]}
+        films={filmsInfo}
       />
     );
   }

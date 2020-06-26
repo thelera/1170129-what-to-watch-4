@@ -99,12 +99,10 @@ const Main = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            <FilmList
-              films={films}
-              onClick={onClick}
-            />
-          </div>
+          <FilmList
+            films={films}
+            onClick={onClick}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

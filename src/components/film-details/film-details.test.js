@@ -14,6 +14,7 @@ const film = {
   ratingScore: 7.2,
   ratingLevel: `good`,
   ratingCount: 248,
+  runTime: `1h 25m`,
   starring: [`Eddie Redmayne`, `Katherine Waterson`, `Dan Folger`],
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
   year: 2015,

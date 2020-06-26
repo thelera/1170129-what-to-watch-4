@@ -19,18 +19,20 @@ class FilmList extends PureComponent {
     const {films, onClick} = this.props;
 
     return (
-      films.map((film, index) =>
-        <FilmCard
-          film={film}
-          index={index}
-          key={film.title + index}
-          onClick={onClick}
-          onHover={this._handleHover}
-        />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      <div className="catalog__movies-list">
+        {films.map((film, index) =>
+          <FilmCard
+            film={film}
+            index={index}
+            key={film.title + index}
+            onClick={onClick}
+            onHover={this._handleHover}
+          />, {
+          createNodeMock: () => {
+            return {};
+          }
+        })}
+      </div>
     );
   }
 }
