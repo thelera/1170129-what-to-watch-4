@@ -23,13 +23,13 @@ class FilmCard extends PureComponent {
             onClick(index);
           }}
           onMouseEnter={() => {
-            this.setState({
-              isPlaying: true,
-            });
+            this.timerId = setTimeout(() => this.setState({isPlaying: true}), Video.INTERVAL_IN_SEC);
 
             onHover(index);
           }}
           onMouseLeave={() => {
+            clearTimeout(this.timerId);
+
             this.setState({
               isPlaying: false,
             });
@@ -38,7 +38,6 @@ class FilmCard extends PureComponent {
           <VideoPlayer
             source={preview}
             poster={image}
-            interval={Video.INTERVAL_IN_SEC}
             isMuted={Video.IS_MUTED}
             isPlaying={this.state.isPlaying}
             width={Video.WIDTH}
