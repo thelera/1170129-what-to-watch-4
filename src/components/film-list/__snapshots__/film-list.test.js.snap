@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FilmList is rendered correctly 1`] = `
-Array [
+<div
+  className="catalog__movies-list"
+>
   <article
     className="small-movie-card catalog__movies-card"
   >
@@ -25,7 +27,7 @@ Array [
         Snatch
       </a>
     </h3>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
   >
@@ -49,7 +51,7 @@ Array [
         Aviator
       </a>
     </h3>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
   >
@@ -73,6 +75,6 @@ Array [
         Avatar
       </a>
     </h3>
-  </article>,
-]
+  </article>
+</div>
 `;

@@ -8,7 +8,7 @@ export default [
     director: [`David Yates`],
     genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    preview: `https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 7.2,
     ratingLevel: `good`,
     ratingCount: 248,

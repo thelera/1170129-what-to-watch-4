@@ -19,7 +19,8 @@ it(`FilmCard is rendered correctly`, () => {
         createNodeMock: () => {
           return {};
         }
-      }).toJSON();
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

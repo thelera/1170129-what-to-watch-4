@@ -8,7 +8,7 @@ const Video = {
 const FilmDetailsTab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
-  REVIEW: `Reviews`,
+  REVIEWS: `Reviews`,
 };
 
 export {FilmDetailsTab, Video};

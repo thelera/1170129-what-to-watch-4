@@ -21,13 +21,12 @@ Enzyme.configure({
 
 it(`Video player can be playing or paused`, () => {
   const {image, preview} = film;
-  const isVideoPlaying = false;
+  let isVideoPlaying = false;
 
-  const videoPlayer = mount(
+  let videoPlayer = mount(
       <VideoPlayer
         source={preview}
         poster={image}
-        interval={Video.INTERVAL_IN_SEC}
         isMuted={Video.IS_MUTED}
         isPlaying={isVideoPlaying}
         width={Video.WIDTH}
@@ -35,8 +34,22 @@ it(`Video player can be playing or paused`, () => {
       />
   );
 
-  expect(videoPlayer.state().isPlaying).toBe(isVideoPlaying);
-  expect(videoPlayer.state().isPlaying).toEqual(videoPlayer.props().isPlaying);
+  expect(videoPlayer.props().isPlaying).toBe(isVideoPlaying);
+
+  isVideoPlaying = true;
+
+  videoPlayer = mount(
+      <VideoPlayer
+        source={preview}
+        poster={image}
+        isMuted={Video.IS_MUTED}
+        isPlaying={isVideoPlaying}
+        width={Video.WIDTH}
+        height={Video.HEIGHT}
+      />
+  );
+
+  expect(videoPlayer.props().isPlaying).toBe(isVideoPlaying);
 
   videoPlayer.unmount();
 });
