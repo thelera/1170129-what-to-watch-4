@@ -20,7 +20,7 @@ const Genre = {
   DRAMAS: `Drama`,
   FANTASY: `Fantasy`,
   HORROR: `Horror`,
-  KIDS_AND_FAMILY: `Kid's & Family`,
+  KIDS_AND_FAMILY: `Kid's and Family`,
   ROMANCE: `Romance`,
   SCI_FI: `Sci - Fi`,
   STORY: `Story`,

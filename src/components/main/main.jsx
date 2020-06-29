@@ -2,7 +2,7 @@ import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import {Genre} from "../../utils/consts.js";
 import GenresList from "../genres-list/genres-list.jsx";
-import FilmList from "../films-list/films-list.jsx";
+import FilmList from "../film-list/film-list.jsx"
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -113,7 +113,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsList: state.films,
+  filmsList: state.filmsList,
   promoFilm: state.promoFilm,
 });
 

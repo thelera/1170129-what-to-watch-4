@@ -9,8 +9,8 @@ const Tabs = (props) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {Object.values(FilmDetailsTab).map((tabName, index) => (
-            <li className={`movie-nav__item ${activeTab === tabName && `movie-nav__item--active`}`} onClick={() => onTabClick(tabName)} key={tabName + index}>
+          {Object.values(FilmDetailsTab).map((tabName) => (
+            <li className={`movie-nav__item ${activeTab === tabName && `movie-nav__item--active`}`} onClick={() => onTabClick(tabName)} key={tabName}>
               <a href="#" className="movie-nav__link">{tabName}</a>
             </li>
           ))}

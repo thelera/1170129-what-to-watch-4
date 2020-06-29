@@ -14,7 +14,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {filmIndex, filmName, filmGenre, filmYear, films, genre, onFilmCardClick, onGenreClick} = this.props;
+    const {allFilms, filmIndex, filmsList, onFilmCardClick} = this.props;
 
     if (filmIndex === -1) {
       return (
@@ -24,15 +24,15 @@ class App extends PureComponent {
 
     return (
       <FilmDetails
-        film={films[filmIndex]}
-        films={films}
+        allFilms={allFilms}
+        film={allFilms[filmIndex]}
         onClick={onFilmCardClick}
       />
     );
   }
 
   render() {
-    const {films, onFilmCardClick} = this.props;
+    const {allFilms, onFilmCardClick} = this.props;
 
     return (
       <BrowserRouter>
@@ -42,8 +42,8 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film-details">
             <FilmDetails
-              film={films[0]}
-              films={films}
+              allFilms={allFilms}
+              film={allFilms[0]}
               onClick={onFilmCardClick}
             />
           </Route>
@@ -55,29 +55,18 @@ class App extends PureComponent {
 
 App.propTypes = {
   allFilms: PropTypes.array.isRequired,
-  filmName: PropTypes.string.isRequired,
-  filmGenre: PropTypes.string.isRequired,
-  filmYear: PropTypes.number.isRequired,
   filmIndex: PropTypes.number.isRequired,
-  films: PropTypes.array.isRequired,
-  genre: PropTypes.oneOf(Object.values(Genre)).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   allFilms: state.allFilms,
   filmIndex: state.index,
-  films: state.films,
-  genre: state.genre,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilmCardClick(filmIndex) {
     dispatch(ActionCreator.getFilmDetails(filmIndex));
-  },
-  onGenreClick(films, genre) {
-    dispatch(ActionCreator.changeGenreAction(genre));
-    dispatch(ActionCreator.getFilmListByGenreAction(films, genre));
   },
 });
 

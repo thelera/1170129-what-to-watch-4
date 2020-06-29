@@ -1,6 +1,6 @@
 import {getFilmsByFilter} from "../../utils/common.js";
 import {FilmDetailsTab} from "../../utils/consts.js";
-import FilmList from "../films-list/films-list.jsx";
+import FilmList from "../film-list/film-list.jsx"
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import Tabs from "../tabs/tabs.jsx";
@@ -205,9 +205,9 @@ class FilmDetails extends PureComponent {
   }
 
   render() {
-    const {film, films, onClick} = this.props;
+    const {allFilms, film, onClick} = this.props;
     const {backgroundImage, genres, image, title, year} = film;
-    const similarFilmsByGenre = getSimilarFilmsByGenre(films, film);
+    const similarFilmsByGenre = getSimilarFilmsByGenre(allFilms, film);
 
     return (
       <React.Fragment>
@@ -329,6 +329,7 @@ class FilmDetails extends PureComponent {
 }
 
 FilmDetails.propTypes = {
+  allFilms: PropTypes.array.isRequired,
   film: PropTypes.shape({
     backgroundImage: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -343,7 +344,6 @@ FilmDetails.propTypes = {
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   }).isRequired,
-  films: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

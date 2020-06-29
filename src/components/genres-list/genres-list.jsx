@@ -8,13 +8,9 @@ const GenresList = (props) => {
   const {allFilms, genre: activeGenre, onGenreClick} = props;
 
   return (
-    <ul className="catalog__genres-list" onClick={(evt) => {
-      const activeGenre = evt.target.textContent;
-
-      onGenreClick(allFilms, activeGenre);
-    }}>
-      {Object.values(Genre).map((genre, index) => (
-        <li key={genre + index} className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}>
+    <ul className="catalog__genres-list">
+      {Object.values(Genre).map((genre) => (
+        <li className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`} onClick={() => onGenreClick(allFilms, genre)} key={genre}>
           <a href="#" className="catalog__genres-link">{genre}</a>
         </li>
       ))}

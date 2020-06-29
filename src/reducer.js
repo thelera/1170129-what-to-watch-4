@@ -5,7 +5,7 @@ import films from "./mocks/films.js";
 const initialState = {
   allFilms: films,
   genre: Genre.ALL,
-  films: films,
+  filmsList: films,
   index: -1,
   promoFilm: films[0],
 };
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_GENRE:
       return Object.assign({}, state, {genre: action.payload});
     case ActionType.GET_FILM_LIST_BY_GENRE:
-      return Object.assign({}, state, {films: action.payload});
+      return Object.assign({}, state, {filmsList: action.payload});
     case ActionType.GET_FILM_DETAILS:
       return Object.assign({}, state, {index: action.payload});
     default:
