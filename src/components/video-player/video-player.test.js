@@ -21,7 +21,6 @@ it(`VideoPlayer is rendered correctly`, () => {
       <VideoPlayer
         source={preview}
         poster={image}
-        interval={Video.INTERVAL_IN_SEC}
         isMuted={Video.IS_MUTED}
         isPlaying={true}
         width={Video.WIDTH}
