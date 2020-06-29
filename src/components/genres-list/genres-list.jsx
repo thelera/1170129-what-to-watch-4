@@ -1,6 +1,6 @@
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
-import {Genre} from "../../utils/consts.js";
+import {Genre, GENRES_COUNT} from "../../utils/consts.js";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -9,7 +9,7 @@ const GenresList = (props) => {
 
   return (
     <ul className="catalog__genres-list">
-      {Object.values(Genre).map((genre) => (
+      {Object.values(Genre).slice(0, GENRES_COUNT).map((genre) => (
         <li className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`} onClick={() => onGenreClick(allFilms, genre)} key={genre}>
           <a href="#" className="catalog__genres-link">{genre}</a>
         </li>

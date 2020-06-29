@@ -27,4 +27,6 @@ const Genre = {
   THRILLERS: `Thriller`,
 };
 
-export {FilmDetailsTab, Genre, Video};
+const GENRES_COUNT = 9;
+
+export {FilmDetailsTab, Genre, GENRES_COUNT, Video};
