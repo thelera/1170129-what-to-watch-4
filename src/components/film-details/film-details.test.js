@@ -63,7 +63,7 @@ it(`FilmDetails is rendered correctly`, () => {
   const tree = renderer.create(
       <FilmDetails
         film={film}
-        films={films}
+        allFilms={films}
         onClick={() => {}}
       />, {
         createNodeMock: () => {

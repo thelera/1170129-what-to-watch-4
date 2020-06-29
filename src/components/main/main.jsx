@@ -2,7 +2,7 @@ import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import {Genre} from "../../utils/consts.js";
 import GenresList from "../genres-list/genres-list.jsx";
-import FilmList from "../film-list/film-list.jsx"
+import FilmList from "../film-list/film-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
 

@@ -1,10 +1,8 @@
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import FilmDetails from "../film-details/film-details.jsx";
-import {Genre} from "../../utils/consts.js"
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
-import {Provider} from "react-redux"
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
@@ -14,7 +12,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {allFilms, filmIndex, filmsList, onFilmCardClick} = this.props;
+    const {allFilms, filmIndex, onFilmCardClick} = this.props;
 
     if (filmIndex === -1) {
       return (

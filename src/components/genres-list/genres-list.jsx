@@ -18,6 +18,12 @@ const GenresList = (props) => {
   );
 };
 
+GenresList.propTypes = {
+  allFilms: PropTypes.array.isRequired,
+  genre: PropTypes.oneOf(Object.values(Genre)),
+  onGenreClick: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   allFilms: state.allFilms,
   genre: state.genre,

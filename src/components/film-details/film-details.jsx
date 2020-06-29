@@ -1,6 +1,6 @@
 import {getFilmsByFilter} from "../../utils/common.js";
 import {FilmDetailsTab} from "../../utils/consts.js";
-import FilmList from "../film-list/film-list.jsx"
+import FilmList from "../film-list/film-list.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import Tabs from "../tabs/tabs.jsx";
@@ -39,7 +39,11 @@ class FilmDetails extends PureComponent {
   }
 
   _handleTabClick(tabName) {
-    if (tabName) {this.setState({ activeTab: tabName });}
+    if (tabName) {
+      this.setState({
+        activeTab: tabName,
+      });
+    }
   }
 
   _renderTabs() {

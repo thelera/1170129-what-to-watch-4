@@ -21,9 +21,9 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: genre,
   }),
-  getFilmListByGenreAction: (films, genre) => ({
+  getFilmListByGenreAction: (movies, genre) => ({
     type: ActionType.GET_FILM_LIST_BY_GENRE,
-    payload: getFilmsByFilter(films, genre),
+    payload: getFilmsByFilter(movies, genre),
   }),
   getFilmDetails: (index) => ({
     type: ActionType.GET_FILM_DETAILS,
