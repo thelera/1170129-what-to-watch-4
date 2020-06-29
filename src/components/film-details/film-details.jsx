@@ -1,5 +1,6 @@
+import {getFilmsByFilter} from "../../utils/common.js";
 import {FilmDetailsTab} from "../../utils/consts.js";
-import FilmList from "../film-list/film-list.jsx";
+import FilmList from "../films-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import Tabs from "../tabs/tabs.jsx";
@@ -17,8 +18,6 @@ const getUniqueArrayElements = (array) => {
 
   return result;
 };
-
-const getFilmsByFilter = (array, filterType) => array.filter((item) => item.genres.find((it) => it === filterType));
 
 const getSimilarFilmsByGenre = (films, film) => {
   const filmsByGenre = [];
@@ -40,7 +39,7 @@ class FilmDetails extends PureComponent {
   }
 
   _handleTabClick(tabName) {
-    this.setState({activeTab: tabName});
+    if (tabName) {this.setState({ activeTab: tabName });}
   }
 
   _renderTabs() {

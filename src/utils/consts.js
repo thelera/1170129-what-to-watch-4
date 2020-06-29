@@ -11,4 +11,20 @@ const FilmDetailsTab = {
   REVIEWS: `Reviews`,
 };
 
-export {FilmDetailsTab, Video};
+const Genre = {
+  ALL: `All genres`,
+  ADVENTURE: `Adventure`,
+  COMEDIES: `Comedy`,
+  CRIME: `Crime`,
+  DOCUMENTARY: `Documentary`,
+  DRAMAS: `Drama`,
+  FANTASY: `Fantasy`,
+  HORROR: `Horror`,
+  KIDS_AND_FAMILY: `Kid's & Family`,
+  ROMANCE: `Romance`,
+  SCI_FI: `Sci - Fi`,
+  STORY: `Story`,
+  THRILLERS: `Thriller`,
+};
+
+export {FilmDetailsTab, Genre, Video};

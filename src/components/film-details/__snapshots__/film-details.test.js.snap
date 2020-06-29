@@ -271,10 +271,10 @@ Array [
             >
               <ul
                 className="movie-nav__list"
-                onClick={[Function]}
               >
                 <li
                   className="movie-nav__item movie-nav__item--active"
+                  onClick={[Function]}
                 >
                   <a
                     className="movie-nav__link"
@@ -285,6 +285,7 @@ Array [
                 </li>
                 <li
                   className="movie-nav__item false"
+                  onClick={[Function]}
                 >
                   <a
                     className="movie-nav__link"
@@ -295,6 +296,7 @@ Array [
                 </li>
                 <li
                   className="movie-nav__item false"
+                  onClick={[Function]}
                 >
                   <a
                     className="movie-nav__link"
