@@ -14,7 +14,7 @@ class App extends PureComponent {
   _renderApp() {
     const {allFilms, filmIndex, onFilmCardClick} = this.props;
 
-    if (filmIndex === -1) {
+    if (filmIndex === -1 || filmIndex === null) {
       return (
         <Main/>
       );
