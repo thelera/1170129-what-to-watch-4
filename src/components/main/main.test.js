@@ -23,7 +23,7 @@ const films = [
   },
 ];
 
-it(`<Main/> should render movie card and films catalog`, () => {
+it(`Main should render movie card and films catalog`, () => {
   const tree = renderer.create(
       <Main
         name={filmData.name}

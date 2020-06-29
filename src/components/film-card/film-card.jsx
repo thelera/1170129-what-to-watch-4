@@ -12,6 +12,10 @@ class FilmCard extends PureComponent {
     };
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timerId);
+  }
+
   render() {
     const {index, film, onClick, onHover} = this.props;
     const {image, preview, title} = film;

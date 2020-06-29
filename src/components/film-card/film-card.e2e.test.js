@@ -4,8 +4,9 @@ import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
 
 const film = {
-  title: `Bekket`,
-  image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  image: `img/snatch.jpg`,
+  preview: `img/snatch.jpg`,
+  title: `Snatch`,
 };
 
 Enzyme.configure({

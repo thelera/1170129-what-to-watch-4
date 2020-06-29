@@ -29,7 +29,7 @@ it(`Render App`, () => {
         filmName={filmData.name}
         filmGenre={filmData.genre}
         filmYear={filmData.year}
-        filmsInfo={films}
+        films={films}
       />, {
         createNodeMock: () => {
           return {};

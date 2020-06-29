@@ -5,4 +5,10 @@ const Video = {
   IS_MUTED: true,
 };
 
-export {Video};
+const FilmDetailsTab = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};
+
+export {FilmDetailsTab, Video};
