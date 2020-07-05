@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(films, genre) {
     dispatch(ActionCreator.changeGenreAction(genre));
-    dispatch(ActionCreator.getFilmListByGenreAction(films, genre));
+    dispatch(ActionCreator.getFilmsListByGenreAction(films, genre));
   },
 });
 

@@ -1,33 +1,10 @@
-import {getFilmsByFilter} from "../../utils/common.js";
 import {FilmDetailsTab} from "../../utils/consts.js";
-import FilmList from "../film-list/film-list.jsx";
+import FilmsList from "../film-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import Tabs from "../tabs/tabs.jsx";
 
 const SIMILAR_FILMS_COUNT = 4;
-
-const getUniqueArrayElements = (array) => {
-  let result = [];
-
-  array.forEach((item) => {
-    if (!result.includes(item)) {
-      result.push(item);
-    }
-  });
-
-  return result;
-};
-
-const getSimilarFilmsByGenre = (films, film) => {
-  const filmsByGenre = [];
-  const similarFilms = film.genres.map((genre) => [].concat(getFilmsByFilter(films, genre)));
-  similarFilms.forEach((movie) => movie.forEach((it) => filmsByGenre.push(it)));
-  const similarFilmsByGenre = filmsByGenre.filter((it) => it !== film);
-
-  return getUniqueArrayElements(similarFilmsByGenre);
-};
-
 
 class FilmDetails extends PureComponent {
   constructor(props) {
@@ -209,9 +186,8 @@ class FilmDetails extends PureComponent {
   }
 
   render() {
-    const {allFilms, film, onClick} = this.props;
+    const {film, filmsList: filmsByGenres} = this.props;
     const {backgroundImage, genres, image, title, year} = film;
-    const similarFilmsByGenre = getSimilarFilmsByGenre(allFilms, film);
 
     return (
       <React.Fragment>
@@ -307,9 +283,8 @@ class FilmDetails extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <FilmList
-              films={similarFilmsByGenre.slice(0, SIMILAR_FILMS_COUNT)}
-              onClick={onClick}
+            <FilmsList
+              films={filmsByGenres.slice(0, SIMILAR_FILMS_COUNT)}
             />
           </section>
 
@@ -333,7 +308,6 @@ class FilmDetails extends PureComponent {
 }
 
 FilmDetails.propTypes = {
-  allFilms: PropTypes.array.isRequired,
   film: PropTypes.shape({
     backgroundImage: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -347,8 +321,8 @@ FilmDetails.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
-  }).isRequired,
-  onClick: PropTypes.func.isRequired,
+  }),
+  filmsList: PropTypes.array.isRequired,
 };
 
 export default FilmDetails;

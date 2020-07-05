@@ -78,15 +78,15 @@ const films = [
 it(`Render App`, () => {
   const store = mockStore({
     allFilms: films,
+    film: films[0],
+    filmsList: films,
     index: 0,
     promoFilm: filmData,
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <App
-          onFilmCardClick={() => { }}
-        />
+        <App/>
       </Provider>, {
         createNodeMock: () => {
           return {};

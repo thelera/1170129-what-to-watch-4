@@ -1,13 +1,12 @@
-import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import {Genre} from "../../utils/consts.js";
 import GenresList from "../genres-list/genres-list.jsx";
-import FilmList from "../film-list/film-list.jsx";
+import FilmList from "../film-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
 
 const Main = (props) => {
-  const {filmsList, onFilmCardClick, promoFilm} = props;
+  const {filmsList, promoFilm} = props;
   const {genres, image, title, year} = promoFilm;
 
   return (
@@ -75,7 +74,6 @@ const Main = (props) => {
 
           <FilmList
             films={filmsList}
-            onClick={onFilmCardClick}
           />
 
           <div className="catalog__more">
@@ -103,7 +101,6 @@ const Main = (props) => {
 
 Main.propTypes = {
   filmsList: PropTypes.array.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
     genres: PropTypes.arrayOf(PropTypes.oneOf(Object.values(Genre))).isRequired,
     image: PropTypes.string.isRequired,
@@ -117,12 +114,6 @@ const mapStateToProps = (state) => ({
   promoFilm: state.promoFilm,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onFilmCardClick(filmIndex) {
-    dispatch(ActionCreator.getFilmDetails(filmIndex));
-  },
-});
-
 export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);
 

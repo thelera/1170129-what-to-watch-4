@@ -42,7 +42,6 @@ it(`Main should render movie card and films catalog`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <Main
-          onFilmCardClick= {() => {}}
         />
       </Provider>, {
         createNodeMock: () => {

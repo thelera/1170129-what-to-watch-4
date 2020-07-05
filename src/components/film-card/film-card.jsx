@@ -1,3 +1,5 @@
+import {ActionCreator} from "../../reducer.js";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Video} from "../../utils/consts.js";
@@ -17,14 +19,14 @@ class FilmCard extends PureComponent {
   }
 
   render() {
-    const {index, film, onClick, onHover} = this.props;
-    const {image, preview, title} = film;
+    const {allFilms, index, onClick, onHover} = this.props;
+    const {image, preview, title} = allFilms[index];
 
     return (
       <article className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image"
           onClick={() => {
-            onClick(index);
+            onClick(allFilms, index);
           }}
           onMouseEnter={() => {
             this.timerId = setTimeout(() => this.setState({isPlaying: true}), Video.INTERVAL_IN_SEC);
@@ -50,7 +52,7 @@ class FilmCard extends PureComponent {
         </div>
         <h3 className="small-movie-card__title"
           onClick={() => {
-            onClick(index);
+            onClick(allFilms, index);
           }}>
           <a className="small-movie-card__link">{title}</a>
         </h3>
@@ -60,14 +62,22 @@ class FilmCard extends PureComponent {
 }
 
 FilmCard.propTypes = {
+  allFilms: PropTypes.array.isRequired,
   index: PropTypes.number.isRequired,
-  film: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
   onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
 };
 
-export default FilmCard;
+const mapStateToProps = (state) => ({
+  allFilms: state.allFilms,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick(movies, index) {
+    dispatch(ActionCreator.getFilmDetailsAction(index));
+    dispatch(ActionCreator.getFilmsListByGenresAction(movies, movies[index]));
+  },
+});
+
+export {FilmCard};
+export default connect(mapStateToProps, mapDispatchToProps)(FilmCard);

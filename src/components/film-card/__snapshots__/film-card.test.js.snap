@@ -21,7 +21,7 @@ exports[`FilmCard is rendered correctly 1`] = `
     <a
       className="small-movie-card__link"
     >
-      Snatch
+      We Need To Talk About Kevin
     </a>
   </h3>
 </article>

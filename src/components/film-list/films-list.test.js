@@ -1,5 +1,5 @@
 import configureStore from "redux-mock-store";
-import FilmCard from "./film-card.jsx";
+import FilmsList from "./films-list.jsx";
 import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";
@@ -153,25 +153,40 @@ const films = [
   },
 ];
 
-it(`FilmCard is rendered correctly`, () => {
+const filmsList = [
+  {
+    image: `img/snatch.jpg`,
+    preview: `https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4`,
+    title: `Snatch`,
+  },
+  {
+    image: `img/aviator.jpg`,
+    poster: `ddd`,
+    preview: `https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4`,
+    title: `Aviator`,
+  },
+  {
+    image: `img/avatar.jpg`,
+    preview: `https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4`,
+    title: `Avatar`,
+  }
+];
+
+it(`FilmsList is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <FilmCard
-          index={4}
-          onClick={() => { }}
-          onHover={() => { }}
+        <FilmsList
+          films={filmsList}
         />
-      </Provider>
-      , {
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }
-      }
-  ).toJSON();
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

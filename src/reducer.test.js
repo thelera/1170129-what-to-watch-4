@@ -102,7 +102,7 @@ it(`Reducer should change "filmList" key by a given value`, () => {
     index: -1,
     promoFilm: films[0],
   }, {
-    type: ActionType.GET_FILM_LIST_BY_GENRE,
+    type: ActionType.GET_FILMS_LIST_BY_GENRE,
     payload: getFilmsByFilter(films, `Drama`),
   })).toEqual({
     allFilms: films,
@@ -119,7 +119,7 @@ it(`Reducer should change "filmList" key by a given value`, () => {
     index: 3,
     promoFilm: films[2],
   }, {
-    type: ActionType.GET_FILM_LIST_BY_GENRE,
+    type: ActionType.GET_FILMS_LIST_BY_GENRE,
     payload: films,
   })).toEqual({
     allFilms: films,
@@ -192,14 +192,14 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for getting films list by genre returns action with 0 payload if answer for artist is correct`, () => {
-    expect(ActionCreator.getFilmListByGenreAction(films, `Thriller`)).toEqual({
-      type: ActionType.GET_FILM_LIST_BY_GENRE,
+    expect(ActionCreator.getFilmsListByGenreAction(films, `Thriller`)).toEqual({
+      type: ActionType.GET_FILMS_LIST_BY_GENRE,
       payload: getFilmsByFilter(films, `Thriller`),
     });
   });
 
   it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
-    expect(ActionCreator.getFilmDetails(2)).toEqual({
+    expect(ActionCreator.getFilmDetailsAction(2)).toEqual({
       type: ActionType.GET_FILM_DETAILS,
       payload: 2,
     });

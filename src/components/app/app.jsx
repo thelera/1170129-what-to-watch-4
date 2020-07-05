@@ -1,20 +1,15 @@
-import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import FilmDetails from "../film-details/film-details.jsx";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const App = (props) => {
+  const {film, filmsList} = props;
 
-  _renderApp() {
-    const {allFilms, filmIndex, onFilmCardClick} = this.props;
-
-    if (filmIndex === -1 || filmIndex === null) {
+  const renderApp = () => {
+    if (!film) {
       return (
         <Main/>
       );
@@ -22,51 +17,51 @@ class App extends PureComponent {
 
     return (
       <FilmDetails
-        allFilms={allFilms}
-        film={allFilms[filmIndex]}
-        onClick={onFilmCardClick}
+        film={film}
+        filmsList={filmsList}
       />
     );
-  }
+  };
 
-  render() {
-    const {allFilms, onFilmCardClick} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-film-details">
-            <FilmDetails
-              allFilms={allFilms}
-              film={allFilms[0]}
-              onClick={onFilmCardClick}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderApp()}
+        </Route>
+        <Route exact path="/dev-film-details">
+          <FilmDetails
+            film={film}
+            filmsList={filmsList}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
-  allFilms: PropTypes.array.isRequired,
-  filmIndex: PropTypes.number.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
+  film: PropTypes.shape({
+    backgroundImage: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    director: PropTypes.arrayOf(PropTypes.string).isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image: PropTypes.string.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    ratingLevel: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    runTime: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+  }),
+  filmsList: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-  filmIndex: state.index,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilmCardClick(filmIndex) {
-    dispatch(ActionCreator.getFilmDetails(filmIndex));
-  },
+  film: state.allFilms[state.index],
+  filmsList: state.filmsList,
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

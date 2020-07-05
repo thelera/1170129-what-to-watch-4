@@ -1,6 +1,10 @@
+import configureStore from "redux-mock-store";
 import FilmDetails from "./film-details.jsx";
+import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";
+
+const mockStore = configureStore([]);
 
 const film = {
   backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -60,12 +64,17 @@ const films = [
 ];
 
 it(`FilmDetails is rendered correctly`, () => {
+  const store = mockStore({
+    allFilms: films,
+  });
+
   const tree = renderer.create(
-      <FilmDetails
-        film={film}
-        allFilms={films}
-        onClick={() => {}}
-      />, {
+      <Provider store={store}>
+        <FilmDetails
+          film={film}
+          filmsList={films}
+        />
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }

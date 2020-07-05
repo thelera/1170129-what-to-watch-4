@@ -46,9 +46,7 @@ it(`Card title should be clicked`, () => {
 
   const main = shallow(
       <Provider store={store}>
-        <Main
-          onFilmCardClick={onClick}
-        />
+        <Main/>
       </Provider>
   );
 
