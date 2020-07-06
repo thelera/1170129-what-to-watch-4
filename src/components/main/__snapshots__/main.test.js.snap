@@ -331,14 +331,7 @@ exports[`Main should render movie card and films catalog 1`] = `
       </div>
       <div
         className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          type="button"
-        >
-          Show more
-        </button>
-      </div>
+      />
     </section>
     <footer
       className="page-footer"

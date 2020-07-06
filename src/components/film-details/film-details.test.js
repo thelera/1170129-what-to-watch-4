@@ -1,5 +1,5 @@
 import configureStore from "redux-mock-store";
-import FilmDetails from "./film-details.jsx";
+import {FilmDetails} from "./film-details.jsx";
 import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";

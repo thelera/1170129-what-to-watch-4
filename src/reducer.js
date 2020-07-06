@@ -1,54 +1,60 @@
-import {Genre} from "./utils/consts.js";
+import {Genre, SHOWING_FILMS_COUNT_ON_START} from "./utils/consts.js";
 import {getFilmsByFilter, getSimilarFilmsByGenres} from "./utils/common.js";
 import films from "./mocks/films.js";
 
 const initialState = {
   allFilms: films,
   genre: Genre.ALL,
-  filmsList: films,
-  index: -1,
+  id: -1,
   promoFilm: films[0],
+  showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
 };
 
 const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
-  GET_FILMS_LIST_BY_GENRE: `FILM_LIST_BY_GENRE`,
-  GET_FILMS_LIST_BY_GENRES: `FILM_LIST_BY_GENRES`,
-  GET_FILM_DETAILS: `GET_FILM_DETAILS`,
+  CHANGE_FILM_ID: `CHANGE_FILM_ID`,
+  INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
+  SET_SHOWED_FILMS_COUNT: `SET_SHOWED_FILMS_COUNT`,
 };
 
 const ActionCreator = {
-  changeGenreAction: (genre) => ({
+  genreAction: (genre) => ({
     type: ActionType.CHANGE_GENRE,
     payload: genre,
   }),
-  getFilmsListByGenreAction: (movies, genre) => ({
-    type: ActionType.GET_FILMS_LIST_BY_GENRE,
-    payload: getFilmsByFilter(movies, genre),
+  filmIdAction: (id) => ({
+    type: ActionType.CHANGE_FILM_ID,
+    payload: id,
   }),
-  getFilmsListByGenresAction: (movies, movie) => ({
-    type: ActionType.GET_FILMS_LIST_BY_GENRE,
-    payload: getSimilarFilmsByGenres(movies, movie),
+  filmsCountAction: (count) => ({
+    type: ActionType.SET_SHOWED_FILMS_COUNT,
+    payload: count,
   }),
-  getFilmDetailsAction: (index) => ({
-    type: ActionType.GET_FILM_DETAILS,
-    payload: index,
-  })
+  incrementFilmsCountAction: (count) => ({
+    type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
+    payload: count,
+  }),
+};
+
+const Selector = {
+  getFilmById: (state) => state.allFilms.find((film) => film.id === state.id),
+  getFilmsListByGenre: (state) => getFilmsByFilter(state.allFilms, state.genre),
+  getFilmsListByGenres: (state) => getSimilarFilmsByGenres(state.allFilms, Selector.getFilmById(state)),
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return Object.assign({}, state, {genre: action.payload});
-    case ActionType.GET_FILMS_LIST_BY_GENRE:
-      return Object.assign({}, state, {filmsList: action.payload});
-    case ActionType.GET_FILMS_LIST_BY_GENRES:
-      return Object.assign({}, state, {filmsList: action.payload});
-    case ActionType.GET_FILM_DETAILS:
-      return Object.assign({}, state, {index: action.payload});
+    case ActionType.CHANGE_FILM_ID:
+      return Object.assign({}, state, {id: action.payload});
+    case ActionType.SET_SHOWED_FILMS_COUNT:
+      return Object.assign({}, state, {showedFilmsCount: action.payload});
+    case ActionType.INCREMENT_SHOWED_FILMS_COUNT:
+      return Object.assign({}, state, {showedFilmsCount: state.showedFilmsCount + action.payload});
     default:
       return state;
   }
 };
 
-export {ActionCreator, ActionType, reducer};
+export {ActionCreator, ActionType, reducer, Selector};

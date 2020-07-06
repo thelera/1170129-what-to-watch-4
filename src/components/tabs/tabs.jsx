@@ -1,6 +1,6 @@
+import {FilmDetailsTab} from "../../utils/consts.js";
 import PropTypes from "prop-types";
 import React from "react";
-import {FilmDetailsTab} from "../../utils/consts.js";
 
 const Tabs = (props) => {
   const {tab: activeTab, onTabClick, children} = props;

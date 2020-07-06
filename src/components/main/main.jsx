@@ -4,9 +4,11 @@ import GenresList from "../genres-list/genres-list.jsx";
 import FilmList from "../film-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
+import {Selector} from "../../reducer.js";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const Main = (props) => {
-  const {filmsList, promoFilm} = props;
+  const {filmsCount, filmsList, promoFilm} = props;
   const {genres, image, title, year} = promoFilm;
 
   return (
@@ -73,11 +75,11 @@ const Main = (props) => {
           <GenresList/>
 
           <FilmList
-            films={filmsList}
+            films={filmsList.slice(0, filmsCount)}
           />
 
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            {filmsList.length >= filmsCount && <ShowMoreButton/>}
           </div>
         </section>
 
@@ -100,6 +102,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  filmsCount: PropTypes.number.isRequired,
   filmsList: PropTypes.array.isRequired,
   promoFilm: PropTypes.shape({
     genres: PropTypes.arrayOf(PropTypes.oneOf(Object.values(Genre))).isRequired,
@@ -110,10 +113,9 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsList: state.filmsList,
-  promoFilm: state.promoFilm,
+  filmsList: Selector.getFilmsListByGenre(state),
+  filmsCount: state.showedFilmsCount,
 });
 
 export {Main};
 export default connect(mapStateToProps)(Main);
-

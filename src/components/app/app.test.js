@@ -75,12 +75,9 @@ const films = [
   },
 ];
 
-it(`Render App`, () => {
+it(`App is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
-    film: films[0],
-    filmsList: films,
-    index: 0,
     promoFilm: filmData,
   });
 

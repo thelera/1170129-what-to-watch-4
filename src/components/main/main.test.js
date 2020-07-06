@@ -35,13 +35,13 @@ it(`Main should render movie card and films catalog`, () => {
   const store = mockStore({
     allFilms: films,
     genre: `All genres`,
-    filmsList: films,
-    promoFilm: filmData,
   });
 
   const tree = renderer.create(
       <Provider store={store}>
         <Main
+          filmsList={films}
+          promoFilm={filmData}
         />
       </Provider>, {
         createNodeMock: () => {

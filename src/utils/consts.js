@@ -1,3 +1,7 @@
+const SIMILAR_FILMS_COUNT = 4;
+const SHOWING_FILMS_COUNT = 8;
+const SHOWING_FILMS_COUNT_ON_START = 8;
+
 const Video = {
   WIDTH: 280,
   HEIGHT: 175,
@@ -29,4 +33,4 @@ const Genre = {
 
 const GENRES_COUNT = 9;
 
-export {FilmDetailsTab, Genre, GENRES_COUNT, Video};
+export {FilmDetailsTab, Genre, GENRES_COUNT, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};

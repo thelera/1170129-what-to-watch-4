@@ -1,11 +1,7 @@
 import Adapter from "enzyme-adapter-react-16";
-import configureStore from "redux-mock-store";
 import Enzyme, {shallow} from "enzyme";
-import Main from "./main.jsx";
-import {Provider} from "react-redux";
+import {Main} from "./main.jsx";
 import React from "react";
-
-const mockStore = configureStore([]);
 
 const filmData = {
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -37,17 +33,13 @@ Enzyme.configure({
 });
 
 it(`Card title should be clicked`, () => {
-  const store = mockStore({
-    filmsList: films,
-    promoFilm: filmData,
-  });
-
   const onClick = jest.fn();
 
   const main = shallow(
-      <Provider store={store}>
-        <Main/>
-      </Provider>
+      <Main
+        filmsList={films}
+        promoFilm={filmData}
+      />
   );
 
   const cardLink = main.find(`a.small-movie-card__link`);

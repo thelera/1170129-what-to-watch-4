@@ -1,10 +1,11 @@
+import {connect} from "react-redux";
 import {FilmDetailsTab} from "../../utils/consts.js";
 import FilmsList from "../film-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {Selector} from "../../reducer.js";
+import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
-
-const SIMILAR_FILMS_COUNT = 4;
 
 class FilmDetails extends PureComponent {
   constructor(props) {
@@ -325,4 +326,9 @@ FilmDetails.propTypes = {
   filmsList: PropTypes.array.isRequired,
 };
 
-export default FilmDetails;
+const mapStateToProps = (state) => ({
+  filmsList: Selector.getFilmsListByGenres(state),
+});
+
+export {FilmDetails};
+export default connect(mapStateToProps)(FilmDetails);

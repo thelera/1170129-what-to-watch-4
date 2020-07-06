@@ -1,18 +1,18 @@
+import FilmCard from "../film-card/film-card.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
-import FilmCard from "../film-card/film-card.jsx";
 
 class FilmsList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {index: null};
+    this.state = {id: null};
 
     this._handleHover = this._handleHover.bind(this);
   }
 
   _handleHover(value) {
-    this.setState({index: value});
+    this.setState({id: value});
   }
 
   render() {
@@ -20,10 +20,10 @@ class FilmsList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film, index) =>
+        {films.map((film) =>
           <FilmCard
-            index={index}
-            key={film.title + index}
+            film={film}
+            key={film.id}
             onHover={this._handleHover}
           />)}
       </div>

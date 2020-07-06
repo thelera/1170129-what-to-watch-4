@@ -14,24 +14,20 @@ class FilmCard extends PureComponent {
     };
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timerId);
-  }
-
   render() {
-    const {allFilms, index, onClick, onHover} = this.props;
-    const {image, preview, title} = allFilms[index];
+    const {film, onClick, onHover} = this.props;
+    const {image, preview, title} = film;
 
     return (
       <article className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image"
           onClick={() => {
-            onClick(allFilms, index);
+            onClick(film.id);
           }}
           onMouseEnter={() => {
             this.timerId = setTimeout(() => this.setState({isPlaying: true}), Video.INTERVAL_IN_SEC);
 
-            onHover(index);
+            onHover(film.id);
           }}
           onMouseLeave={() => {
             clearTimeout(this.timerId);
@@ -52,30 +48,45 @@ class FilmCard extends PureComponent {
         </div>
         <h3 className="small-movie-card__title"
           onClick={() => {
-            onClick(allFilms, index);
+            onClick(film.id);
           }}>
           <a className="small-movie-card__link">{title}</a>
         </h3>
       </article>
     );
   }
+
+  componentWillUnmount() {
+    clearTimeout(this.timerId);
+  }
 }
 
 FilmCard.propTypes = {
-  allFilms: PropTypes.array.isRequired,
-  index: PropTypes.number.isRequired,
+  film: PropTypes.shape({
+    backgroundImage: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    director: PropTypes.arrayOf(PropTypes.string).isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    ratingLevel: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    runTime: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+  }),
   onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick(movies, index) {
-    dispatch(ActionCreator.getFilmDetailsAction(index));
-    dispatch(ActionCreator.getFilmsListByGenresAction(movies, movies[index]));
+  onClick(id) {
+    dispatch(ActionCreator.filmIdAction(id));
   },
 });
 
