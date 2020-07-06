@@ -1,17 +1,25 @@
+import {ActionCreator} from "../../reducer.js";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import React from "react";
 import {Video} from "../../utils/consts.js";
 import VideoPlayer from "../video-player/video-player.jsx";
 
 const FilmCard = (props) => {
-  const {film, isPlaying, onMouseEnter, onMouseLeave, onClick} = props;
+  const {film, isPlaying, onMouseEnter, onMouseLeave, onClick, onHover} = props;
   const {image, preview, title} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image"
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
+        onClick={() => {
+          onClick(film.id);
+        }}
+        onMouseEnter={() => {
+          onMouseEnter();
+
+          onHover(film.id);
+        }}
         onMouseLeave={onMouseLeave}
       >
         <VideoPlayer
@@ -24,12 +32,14 @@ const FilmCard = (props) => {
         />
       </div>
       <h3 className="small-movie-card__title"
-        onClick={onClick}>
+        onClick={() => {
+          onClick(film.id);
+        }}>
         <a className="small-movie-card__link">{title}</a>
       </h3>
     </article>
   );
-}
+};
 
 FilmCard.propTypes = {
   film: PropTypes.shape({
@@ -48,7 +58,20 @@ FilmCard.propTypes = {
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   }),
+  isPlaying: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
+  onHover: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
-export default FilmCard;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick(id) {
+    dispatch(ActionCreator.filmIdAction(id));
+  },
+});
+
+export {FilmCard};
+export default connect(mapStateToProps, mapDispatchToProps)(FilmCard);
