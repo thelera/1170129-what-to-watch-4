@@ -1,6 +1,9 @@
 import FilmCard from "../film-card/film-card.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import withFilmCard from "../../hocs/with-film-card/with-film-card.js";
+
+const FilmCardWrapped = withFilmCard(FilmCard);
 
 class FilmsList extends PureComponent {
   constructor(props) {
@@ -21,7 +24,7 @@ class FilmsList extends PureComponent {
     return (
       <div className="catalog__movies-list">
         {films.map((film) =>
-          <FilmCard
+          <FilmCardWrapped
             film={film}
             key={film.id}
             onHover={this._handleHover}

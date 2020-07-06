@@ -1,64 +1,34 @@
-import {ActionCreator} from "../../reducer.js";
-import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import React from "react";
 import {Video} from "../../utils/consts.js";
 import VideoPlayer from "../video-player/video-player.jsx";
 
-class FilmCard extends PureComponent {
-  constructor(props) {
-    super(props);
+const FilmCard = (props) => {
+  const {film, isPlaying, onMouseEnter, onMouseLeave, onClick} = props;
+  const {image, preview, title} = film;
 
-    this.state = {
-      isPlaying: false,
-    };
-  }
-
-  render() {
-    const {film, onClick, onHover} = this.props;
-    const {image, preview, title} = film;
-
-    return (
-      <article className="small-movie-card catalog__movies-card">
-        <div className="small-movie-card__image"
-          onClick={() => {
-            onClick(film.id);
-          }}
-          onMouseEnter={() => {
-            this.timerId = setTimeout(() => this.setState({isPlaying: true}), Video.INTERVAL_IN_SEC);
-
-            onHover(film.id);
-          }}
-          onMouseLeave={() => {
-            clearTimeout(this.timerId);
-
-            this.setState({
-              isPlaying: false,
-            });
-          }}
-        >
-          <VideoPlayer
-            source={preview}
-            poster={image}
-            isMuted={Video.IS_MUTED}
-            isPlaying={this.state.isPlaying}
-            width={Video.WIDTH}
-            height={Video.HEIGHT}
-          />
-        </div>
-        <h3 className="small-movie-card__title"
-          onClick={() => {
-            onClick(film.id);
-          }}>
-          <a className="small-movie-card__link">{title}</a>
-        </h3>
-      </article>
-    );
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timerId);
-  }
+  return (
+    <article className="small-movie-card catalog__movies-card">
+      <div className="small-movie-card__image"
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        <VideoPlayer
+          source={preview}
+          poster={image}
+          isMuted={Video.IS_MUTED}
+          isPlaying={isPlaying}
+          width={Video.WIDTH}
+          height={Video.HEIGHT}
+        />
+      </div>
+      <h3 className="small-movie-card__title"
+        onClick={onClick}>
+        <a className="small-movie-card__link">{title}</a>
+      </h3>
+    </article>
+  );
 }
 
 FilmCard.propTypes = {
@@ -79,16 +49,6 @@ FilmCard.propTypes = {
     year: PropTypes.number.isRequired,
   }),
   onClick: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = (dispatch) => ({
-  onClick(id) {
-    dispatch(ActionCreator.filmIdAction(id));
-  },
-});
-
-export {FilmCard};
-export default connect(mapStateToProps, mapDispatchToProps)(FilmCard);
+export default FilmCard;
