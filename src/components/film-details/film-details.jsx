@@ -305,6 +305,7 @@ FilmDetails.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string).isRequired,
     director: PropTypes.arrayOf(PropTypes.string).isRequired,
     genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     ratingCount: PropTypes.number.isRequired,
     ratingLevel: PropTypes.string.isRequired,
@@ -315,6 +316,7 @@ FilmDetails.propTypes = {
     year: PropTypes.number.isRequired,
   }),
   filmsList: PropTypes.array.isRequired,
+  key: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
