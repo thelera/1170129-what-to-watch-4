@@ -8,7 +8,7 @@ const GenresList = (props) => {
   const {onActiveClick, onGenreClick} = props;
   let {activeItem: activeGenre} = props;
 
-  if(!activeGenre) {
+  if (!activeGenre) {
     activeGenre = Genre.ALL;
   }
 
@@ -35,7 +35,9 @@ const GenresList = (props) => {
 };
 
 GenresList.propTypes = {
+  activeItem: PropTypes.oneOf(Object.values(Genre)),
   genre: PropTypes.oneOf(Object.values(Genre)),
+  onActiveClick: PropTypes.func.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
 

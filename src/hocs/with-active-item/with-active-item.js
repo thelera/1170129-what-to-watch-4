@@ -14,9 +14,9 @@ const withActiveItem = (Component) => {
 
     _handleActiveClick(activeItemName) {
       this.setState(
-        {
-          activeItem: activeItemName,
-        }
+          {
+            activeItem: activeItemName,
+          }
       );
     }
 
@@ -32,6 +32,6 @@ const withActiveItem = (Component) => {
   }
 
   return WithActiveItem;
-}
+};
 
 export default withActiveItem;

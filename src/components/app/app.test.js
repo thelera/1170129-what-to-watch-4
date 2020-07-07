@@ -1,5 +1,5 @@
 import React from "react";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import renderer from "react-test-renderer";
@@ -14,7 +14,7 @@ const filmData = {
   ],
   director: [`David Yates`],
   genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
-  id: String(new Date() + Math.random()),
+  id: `1mfkemfkelf`,
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   ratingScore: 7.2,
@@ -35,7 +35,7 @@ const films = [
     ],
     director: [`David Yates`],
     genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
-    id: String(new Date() + Math.random()),
+    id: `1mfkemfkelf`,
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 7.2,
@@ -127,13 +127,20 @@ const films = [
 it(`App is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
+    id: `1mfkemfkelf`,
+    film: filmData,
     filmsCount: 5,
+    key: `vddssdg`,
     promoFilm: filmData,
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <App/>
+        <App
+          film={filmData}
+          filmsList={films}
+          promoFilm={filmData}
+        />
       </Provider>, {
         createNodeMock: () => {
           return {};

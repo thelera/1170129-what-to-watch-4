@@ -17,7 +17,7 @@ const FilmDetails = (props) => {
   }
 
   const _renderTabs = () => {
-    const {description, director, genres, ratingCount, ratingLevel, ratingScore, runTime, starring, year } = film;
+    const {description, director, ratingCount, ratingLevel, ratingScore, runTime, starring} = film;
 
     switch (activeTab) {
       case FilmDetailsTab.OVERVIEW:
@@ -161,7 +161,7 @@ const FilmDetails = (props) => {
     }
 
     return null;
-  }
+  };
 
   return (
     <React.Fragment>
@@ -283,9 +283,10 @@ const FilmDetails = (props) => {
       </div>
     </React.Fragment>
   );
-}
+};
 
 FilmDetails.propTypes = {
+  activeItem: PropTypes.oneOf(Object.values(FilmDetailsTab)),
   film: PropTypes.shape({
     backgroundImage: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -302,6 +303,7 @@ FilmDetails.propTypes = {
     year: PropTypes.number.isRequired,
   }),
   filmsList: PropTypes.array.isRequired,
+  onActiveClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

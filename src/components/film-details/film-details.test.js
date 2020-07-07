@@ -126,6 +126,7 @@ const films = [
 it(`FilmDetails is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
+    onTabClick: () => {},
   });
 
   const tree = renderer.create(
@@ -134,6 +135,7 @@ it(`FilmDetails is rendered correctly`, () => {
           film={film}
           filmsList={films}
           key={film.id}
+          onActiveClick={() => {}}
         />
       </Provider>, {
         createNodeMock: () => {

@@ -14,6 +14,7 @@ it(`GenresList is rendered correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <GenresList
+          onActiveClick={() => { }}
           onGenreCardClick={() => { }}
         />
       </Provider>, {
