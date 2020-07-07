@@ -36,7 +36,6 @@ const App = (props) => {
           <FilmDetails
             film={film}
             filmsList={filmsList}
-            key={film.id}
           />
         </Route>
       </Switch>
