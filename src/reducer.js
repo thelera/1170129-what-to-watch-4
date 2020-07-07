@@ -14,7 +14,7 @@ const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   CHANGE_FILM_ID: `CHANGE_FILM_ID`,
   INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
-  SET_SHOWED_FILMS_COUNT: `SET_SHOWED_FILMS_COUNT`,
+  RESET_SHOWED_FILMS_COUNT: `RESET_SHOWED_FILMS_COUNT`,
 };
 
 const ActionCreator = {
@@ -26,11 +26,11 @@ const ActionCreator = {
     type: ActionType.CHANGE_FILM_ID,
     payload: id,
   }),
-  filmsCountAction: (count) => ({
-    type: ActionType.SET_SHOWED_FILMS_COUNT,
-    payload: count,
+  resetOfFilmsCountAction: () => ({
+    type: ActionType.RESET_SHOWED_FILMS_COUNT,
+    payload: null,
   }),
-  incrementFilmsCountAction: (count) => ({
+  incrementOfFilmsCountAction: (count) => ({
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
   }),
@@ -48,8 +48,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {genre: action.payload});
     case ActionType.CHANGE_FILM_ID:
       return Object.assign({}, state, {id: action.payload});
-    case ActionType.SET_SHOWED_FILMS_COUNT:
-      return Object.assign({}, state, {showedFilmsCount: action.payload});
+    case ActionType.RESET_SHOWED_FILMS_COUNT:
+      return Object.assign({}, state, {showedFilmsCount: SHOWING_FILMS_COUNT_ON_START});
     case ActionType.INCREMENT_SHOWED_FILMS_COUNT:
       return Object.assign({}, state, {showedFilmsCount: state.showedFilmsCount + action.payload});
     default:

@@ -17,7 +17,7 @@ const GenresList = (props) => {
         >
           <a href="#" 
             className="catalog__genres-link" 
-            onClick={() => onGenreClick(genre, SHOWING_FILMS_COUNT_ON_START)}
+            onClick={() => onGenreClick(genre)}
           >
             {genre}
           </a>
@@ -37,9 +37,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(genre, count) {
+  onGenreClick(genre) {
     dispatch(ActionCreator.genreAction(genre));
-    dispatch(ActionCreator.filmsCountAction(count));
+    dispatch(ActionCreator.resetOfFilmsCountAction());
   },
 });
 

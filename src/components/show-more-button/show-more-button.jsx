@@ -17,7 +17,7 @@ ShowMoreButton.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(count) {
-    dispatch(ActionCreator.incrementFilmsCountAction(count));
+    dispatch(ActionCreator.incrementOfFilmsCountAction(count));
   },
 });
 
