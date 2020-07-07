@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Selector} from "../../reducer.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {filmsCount, filmsList, promoFilm} = props;
@@ -72,7 +75,7 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList/>
+          <GenresListWrapped/>
 
           <FilmList
             films={filmsList.slice(0, filmsCount)}

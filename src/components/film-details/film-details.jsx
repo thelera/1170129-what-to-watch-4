@@ -316,7 +316,6 @@ FilmDetails.propTypes = {
     year: PropTypes.number.isRequired,
   }),
   filmsList: PropTypes.array.isRequired,
-  key: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

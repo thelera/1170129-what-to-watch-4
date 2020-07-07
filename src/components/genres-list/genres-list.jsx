@@ -5,7 +5,11 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const GenresList = (props) => {
-  const {genre: activeGenre, onGenreClick} = props;
+  const {onActiveClick, onGenreClick} = props;
+  let {activeItem: activeGenre} = props;
+  if(!activeGenre) {
+    activeGenre = Genre.ALL;
+  }
 
   return (
     <ul className="catalog__genres-list">
@@ -16,7 +20,10 @@ const GenresList = (props) => {
         >
           <a href="#"
             className="catalog__genres-link"
-            onClick={() => onGenreClick(genre)}
+            onClick={() => {
+              onGenreClick(genre);
+              onActiveClick(genre);
+            }}
           >
             {genre}
           </a>
