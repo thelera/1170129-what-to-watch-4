@@ -62,8 +62,6 @@ FilmCard.propTypes = {
   onMouseLeave: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = (dispatch) => ({
   onClick(id) {
     dispatch(ActionCreator.filmIdAction(id));
@@ -71,4 +69,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {FilmCard};
-export default connect(mapStateToProps, mapDispatchToProps)(FilmCard);
+export default connect(null, mapDispatchToProps)(FilmCard);

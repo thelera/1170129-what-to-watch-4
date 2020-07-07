@@ -15,8 +15,6 @@ ShowMoreButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = (dispatch) => ({
   onClick(count) {
     dispatch(ActionCreator.incrementFilmsCountAction(count));
@@ -24,4 +22,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {ShowMoreButton};
-export default connect(mapStateToProps, mapDispatchToProps)(ShowMoreButton);
+export default connect(null, mapDispatchToProps)(ShowMoreButton);

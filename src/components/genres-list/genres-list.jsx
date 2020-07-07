@@ -13,10 +13,14 @@ const GenresList = (props) => {
       {Object.values(Genre).slice(0, GENRES_COUNT).map((genre) => (
         <li
           className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}
-          onClick={() => onGenreClick(genre, SHOWING_FILMS_COUNT_ON_START)}
           key={genre}
         >
-          <a href="#" className="catalog__genres-link">{genre}</a>
+          <a href="#" 
+            className="catalog__genres-link" 
+            onClick={() => onGenreClick(genre, SHOWING_FILMS_COUNT_ON_START)}
+          >
+            {genre}
+          </a>
         </li>
       ))}
     </ul>
