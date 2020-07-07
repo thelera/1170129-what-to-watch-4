@@ -27,7 +27,6 @@ class FilmsList extends PureComponent {
           <FilmCardWrapped
             film={film}
             key={film.id}
-            onHover={this._handleHover}
           />)}
       </div>
     );

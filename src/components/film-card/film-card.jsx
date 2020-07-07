@@ -6,7 +6,7 @@ import {Video} from "../../utils/consts.js";
 import VideoPlayer from "../video-player/video-player.jsx";
 
 const FilmCard = (props) => {
-  const {film, isPlaying, onMouseEnter, onMouseLeave, onClick, onHover} = props;
+  const {film, isPlaying, onMouseEnter, onMouseLeave, onClick} = props;
   const {image, preview, title} = film;
 
   return (
@@ -17,8 +17,6 @@ const FilmCard = (props) => {
         }}
         onMouseEnter={() => {
           onMouseEnter();
-
-          onHover(film.id);
         }}
         onMouseLeave={onMouseLeave}
       >
@@ -60,7 +58,6 @@ FilmCard.propTypes = {
   }),
   isPlaying: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
 };
