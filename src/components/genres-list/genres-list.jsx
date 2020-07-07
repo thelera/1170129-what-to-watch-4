@@ -7,6 +7,7 @@ import React from "react";
 const GenresList = (props) => {
   const {onActiveClick, onGenreClick} = props;
   let {activeItem: activeGenre} = props;
+
   if(!activeGenre) {
     activeGenre = Genre.ALL;
   }

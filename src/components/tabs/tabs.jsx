@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const Tabs = (props) => {
-  const {tab: activeTab, onTabClick, children} = props;
+  const {tab: activeTab, children, onTabClick} = props;
 
   return (
     <div className="movie-card__desc">

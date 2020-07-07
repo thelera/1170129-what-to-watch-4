@@ -5,13 +5,16 @@ import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import React from "react";
 import {Selector} from "../../reducer.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const FilmDetailsWrapped = withActiveItem(FilmDetails);
 
 const App = (props) => {
   const {film, filmsList, promoFilm} = props;
 
   const renderApp = () =>
     film ? (
-      <FilmDetails
+      <FilmDetailsWrapped
         film={film}
         filmsList={filmsList}
         key={film.id}
@@ -33,6 +36,7 @@ const App = (props) => {
           <FilmDetails
             film={film}
             filmsList={filmsList}
+            key={film.id}
           />
         </Route>
       </Switch>
