@@ -6,7 +6,8 @@ import withFilmCard from "../../hocs/with-timer-on-hover/with-timer-on-hover.js"
 const FilmCardWrapped = withFilmCard(FilmCard);
 
 const FilmsList = (props) => {
-  const { films } = props;
+  const {films} = props;
+
   return (
     <div className="catalog__movies-list">
       {films.map((film) =>
@@ -16,7 +17,7 @@ const FilmsList = (props) => {
         />)}
     </div>
   );
-}
+};
 
 FilmsList.propTypes = {
   films: PropTypes.array.isRequired,
