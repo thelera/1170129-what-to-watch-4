@@ -93,10 +93,6 @@ class FilmDetails extends PureComponent {
 
       case FilmDetailsTab.REVIEWS:
         return (
-          <Tabs
-            tab={FilmDetailsTab.REVIEWS}
-            onTabClick={this._handleTabClick}
-          >
             <div className="movie-card__reviews movie-card__row">
               <div className="movie-card__reviews-col">
                 <div className="review">
@@ -179,7 +175,6 @@ class FilmDetails extends PureComponent {
                 </div>
               </div>
             </div>
-          </Tabs>
         );
     }
 
@@ -274,7 +269,12 @@ class FilmDetails extends PureComponent {
               </div>
 
               <div className="movie-card__desc">
-                {this._renderTabs()}
+                <Tabs
+                  tab={FilmDetailsTab.OVERVIEW}
+                  onTabClick={this._handleTabClick}
+                >
+                  {this._renderTabs()}
+                </Tabs>
               </div>
             </div>
           </div>
