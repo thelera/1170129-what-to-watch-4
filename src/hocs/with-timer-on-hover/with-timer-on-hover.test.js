@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import withFilmCard from "./with-film-card.js";
+import withTimerOnHover from "./with-timer-on-hover.js";
 
 const MockComponent = () => <article />;
 
-const MockComponentWrapped = withFilmCard(MockComponent);
+const MockComponentWrapped = withTimerOnHover(MockComponent);
 
 it(`withFilmCard is rendered correctly`, () => {
   const tree = renderer.create((

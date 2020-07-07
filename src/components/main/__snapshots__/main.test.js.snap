@@ -155,99 +155,99 @@ exports[`Main should render movie card and films catalog 1`] = `
       >
         <li
           className="catalog__genres-item catalog__genres-item--active"
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             All genres
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Adventure
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Comedy
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Crime
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Documentary
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Drama
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Fantasy
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Horror
           </a>
         </li>
         <li
           className="catalog__genres-item "
-          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[Function]}
           >
             Kid's and Family
           </a>
@@ -276,7 +276,7 @@ exports[`Main should render movie card and films catalog 1`] = `
             <a
               className="small-movie-card__link"
             >
-              Bekket
+              Fantastic Beasts: The Crimes of Grindelwald
             </a>
           </h3>
         </article>
@@ -300,7 +300,7 @@ exports[`Main should render movie card and films catalog 1`] = `
             <a
               className="small-movie-card__link"
             >
-              The Doom Generation
+              Bohemian Rhapsody
             </a>
           </h3>
         </article>
@@ -324,7 +324,55 @@ exports[`Main should render movie card and films catalog 1`] = `
             <a
               className="small-movie-card__link"
             >
-              Patrool
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Aviator
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              We Need To Talk About Kevin
             </a>
           </h3>
         </article>

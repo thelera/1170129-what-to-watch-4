@@ -12,33 +12,33 @@ exports[`Tab is rendered correctly 1`] = `
     >
       <li
         className="movie-nav__item false"
-        onClick={[Function]}
       >
         <a
           className="movie-nav__link"
           href="#"
+          onClick={[Function]}
         >
           Overview
         </a>
       </li>
       <li
         className="movie-nav__item movie-nav__item--active"
-        onClick={[Function]}
       >
         <a
           className="movie-nav__link"
           href="#"
+          onClick={[Function]}
         >
           Details
         </a>
       </li>
       <li
         className="movie-nav__item false"
-        onClick={[Function]}
       >
         <a
           className="movie-nav__link"
           href="#"
+          onClick={[Function]}
         >
           Reviews
         </a>

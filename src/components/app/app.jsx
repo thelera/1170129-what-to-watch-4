@@ -9,17 +9,17 @@ import {Selector} from "../../reducer.js";
 const App = (props) => {
   const {film, filmsList, promoFilm} = props;
 
-  const renderApp = () => 
+  const renderApp = () =>
     film ? (
-        <FilmDetails
-          film={film}
-          filmsList={filmsList}
-        />
+      <FilmDetails
+        film={film}
+        filmsList={filmsList}
+      />
     ) : (
-        <Main
-          filmsList={filmsList}
-          promoFilm={promoFilm}
-        />
+      <Main
+        filmsList={filmsList}
+        promoFilm={promoFilm}
+      />
     );
 
   return (

@@ -28,29 +28,6 @@ Enzyme.configure({
 });
 
 describe(`FilmCard component's handlers work correctly`, () => {
-  it(`Film's index'll pass to handler if user hovers to film's card`, () => {
-    const onHover = jest.fn((id) => id);
-    const filmId = film.id;
-
-    const filmCard = shallow(
-        <FilmCard
-          film={film}
-          isPlaying={true}
-          onClick={() => { }}
-          onHover={onHover}
-          onMouseEnter={() => { }}
-          onMouseLeave={() => { }}
-        />
-    );
-
-    const cardImage = filmCard.find(`.small-movie-card__image`);
-
-    cardImage.simulate(`mouseenter`, () => { });
-
-    expect(onHover).toHaveBeenCalledTimes(1);
-    expect(onHover.mock.results[0].value).toBe(filmId);
-  });
-
   it(`Film's detailed card opens if user clicks to film's image`, () => {
     const onClick = jest.fn((id) => id);
     const filmId = film.id;
@@ -60,7 +37,6 @@ describe(`FilmCard component's handlers work correctly`, () => {
           film={film}
           isPlaying={true}
           onClick={onClick}
-          onHover={() => { }}
           onMouseEnter={() => { }}
           onMouseLeave={() => { }}
         />
@@ -83,7 +59,6 @@ describe(`FilmCard component's handlers work correctly`, () => {
           film={film}
           isPlaying={true}
           onClick={onClick}
-          onHover={() => { }}
           onMouseEnter={() => { }}
           onMouseLeave={() => { }}
         />

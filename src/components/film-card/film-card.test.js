@@ -26,8 +26,10 @@ it(`FilmCard is rendered correctly`, () => {
   const tree = renderer.create(
       <FilmCard
         film={film}
+        isPlaying={true}
         onClick={() => { }}
-        onHover={() => { }}
+        onMouseEnter={() => { }}
+        onMouseLeave={() => { }}
       />
       , {
         createNodeMock: () => {

@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
 import {Video} from "../../utils/consts.js";
 
-const withFilmCard = (Component) => {
-  class WithFilmCard extends PureComponent {
+const withTimerOnHover = (Component) => {
+  class WithTimerOnHover extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -42,10 +42,10 @@ const withFilmCard = (Component) => {
     }
   }
 
-  withFilmCard.propTypes = {
+  withTimerOnHover.propTypes = {
   };
 
-  return WithFilmCard;
+  return WithTimerOnHover;
 };
 
-export default withFilmCard;
+export default withTimerOnHover;

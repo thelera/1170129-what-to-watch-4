@@ -7,18 +7,83 @@ import renderer from "react-test-renderer";
 const mockStore = configureStore([]);
 
 const filmData = {
-  backgroundImage: `mg/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   description: [
     `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
   ],
+  director: [`David Yates`],
+  genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
+  id: String(new Date() + Math.random()),
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  genres: [`Horror`],
-  title: `No Country for Old Men`,
-  year: 2005,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  ratingScore: 7.2,
+  ratingLevel: `good`,
+  ratingCount: 248,
+  runTime: `1h 55m`,
+  starring: [`Eddie Redmayne`, `Katherine Waterson`, `Dan Folger`],
+  title: `Fantastic Beasts: The Crimes of Grindelwald`,
+  year: 2015,
 };
 
 const films = [
+  {
+    backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    description: [
+      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    ],
+    director: [`David Yates`],
+    genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
+    id: String(new Date() + Math.random()),
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    ratingScore: 7.2,
+    ratingLevel: `good`,
+    ratingCount: 248,
+    runTime: `1h 55m`,
+    starring: [`Eddie Redmayne`, `Katherine Waterson`, `Dan Folger`],
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    year: 2015,
+  },
+  {
+    backgroundImage: `img/bohemian-rhapsody.jpg`,
+    description: [
+      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    ],
+    director: [`Brayan Singer`],
+    genres: [`Story`, `Drama`],
+    id: String(new Date() + Math.random()),
+    image: `img/bohemian-rhapsody.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    ratingScore: 7.4,
+    ratingLevel: `good`,
+    ratingCount: 150,
+    runTime: `1h 55m`,
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    title: `Bohemian Rhapsody`,
+    year: 2018,
+  },
+  {
+    backgroundImage: `img/macbeth.jpg`,
+    description: [
+      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    ],
+    director: [`Brayan Singer`],
+    genres: [`Biography`, `Music`, `Drama`],
+    id: String(new Date() + Math.random()),
+    image: `img/macbeth.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    ratingScore: 6.9,
+    ratingLevel: `normal`,
+    ratingCount: 548,
+    runTime: `1h 55m`,
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    title: `Macbeth`,
+    year: 2010,
+  },
   {
     backgroundImage: `img/aviator.jpg`,
     description: [
@@ -27,6 +92,7 @@ const films = [
     ],
     director: [`Martin Scoresese`],
     genres: [`Biography`, `Drama`, `Story`],
+    id: String(new Date() + Math.random()),
     image: `img/aviator.jpg`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 8.9,
@@ -45,6 +111,7 @@ const films = [
     ],
     director: [`Linn Ramsy`],
     genres: [`Thriller`, `Detective`, `Drama`],
+    id: String(new Date() + Math.random()),
     image: `img/we-need-to-talk-about-kevin.jpg`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     ratingScore: 9.5,
@@ -55,29 +122,12 @@ const films = [
     title: `We Need To Talk About Kevin`,
     year: 2010,
   },
-  {
-    backgroundImage: `img/what-we-do-in-the-shadows.jpg`,
-    description: [
-      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
-      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
-    ],
-    director: [`Jemaine Clement`, `Taika Waititi`],
-    genres: [`Comedy`],
-    image: `img/what-we-do-in-the-shadows.jpg`,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    ratingScore: 7.0,
-    ratingLevel: `good`,
-    ratingCount: 41,
-    runTime: `1h 55m`,
-    starring: [`Jemaine Clement`, `Taika Waititi`, `Jonny Brugh`],
-    title: `What We Do In The Shadows`,
-    year: 2014,
-  },
 ];
 
 it(`App is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
+    filmsCount: 5,
     promoFilm: filmData,
   });
 

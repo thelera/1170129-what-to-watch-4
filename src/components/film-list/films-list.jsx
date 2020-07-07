@@ -1,7 +1,7 @@
 import FilmCard from "../film-card/film-card.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
-import withFilmCard from "../../hocs/with-film-card/with-film-card.js";
+import withFilmCard from "../../hocs/with-timer-on-hover/with-timer-on-hover.js";
 
 const FilmCardWrapped = withFilmCard(FilmCard);
 

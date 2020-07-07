@@ -37,6 +37,7 @@ it(`Card title should be clicked`, () => {
 
   const main = shallow(
       <Main
+        filmsCount={4}
         filmsList={films}
         promoFilm={filmData}
       />

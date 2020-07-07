@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Genre, GENRES_COUNT} from "../../utils/consts.js";
 import PropTypes from "prop-types";
 import React from "react";
-import {SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 
 const GenresList = (props) => {
   const {genre: activeGenre, onGenreClick} = props;
@@ -15,8 +14,8 @@ const GenresList = (props) => {
           className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}
           key={genre}
         >
-          <a href="#" 
-            className="catalog__genres-link" 
+          <a href="#"
+            className="catalog__genres-link"
             onClick={() => onGenreClick(genre)}
           >
             {genre}
