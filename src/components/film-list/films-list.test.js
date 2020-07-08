@@ -167,6 +167,10 @@ const filmsList = [
 it(`FilmsList is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
+    isPlaying: true,
+    onClick: () => {},
+    onMouseEnter: () => { },
+    onMouseLeave: () => { },
   });
 
   const tree = renderer.create(
