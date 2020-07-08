@@ -161,6 +161,7 @@ it(`Reducer should change key "genre" by a given value`, () => {
     genre: `All films`,
     id: `sdsd!sgdg35`,
     promoFilm: films[0],
+    showedFilmsCount: 15,
   }, {
     type: ActionType.CHANGE_GENRE,
     payload: `Action`,
@@ -169,6 +170,7 @@ it(`Reducer should change key "genre" by a given value`, () => {
     genre: `Action`,
     id: `sdsd!sgdg35`,
     promoFilm: films[0],
+    showedFilmsCount: 8,
   });
 
   expect(reducer({
@@ -176,6 +178,7 @@ it(`Reducer should change key "genre" by a given value`, () => {
     genre: `Adventure`,
     id: `sdsd!sgdg35`,
     promoFilm: films[0],
+    showedFilmsCount: 8,
   }, {
     type: ActionType.CHANGE_GENRE,
     payload: null,
@@ -184,6 +187,7 @@ it(`Reducer should change key "genre" by a given value`, () => {
     genre: null,
     id: `sdsd!sgdg35`,
     promoFilm: films[0],
+    showedFilmsCount: 8,
   });
 });
 
