@@ -307,56 +307,58 @@ Array [
                 </li>
               </ul>
             </nav>
-            <div
-              className="movie-rating"
-            >
+            <div>
               <div
-                className="movie-rating__score"
+                className="movie-rating"
               >
-                7.2
+                <div
+                  className="movie-rating__score"
+                >
+                  7.2
+                </div>
+                <p
+                  className="movie-rating__meta"
+                >
+                  <span
+                    className="movie-rating__level"
+                  >
+                    good
+                  </span>
+                  <span
+                    className="movie-rating__count"
+                  >
+                    248
+                     ratings
+                  </span>
+                </p>
               </div>
-              <p
-                className="movie-rating__meta"
+              <div
+                className="movie-card__text"
               >
-                <span
-                  className="movie-rating__level"
+                <p>
+                  In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+                </p>
+                <p>
+                  Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+                </p>
+                <p
+                  className="movie-card__director"
                 >
-                  good
-                </span>
-                <span
-                  className="movie-rating__count"
+                  <strong>
+                    Director: 
+                    David Yates
+                  </strong>
+                </p>
+                <p
+                  className="movie-card__starring"
                 >
-                  248
-                   ratings
-                </span>
-              </p>
-            </div>
-            <div
-              className="movie-card__text"
-            >
-              <p>
-                In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
-              </p>
-              <p>
-                Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
-              </p>
-              <p
-                className="movie-card__director"
-              >
-                <strong>
-                  Director: 
-                  David Yates
-                </strong>
-              </p>
-              <p
-                className="movie-card__starring"
-              >
-                <strong>
-                  Starring: 
-                  Eddie Redmayne, Katherine Waterson, Dan Folger
-                   and other
-                </strong>
-              </p>
+                  <strong>
+                    Starring: 
+                    Eddie Redmayne, Katherine Waterson, Dan Folger
+                     and other
+                  </strong>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -398,6 +400,102 @@ Array [
               className="small-movie-card__link"
             >
               Fantastic Beasts: The Crimes of Grindelwald
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Bohemian Rhapsody
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Aviator
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <video>
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              We Need To Talk About Kevin
             </a>
           </h3>
         </article>

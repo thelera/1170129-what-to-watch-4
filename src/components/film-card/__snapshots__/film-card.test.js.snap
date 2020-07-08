@@ -21,7 +21,7 @@ exports[`FilmCard is rendered correctly 1`] = `
     <a
       className="small-movie-card__link"
     >
-      Snatch
+      Fantastic Beasts: The Crimes of Grindelwald
     </a>
   </h3>
 </article>

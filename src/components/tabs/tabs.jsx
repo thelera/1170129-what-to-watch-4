@@ -1,9 +1,9 @@
+import {FilmDetailsTab} from "../../utils/consts.js";
 import PropTypes from "prop-types";
 import React from "react";
-import {FilmDetailsTab} from "../../utils/consts.js";
 
 const Tabs = (props) => {
-  const {tab: activeTab, onTabClick, children} = props;
+  const {tab: activeTab, children, onTabClick} = props;
 
   return (
     <div className="movie-card__desc">

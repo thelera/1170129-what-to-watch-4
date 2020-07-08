@@ -1,17 +1,10 @@
-import React from "react";
 import configureStore from "redux-mock-store";
+import FilmsList from "./films-list.jsx";
 import {Provider} from "react-redux";
+import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
 
 const mockStore = configureStore([]);
-
-const filmData = {
-  image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  genres: [`Horror`],
-  title: `No Country for Old Men`,
-  year: 2005,
-};
 
 const films = [
   {
@@ -111,18 +104,79 @@ const films = [
   },
 ];
 
-it(`Main should render movie card and films catalog`, () => {
+const filmsList = [
+  {
+    backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    description: [
+      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    ],
+    director: [`David Yates`],
+    genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
+    id: String(new Date() + Math.random()),
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    ratingScore: 7.2,
+    ratingLevel: `good`,
+    ratingCount: 248,
+    runTime: `1h 55m`,
+    starring: [`Eddie Redmayne`, `Katherine Waterson`, `Dan Folger`],
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    year: 2015,
+  },
+  {
+    backgroundImage: `img/bohemian-rhapsody.jpg`,
+    description: [
+      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    ],
+    director: [`Brayan Singer`],
+    genres: [`Story`, `Drama`],
+    id: String(new Date() + Math.random()),
+    image: `img/bohemian-rhapsody.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    ratingScore: 7.4,
+    ratingLevel: `good`,
+    ratingCount: 150,
+    runTime: `1h 55m`,
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    title: `Bohemian Rhapsody`,
+    year: 2018,
+  },
+  {
+    backgroundImage: `img/macbeth.jpg`,
+    description: [
+      `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
+      `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    ],
+    director: [`Brayan Singer`],
+    genres: [`Biography`, `Music`, `Drama`],
+    id: String(new Date() + Math.random()),
+    image: `img/macbeth.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    ratingScore: 6.9,
+    ratingLevel: `normal`,
+    ratingCount: 548,
+    runTime: `1h 55m`,
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    title: `Macbeth`,
+    year: 2010,
+  },
+];
+
+it(`FilmsList is rendered correctly`, () => {
   const store = mockStore({
     allFilms: films,
-    genre: `All genres`,
+    isPlaying: true,
+    onClick: () => {},
+    onMouseEnter: () => { },
+    onMouseLeave: () => { },
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Main
-          filmsCount={10}
-          filmsList={films}
-          promoFilm={filmData}
+        <FilmsList
+          films={filmsList}
         />
       </Provider>, {
         createNodeMock: () => {

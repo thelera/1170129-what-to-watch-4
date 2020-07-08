@@ -1,9 +1,18 @@
-import FilmList from "../film-list/film-list.jsx";
+import {connect} from "react-redux";
+import {Genre} from "../../utils/consts.js";
+import GenresList from "../genres-list/genres-list.jsx";
+import FilmList from "../film-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
+import {Selector} from "../../reducer.js";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {name, genre, year, films, onClick} = props;
+  const {filmsCount, filmsList, promoFilm} = props;
+  const {genres, image, title, year} = promoFilm;
 
   return (
     <div>
@@ -33,13 +42,13 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={image} alt={title} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{name}</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__genre">{genres.map((genre) => genre).join(`, `)}</span>
                 <span className="movie-card__year">{year}</span>
               </p>
 
@@ -66,46 +75,14 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <GenresListWrapped/>
 
           <FilmList
-            films={films}
-            onClick={onClick}
+            films={filmsList}
           />
 
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            {filmsList.length >= filmsCount && <ShowMoreButton/>}
           </div>
         </section>
 
@@ -128,11 +105,20 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  name: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
-  films: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  filmsCount: PropTypes.number.isRequired,
+  filmsList: PropTypes.array.isRequired,
+  promoFilm: PropTypes.shape({
+    genres: PropTypes.arrayOf(PropTypes.oneOf(Object.values(Genre))).isRequired,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  filmsCount: state.showedFilmsCount,
+  filmsList: Selector.getFilmsListByGenre(state).slice(0, state.showedFilmsCount),
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);

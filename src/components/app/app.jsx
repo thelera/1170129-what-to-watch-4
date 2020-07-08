@@ -1,78 +1,86 @@
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
 import FilmDetails from "../film-details/film-details.jsx";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import React from "react";
+import {Selector} from "../../reducer.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
+const FilmDetailsWrapped = withActiveItem(FilmDetails);
 
-    this.state = {
-      filmIndex: null,
-    };
+const App = (props) => {
+  const {film, filmsList, promoFilm} = props;
 
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(index) {
-    this.setState({
-      filmIndex: index,
-    });
-  }
-
-  _renderApp() {
-    const {filmName, filmGenre, filmYear, films} = this.props;
-    const {filmIndex} = this.state;
-
-    if (filmIndex === null) {
-      return (
-        <Main
-          name={filmName}
-          genre={filmGenre}
-          year={filmYear}
-          films={films}
-          onClick={this._handleClick}
-        />
-      );
-    }
-
-    return (
-      <FilmDetails
-        film={films[filmIndex]}
-        films={films}
-        onClick={this._handleClick}
+  const renderApp = () =>
+    film ? (
+      <FilmDetailsWrapped
+        film={film}
+        filmsList={filmsList}
+        key={film.id}
+      />
+    ) : (
+      <Main
+        filmsList={filmsList}
+        promoFilm={promoFilm}
       />
     );
-  }
 
-  render() {
-    const {films} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-film-details">
-            <FilmDetails
-              film={films[0]}
-              films={films}
-              onClick={this._handleClick}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
-
-App.propTypes = {
-  filmName: PropTypes.string.isRequired,
-  filmGenre: PropTypes.string.isRequired,
-  filmYear: PropTypes.number.isRequired,
-  films: PropTypes.array.isRequired,
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderApp()}
+        </Route>
+        <Route exact path="/dev-film-details">
+          <FilmDetails
+            film={film}
+            filmsList={filmsList}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
 };
 
-export default App;
+App.propTypes = {
+  film: PropTypes.shape({
+    backgroundImage: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    director: PropTypes.arrayOf(PropTypes.string).isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    ratingLevel: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    runTime: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+  }),
+  filmsList: PropTypes.array.isRequired,
+  promoFilm: PropTypes.shape({
+    backgroundImage: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    director: PropTypes.arrayOf(PropTypes.string).isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image: PropTypes.string.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    ratingLevel: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    runTime: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+  }),
+};
+
+const mapStateToProps = (state) => ({
+  film: Selector.getFilmById(state),
+  filmsList: Selector.getFilmsListByGenre(state),
+  promoFilm: state.promoFilm,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
