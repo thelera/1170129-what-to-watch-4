@@ -14,7 +14,6 @@ const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   CHANGE_FILM_ID: `CHANGE_FILM_ID`,
   INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
-  RESET_SHOWED_FILMS_COUNT: `RESET_SHOWED_FILMS_COUNT`,
 };
 
 const ActionCreator = {
@@ -25,10 +24,6 @@ const ActionCreator = {
   filmIdAction: (id) => ({
     type: ActionType.CHANGE_FILM_ID,
     payload: id,
-  }),
-  resetOfFilmsCountAction: () => ({
-    type: ActionType.RESET_SHOWED_FILMS_COUNT,
-    payload: null,
   }),
   incrementOfFilmsCountAction: (count) => ({
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
@@ -45,11 +40,12 @@ const Selector = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
-      return Object.assign({}, state, {genre: action.payload});
+      return Object.assign({}, state, {
+        genre: action.payload,
+        showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
+      });
     case ActionType.CHANGE_FILM_ID:
       return Object.assign({}, state, {id: action.payload});
-    case ActionType.RESET_SHOWED_FILMS_COUNT:
-      return Object.assign({}, state, {showedFilmsCount: SHOWING_FILMS_COUNT_ON_START});
     case ActionType.INCREMENT_SHOWED_FILMS_COUNT:
       return Object.assign({}, state, {showedFilmsCount: state.showedFilmsCount + action.payload});
     default:

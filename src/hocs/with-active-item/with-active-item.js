@@ -6,7 +6,7 @@ const withActiveItem = (Component) => {
       super(props);
 
       this.state = {
-        activeItem: null,
+        activeItem: undefined,
       };
 
       this._handleActiveClick = this._handleActiveClick.bind(this);

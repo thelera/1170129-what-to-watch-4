@@ -78,7 +78,7 @@ const Main = (props) => {
           <GenresListWrapped/>
 
           <FilmList
-            films={filmsList.slice(0, filmsCount)}
+            films={filmsList}
           />
 
           <div className="catalog__more">
@@ -116,8 +116,8 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsList: Selector.getFilmsListByGenre(state),
   filmsCount: state.showedFilmsCount,
+  filmsList: Selector.getFilmsListByGenre(state).slice(0, state.showedFilmsCount),
 });
 
 export {Main};

@@ -5,12 +5,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const GenresList = (props) => {
-  const {onActiveClick, onGenreClick} = props;
-  let {activeItem: activeGenre} = props;
-
-  if (!activeGenre) {
-    activeGenre = Genre.ALL;
-  }
+  const {activeItem: activeGenre = Genre.ALL, onActiveClick, onGenreClick} = props;
 
   return (
     <ul className="catalog__genres-list">
@@ -48,7 +43,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
     dispatch(ActionCreator.genreAction(genre));
-    dispatch(ActionCreator.resetOfFilmsCountAction());
   },
 });
 

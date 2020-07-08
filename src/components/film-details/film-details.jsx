@@ -8,13 +8,8 @@ import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
 const FilmDetails = (props) => {
-  const {film, filmsList: filmsByGenres, onActiveClick: onTabClick} = props;
+  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, film, filmsList: filmsByGenres, onActiveClick: onTabClick} = props;
   const {backgroundImage, genres, image, title, year} = film;
-  let {activeItem: activeTab} = props;
-
-  if (!activeTab) {
-    activeTab = FilmDetailsTab.OVERVIEW;
-  }
 
   const _renderTabs = () => {
     const {description, director, ratingCount, ratingLevel, ratingScore, runTime, starring} = film;
@@ -263,7 +258,7 @@ const FilmDetails = (props) => {
           <h2 className="catalog__title">More like this</h2>
 
           <FilmsList
-            films={filmsByGenres.slice(0, SIMILAR_FILMS_COUNT)}
+            films={filmsByGenres}
           />
         </section>
 
@@ -307,7 +302,7 @@ FilmDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsList: Selector.getFilmsListByGenres(state),
+  filmsList: Selector.getFilmsListByGenres(state).slice(0, SIMILAR_FILMS_COUNT),
 });
 
 export {FilmDetails};

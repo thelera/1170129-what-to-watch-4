@@ -42,7 +42,7 @@ const withTimerOnHover = (Component) => {
     }
   }
 
-  withTimerOnHover.propTypes = {
+  WithTimerOnHover.propTypes = {
   };
 
   return WithTimerOnHover;
