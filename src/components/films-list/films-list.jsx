@@ -1,39 +1,26 @@
-import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
 import FilmCard from "../film-card/film-card.jsx";
+import PropTypes from "prop-types";
+import React from "react";
+import withTimerOnHover from "../../hocs/with-timer-on-hover/with-timer-on-hover.js";
 
-class FilmList extends PureComponent {
-  constructor(props) {
-    super(props);
+const FilmCardWrapped = withTimerOnHover(FilmCard);
 
-    this.state = {index: null};
+const FilmsList = (props) => {
+  const {films} = props;
 
-    this._handleHover = this._handleHover.bind(this);
-  }
-
-  _handleHover(value) {
-    this.setState({index: value});
-  }
-
-  render() {
-    const {films, onClick} = this.props;
-
-    return (
-      films.map((film, index) =>
-        <FilmCard
+  return (
+    <div className="catalog__movies-list">
+      {films.map((film) =>
+        <FilmCardWrapped
           film={film}
-          index={index}
-          key={film.title + index}
-          onClick={onClick}
-          onHover={this._handleHover}
-        />)
-    );
-  }
-}
-
-FilmList.propTypes = {
-  films: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+          key={film.id}
+        />)}
+    </div>
+  );
 };
 
-export default FilmList;
+FilmsList.propTypes = {
+  films: PropTypes.array.isRequired,
+};
+
+export default FilmsList;
