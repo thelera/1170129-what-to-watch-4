@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Genre} from "../../utils/consts.js";
 import GenresList from "../genres-list/genres-list.jsx";
-import FilmList from "../film-list/films-list.jsx";
+import FilmsList from "../films-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
 import {Selector} from "../../reducer.js";
@@ -77,7 +77,7 @@ const Main = (props) => {
 
           <GenresListWrapped/>
 
-          <FilmList
+          <FilmsList
             films={filmsList}
           />
 

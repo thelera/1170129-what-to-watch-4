@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {FilmDetailsTab} from "../../utils/consts.js";
-import FilmsList from "../film-list/films-list.jsx";
+import FilmsList from "../films-list/films-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
 import {Selector} from "../../reducer.js";
