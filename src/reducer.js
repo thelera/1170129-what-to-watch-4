@@ -1,7 +1,6 @@
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "./utils/consts.js";
 import {getFilmsByFilter} from "./utils/common.js";
-import films from "./mocks/films.js";
-import {createFilms} from "./adapters/films.js";
+import {createFilm, createFilms} from "./adapters/films.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -12,7 +11,7 @@ const initialState = {
   allFilms: [],
   genre: Genre.ALL,
   id: -1,
-  promoFilm: films[0],
+  promoFilm: {},
   showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
@@ -22,6 +21,7 @@ const ActionType = {
   CHANGE_FILM_ID: `CHANGE_FILM_ID`,
   INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
 };
 
@@ -38,11 +38,16 @@ const ActionCreator = {
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
   }),
-  loadOfMovies: (films) => {
-    console.log(createFilms(films));
+  loadingOfMovies: (films) => {
     return {
       type: ActionType.LOAD_MOVIES,
       payload: createFilms(films),
+    };
+  },
+  loadingOfPromoFilm: (film) => {
+    return {
+      type: ActionType.LOAD_PROMO_FILM,
+      payload: createFilm(film),
     };
   },
   requireOfAuthorization: (status) => ({
@@ -52,21 +57,26 @@ const ActionCreator = {
 };
 
 const Operation = {
-  loadOfMovies: () => (dispatch, getState, api) => {
+  loadingOfPromoFilm: () => (dispatch, getState, api) => {
+    return api.get(`https://4.react.pages.academy/wtw/films/promo`)
+      .then((response) => {
+        dispatch(ActionCreator.loadingOfPromoFilm(response.data));
+      });
+  },
+  loadingOfMovies: () => (dispatch, getState, api) => {
     return api.get(`https://4.react.pages.academy/wtw/films`)
     .then((response) => {
-      console.log(response);
-      dispatch(ActionCreator.loadOfMovies(response.data));
+      dispatch(ActionCreator.loadingOfMovies(response.data));
     });
   },
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
     .then(() => {
-      dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH))
+      dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
     })
     .catch((error) => {
       throw error;
-    })
+    });
   },
   login: (authData) => (dispatch, getState, api) => {
     return api.post(`login`, {
@@ -74,10 +84,10 @@ const Operation = {
       password: authData.password,
     })
     .then(() => {
-      dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH))
-    })
+      dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+    });
   },
-}
+};
 
 const Selector = {
   getFilmById: (state) => state.allFilms.find((film) => film.id === state.id),
@@ -97,6 +107,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {showedFilmsCount: state.showedFilmsCount + action.payload});
     case ActionType.LOAD_MOVIES:
       return Object.assign({}, state, {allFilms: action.payload});
+    case ActionType.LOAD_PROMO_FILM:
+      return Object.assign({}, state, {promoFilm: action.payload});
     case ActionType.REQUIRE_AUTHORIZATION:
       return Object.assign({}, state, {authorizationStatus: action.payload});
     default:

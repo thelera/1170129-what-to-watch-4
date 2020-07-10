@@ -48,6 +48,7 @@ FilmCard.propTypes = {
     id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
     ratingCount: PropTypes.number.isRequired,
     ratingScore: PropTypes.number.isRequired,
     runTime: PropTypes.number.isRequired,

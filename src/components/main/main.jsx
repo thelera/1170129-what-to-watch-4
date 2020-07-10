@@ -1,5 +1,4 @@
 import {connect} from "react-redux";
-import {Genre} from "../../utils/consts.js";
 import GenresList from "../genres-list/genres-list.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import PropTypes from "prop-types";
@@ -48,7 +47,7 @@ const Main = (props) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">genre</span>
+                <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{year}</span>
               </p>
 

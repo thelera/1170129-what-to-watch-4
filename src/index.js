@@ -1,5 +1,5 @@
 import App from "./components/app/app.jsx";
-import {applyMiddleware, compose, createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {createAPI} from "./api.js";
 import {ActionCreator, Operation, reducer} from "./reducer.js";
 import {Provider} from "react-redux";
@@ -13,19 +13,18 @@ const AuthorizationStatus = {
 };
 
 const onUnauthorized = () => {
-  store.dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.NO_AUTH))
-  console.log(store);
+  store.dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.NO_AUTH));
 };
 
 const api = createAPI(onUnauthorized);
 
 const store = createStore(
-  reducer,
-  applyMiddleware(thunk.withExtraArgument(api))
+    reducer,
+    applyMiddleware(thunk.withExtraArgument(api))
 );
 
-store.dispatch(Operation.loadOfMovies());
-console.log(store.getState());
+store.dispatch(Operation.loadingOfMovies());
+store.dispatch(Operation.loadingOfPromoFilm());
 
 ReactDOM.render(
     <Provider store={store}>

@@ -33,7 +33,7 @@ const FilmDetails = (props) => {
 
   const _renderTabs = () => {
     const {description, director, ratingCount, ratingScore, runTime, starring} = film;
-    const time = fromMinToHours(runTime)
+    const time = fromMinToHours(runTime);
 
     switch (activeTab) {
       case FilmDetailsTab.OVERVIEW:

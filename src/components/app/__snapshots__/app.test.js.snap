@@ -189,7 +189,10 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Fantasy, Kid's and Family, Adventure, Story
+              Fantasy
+              Kid's and Family
+              Adventure
+              Story
             </span>
             <span
               className="movie-card__year"
@@ -322,7 +325,7 @@ Array [
                   <span
                     className="movie-rating__level"
                   >
-                    good
+                    Not So Bad
                   </span>
                   <span
                     className="movie-rating__count"
@@ -337,8 +340,6 @@ Array [
               >
                 <p>
                   In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
-                </p>
-                <p>
                   Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
                 </p>
                 <p
@@ -378,56 +379,7 @@ Array [
       </h2>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <video>
-              Sorry, your browser doesn't support embedded videos.
-            </video>
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <video>
-              Sorry, your browser doesn't support embedded videos.
-            </video>
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Aviator
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
     </section>
     <footer
       className="page-footer"
