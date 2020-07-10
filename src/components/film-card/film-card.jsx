@@ -1,4 +1,4 @@
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import React from "react";

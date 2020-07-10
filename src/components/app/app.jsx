@@ -4,13 +4,15 @@ import FilmDetails from "../film-details/film-details.jsx";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import React from "react";
-import {Selector} from "../../reducer.js";
+import {getFilmById, getFilmsListByGenre, getPromofilm} from "../../reducer/data/selectors.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const FilmDetailsWrapped = withActiveItem(FilmDetails);
 
 const App = (props) => {
   const {film, filmsList, promoFilm} = props;
+
+  console.log(promoFilm);
 
   const renderApp = () =>
     film ? (
@@ -75,11 +77,13 @@ App.propTypes = {
   }),
 };
 
-const mapStateToProps = (state) => ({
-  film: Selector.getFilmById(state),
-  filmsList: Selector.getFilmsListByGenre(state),
-  promoFilm: state.promoFilm,
-});
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+  film: getFilmById(state),
+  filmsList: getFilmsListByGenre(state),
+  promoFilm: getPromofilm(state),
+}};
 
 export {App};
 export default connect(mapStateToProps)(App);
