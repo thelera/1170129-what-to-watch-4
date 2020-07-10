@@ -7,12 +7,33 @@ import {Selector} from "../../reducer.js";
 import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
+const getRatingLevel = (score) => {
+  switch (score) {
+    case score > 9.5:
+      return `Excellent`;
+    case score > 9:
+      return `Very good`;
+    case score > 7:
+      return `Good`;
+    default:
+      return `Not So Bad`;
+  }
+};
+
+const fromMinToHours = (min) => {
+  const hours = Math.round(min / 60);
+  const minutes = min % 60;
+
+  return `${hours}h ${minutes}m`;
+};
+
 const FilmDetails = (props) => {
-  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, film, filmsList: filmsByGenres, onActiveClick: onTabClick} = props;
-  const {backgroundImage, genres, image, title, year} = film;
+  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, film, filmsList: filmsByGenre, onActiveClick: onTabClick} = props;
+  const {backgroundImage, genre, image, title, year} = film;
 
   const _renderTabs = () => {
-    const {description, director, ratingCount, ratingLevel, ratingScore, runTime, starring} = film;
+    const {description, director, ratingCount, ratingScore, runTime, starring} = film;
+    const time = fromMinToHours(runTime)
 
     switch (activeTab) {
       case FilmDetailsTab.OVERVIEW:
@@ -21,13 +42,13 @@ const FilmDetails = (props) => {
             <div className="movie-rating">
               <div className="movie-rating__score">{ratingScore}</div>
               <p className="movie-rating__meta">
-                <span className="movie-rating__level">{ratingLevel}</span>
+                <span className="movie-rating__level">{getRatingLevel(ratingScore)}</span>
                 <span className="movie-rating__count">{ratingCount} ratings</span>
               </p>
             </div>
 
             <div className="movie-card__text">
-              {description.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+              <p>{description}</p>
 
               <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
@@ -54,11 +75,11 @@ const FilmDetails = (props) => {
             <div className="movie-card__text-col">
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Run Time</strong>
-                <span className="movie-card__details-value">{runTime}</span>
+                <span className="movie-card__details-value">{time}</span>
               </p>
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Genre</strong>
-                <span className="movie-card__details-value">{genres.map((genre, index) => <React.Fragment key={index}>{genre}<br /></React.Fragment>)}</span>
+                <span className="movie-card__details-value">{genre}</span>
               </p>
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Released</strong>
@@ -212,7 +233,7 @@ const FilmDetails = (props) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genres.map((genre) => genre).join(`, `)}</span>
+                <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{year}</span>
               </p>
 
@@ -258,7 +279,7 @@ const FilmDetails = (props) => {
           <h2 className="catalog__title">More like this</h2>
 
           <FilmsList
-            films={filmsByGenres}
+            films={filmsByGenre}
           />
         </section>
 
@@ -284,15 +305,14 @@ FilmDetails.propTypes = {
   activeItem: PropTypes.oneOf(Object.values(FilmDetailsTab)),
   film: PropTypes.shape({
     backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
-    director: PropTypes.arrayOf(PropTypes.string).isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     ratingCount: PropTypes.number.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
     ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
@@ -302,7 +322,7 @@ FilmDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsList: Selector.getFilmsListByGenres(state).slice(0, SIMILAR_FILMS_COUNT),
+  filmsList: Selector.getFilmsListByGenre(state).slice(0, SIMILAR_FILMS_COUNT),
 });
 
 export {FilmDetails};

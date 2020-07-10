@@ -7,7 +7,7 @@ import VideoPlayer from "../video-player/video-player.jsx";
 
 const FilmCard = (props) => {
   const {film, isPlaying, onMouseEnter, onMouseLeave, onClick} = props;
-  const {image, preview, title} = film;
+  const {preview, previewVideoLink, title} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card">
@@ -21,8 +21,8 @@ const FilmCard = (props) => {
         onMouseLeave={onMouseLeave}
       >
         <VideoPlayer
-          source={preview}
-          poster={image}
+          source={previewVideoLink}
+          poster={preview}
           isMuted={Video.IS_MUTED}
           isPlaying={isPlaying}
           width={Video.WIDTH}
@@ -42,16 +42,15 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   film: PropTypes.shape({
     backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
-    director: PropTypes.arrayOf(PropTypes.string).isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
     ratingCount: PropTypes.number.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
     ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,

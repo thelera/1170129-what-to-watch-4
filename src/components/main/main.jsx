@@ -12,7 +12,7 @@ const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {filmsCount, filmsList, promoFilm} = props;
-  const {genres, image, title, year} = promoFilm;
+  const {genre, image, title, year} = promoFilm;
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Main = (props) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genres.map((genre) => genre).join(`, `)}</span>
+                <span className="movie-card__genre">genre</span>
                 <span className="movie-card__year">{year}</span>
               </p>
 
@@ -108,7 +108,7 @@ Main.propTypes = {
   filmsCount: PropTypes.number.isRequired,
   filmsList: PropTypes.array.isRequired,
   promoFilm: PropTypes.shape({
-    genres: PropTypes.arrayOf(PropTypes.oneOf(Object.values(Genre))).isRequired,
+    genre: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,

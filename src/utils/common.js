@@ -1,7 +1,7 @@
 import {Genre} from "./consts.js";
 
 const getFilmsByFilter = (array, filterType) => {
-  return filterType === Genre.ALL ? array : array.filter((item) => item.genres.find((it) => it === filterType));
+  return filterType === Genre.ALL ? array : array.filter((item) => item.genre === filterType);
 };
 
 const getUniqueArrayElements = (array) => {
@@ -16,13 +16,4 @@ const getUniqueArrayElements = (array) => {
   return result;
 };
 
-const getSimilarFilmsByGenres = (films, film) => {
-  const filmsByGenre = [];
-  const similarFilms = film.genres.map((genre) => [].concat(getFilmsByFilter(films, genre)));
-  similarFilms.forEach((movie) => movie.forEach((it) => filmsByGenre.push(it)));
-  const similarFilmsByGenre = filmsByGenre.filter((it) => it !== film);
-
-  return getUniqueArrayElements(similarFilmsByGenre);
-};
-
-export {getFilmsByFilter, getSimilarFilmsByGenres, getUniqueArrayElements};
+export {getFilmsByFilter, getUniqueArrayElements};

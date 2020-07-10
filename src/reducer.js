@@ -1,19 +1,28 @@
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "./utils/consts.js";
-import {getFilmsByFilter, getSimilarFilmsByGenres} from "./utils/common.js";
+import {getFilmsByFilter} from "./utils/common.js";
 import films from "./mocks/films.js";
+import {createFilms} from "./adapters/films.js";
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
 
 const initialState = {
-  allFilms: films,
+  allFilms: [],
   genre: Genre.ALL,
   id: -1,
   promoFilm: films[0],
   showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   CHANGE_FILM_ID: `CHANGE_FILM_ID`,
   INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
+  LOAD_MOVIES: `LOAD_MOVIES`,
+  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
 };
 
 const ActionCreator = {
@@ -29,12 +38,50 @@ const ActionCreator = {
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
   }),
+  loadOfMovies: (films) => {
+    console.log(createFilms(films));
+    return {
+      type: ActionType.LOAD_MOVIES,
+      payload: createFilms(films),
+    };
+  },
+  requireOfAuthorization: (status) => ({
+    type: ActionType.REQUIRE_AUTHORIZATION,
+    payload: status,
+  }),
 };
+
+const Operation = {
+  loadOfMovies: () => (dispatch, getState, api) => {
+    return api.get(`https://4.react.pages.academy/wtw/films`)
+    .then((response) => {
+      console.log(response);
+      dispatch(ActionCreator.loadOfMovies(response.data));
+    });
+  },
+  checkAuth: () => (dispatch, getState, api) => {
+    return api.get(`/login`)
+    .then(() => {
+      dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH))
+    })
+    .catch((error) => {
+      throw error;
+    })
+  },
+  login: (authData) => (dispatch, getState, api) => {
+    return api.post(`login`, {
+      email: authData.login,
+      password: authData.password,
+    })
+    .then(() => {
+      dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH))
+    })
+  },
+}
 
 const Selector = {
   getFilmById: (state) => state.allFilms.find((film) => film.id === state.id),
   getFilmsListByGenre: (state) => getFilmsByFilter(state.allFilms, state.genre),
-  getFilmsListByGenres: (state) => getSimilarFilmsByGenres(state.allFilms, Selector.getFilmById(state)),
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,9 +95,13 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {id: action.payload});
     case ActionType.INCREMENT_SHOWED_FILMS_COUNT:
       return Object.assign({}, state, {showedFilmsCount: state.showedFilmsCount + action.payload});
+    case ActionType.LOAD_MOVIES:
+      return Object.assign({}, state, {allFilms: action.payload});
+    case ActionType.REQUIRE_AUTHORIZATION:
+      return Object.assign({}, state, {authorizationStatus: action.payload});
     default:
       return state;
   }
 };
 
-export {ActionCreator, ActionType, reducer, Selector};
+export {ActionCreator, ActionType, Operation, reducer, Selector};

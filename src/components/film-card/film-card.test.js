@@ -9,7 +9,7 @@ const film = {
     `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
   ],
   director: [`David Yates`],
-  genres: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
+  genre: [`Fantasy`, `Kid's and Family`, `Adventure`, `Story`],
   id: String(new Date() + Math.random()),
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
