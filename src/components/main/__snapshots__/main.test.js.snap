@@ -69,7 +69,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           className="movie-card__poster"
         >
           <img
-            alt="No Country for Old Men"
+            alt="Fantastic Beasts: The Crimes of Grindelwald"
             height="327"
             src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="218"
@@ -81,7 +81,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           <h2
             className="movie-card__title"
           >
-            No Country for Old Men
+            Fantastic Beasts: The Crimes of Grindelwald
           </h2>
           <p
             className="movie-card__meta"
@@ -89,12 +89,12 @@ exports[`Main should render movie card and films catalog 1`] = `
             <span
               className="movie-card__genre"
             >
-              Horror
+              Fantasy
             </span>
             <span
               className="movie-card__year"
             >
-              2005
+              2015
             </span>
           </p>
           <div

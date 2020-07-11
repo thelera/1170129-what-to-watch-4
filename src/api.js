@@ -4,10 +4,10 @@ const Error = {
   UNAUTHORIZED: 401,
 };
 
-export const createAPI = (onUnauthorized) => {
+const createAPI = (onUnauthorized) => {
   const api = axios.create({
-    baseUrl: `https://4.react.pages.academy/wtw`,
-    timeout: 5000,
+    baseURL: `https://4.react.pages.academy/wtw`,
+    timeout: 1000 * 5,
     withCredentials: true,
   });
 
@@ -15,19 +15,21 @@ export const createAPI = (onUnauthorized) => {
     return response;
   };
 
-  const onFail = (error) => {
-    const {response} = error;
+  const onFail = (err) => {
+    const {response} = err;
 
     if (response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
 
-      throw error;
+      throw err;
     }
 
-    throw error;
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
 
   return api;
 };
+
+export {createAPI};

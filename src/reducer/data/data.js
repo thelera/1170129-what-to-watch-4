@@ -46,14 +46,13 @@ const ActionCreator = {
 
 const Operation = {
   loadingOfPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`https://4.react.pages.academy/wtw/films/promo`)
+    return api.get(`films/promo`)
       .then((response) => {
         dispatch(ActionCreator.loadingOfPromoFilm(response.data));
-        console.log(response.data);
       });
   },
   loadingOfMovies: () => (dispatch, getState, api) => {
-    return api.get(`https://4.react.pages.academy/wtw/films`)
+    return api.get(`/films`)
     .then((response) => {
       dispatch(ActionCreator.loadingOfMovies(response.data));
     });

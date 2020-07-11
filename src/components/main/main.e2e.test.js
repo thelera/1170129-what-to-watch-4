@@ -5,7 +5,7 @@ import React from "react";
 
 const filmData = {
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  genre: [`Horror`],
+  genre: `Horror`,
   title: `No Country for Old Men`,
   year: 2005,
 };

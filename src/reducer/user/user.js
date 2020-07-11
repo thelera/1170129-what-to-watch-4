@@ -42,7 +42,7 @@ const Operation = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRE_AUTHORIZATION:
-      return Object.assign({}, state, { authorizationStatus: action.payload });
+      return Object.assign({}, state, {authorizationStatus: action.payload});
     default:
       return state;
   }

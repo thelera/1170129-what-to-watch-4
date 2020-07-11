@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
-import {getFilmsListByGenre} from "../../reducer/data/selectors.js";
+import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import React from "react";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
@@ -115,8 +115,9 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsCount: state.showedFilmsCount,
+  filmsCount: getShowedFilmsCount(state),
   filmsList: getFilmsListByGenre(state).slice(0, state.showedFilmsCount),
+  promoFilm: getPromoFilm(state),
 });
 
 export {Main};

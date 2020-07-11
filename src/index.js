@@ -1,8 +1,9 @@
 import App from "./components/app/app.jsx";
-import {applyMiddleware, compose, createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import {createAPI} from "./api.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
-import {ActionCreator, AuthorizationStatus, Operation as UserOperation} from "./reducer/user/user.js";
+import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {Provider} from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -17,12 +18,14 @@ const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(DataOperation.loadingOfMovies());
 store.dispatch(DataOperation.loadingOfPromoFilm());
-//store.dispatch(UserOperation.checkAuth());
+// store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

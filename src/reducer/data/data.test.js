@@ -1,27 +1,10 @@
-import {App} from "./app.jsx";
-import configureStore from "redux-mock-store";
-import NameSpace from "../../reducer/name-space.js";
-import {Provider} from "react-redux";
-import React from "react";
-import renderer from "react-test-renderer";
+import MockAdapter from "axios-mock-adapter";
+import {createFilm, createFilms} from "../../adapters/films.js";
+import {createAPI} from "../../api.js";
+import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
+import {reducer, ActionCreator, ActionType, Operation} from "./data.js";
 
-const mockStore = configureStore([]);
-
-const filmData = {
-  backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
-  director: `David Yates`,
-  genre: `Fantasy`,
-  id: 345712414,
-  image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  ratingScore: 7.2,
-  ratingCount: 248,
-  runTime: 231,
-  starring: [`Eddie Redmayne`, `Katherine Waterson`, `Dan Folger`],
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  year: 2015,
-};
+const api = createAPI(() => {});
 
 const films = [
   {
@@ -110,30 +93,136 @@ const films = [
   },
 ];
 
-it(`App is rendered correctly`, () => {
-  const store = mockStore({
-    [NameSpace.DATA]: {
-      allFilms: films,
-      id: 3535,
-      film: filmData,
-      filmsCount: 5,
-      key: `vddssdg`,
-      promoFilm: filmData,
-    },
+it(`Reducer without additional parameters should return initial state`, () => {
+  expect(reducer(void 0, {})).toEqual({
+    allFilms: [],
+    genre: Genre.ALL,
+    id: -1,
+    promoFilm: {},
+    showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
+  });
+});
+
+it(`Reducer should change key "genre" by a given value`, () => {
+  expect(reducer({
+    allFilms: films,
+    genre: `All films`,
+    id: `sdsd!sgdg35`,
+    promoFilm: films[0],
+    showedFilmsCount: 15,
+  }, {
+    type: ActionType.CHANGE_GENRE,
+    payload: `Action`,
+  })).toEqual({
+    allFilms: films,
+    genre: `Action`,
+    id: `sdsd!sgdg35`,
+    promoFilm: films[0],
+    showedFilmsCount: 8,
   });
 
-  const tree = renderer.create(
-      <Provider store={store}>
-        <App
-          film={filmData}
-          filmsList={films}
-          promoFilm={filmData}
-        />
-      </Provider>, {
-        createNodeMock: () => {
-          return {};
-        }
-      }).toJSON();
+  expect(reducer({
+    allFilms: films,
+    genre: `Adventure`,
+    id: `sdsd!sgdg35`,
+    promoFilm: films[0],
+    showedFilmsCount: 8,
+  }, {
+    type: ActionType.CHANGE_GENRE,
+    payload: null,
+  })).toEqual({
+    allFilms: films,
+    genre: null,
+    id: `sdsd!sgdg35`,
+    promoFilm: films[0],
+    showedFilmsCount: 8,
+  });
+});
 
-  expect(tree).toMatchSnapshot();
+it(`Reducer should change key "id" by a given value`, () => {
+  expect(reducer({
+    allFilms: films,
+    genre: `Adventure`,
+    id: `sdsd!sgdg35`,
+    promoFilm: films[2],
+  }, {
+    type: ActionType.CHANGE_FILM_ID,
+    payload: `!!!sdsd!sgdg35dfdfdf`,
+  })).toEqual({
+    allFilms: films,
+    genre: `Adventure`,
+    id: `!!!sdsd!sgdg35dfdfdf`,
+    promoFilm: films[2],
+  });
+
+  expect(reducer({
+    allFilms: films,
+    genre: `Adventure`,
+    id: `dvdfvdfvv34234`,
+    promoFilm: films[2],
+  }, {
+    type: ActionType.CHANGE_FILM_ID,
+    payload: `vdvdfv`,
+  })).toEqual({
+    allFilms: films,
+    genre: `Adventure`,
+    id: `vdvdfv`,
+    promoFilm: films[2],
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for changing genre returns correct action`, () => {
+    expect(ActionCreator.genreAction(`Sci-fi`)).toEqual({
+      type: ActionType.CHANGE_GENRE,
+      payload: `Sci-fi`,
+    });
+  });
+
+  it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
+    expect(ActionCreator.filmIdAction(`13sdfsf`)).toEqual({
+      type: ActionType.CHANGE_FILM_ID,
+      payload: `13sdfsf`,
+    });
+  });
+});
+
+describe(`Operation works correctly`, () => {
+  it(`Should make a correct API call to /films`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.loadingOfMovies();
+
+    apiMock
+      .onGet(`/films`)
+      .reply(200, [{fake: false}]);
+
+    return filmsLoader(dispatch, () => { }, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_MOVIES,
+          payload: createFilms([{fake: true}]),
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /films/promo`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.loadingOfPromoFilm();
+
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, {fake: false});
+
+    return filmsLoader(dispatch, () => { }, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_PROMO_FILM,
+          payload: createFilm({fake: true}),
+        });
+      });
+  });
 });

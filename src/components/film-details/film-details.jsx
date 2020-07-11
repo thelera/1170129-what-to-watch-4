@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {FilmDetailsTab} from "../../utils/consts.js";
 import FilmsList from "../films-list/films-list.jsx";
-import {getFilmsListByGenre} from "../../reducer/data/selectors.js";
+import {getFilmsListByGenre, getId} from "../../reducer/data/selectors.js";
 import {removeFromArray} from "../../utils/common.js";
 import PropTypes from "prop-types";
 import React from "react";
@@ -323,7 +323,7 @@ FilmDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsList: removeFromArray(getFilmsListByGenre(state), state.id).slice(0, SIMILAR_FILMS_COUNT),
+  filmsList: removeFromArray(getFilmsListByGenre(state), getId(state)).slice(0, SIMILAR_FILMS_COUNT),
 });
 
 export {FilmDetails};
