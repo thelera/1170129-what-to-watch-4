@@ -14,7 +14,8 @@ const filmData = {
   genre: `Fantasy`,
   id: 345712414,
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   ratingScore: 7.2,
   ratingCount: 248,
   runTime: 231,
@@ -128,6 +129,7 @@ it(`App is rendered correctly`, () => {
           film={filmData}
           filmsList={films}
           promoFilm={filmData}
+          isPlayerOpened={false}
         />
       </Provider>, {
         createNodeMock: () => {

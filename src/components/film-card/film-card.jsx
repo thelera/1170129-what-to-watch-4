@@ -4,14 +4,18 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Video} from "../../utils/consts.js";
 import VideoPlayer from "../video-player/video-player.jsx";
+import withVideo from "../../hocs/with-video/with-video.js";
+
+const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const FilmCard = (props) => {
   const {film, isPlaying, onMouseEnter, onMouseLeave, onClick} = props;
-  const {preview, previewVideoLink, title} = film;
+  const {title} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card">
-      <div className="small-movie-card__image"
+      <div
+        className="small-movie-card__image"
         onClick={() => {
           onClick(film.id);
         }}
@@ -20,13 +24,12 @@ const FilmCard = (props) => {
         }}
         onMouseLeave={onMouseLeave}
       >
-        <VideoPlayer
-          source={previewVideoLink}
-          poster={preview}
-          isMuted={Video.IS_MUTED}
+        <VideoPlayerWrapped
+          film={film}
           isPlaying={isPlaying}
           width={Video.WIDTH}
           height={Video.HEIGHT}
+          key={props.isPlaying}
         />
       </div>
       <h3 className="small-movie-card__title"

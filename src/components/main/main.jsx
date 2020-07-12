@@ -1,3 +1,4 @@
+import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
@@ -10,7 +11,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {filmsCount, filmsList, promoFilm} = props;
+  const {filmsCount, filmsList, promoFilm, onPlayerOpenButtonClick} = props;
   const {genre, image, title, year} = promoFilm;
 
   return (
@@ -52,7 +53,13 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={() => {
+                    onPlayerOpenButtonClick();
+                  }}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -112,13 +119,20 @@ Main.propTypes = {
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   }).isRequired,
+  onPlayerOpenButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   filmsCount: getShowedFilmsCount(state),
-  filmsList: getFilmsListByGenre(state).slice(0, state.showedFilmsCount),
+  filmsList: getFilmsListByGenre(state).slice(0, getShowedFilmsCount(state)),
   promoFilm: getPromoFilm(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onPlayerOpenButtonClick() {
+    dispatch(ActionCreator.openingOfPlayer(true));
+  },
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

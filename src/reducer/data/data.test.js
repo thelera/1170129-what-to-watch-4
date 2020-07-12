@@ -98,6 +98,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     allFilms: [],
     genre: Genre.ALL,
     id: -1,
+    isPlayerOpened: false,
     promoFilm: {},
     showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
   });

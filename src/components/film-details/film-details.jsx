@@ -1,6 +1,8 @@
+import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
 import {FilmDetailsTab} from "../../utils/consts.js";
 import FilmsList from "../films-list/films-list.jsx";
+import {fromMinToHours, getRatingLevel} from "../../utils/common.js";
 import {getFilmsListByGenre, getId} from "../../reducer/data/selectors.js";
 import {removeFromArray} from "../../utils/common.js";
 import PropTypes from "prop-types";
@@ -8,28 +10,8 @@ import React from "react";
 import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
-const getRatingLevel = (score) => {
-  switch (score) {
-    case score > 9.5:
-      return `Excellent`;
-    case score > 9:
-      return `Very good`;
-    case score > 7:
-      return `Good`;
-    default:
-      return `Not So Bad`;
-  }
-};
-
-const fromMinToHours = (min) => {
-  const hours = Math.round(min / 60);
-  const minutes = min % 60;
-
-  return `${hours}h ${minutes}m`;
-};
-
 const FilmDetails = (props) => {
-  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, film, filmsList: filmsByGenre, onActiveClick: onTabClick} = props;
+  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, film, filmsList: filmsByGenre, onActiveClick: onTabClick, onPlayerOpenButtonClick} = props;
   const {backgroundImage, genre, image, title, year} = film;
 
   const _renderTabs = () => {
@@ -239,7 +221,13 @@ const FilmDetails = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={() => {
+                    onPlayerOpenButtonClick();
+                  }}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -320,11 +308,18 @@ FilmDetails.propTypes = {
   }),
   filmsList: PropTypes.array.isRequired,
   onActiveClick: PropTypes.func.isRequired,
+  onPlayerOpenButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   filmsList: removeFromArray(getFilmsListByGenre(state), getId(state)).slice(0, SIMILAR_FILMS_COUNT),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onPlayerOpenButtonClick() {
+    dispatch(ActionCreator.openingOfPlayer(true));
+  },
+});
+
 export {FilmDetails};
-export default connect(mapStateToProps)(FilmDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);

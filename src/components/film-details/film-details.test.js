@@ -123,6 +123,7 @@ it(`FilmDetails is rendered correctly`, () => {
           filmsList={films}
           key={film.id}
           onActiveClick={() => {}}
+          onPlayerOpenButtonClick={() => { }}
         />
       </Provider>, {
         createNodeMock: () => {

@@ -40,6 +40,7 @@ it(`Card title should be clicked`, () => {
         filmsCount={4}
         filmsList={films}
         promoFilm={filmData}
+        onPlayerOpenButtonClick={() => { }}
       />
   );
 

@@ -7,6 +7,7 @@ const initialState = {
   id: -1,
   promoFilm: {},
   showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
+  isPlayerOpened: false,
 };
 
 const ActionType = {
@@ -15,6 +16,7 @@ const ActionType = {
   INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  OPEN_PLAYER: `OPEN_PLAYER`,
 };
 
 const ActionCreator = {
@@ -30,18 +32,18 @@ const ActionCreator = {
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
   }),
-  loadingOfMovies: (films) => {
-    return {
-      type: ActionType.LOAD_MOVIES,
-      payload: createFilms(films),
-    };
-  },
-  loadingOfPromoFilm: (film) => {
-    return {
-      type: ActionType.LOAD_PROMO_FILM,
-      payload: createFilm(film),
-    };
-  },
+  loadingOfMovies: (films) => ({
+    type: ActionType.LOAD_MOVIES,
+    payload: createFilms(films),
+  }),
+  loadingOfPromoFilm: (film) => ({
+    type: ActionType.LOAD_PROMO_FILM,
+    payload: createFilm(film),
+  }),
+  openingOfPlayer: (value) => ({
+    type: ActionType.OPEN_PLAYER,
+    payload: value,
+  }),
 };
 
 const Operation = {
@@ -74,6 +76,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {allFilms: action.payload});
     case ActionType.LOAD_PROMO_FILM:
       return Object.assign({}, state, {promoFilm: action.payload});
+    case ActionType.OPEN_PLAYER:
+      return Object.assign({}, state, {isPlayerOpened: action.payload});
     default:
       return state;
   }

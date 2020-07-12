@@ -1,4 +1,4 @@
-import VideoPlayer from "./video-player.jsx";
+import {VideoPlayer} from "./video-player.jsx";
 import React from "react";
 import renderer from "react-test-renderer";
 
@@ -19,13 +19,16 @@ it(`VideoPlayer is rendered correctly`, () => {
 
   const tree = renderer.create(
       <VideoPlayer
+
         source={previewVideoLink}
         poster={preview}
         isMuted={Video.IS_MUTED}
         isPlaying={true}
         width={Video.WIDTH}
         height={Video.HEIGHT}
-      />, {
+      >
+        <video/>
+      </VideoPlayer>, {
         createNodeMock: () => {
           return {};
         }

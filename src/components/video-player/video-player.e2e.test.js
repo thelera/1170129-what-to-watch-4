@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import VideoPlayer from "./video-player.jsx";
+import {VideoPlayer} from "./video-player.jsx";
 
 const Video = {
   WIDTH: 300,
@@ -31,7 +31,9 @@ it(`Video player can be playing or paused`, () => {
         isPlaying={isVideoPlaying}
         width={Video.WIDTH}
         height={Video.HEIGHT}
-      />
+      >
+        <video/>
+      </VideoPlayer>
   );
 
   expect(videoPlayer.props().isPlaying).toBe(isVideoPlaying);

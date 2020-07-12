@@ -122,6 +122,7 @@ it(`Main should render movie card and films catalog`, () => {
           filmsCount={10}
           filmsList={films}
           promoFilm={filmData}
+          onPlayerOpenButtonClick={() => {}}
         />
       </Provider>, {
         createNodeMock: () => {
