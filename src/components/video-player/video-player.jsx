@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const VideoPlayer = (props) => {
-  const {children, isControled = false, isPlaying, onExitClick, onFullScreenButtonClick, onPlayButtonClick, progress} = props;
-  const progressInHours = fromSecToHours(progress);
+  const {children, duration, isControled = false, isPlaying, onExitClick, onFullScreenButtonClick, onPlayButtonClick, progress} = props;
+  const timeToEnd = fromSecToHours(duration - progress);
 
   return (
     <React.Fragment>
@@ -61,7 +61,7 @@ const VideoPlayer = (props) => {
               <progress className="player__progress" value={progress} max="100"></progress>
               <div className="player__toggler" style={{left: progress + `%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">{progressInHours}</div>
+            <div className="player__time-value">{timeToEnd}</div>
           </div>
 
           <div className="player__controls-row">
@@ -100,6 +100,7 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = {
   children: PropTypes.node.isRequired,
+  duration: PropTypes.number,
   height: PropTypes.number,
   isControled: PropTypes.bool,
   isMuted: PropTypes.bool,

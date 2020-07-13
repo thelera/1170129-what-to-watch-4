@@ -10,9 +10,9 @@ const fromMinToHours = (min) => {
 const fromSecToHours = (sec) => {
   const hours = Math.floor(sec / 3600);
   const minutes = Math.floor((sec % 3600) / 60);
-  const secunds = Math.floor((sec % 3600) % 60);
+  const seconds = Math.floor((sec % 3600) % 60);
 
-  return `${hours}:${minutes}:${secunds}`;
+  return `${hours}:${minutes}:${seconds}`;
 };
 
 const getFilmsByFilter = (array, filterType) => {
@@ -32,18 +32,26 @@ const getUniqueArrayElements = (array) => {
 };
 
 const getRatingLevel = (score) => {
-  switch (score) {
+  let result = ``;
+
+  switch (true) {
     case score >= 10:
-      return `Awesome`;
-    case score >= 8:
-      return `Very good`;
-    case score >= 5:
-      return `Good`;
-    case score >= 3:
-      return `Normal`;
+      result = `Awesome`;
+      break;
+    case score > 8:
+      result = `Very good`;
+      break;
+    case score > 5:
+      result = `Good`;
+      break;
+    case score > 3:
+      result = `Normal`;
+      break;
     default:
-      return `Bad`;
+      result = `Bad`;
   }
+
+  return result;
 };
 
 const removeFromArray = (array, id) => {

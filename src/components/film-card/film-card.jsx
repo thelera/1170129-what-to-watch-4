@@ -9,8 +9,8 @@ import withVideo from "../../hocs/with-video/with-video.js";
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const FilmCard = (props) => {
-  const {film, isPlaying, onMouseEnter, onMouseLeave, onClick} = props;
-  const {title} = film;
+  const {film, isPlaying, onClick, onMouseEnter, onMouseLeave} = props;
+  const {preview, previewVideoLink, title} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card">
@@ -25,11 +25,12 @@ const FilmCard = (props) => {
         onMouseLeave={onMouseLeave}
       >
         <VideoPlayerWrapped
-          film={film}
           isPlaying={isPlaying}
           width={Video.WIDTH}
           height={Video.HEIGHT}
           key={props.isPlaying}
+          preview={preview}
+          videoLink={previewVideoLink}
         />
       </div>
       <h3 className="small-movie-card__title"
@@ -44,11 +45,13 @@ const FilmCard = (props) => {
 
 FilmCard.propTypes = {
   film: PropTypes.shape({
+    backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
     image: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
     previewVideoLink: PropTypes.string.isRequired,
@@ -57,6 +60,7 @@ FilmCard.propTypes = {
     runTime: PropTypes.number.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
+    videoLink: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   }),
   isPlaying: PropTypes.bool.isRequired,
@@ -67,7 +71,7 @@ FilmCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(id) {
-    dispatch(ActionCreator.filmIdAction(id));
+    dispatch(ActionCreator.changingId(id));
   },
 });
 

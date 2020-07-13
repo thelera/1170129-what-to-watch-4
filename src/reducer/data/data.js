@@ -20,15 +20,15 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  genreAction: (genre) => ({
+  changingGenre: (genre) => ({
     type: ActionType.CHANGE_GENRE,
     payload: genre,
   }),
-  filmIdAction: (id) => ({
+  changingId: (id) => ({
     type: ActionType.CHANGE_FILM_ID,
     payload: id,
   }),
-  incrementOfFilmsCountAction: (count) => ({
+  incrementOfFilmsCount: (count) => ({
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
   }),

@@ -38,15 +38,14 @@ const withVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {film, isMuted = true, width, height} = this.props;
-      const {preview, previewVideoLink} = film;
+      const {isMuted = true, width, height, preview, videoLink} = this.props;
 
       const video = this._videoRef.current;
 
       video.muted = isMuted;
       video.height = height;
       video.poster = preview;
-      video.src = previewVideoLink;
+      video.src = videoLink;
       video.width = width;
 
       video.oncanplaythrough = () => this.setState({
@@ -89,12 +88,20 @@ const withVideo = (Component) => {
     }
 
     render() {
+      const video = this._videoRef.current;
+      let duration;
+      if (video) {
+        duration = video.duration;
+      } else {
+        duration = 0;
+      }
       const {isLoading, isPlaying} = this.state;
       const {isControled = false} = this.props;
 
       return (
         <Component
           {...this.props}
+          duration={duration}
           isLoading={isLoading}
           isPlaying={isPlaying}
           onPlayButtonClick={this._handlePlayButtonClick}
@@ -113,10 +120,8 @@ const withVideo = (Component) => {
   }
 
   WithVideo.propTypes = {
-    film: PropTypes.shape({
-      preview: PropTypes.string.isRequired,
-      previewVideoLink: PropTypes.string.isRequired,
-    }).isRequired,
+    preview: PropTypes.string.isRequired,
+    videoLink: PropTypes.string.isRequired,
     height: PropTypes.number,
     isControled: PropTypes.bool,
     isMuted: PropTypes.bool,

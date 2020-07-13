@@ -323,7 +323,7 @@ Array [
                   <span
                     className="movie-rating__level"
                   >
-                    Bad
+                    Good
                   </span>
                   <span
                     className="movie-rating__count"
