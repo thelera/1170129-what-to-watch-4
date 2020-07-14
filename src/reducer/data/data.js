@@ -20,43 +20,49 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  changingGenre: (genre) => ({
+  changeGenre: (genre) => ({
     type: ActionType.CHANGE_GENRE,
     payload: genre,
   }),
-  changingId: (id) => ({
+  changeId: (id) => ({
     type: ActionType.CHANGE_FILM_ID,
     payload: id,
   }),
-  incrementOfFilmsCount: (count) => ({
+  incrementFilmsCount: (count) => ({
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
   }),
-  loadingOfMovies: (films) => ({
+  loadMovies: (films) => ({
     type: ActionType.LOAD_MOVIES,
-    payload: createFilms(films),
+    payload: films,
   }),
-  loadingOfPromoFilm: (film) => ({
+  loadPromoFilm: (film) => ({
     type: ActionType.LOAD_PROMO_FILM,
-    payload: createFilm(film),
+    payload: film,
   }),
-  openingOfPlayer: (value) => ({
+  openPlayer: (value) => ({
     type: ActionType.OPEN_PLAYER,
     payload: value,
   }),
 };
 
 const Operation = {
-  loadingOfPromoFilm: () => (dispatch, getState, api) => {
+  loadPromoFilm: () => (dispatch, getState, api) => {
     return api.get(`films/promo`)
       .then((response) => {
-        dispatch(ActionCreator.loadingOfPromoFilm(response.data));
+        dispatch(ActionCreator.loadPromoFilm(createFilm(response.data)));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
-  loadingOfMovies: () => (dispatch, getState, api) => {
+  loadMovies: () => (dispatch, getState, api) => {
     return api.get(`/films`)
     .then((response) => {
-      dispatch(ActionCreator.loadingOfMovies(response.data));
+      dispatch(ActionCreator.loadMovies(createFilms(response.data)));
+    })
+    .catch((err) => {
+      throw err;
     });
   },
 };

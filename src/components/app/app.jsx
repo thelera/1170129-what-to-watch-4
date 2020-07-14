@@ -5,15 +5,17 @@ import {getFilmById, getFilmsListByGenre, getPromoFilm, getVideoPlayerInfo} from
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import React from "react";
+import SignIn from "../sign-in/sign-in.jsx";
 import VideoPlayer from "../video-player/video-player.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withVideo from "../../hocs/with-video/with-video.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 
 const FilmDetailsWrapped = withActiveItem(FilmDetails);
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const App = (props) => {
-  const {isPlayerOpened, film, promoFilm} = props;
+  const {isPlayerOpened, film, login, promoFilm} = props;
 
   const renderApp = () => {
     if (isPlayerOpened) {
@@ -57,21 +59,23 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/" >
           {renderApp()}
         </Route>
-        <Route exact path="/dev-film-details">
-          <FilmDetails
-            film={film}
-          />
-        </Route>
-        <Route exact path="/player">
+        <Route exact path="/:id?" component={FilmDetails} />
+        <Route exact path="/player/:id?" render={() => (
           <VideoPlayerWrapped
             isMuted={false}
             isControled={true}
             isPlaying={true}
             preview={promoFilm.preview}
             videoLink={promoFilm.videoLink}
+          />
+        )}>
+        </Route>
+        <Route exact path="/login">
+          <SignIn
+            onSubmit={login}
           />
         </Route>
       </Switch>
@@ -100,15 +104,16 @@ App.propTypes = {
     year: PropTypes.number.isRequired,
   }),
   isPlayerOpened: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
   promoFilm: PropTypes.shape({
-    genre: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  }).isRequired,
+    genre: PropTypes.string,
+    image: PropTypes.string,
+    preview: PropTypes.string,
+    previewVideoLink: PropTypes.string,
+    title: PropTypes.string,
+    videoLink: PropTypes.string,
+    year: PropTypes.number,
+  }),
 };
 
 const mapStateToProps = (state) => ({
@@ -118,5 +123,11 @@ const mapStateToProps = (state) => ({
   isPlayerOpened: getVideoPlayerInfo(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+});
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

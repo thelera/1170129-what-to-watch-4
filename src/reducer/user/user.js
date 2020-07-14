@@ -20,7 +20,7 @@ const ActionCreator = {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`https://4.react.pages.academy/wtw/films/promo/login`)
+    return api.get(`/login`)
       .then(() => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
       })
@@ -29,12 +29,15 @@ const Operation = {
       });
   },
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`login`, {
+    return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
       .then(() => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 };

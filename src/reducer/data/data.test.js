@@ -174,14 +174,14 @@ it(`Reducer should change key "id" by a given value`, () => {
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for changing genre returns correct action`, () => {
-    expect(ActionCreator.changingGenre(`Sci-fi`)).toEqual({
+    expect(ActionCreator.changeGenre(`Sci-fi`)).toEqual({
       type: ActionType.CHANGE_GENRE,
       payload: `Sci-fi`,
     });
   });
 
   it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
-    expect(ActionCreator.changingId(`13sdfsf`)).toEqual({
+    expect(ActionCreator.changeId(`13sdfsf`)).toEqual({
       type: ActionType.CHANGE_FILM_ID,
       payload: `13sdfsf`,
     });
@@ -192,7 +192,7 @@ describe(`Operation works correctly`, () => {
   it(`Should make a correct API call to /films`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const filmsLoader = Operation.loadingOfMovies();
+    const filmsLoader = Operation.loadMovies();
 
     apiMock
       .onGet(`/films`)
@@ -211,7 +211,7 @@ describe(`Operation works correctly`, () => {
   it(`Should make a correct API call to /films/promo`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const filmsLoader = Operation.loadingOfPromoFilm();
+    const filmsLoader = Operation.loadPromoFilm();
 
     apiMock
       .onGet(`/films/promo`)

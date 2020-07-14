@@ -114,7 +114,7 @@ VideoPlayer.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onExitClick() {
-    dispatch(ActionCreator.openingOfPlayer(false));
+    dispatch(ActionCreator.openPlayer(false));
   },
 });
 

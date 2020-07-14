@@ -23,8 +23,8 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadingOfMovies());
-store.dispatch(DataOperation.loadingOfPromoFilm());
+store.dispatch(DataOperation.loadMovies());
+store.dispatch(DataOperation.loadPromoFilm());
 // store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(

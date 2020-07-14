@@ -1,25 +1,3 @@
-const createFilms = (data) => {
-  return data.map((film) => ({
-    backgroundColor: film.background_color,
-    backgroundImage: film.background_image,
-    description: film.description,
-    director: film.director,
-    genre: film.genre,
-    id: film.id,
-    isFavourite: film.is_favorite,
-    image: film.poster_image,
-    preview: film.preview_image,
-    previewVideoLink: film.preview_video_link,
-    ratingScore: film.rating,
-    ratingCount: film.scores_count,
-    runTime: film.run_time,
-    starring: film.starring,
-    title: film.name,
-    videoLink: film.video_link,
-    year: film.released,
-  }));
-};
-
 const createFilm = (data) => ({
   backgroundColor: data.background_color,
   backgroundImage: data.background_image,
@@ -39,5 +17,7 @@ const createFilm = (data) => ({
   videoLink: data.video_link,
   year: data.released,
 });
+
+const createFilms = (data) => data.map((film) => createFilm(film));
 
 export {createFilm, createFilms};

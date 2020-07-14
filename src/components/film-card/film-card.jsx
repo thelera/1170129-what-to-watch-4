@@ -71,7 +71,7 @@ FilmCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(id) {
-    dispatch(ActionCreator.changingId(id));
+    dispatch(ActionCreator.changeId(id));
   },
 });
 

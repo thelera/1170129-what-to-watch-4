@@ -114,10 +114,10 @@ Main.propTypes = {
   filmsCount: PropTypes.number.isRequired,
   filmsList: PropTypes.array.isRequired,
   promoFilm: PropTypes.shape({
-    genre: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
+    genre: PropTypes.string,
+    image: PropTypes.string,
+    title: PropTypes.string,
+    year: PropTypes.number,
   }).isRequired,
   onPlayerOpenButtonClick: PropTypes.func.isRequired,
 };
@@ -130,7 +130,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayerOpenButtonClick() {
-    dispatch(ActionCreator.openingOfPlayer(true));
+    dispatch(ActionCreator.openPlayer(true));
   },
 });
 

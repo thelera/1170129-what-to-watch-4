@@ -322,7 +322,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayerOpenButtonClick() {
-    dispatch(ActionCreator.openingOfPlayer(true));
+    dispatch(ActionCreator.openPlayer(true));
   },
 });
 
