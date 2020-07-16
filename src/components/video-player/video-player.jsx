@@ -1,11 +1,10 @@
-import {ActionCreator} from "../../reducer/data/data.js";
-import {connect} from "react-redux";
 import {fromSecToHours} from "../../utils/common.js";
 import PropTypes from "prop-types";
 import React from "react";
 
 const VideoPlayer = (props) => {
-  const {children, duration, isControled = false, isPlaying, onExitClick, onFullScreenButtonClick, onPlayButtonClick, progress} = props;
+  const {children, duration, history, isControled = false, isPlaying, onFullScreenButtonClick, onPlayButtonClick, progress} = props;
+
   const timeToEnd = fromSecToHours(duration - progress);
 
   return (
@@ -49,7 +48,7 @@ const VideoPlayer = (props) => {
           type="button"
           className="player__exit"
           onClick={() => {
-            onExitClick();
+            history.goBack();
           }}
         >
           Exit
@@ -102,21 +101,14 @@ VideoPlayer.propTypes = {
   children: PropTypes.node.isRequired,
   duration: PropTypes.number,
   height: PropTypes.number,
+  history: PropTypes.object,
   isControled: PropTypes.bool,
   isMuted: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  onExitClick: PropTypes.func,
   onFullScreenButtonClick: PropTypes.func,
   onPlayButtonClick: PropTypes.func,
   progress: PropTypes.number,
   width: PropTypes.number,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onExitClick() {
-    dispatch(ActionCreator.openPlayer(false));
-  },
-});
-
-export {VideoPlayer};
-export default connect(null, mapDispatchToProps)(VideoPlayer);
+export default VideoPlayer;

@@ -1,4 +1,4 @@
-import {VideoPlayer} from "./video-player.jsx";
+import VideoPlayer from "./video-player.jsx";
 import React from "react";
 import renderer from "react-test-renderer";
 

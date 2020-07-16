@@ -1,9 +1,11 @@
-import {ActionCreator} from "../../reducer/data/data.js";
+import {AppRoute, FilmDetailsTab} from "../../utils/consts.js";
+import {AuthorizationStatus} from "../../utils/consts.js";
 import {connect} from "react-redux";
-import {FilmDetailsTab} from "../../utils/consts.js";
 import FilmsList from "../films-list/films-list.jsx";
 import {fromMinToHours, getRatingLevel} from "../../utils/common.js";
-import {getFilmsListByGenre, getId} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
+import {getFilmsListByGenre, getId, getAllFilms} from "../../reducer/data/selectors.js";
+import {Link} from "react-router-dom";
 import {removeFromArray} from "../../utils/common.js";
 import PropTypes from "prop-types";
 import React from "react";
@@ -11,8 +13,10 @@ import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
 const FilmDetails = (props) => {
-  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, film, filmsList: filmsByGenre, onActiveClick: onTabClick, onPlayerOpenButtonClick} = props;
-  const {backgroundImage, genre, image, title, year} = film;
+  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, authorizationStatus, avatarURL, film, filmsList: filmsByGenre, onActiveClick: onTabClick} = props;
+
+  const {backgroundImage, genre, id, image, isFavourite, title, year} = film;
+  console.log(activeTab);
 
   const _renderTabs = () => {
     const {description, director, ratingCount, ratingScore, runTime, starring} = film;
@@ -198,18 +202,22 @@ const FilmDetails = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={AppRoute.ROOT} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <Link to={AppRoute.MY_LIST} className="user-block__link">
+              {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
+              {authorizationStatus === AuthorizationStatus.AUTH && 
+                <div className="user-block__avatar">
+                  <img src={avatarURL} alt="User avatar" width="63" height="63" />
+                </div>}
+            </Link>
+          </div>
           </header>
 
           <div className="movie-card__wrap">
@@ -221,21 +229,18 @@ const FilmDetails = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
+                <Link
+                  to={`${AppRoute.PLAYER}${id}`}
                   className="btn btn--play movie-card__button"
-                  type="button"
-                  onClick={() => {
-                    onPlayerOpenButtonClick();
-                  }}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    {isFavourite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                   </svg>
                   <span>My list</span>
                 </button>
@@ -253,6 +258,7 @@ const FilmDetails = (props) => {
 
             <div className="movie-card__desc">
               <Tabs
+                id={id}
                 tab={activeTab}
                 onTabClick={onTabClick}
               >
@@ -274,11 +280,11 @@ const FilmDetails = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to={AppRoute.ROOT} href="main.html" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -313,18 +319,13 @@ FilmDetails.propTypes = {
   }),
   filmsList: PropTypes.array.isRequired,
   onActiveClick: PropTypes.func.isRequired,
-  onPlayerOpenButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  avatarURL: getAvatarURL(state),
   filmsList: removeFromArray(getFilmsListByGenre(state), getId(state)).slice(0, SIMILAR_FILMS_COUNT),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlayerOpenButtonClick() {
-    dispatch(ActionCreator.openPlayer(true));
-  },
-});
-
 export {FilmDetails};
-export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);
+export default connect(mapStateToProps)(FilmDetails);

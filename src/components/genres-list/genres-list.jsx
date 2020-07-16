@@ -1,6 +1,7 @@
 import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
-import {Genre, GENRES_COUNT} from "../../utils/consts.js";
+import {Link} from "react-router-dom";
+import {Genre, GENRES_COUNT, AppRoute} from "../../utils/consts.js";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -14,7 +15,8 @@ const GenresList = (props) => {
           className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}
           key={genre}
         >
-          <a href="#"
+          <Link
+            to={AppRoute.ROOT}
             className="catalog__genres-link"
             onClick={() => {
               onGenreClick(genre);
@@ -22,7 +24,7 @@ const GenresList = (props) => {
             }}
           >
             {genre}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

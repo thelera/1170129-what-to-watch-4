@@ -7,8 +7,9 @@ exports[`FilmsList is rendered correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
   >
-    <div
+    <a
       className="small-movie-card__image"
+      href="/films/3523525245235"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -137,13 +138,14 @@ exports[`FilmsList is rendered correctly 1`] = `
       >
         Sorry, your browser doesn't support embedded videos.
       </video>
-    </div>
+    </a>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
+        href="/films/3523525245235"
+        onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -152,8 +154,9 @@ exports[`FilmsList is rendered correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
   >
-    <div
+    <a
       className="small-movie-card__image"
+      href="/films/0.032117919186998245"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -282,13 +285,14 @@ exports[`FilmsList is rendered correctly 1`] = `
       >
         Sorry, your browser doesn't support embedded videos.
       </video>
-    </div>
+    </a>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
+        href="/films/0.032117919186998245"
+        onClick={[Function]}
       >
         Bohemian Rhapsody
       </a>
@@ -297,8 +301,9 @@ exports[`FilmsList is rendered correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
   >
-    <div
+    <a
       className="small-movie-card__image"
+      href="/films/0.7696736278454297"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -427,13 +432,14 @@ exports[`FilmsList is rendered correctly 1`] = `
       >
         Sorry, your browser doesn't support embedded videos.
       </video>
-    </div>
+    </a>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
+        href="/films/0.7696736278454297"
+        onClick={[Function]}
       >
         Macbeth
       </a>

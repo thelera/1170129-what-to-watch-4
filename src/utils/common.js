@@ -60,7 +60,7 @@ const removeFromArray = (array, id) => {
   const index = array.indexOf(elementToRemove);
 
   if (index > -1) {
-    array.splice(index, 1);
+    array.slice(0).splice(index, 1);
   }
 
   return array;

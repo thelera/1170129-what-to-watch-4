@@ -1,18 +1,23 @@
-import {ActionCreator} from "../../reducer/data/data.js";
+import {AppRoute} from "../../utils/consts.js";
+import {AuthorizationStatus} from "../../utils/consts.js";
 import {connect} from "react-redux";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
+import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
 import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import {store} from "../../index.js"
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {filmsCount, filmsList, promoFilm, onPlayerOpenButtonClick} = props;
-  const {genre, image, title, year} = promoFilm;
+  const {authorizationStatus, avatarURL, filmsCount, filmsList, promoFilm} = props;
+  const {genre, id, image, isFavourite, title, year} = promoFilm;
 
   return (
     <div>
@@ -33,9 +38,13 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            <Link to={AppRoute.MY_LIST} className="user-block__link">
+              {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
+              {authorizationStatus === AuthorizationStatus.AUTH && 
+                <div className="user-block__avatar">
+                  <img src={avatarURL} alt="User avatar" width="63" height="63" />
+                </div>}
+            </Link>
           </div>
         </header>
 
@@ -53,21 +62,20 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
+                <Link
+                  to={`${AppRoute.PLAYER}${id}`}
                   className="btn btn--play movie-card__button"
-                  type="button"
-                  onClick={() => {
-                    onPlayerOpenButtonClick();
-                  }}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                </Link>
+                <button className="btn btn--list movie-card__button" type="button" onClick={(id) => {
+                  store.dispatch(DataOperation.addFilmToFavourites(id));
+                }}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    {isFavourite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                   </svg>
                   <span>My list</span>
                 </button>
@@ -119,20 +127,15 @@ Main.propTypes = {
     title: PropTypes.string,
     year: PropTypes.number,
   }).isRequired,
-  onPlayerOpenButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  avatarURL: getAvatarURL(state),
   filmsCount: getShowedFilmsCount(state),
   filmsList: getFilmsListByGenre(state).slice(0, getShowedFilmsCount(state)),
   promoFilm: getPromoFilm(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlayerOpenButtonClick() {
-    dispatch(ActionCreator.openPlayer(true));
-  },
-});
-
 export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);

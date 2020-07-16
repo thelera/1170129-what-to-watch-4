@@ -138,7 +138,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -163,12 +164,17 @@ Array [
           <div
             className="user-block__avatar"
           >
-            <img
-              alt="User avatar"
-              height="63"
-              src="img/avatar.jpg"
-              width="63"
-            />
+            <a
+              href="/login"
+              onClick={[Function]}
+            >
+              <img
+                alt="User avatar"
+                height="63"
+                src="img/avatar.jpg"
+                width="63"
+              />
+            </a>
           </div>
         </div>
       </header>
@@ -200,10 +206,10 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/player/345712414"
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="19"
@@ -217,7 +223,7 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
               type="button"
@@ -278,7 +284,7 @@ Array [
                 >
                   <a
                     className="movie-nav__link"
-                    href="#"
+                    href="/"
                     onClick={[Function]}
                   >
                     Overview
@@ -289,7 +295,7 @@ Array [
                 >
                   <a
                     className="movie-nav__link"
-                    href="#"
+                    href="/"
                     onClick={[Function]}
                   >
                     Details
@@ -300,7 +306,7 @@ Array [
                 >
                   <a
                     className="movie-nav__link"
-                    href="#"
+                    href="/"
                     onClick={[Function]}
                   >
                     Reviews
@@ -380,8 +386,9 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/3523525245235"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -510,13 +517,14 @@ Array [
             >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/3523525245235"
+              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -525,8 +533,9 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/0.20903074185078907"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -655,13 +664,14 @@ Array [
             >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/0.20903074185078907"
+              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -670,8 +680,9 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/0.11770174288250002"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -800,13 +811,14 @@ Array [
             >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/0.11770174288250002"
+              onClick={[Function]}
             >
               Macbeth
             </a>
@@ -815,8 +827,9 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/0.25742523850238874"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -945,13 +958,14 @@ Array [
             >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/0.25742523850238874"
+              onClick={[Function]}
             >
               Aviator
             </a>
@@ -960,8 +974,9 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/0.40466943028042657"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -1090,13 +1105,14 @@ Array [
             >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/0.40466943028042657"
+              onClick={[Function]}
             >
               We Need To Talk About Kevin
             </a>
@@ -1112,7 +1128,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

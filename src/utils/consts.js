@@ -2,10 +2,23 @@ const SIMILAR_FILMS_COUNT = 4;
 const SHOWING_FILMS_COUNT = 8;
 const SHOWING_FILMS_COUNT_ON_START = 8;
 
+const API = {
+  BASE_URL: `https://4.react.pages.academy/wtw`,
+  TIMEOUT: 1000 * 5,
+  CREDENTIALS: true,
+};
+
 const AppRoute = {
-  LOGIN: `/player`,
-  LOSE: `/sign-in`,
+  FILMS: `/films/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  PLAYER: `/player/`,
   ROOT: `/`,
+};
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
 };
 
 const Video = {
@@ -39,4 +52,4 @@ const Genre = {
 
 const GENRES_COUNT = 9;
 
-export {AppRoute, FilmDetailsTab, Genre, GENRES_COUNT, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};
+export {API, AppRoute, AuthorizationStatus, FilmDetailsTab, Genre, GENRES_COUNT, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};

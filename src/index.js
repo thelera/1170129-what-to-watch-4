@@ -3,15 +3,18 @@ import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {createAPI} from "./api.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
+import {Operation as UserOperation} from "./reducer/user/user.js";
 import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {Provider} from "react-redux";
 import React from "react";
+import {Redirect} from "react-router-dom";
 import ReactDOM from "react-dom";
 import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.NO_AUTH));
+  <Redirect to={AppRoute.LOGIN} />
 };
 
 const api = createAPI(onUnauthorized);
@@ -25,7 +28,7 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadMovies());
 store.dispatch(DataOperation.loadPromoFilm());
-// store.dispatch(UserOperation.checkAuth());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
@@ -33,3 +36,5 @@ ReactDOM.render(
     </Provider>,
     document.querySelector(`#root`)
 );
+
+export {store};

@@ -97,7 +97,6 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     allFilms: [],
     genre: Genre.ALL,
-    id: -1,
     isPlayerOpened: false,
     promoFilm: {},
     showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
@@ -108,7 +107,6 @@ it(`Reducer should change key "genre" by a given value`, () => {
   expect(reducer({
     allFilms: films,
     genre: `All films`,
-    id: `sdsd!sgdg35`,
     promoFilm: films[0],
     showedFilmsCount: 15,
   }, {
@@ -117,7 +115,6 @@ it(`Reducer should change key "genre" by a given value`, () => {
   })).toEqual({
     allFilms: films,
     genre: `Action`,
-    id: `sdsd!sgdg35`,
     promoFilm: films[0],
     showedFilmsCount: 8,
   });
@@ -125,7 +122,6 @@ it(`Reducer should change key "genre" by a given value`, () => {
   expect(reducer({
     allFilms: films,
     genre: `Adventure`,
-    id: `sdsd!sgdg35`,
     promoFilm: films[0],
     showedFilmsCount: 8,
   }, {
@@ -134,41 +130,8 @@ it(`Reducer should change key "genre" by a given value`, () => {
   })).toEqual({
     allFilms: films,
     genre: null,
-    id: `sdsd!sgdg35`,
     promoFilm: films[0],
     showedFilmsCount: 8,
-  });
-});
-
-it(`Reducer should change key "id" by a given value`, () => {
-  expect(reducer({
-    allFilms: films,
-    genre: `Adventure`,
-    id: `sdsd!sgdg35`,
-    promoFilm: films[2],
-  }, {
-    type: ActionType.CHANGE_FILM_ID,
-    payload: `!!!sdsd!sgdg35dfdfdf`,
-  })).toEqual({
-    allFilms: films,
-    genre: `Adventure`,
-    id: `!!!sdsd!sgdg35dfdfdf`,
-    promoFilm: films[2],
-  });
-
-  expect(reducer({
-    allFilms: films,
-    genre: `Adventure`,
-    id: `dvdfvdfvv34234`,
-    promoFilm: films[2],
-  }, {
-    type: ActionType.CHANGE_FILM_ID,
-    payload: `vdvdfv`,
-  })).toEqual({
-    allFilms: films,
-    genre: `Adventure`,
-    id: `vdvdfv`,
-    promoFilm: films[2],
   });
 });
 
@@ -177,13 +140,6 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.changeGenre(`Sci-fi`)).toEqual({
       type: ActionType.CHANGE_GENRE,
       payload: `Sci-fi`,
-    });
-  });
-
-  it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
-    expect(ActionCreator.changeId(`13sdfsf`)).toEqual({
-      type: ActionType.CHANGE_FILM_ID,
-      payload: `13sdfsf`,
     });
   });
 });

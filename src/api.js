@@ -1,4 +1,5 @@
 import axios from "axios";
+import {API} from "./utils/consts.js";
 
 const Error = {
   UNAUTHORIZED: 401,
@@ -6,16 +7,20 @@ const Error = {
 
 const createAPI = (onUnauthorized) => {
   const api = axios.create({
-    baseURL: `https://4.react.pages.academy/wtw`,
-    timeout: 1000 * 5,
-    withCredentials: true,
+    baseURL: API.BASE_URL,
+    timeout: API.TIMEOUT,
+    withCredentials: API.CREDENTIALS,
   });
 
   const onSuccess = (response) => {
+    console.log(`перехватчик OnSuccess, response:`);
+    console.log(response.data);
     return response;
   };
 
   const onFail = (err) => {
+    console.log(`перехватчик OnFail`);
+    console.log(err.response);
     const {response} = err;
 
     if (response.status === Error.UNAUTHORIZED) {

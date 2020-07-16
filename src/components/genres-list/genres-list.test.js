@@ -1,3 +1,4 @@
+import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
@@ -12,12 +13,14 @@ it(`GenresList is rendered correctly`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store={store}>
+    <BrowserRouter>
+    <Provider store={store}>
         <GenresList
           onActiveClick={() => { }}
           onGenreCardClick={() => { }}
         />
-      </Provider>, {
+      </Provider>
+    </BrowserRouter>, {
         createNodeMock: () => {
           return {};
         }

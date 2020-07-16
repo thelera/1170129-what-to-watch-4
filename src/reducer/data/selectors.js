@@ -14,11 +14,7 @@ const getShowedFilmsCount = (state) => state[NameSpace.DATA].showedFilmsCount;
 
 const getVideoPlayerInfo = (state) => state[NameSpace.DATA].isPlayerOpened;
 
-const getFilmById = createSelector(
-    getAllFilms,
-    getId,
-    (allFilms, id) => allFilms.find((film) => film.id === id)
-);
+const getFavouriteFilms = (state) => state[NameSpace.DATA].favouriteFilms;
 
 const getFilmsListByGenre = createSelector(
     getAllFilms,
@@ -26,4 +22,4 @@ const getFilmsListByGenre = createSelector(
     (allFilms, genre) => getFilmsByFilter(allFilms, genre)
 );
 
-export {getAllFilms, getFilmById, getFilmsListByGenre, getGenre, getId, getPromoFilm, getShowedFilmsCount, getVideoPlayerInfo};
+export {getAllFilms, getFavouriteFilms, getFilmsListByGenre, getGenre, getId, getPromoFilm, getShowedFilmsCount, getVideoPlayerInfo};

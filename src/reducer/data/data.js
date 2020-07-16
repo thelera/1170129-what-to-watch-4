@@ -4,19 +4,18 @@ import {createFilm, createFilms} from "../../adapters/films.js";
 const initialState = {
   allFilms: [],
   genre: Genre.ALL,
-  id: -1,
+  favouriteFilms: [],
   promoFilm: {},
   showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
-  isPlayerOpened: false,
 };
 
 const ActionType = {
+  ADD_FILM_TO_FAVOURITES: `ADD_FILM_TO_FAVOURITES`,
   CHANGE_GENRE: `CHANGE_GENRE`,
-  CHANGE_FILM_ID: `CHANGE_FILM_ID`,
   INCREMENT_SHOWED_FILMS_COUNT: `INCREMENT_SHOWED_FILMS_COUNT`,
+  FAVOURITE_FILMS: `FAVOURITE_FILMS`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
-  OPEN_PLAYER: `OPEN_PLAYER`,
 };
 
 const ActionCreator = {
@@ -24,13 +23,13 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: genre,
   }),
-  changeId: (id) => ({
-    type: ActionType.CHANGE_FILM_ID,
-    payload: id,
-  }),
   incrementFilmsCount: (count) => ({
     type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
     payload: count,
+  }),
+  favouriteFilms: (films) => ({
+    type: ActionType.FAVOURITE_FILMS,
+    payload: films,
   }),
   loadMovies: (films) => ({
     type: ActionType.LOAD_MOVIES,
@@ -40,21 +39,27 @@ const ActionCreator = {
     type: ActionType.LOAD_PROMO_FILM,
     payload: film,
   }),
-  openPlayer: (value) => ({
-    type: ActionType.OPEN_PLAYER,
-    payload: value,
-  }),
 };
 
 const Operation = {
-  loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`films/promo`)
-      .then((response) => {
-        dispatch(ActionCreator.loadPromoFilm(createFilm(response.data)));
-      })
-      .catch((err) => {
-        throw err;
-      });
+  addFilmToFavourites: (id) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/1`)
+    .then((response) => {
+      console.log(response.data);
+      //dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
+    })
+    .catch((err) => {
+      throw err;
+    });
+  },
+  loadFavouriteFilms: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+    .then((response) => {
+      dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
+    })
+    .catch((err) => {
+      throw err;
+    });
   },
   loadMovies: () => (dispatch, getState, api) => {
     return api.get(`/films`)
@@ -65,6 +70,15 @@ const Operation = {
       throw err;
     });
   },
+  loadPromoFilm: () => (dispatch, getState, api) => {
+    return api.get(`films/promo`)
+      .then((response) => {
+        dispatch(ActionCreator.loadPromoFilm(createFilm(response.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -74,16 +88,14 @@ const reducer = (state = initialState, action) => {
         genre: action.payload,
         showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
       });
-    case ActionType.CHANGE_FILM_ID:
-      return Object.assign({}, state, {id: action.payload});
     case ActionType.INCREMENT_SHOWED_FILMS_COUNT:
       return Object.assign({}, state, {showedFilmsCount: state.showedFilmsCount + action.payload});
+    case ActionType.FAVOURITE_FILMS:
+      return Object.assign({}, state, {favouriteFilms: action.payload});
     case ActionType.LOAD_MOVIES:
       return Object.assign({}, state, {allFilms: action.payload});
     case ActionType.LOAD_PROMO_FILM:
       return Object.assign({}, state, {promoFilm: action.payload});
-    case ActionType.OPEN_PLAYER:
-      return Object.assign({}, state, {isPlayerOpened: action.payload});
     default:
       return state;
   }

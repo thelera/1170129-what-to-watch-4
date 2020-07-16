@@ -1,5 +1,5 @@
-import {ActionCreator} from "../../reducer/data/data.js";
-import {connect} from "react-redux";
+import {AppRoute} from "../../utils/consts.js";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import {Video} from "../../utils/consts.js";
@@ -9,16 +9,14 @@ import withVideo from "../../hocs/with-video/with-video.js";
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const FilmCard = (props) => {
-  const {film, isPlaying, onClick, onMouseEnter, onMouseLeave} = props;
-  const {preview, previewVideoLink, title} = film;
+  const {film, isPlaying, onMouseEnter, onMouseLeave} = props;
+  const {id, preview, previewVideoLink, title} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card">
-      <div
+      <Link
+        to={`${AppRoute.FILMS}${id}`}
         className="small-movie-card__image"
-        onClick={() => {
-          onClick(film.id);
-        }}
         onMouseEnter={() => {
           onMouseEnter();
         }}
@@ -32,12 +30,13 @@ const FilmCard = (props) => {
           preview={preview}
           videoLink={previewVideoLink}
         />
-      </div>
-      <h3 className="small-movie-card__title"
-        onClick={() => {
-          onClick(film.id);
-        }}>
-        <a className="small-movie-card__link">{title}</a>
+      </Link>
+      <h3 className="small-movie-card__title">
+        <Link
+          to={`${AppRoute.FILMS}${id}`}
+          className="small-movie-card__link">
+            {title}
+        </Link>
       </h3>
     </article>
   );
@@ -64,16 +63,8 @@ FilmCard.propTypes = {
     year: PropTypes.number.isRequired,
   }),
   isPlaying: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onClick(id) {
-    dispatch(ActionCreator.changeId(id));
-  },
-});
-
-export {FilmCard};
-export default connect(null, mapDispatchToProps)(FilmCard);
+export default FilmCard;
