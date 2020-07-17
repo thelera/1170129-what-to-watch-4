@@ -14,7 +14,6 @@ import thunk from "redux-thunk";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.NO_AUTH));
-  <Redirect to={AppRoute.LOGIN} />
 };
 
 const api = createAPI(onUnauthorized);
@@ -28,6 +27,7 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadMovies());
 store.dispatch(DataOperation.loadPromoFilm());
+store.dispatch(DataOperation.loadFavouriteFilms());
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(

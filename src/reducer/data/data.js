@@ -42,12 +42,9 @@ const ActionCreator = {
 };
 
 const Operation = {
-  addFilmToFavourites: (id) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${id}/1`)
-    .then((response) => {
-      console.log(response.data);
-      //dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
-    })
+  addFilmToFavourites: (id, isFavourite) => (dispatch, getState, api) => {
+    const status = isFavourite ? 0 : 1;
+    return api.post(`/favorite/${id}/${status}`)
     .catch((err) => {
       throw err;
     });

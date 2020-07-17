@@ -2,21 +2,20 @@ import {AppRoute} from "../../utils/consts.js";
 import {AuthorizationStatus} from "../../utils/consts.js";
 import {connect} from "react-redux";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
-import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
 import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import {store} from "../../index.js"
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {authorizationStatus, avatarURL, filmsCount, filmsList, promoFilm} = props;
+  const {authorizationStatus, avatarImage, filmsCount, filmsList, promoFilm, onAddToMyListClick} = props;
   const {genre, id, image, isFavourite, title, year} = promoFilm;
 
   return (
@@ -42,7 +41,7 @@ const Main = (props) => {
               {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
               {authorizationStatus === AuthorizationStatus.AUTH && 
                 <div className="user-block__avatar">
-                  <img src={avatarURL} alt="User avatar" width="63" height="63" />
+                  <img src={avatarImage} alt="User avatar" width="63" height="63" />
                 </div>}
             </Link>
           </div>
@@ -71,8 +70,8 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button" onClick={(id) => {
-                  store.dispatch(DataOperation.addFilmToFavourites(id));
+                <button className="btn btn--list movie-card__button" type="button" onClick={() => {
+                  onAddToMyListClick(id, isFavourite);
                 }}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     {isFavourite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
@@ -130,12 +129,19 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  avatarURL: getAvatarURL(state),
   filmsCount: getShowedFilmsCount(state),
   filmsList: getFilmsListByGenre(state).slice(0, getShowedFilmsCount(state)),
   promoFilm: getPromoFilm(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onAddToMyListClick(id, isFavourite) {
+    dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
+    dispatch(DataOperation.loadMovies());
+    dispatch(DataOperation.loadPromoFilm());
+    dispatch(DataOperation.loadFavouriteFilms());
+  },
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

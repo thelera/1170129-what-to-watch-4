@@ -3,8 +3,8 @@ import {AuthorizationStatus} from "../../utils/consts.js";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import FilmDetails from "../film-details/film-details.jsx";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {getAllFilms, getFilmsListByGenre, getFavouriteFilms} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
+import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import Main from "../main/main.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
@@ -14,15 +14,19 @@ import SignIn from "../sign-in/sign-in.jsx";
 import VideoPlayer from "../video-player/video-player.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withVideo from "../../hocs/with-video/with-video.js";
+import withForm from "../../hocs/with-form/with-form.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import MyList from "../my-list/my-list.jsx";
 
 const FilmDetailsWrapped = withActiveItem(FilmDetails);
 const VideoPlayerWrapped = withVideo(VideoPlayer);
+const SignInWrapped = withForm(SignIn);
 
 const App = (props) => {
-  const {allFilms, favouriteFilms, authorizationStatus, login} = props;
-  console.log(`favouriteFilms: ${favouriteFilms}`);
+  const {allFilms, authorizationStatus, avatarURL, favouriteFilms, login} = props;
+  console.log(`favourite films`);
+  console.log(favouriteFilms);
 
   if (allFilms.length === 0) {
     return (
@@ -34,16 +38,19 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <Main />
+          <Main
+            authorizationStatus={authorizationStatus}
+            avatarImage={avatarURL}
+          />
         </Route>
         <Route exact path={`${AppRoute.FILMS}:id`} render={(props) => {
-          console.log(3);
-
           const id = Number(props.match.params.id);
           const film = allFilms.find((film) => film.id === id);
 
           return (
             <FilmDetailsWrapped
+              authorizationStatus={authorizationStatus}
+              avatarImage={avatarURL}
               film={film}
             />
           );
@@ -67,51 +74,29 @@ const App = (props) => {
         <Route exact path={AppRoute.LOGIN} render={(props) => {
           return (
             authorizationStatus === AuthorizationStatus.NO_AUTH
-            ? <SignIn
+            ? <SignInWrapped
                 onSubmit={login}
               />
             : <Redirect to={AppRoute.ROOT} />);
         }}/>
-        {/* <Route exact path={AppRoute.MY_LIST} render={(props) => {
-          return(
-            <MyList
-              filmsList={favouriteFilms}
-              onClick={(film) => {
-                if (!film.isFavourite) {
-                  store.dispatch(DataOperation.addFilmToFavourites(film));
-                }
-              }}
-            />
-          );
-        }}/> */}
-        <PrivateRoute
-            exact
-            path={AppRoute.MY_LIST}
-            render={() => {
-              return (
-                <MyList
-                  filmsList={favouriteFilms}
-                  onClick={(film) => {
-                  if (!film.isFavourite) {
-                    store.dispatch(DataOperation.addFilmToFavourites(film));
-                  }
-                }}
-                />
-              );
-            }}
-          />
-        <Route
-          render={() => (
-            <Fragment>
-              <h1>
-                404.
-                <br />
-                <small>Page not found</small>
-              </h1>
-              <Link to={AppRoute.ROOT}>Go to main page</Link>
-            </Fragment>
-          )}
-        />
+        <PrivateRoute exact path={AppRoute.MY_LIST} render={() => {
+            return (
+              <MyList
+                avatarImage={avatarURL}
+                filmsList={favouriteFilms}
+              />
+            );
+          }}/>
+        <Route render={() => (
+          <Fragment>
+            <h1>
+              404.
+              <br />
+              <small>Page not found</small>
+            </h1>
+            <Link to={AppRoute.ROOT}>Go to main page</Link>
+          </Fragment>
+        )}/>
       </Switch>
     </BrowserRouter>
   );
@@ -142,6 +127,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   allFilms: getAllFilms(state),
+  avatarURL: getAvatarURL(state),
   authorizationStatus: getAuthorizationStatus(state),
   favouriteFilms: getFavouriteFilms(state),
 });

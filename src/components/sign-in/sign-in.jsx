@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
 const SignIn = (props) => {
-  const {onSubmit} = props;
+  const {validationMessage, onValidForm, onSubmit} = props;
   const loginRef = createRef();
   const passwordRef = createRef();
 
@@ -60,14 +60,43 @@ const SignIn = (props) => {
         </header>
 
         <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+          <form
+            action="#"
+            className="sign-in__form"
+            onSubmit={handleSubmit}
+          >
+            {validationMessage &&
+            <div className="sign-in__message">
+              <p>{validationMessage}</p>
+            </div>}
+
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={loginRef}/>
+                <input
+                  className="sign-in__input"
+                  type="email"
+                  placeholder="Email address"
+                  name="user-email"
+                  id="user-email"
+                  ref={loginRef}
+                  onInvalid={(evt) => {
+                    evt.preventDefault();
+                    onValidForm(evt.target.validationMessage);
+                  }}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
-                <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" ref={passwordRef}/>
+                <input
+                  className="sign-in__input"
+                  type="password"
+                  placeholder="Password"
+                  name="user-password"
+                  id="user-password"
+                  ref={passwordRef}
+                  onInvalid={(evt) => {
+                    evt.preventDefault();
+                    onValidForm(evt.target.validationMessage);
+                  }}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
             </div>

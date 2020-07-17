@@ -13,14 +13,10 @@ const createAPI = (onUnauthorized) => {
   });
 
   const onSuccess = (response) => {
-    console.log(`перехватчик OnSuccess, response:`);
-    console.log(response.data);
     return response;
   };
 
   const onFail = (err) => {
-    console.log(`перехватчик OnFail`);
-    console.log(err.response);
     const {response} = err;
 
     if (response.status === Error.UNAUTHORIZED) {

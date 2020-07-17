@@ -3,21 +3,20 @@ import {AuthorizationStatus} from "../../utils/consts.js";
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import {fromMinToHours, getRatingLevel} from "../../utils/common.js";
-import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
-import {getFilmsListByGenre, getId, getAllFilms} from "../../reducer/data/selectors.js";
+import {getFilmsListByGenre, getId} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import {removeFromArray} from "../../utils/common.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import PropTypes from "prop-types";
 import React from "react";
 import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
 const FilmDetails = (props) => {
-  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, authorizationStatus, avatarURL, film, filmsList: filmsByGenre, onActiveClick: onTabClick} = props;
+  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, authorizationStatus, avatarImage, film, filmsList: filmsByGenre, onActiveClick: onTabClick, onAddToMyListClick} = props;
 
   const {backgroundImage, genre, id, image, isFavourite, title, year} = film;
-  console.log(activeTab);
-
+ 
   const _renderTabs = () => {
     const {description, director, ratingCount, ratingScore, runTime, starring} = film;
     const time = fromMinToHours(runTime);
@@ -214,7 +213,7 @@ const FilmDetails = (props) => {
               {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
               {authorizationStatus === AuthorizationStatus.AUTH && 
                 <div className="user-block__avatar">
-                  <img src={avatarURL} alt="User avatar" width="63" height="63" />
+                  <img src={avatarImage} alt="User avatar" width="63" height="63" />
                 </div>}
             </Link>
           </div>
@@ -238,7 +237,9 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button" onClick={() => {
+                  onAddToMyListClick(id, isFavourite);
+                }}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     {isFavourite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                   </svg>
@@ -322,10 +323,17 @@ FilmDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  avatarURL: getAvatarURL(state),
   filmsList: removeFromArray(getFilmsListByGenre(state), getId(state)).slice(0, SIMILAR_FILMS_COUNT),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onAddToMyListClick(id, isFavourite) {
+    dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
+    dispatch(DataOperation.loadMovies());
+    dispatch(DataOperation.loadPromoFilm());
+    dispatch(DataOperation.loadFavouriteFilms());
+  },
+});
+
 export {FilmDetails};
-export default connect(mapStateToProps)(FilmDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);

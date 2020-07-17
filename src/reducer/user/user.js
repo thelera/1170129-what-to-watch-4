@@ -26,8 +26,9 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     console.log(`get-запрос check auth`);
     return api.get(`/login`)
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.avatarURL(`${API.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((error) => {
         throw error;
