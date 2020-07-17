@@ -24,7 +24,6 @@ const ActionCreator = {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    console.log(`get-запрос check auth`);
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
@@ -35,13 +34,11 @@ const Operation = {
       });
   },
   login: (authData) => (dispatch, getState, api) => {
-    console.log(`post-запрос /login`);
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
       .then((response) => {
-        console.log(response);
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.avatarURL(`${API.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })

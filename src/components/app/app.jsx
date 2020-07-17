@@ -24,10 +24,7 @@ const VideoPlayerWrapped = withVideo(VideoPlayer);
 const SignInWrapped = withForm(SignIn);
 
 const App = (props) => {
-  const {allFilms, authorizationStatus, avatarURL, favouriteFilms, login} = props;
-  console.log(`favourite films`);
-  console.log(favouriteFilms);
-
+  const {allFilms, authorizationStatus, avatarURL, favouriteFilms, login, onMyListClick} = props;
   if (allFilms.length === 0) {
     return (
       <div></div>
@@ -41,6 +38,7 @@ const App = (props) => {
           <Main
             authorizationStatus={authorizationStatus}
             avatarImage={avatarURL}
+            onMyListClick={onMyListClick}
           />
         </Route>
         <Route exact path={`${AppRoute.FILMS}:id`} render={(props) => {
@@ -52,6 +50,7 @@ const App = (props) => {
               authorizationStatus={authorizationStatus}
               avatarImage={avatarURL}
               film={film}
+              onMyListClick={onMyListClick}
             />
           );
         }}/>
@@ -133,6 +132,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onMyListClick() {
+    dispatch(DataOperation.loadFavouriteFilms());
+  },
   login(authData) {
     dispatch(UserOperation.login(authData));
   },

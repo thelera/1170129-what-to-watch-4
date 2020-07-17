@@ -1,6 +1,19 @@
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 import {createFilm, createFilms} from "../../adapters/films.js";
 
+const updateFilmsByNewFilm = (films, film) => {
+  const id = film.id;
+  const index = films.findIndex((it) => it.id === id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  films = [].concat(films.slice(0, index), film, films.slice(index + 1));
+
+  return films;
+}
+
 const initialState = {
   allFilms: [],
   genre: Genre.ALL,
@@ -16,6 +29,8 @@ const ActionType = {
   FAVOURITE_FILMS: `FAVOURITE_FILMS`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  UPDATE_PROMO_FILM: `UPDATE_PROMO_FILM`,
+  UPDATE_FILMS: `UPDATE_FILMS`,
 };
 
 const ActionCreator = {
@@ -39,12 +54,24 @@ const ActionCreator = {
     type: ActionType.LOAD_PROMO_FILM,
     payload: film,
   }),
+  updatePromoFilm: (film) => ({
+    type: ActionType.UPDATE_PROMO_FILM,
+    payload: film,
+  }),
+  updateFilms: (film) => ({
+    type: ActionType.UPDATE_FILMS,
+    payload: film,
+  }),
 };
 
 const Operation = {
   addFilmToFavourites: (id, isFavourite) => (dispatch, getState, api) => {
     const status = isFavourite ? 0 : 1;
     return api.post(`/favorite/${id}/${status}`)
+    .then((response) => {
+      dispatch(ActionCreator.updateFilms(createFilm(response.data)));
+      dispatch(ActionCreator.updatePromoFilm(createFilm(response.data)));
+    })
     .catch((err) => {
       throw err;
     });
@@ -92,6 +119,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return Object.assign({}, state, {allFilms: action.payload});
     case ActionType.LOAD_PROMO_FILM:
+      return Object.assign({}, state, {promoFilm: action.payload});
+    case ActionType.UPDATE_FILMS:
+      return Object.assign({}, state, {allFilms: updateFilmsByNewFilm(state.allFilms, action.payload)});
+    case ActionType.UPDATE_PROMO_FILM:
       return Object.assign({}, state, {promoFilm: action.payload});
     default:
       return state;

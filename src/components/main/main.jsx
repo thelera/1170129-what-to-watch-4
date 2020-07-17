@@ -15,7 +15,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {authorizationStatus, avatarImage, filmsCount, filmsList, promoFilm, onAddToMyListClick} = props;
+  const {authorizationStatus, avatarImage, filmsCount, filmsList, promoFilm, onAddToMyListClick, onMyListClick} = props;
   const {genre, id, image, isFavourite, title, year} = promoFilm;
 
   return (
@@ -37,7 +37,7 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <Link to={AppRoute.MY_LIST} className="user-block__link">
+            <Link to={AppRoute.MY_LIST} className="user-block__link" onClick={onMyListClick}>
               {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
               {authorizationStatus === AuthorizationStatus.AUTH && 
                 <div className="user-block__avatar">
@@ -139,7 +139,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
     dispatch(DataOperation.loadMovies());
     dispatch(DataOperation.loadPromoFilm());
-    dispatch(DataOperation.loadFavouriteFilms());
   },
 });
 

@@ -13,7 +13,7 @@ import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
 const FilmDetails = (props) => {
-  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, authorizationStatus, avatarImage, film, filmsList: filmsByGenre, onActiveClick: onTabClick, onAddToMyListClick} = props;
+  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, authorizationStatus, avatarImage, film, filmsList: filmsByGenre, onActiveClick: onTabClick, onAddToMyListClick, onMyListClick} = props;
 
   const {backgroundImage, genre, id, image, isFavourite, title, year} = film;
  
@@ -209,7 +209,7 @@ const FilmDetails = (props) => {
             </div>
 
             <div className="user-block">
-            <Link to={AppRoute.MY_LIST} className="user-block__link">
+            <Link to={AppRoute.MY_LIST} className="user-block__link" onClick={onMyListClick}>
               {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
               {authorizationStatus === AuthorizationStatus.AUTH && 
                 <div className="user-block__avatar">
@@ -329,9 +329,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onAddToMyListClick(id, isFavourite) {
     dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
-    dispatch(DataOperation.loadMovies());
-    dispatch(DataOperation.loadPromoFilm());
-    dispatch(DataOperation.loadFavouriteFilms());
   },
 });
 
