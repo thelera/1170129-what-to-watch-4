@@ -1,18 +1,6 @@
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 import {createFilm, createFilms} from "../../adapters/films.js";
-
-const updateFilmsByNewFilm = (films, film) => {
-  const id = film.id;
-  const index = films.findIndex((it) => it.id === id);
-
-  if (index === -1) {
-    return false;
-  }
-
-  films = [].concat(films.slice(0, index), film, films.slice(index + 1));
-
-  return films;
-}
+import {updateFilmsByNewFilm} from "../../utils/common.js";
 
 const initialState = {
   allFilms: [],

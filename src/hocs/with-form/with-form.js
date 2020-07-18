@@ -6,16 +6,16 @@ const withForm = (Component) => {
       super(props);
 
       this.state = {
-        message: null,
+        id: 0,
       };
 
-      this._handleValidForm = this._handleValidForm.bind(this);
+      this._handleChange = this._handleChange.bind(this);
     }
 
-    _handleValidForm(validationMessage) {
+    _handleChange(number) {
       this.setState(
           {
-            message: validationMessage,
+            id: number,
           }
       );
     }
@@ -24,8 +24,8 @@ const withForm = (Component) => {
       return (
         <Component
           {...this.props}
-          validationMessage={this.state.message}
-          onValidForm={this._handleValidForm}
+          id={this.state.id}
+          onChange={this._handleChange}
         />
       );
     }

@@ -3,7 +3,16 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const VideoPlayer = (props) => {
-  const {children, duration, history, isControled = false, isPlaying, onFullScreenButtonClick, onPlayButtonClick, progress} = props;
+  const {
+    children,
+    duration,
+    history,
+    isControled = false,
+    isPlaying,
+    progress,
+    onFullScreenButtonClick,
+    onPlayButtonClick,
+  } = props;
 
   const timeToEnd = fromSecToHours(duration - progress);
 
@@ -105,10 +114,10 @@ VideoPlayer.propTypes = {
   isControled: PropTypes.bool,
   isMuted: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  onFullScreenButtonClick: PropTypes.func,
-  onPlayButtonClick: PropTypes.func,
   progress: PropTypes.number,
   width: PropTypes.number,
+  onFullScreenButtonClick: PropTypes.func,
+  onPlayButtonClick: PropTypes.func,
 };
 
 export default VideoPlayer;

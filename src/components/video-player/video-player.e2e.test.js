@@ -25,7 +25,6 @@ it(`Video player can be playing or paused`, () => {
 
   let videoPlayer = mount(
       <VideoPlayer
-        children={<div></div>}
         height={Video.HEIGHT}
         isMuted={Video.IS_MUTED}
         isPlaying={isVideoPlaying}
@@ -43,14 +42,15 @@ it(`Video player can be playing or paused`, () => {
 
   videoPlayer = mount(
       <VideoPlayer
-        children={<div></div>}
         height={Video.HEIGHT}
         isMuted={Video.IS_MUTED}
         isPlaying={isVideoPlaying}
         poster={image}
         source={preview}
         width={Video.WIDTH}
-      />
+      >
+        <video/>
+      </VideoPlayer>
   );
 
   expect(videoPlayer.props().isPlaying).toBe(isVideoPlaying);

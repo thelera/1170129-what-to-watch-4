@@ -19,18 +19,6 @@ const getFilmsByFilter = (array, filterType) => {
   return filterType === Genre.ALL ? array : array.filter((item) => item.genre === filterType);
 };
 
-const getUniqueArrayElements = (array) => {
-  let result = [];
-
-  array.forEach((item) => {
-    if (!result.includes(item)) {
-      result.push(item);
-    }
-  });
-
-  return result;
-};
-
 const getRatingLevel = (score) => {
   let result = ``;
 
@@ -54,6 +42,18 @@ const getRatingLevel = (score) => {
   return result;
 };
 
+const getUniqueArrayElements = (array) => {
+  let result = [];
+
+  array.forEach((item) => {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  });
+
+  return result;
+};
+
 const removeFromArray = (array, id) => {
   const elementToRemove = array.find((it) => it.id === id);
 
@@ -66,4 +66,17 @@ const removeFromArray = (array, id) => {
   return array;
 };
 
-export {fromMinToHours, fromSecToHours, getFilmsByFilter, getRatingLevel, getUniqueArrayElements, removeFromArray};
+const updateFilmsByNewFilm = (films, film) => {
+  const id = film.id;
+  const index = films.findIndex((it) => it.id === id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  films = [].concat(films.slice(0, index), film, films.slice(index + 1));
+
+  return films;
+};
+
+export {fromMinToHours, fromSecToHours, getFilmsByFilter, getRatingLevel, getUniqueArrayElements, removeFromArray, updateFilmsByNewFilm};

@@ -177,13 +177,13 @@ it(`FilmsList is rendered correctly`, () => {
   });
 
   const tree = renderer.create(
-    <BrowserRouter>
-    <Provider store={store}>
-        <FilmsList
-          films={filmsList}
-        />
-      </Provider>
-    </BrowserRouter>, {
+      <BrowserRouter>
+        <Provider store={store}>
+          <FilmsList
+            films={filmsList}
+          />
+        </Provider>
+      </BrowserRouter>, {
         createNodeMock: () => {
           return {};
         }

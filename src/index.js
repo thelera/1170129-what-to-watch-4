@@ -1,13 +1,12 @@
+import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import App from "./components/app/app.jsx";
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {createAPI} from "./api.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation} from "./reducer/user/user.js";
-import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {Provider} from "react-redux";
 import React from "react";
-import {Redirect} from "react-router-dom";
 import ReactDOM from "react-dom";
 import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";

@@ -121,11 +121,11 @@ const withVideo = (Component) => {
 
   WithVideo.propTypes = {
     preview: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
     height: PropTypes.number,
     isControled: PropTypes.bool,
     isMuted: PropTypes.bool,
     isPlaying: PropTypes.bool.isRequired,
+    videoLink: PropTypes.string.isRequired,
     width: PropTypes.number,
   };
 

@@ -52,7 +52,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRE_AUTHORIZATION:
       return Object.assign({}, state, {authorizationStatus: action.payload});
-      case ActionType.AVATAR_URL:
+    case ActionType.AVATAR_URL:
       return Object.assign({}, state, {avatarURL: action.payload});
     default:
       return state;

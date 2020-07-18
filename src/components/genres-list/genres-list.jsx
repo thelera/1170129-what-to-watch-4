@@ -1,7 +1,7 @@
 import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
 import {Genre, GENRES_COUNT, AppRoute} from "../../utils/consts.js";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -33,7 +33,6 @@ const GenresList = (props) => {
 
 GenresList.propTypes = {
   activeItem: PropTypes.oneOf(Object.values(Genre)),
-  genre: PropTypes.oneOf(Object.values(Genre)),
   onActiveClick: PropTypes.func.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };

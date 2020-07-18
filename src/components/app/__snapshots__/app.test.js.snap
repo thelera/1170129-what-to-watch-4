@@ -47,21 +47,11 @@ exports[`App is rendered correctly 1`] = `
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
-        >
-          <a
-            href="/login"
-            onClick={[Function]}
-          >
-            <img
-              alt="User avatar"
-              height="63"
-              src="img/avatar.jpg"
-              width="63"
-            />
-          </a>
-        </div>
+        <a
+          className="user-block__link"
+          href="/mylist"
+          onClick={[Function]}
+        />
       </div>
     </header>
     <div
@@ -125,6 +115,7 @@ exports[`App is rendered correctly 1`] = `
             </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg

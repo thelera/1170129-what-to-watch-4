@@ -1,22 +1,34 @@
 import {AppRoute, FilmDetailsTab} from "../../utils/consts.js";
 import {AuthorizationStatus} from "../../utils/consts.js";
+import Comments from "../../components/comments/comments.jsx";
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import {fromMinToHours, getRatingLevel} from "../../utils/common.js";
+import {getComments} from "../../reducer/comments/selectors.js";
 import {getFilmsListByGenre, getId} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
-import {removeFromArray} from "../../utils/common.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import PropTypes from "prop-types";
 import React from "react";
+import {removeFromArray} from "../../utils/common.js";
 import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
 const FilmDetails = (props) => {
-  const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, authorizationStatus, avatarImage, film, filmsList: filmsByGenre, onActiveClick: onTabClick, onAddToMyListClick, onMyListClick} = props;
+  const {
+    activeItem: activeTab = FilmDetailsTab.OVERVIEW,
+    authorizationStatus,
+    avatarImage,
+    comments,
+    film,
+    filmsList: filmsByGenre,
+    onActiveClick: onTabClick,
+    onAddToMyListClick,
+    onMyListClick,
+  } = props;
 
   const {backgroundImage, genre, id, image, isFavourite, title, year} = film;
- 
+
   const _renderTabs = () => {
     const {description, director, ratingCount, ratingScore, runTime, starring} = film;
     const time = fromMinToHours(runTime);
@@ -77,88 +89,9 @@ const FilmDetails = (props) => {
 
       case FilmDetailsTab.REVIEWS:
         return (
-          <div className="movie-card__reviews movie-card__row">
-            <div className="movie-card__reviews-col">
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">Kate Muir</cite>
-                    <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">8,9</div>
-              </div>
-
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">Anderson&apos;s films are too precious for some, but for those of us willing to lose ourselves in them, they&apos;re a delight. &quot;The Grand Budapest Hotel&quot; is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">Bill Goodykoontz</cite>
-                    <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">8,0</div>
-              </div>
-
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">I didn&apos;t find it amusing, and while I can appreciate the creativity, it&apos;s an hour and 40 minutes I wish I could take back.</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">Amanda Greever</cite>
-                    <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">8,0</div>
-              </div>
-            </div>
-            <div className="movie-card__reviews-col">
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">Matthew Lickona</cite>
-                    <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">7,2</div>
-              </div>
-
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">Paula Fleri-Soler</cite>
-                    <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">7,6</div>
-              </div>
-
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">Paula Fleri-Soler</cite>
-                    <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">7,0</div>
-              </div>
-            </div>
-          </div>
+          <Comments
+            comments={comments}
+          />
         );
     }
 
@@ -209,14 +142,14 @@ const FilmDetails = (props) => {
             </div>
 
             <div className="user-block">
-            <Link to={AppRoute.MY_LIST} className="user-block__link" onClick={onMyListClick}>
-              {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
-              {authorizationStatus === AuthorizationStatus.AUTH && 
-                <div className="user-block__avatar">
-                  <img src={avatarImage} alt="User avatar" width="63" height="63" />
-                </div>}
-            </Link>
-          </div>
+              <Link to={AppRoute.MY_LIST} className="user-block__link" onClick={onMyListClick}>
+                {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                  <div className="user-block__avatar">
+                    <img src={avatarImage} alt="User avatar" width="63" height="63" />
+                  </div>}
+              </Link>
+            </div>
           </header>
 
           <div className="movie-card__wrap">
@@ -245,7 +178,7 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={`${AppRoute.FILMS}${id}${AppRoute.ADD_REVIEW}`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -299,6 +232,20 @@ const FilmDetails = (props) => {
 
 FilmDetails.propTypes = {
   activeItem: PropTypes.oneOf(Object.values(FilmDetailsTab)),
+  authorizationStatus: PropTypes.string.isRequired,
+  avatarImage: PropTypes.string,
+  comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+        rating: PropTypes.number.isRequired,
+        comment: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+      })
+  ).isRequired,
   film: PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -320,9 +267,12 @@ FilmDetails.propTypes = {
   }),
   filmsList: PropTypes.array.isRequired,
   onActiveClick: PropTypes.func.isRequired,
+  onAddToMyListClick: PropTypes.func.isRequired,
+  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  comments: getComments(state),
   filmsList: removeFromArray(getFilmsListByGenre(state), getId(state)).slice(0, SIMILAR_FILMS_COUNT),
 });
 

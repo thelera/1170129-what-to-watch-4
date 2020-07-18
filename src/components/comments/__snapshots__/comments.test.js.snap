@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comments is rendered correctly 1`] = `
+<div
+  className="movie-card__reviews movie-card__row"
+>
+  <div
+    className="movie-card__reviews-col"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            Pete
+          </cite>
+          <time
+            className="review__date"
+            dateTime="2016-12-24"
+          >
+            2019-05-08T14:13:56.569Z
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        11
+      </div>
+    </div>
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            Ann
+          </cite>
+          <time
+            className="review__date"
+            dateTime="2016-12-24"
+          >
+            2019-05-08T14:13:56.569Z
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        1
+      </div>
+    </div>
+  </div>
+  <div
+    className="movie-card__reviews-col"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            George
+          </cite>
+          <time
+            className="review__date"
+            dateTime="2016-12-24"
+          >
+            2019-05-08T14:13:56.569Z
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        131
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,12 +1,11 @@
 import {AppRoute} from "../../utils/consts.js";
 import {AuthorizationStatus} from "../../utils/consts.js";
 import {connect} from "react-redux";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import PropTypes from "prop-types";
 import React from "react";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
@@ -15,8 +14,24 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {authorizationStatus, avatarImage, filmsCount, filmsList, promoFilm, onAddToMyListClick, onMyListClick} = props;
-  const {genre, id, image, isFavourite, title, year} = promoFilm;
+  const {
+    authorizationStatus,
+    avatarImage,
+    filmsCount,
+    filmsList,
+    promoFilm,
+    onAddToMyListClick,
+    onMyListClick
+  } = props;
+
+  const {
+    genre,
+    id,
+    image,
+    isFavourite,
+    title,
+    year
+  } = promoFilm;
 
   return (
     <div>
@@ -39,7 +54,7 @@ const Main = (props) => {
           <div className="user-block">
             <Link to={AppRoute.MY_LIST} className="user-block__link" onClick={onMyListClick}>
               {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
-              {authorizationStatus === AuthorizationStatus.AUTH && 
+              {authorizationStatus === AuthorizationStatus.AUTH &&
                 <div className="user-block__avatar">
                   <img src={avatarImage} alt="User avatar" width="63" height="63" />
                 </div>}
@@ -118,14 +133,39 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  avatarImage: PropTypes.string.isRequired,
   filmsCount: PropTypes.number.isRequired,
-  filmsList: PropTypes.array.isRequired,
+  filmsList: PropTypes.arrayOf(
+      PropTypes.shape({
+        backgroundColor: PropTypes.string.isRequired,
+        backgroundImage: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        isFavourite: PropTypes.bool.isRequired,
+        image: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
+        previewVideoLink: PropTypes.string.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        ratingScore: PropTypes.number.isRequired,
+        runTime: PropTypes.number.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+        title: PropTypes.string.isRequired,
+        videoLink: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+      })).isRequired,
   promoFilm: PropTypes.shape({
     genre: PropTypes.string,
+    id: PropTypes.number,
+    isFavourite: PropTypes.bool,
     image: PropTypes.string,
     title: PropTypes.string,
     year: PropTypes.number,
   }).isRequired,
+  onAddToMyListClick: PropTypes.func.isRequired,
+  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

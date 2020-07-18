@@ -97,7 +97,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     allFilms: [],
     genre: Genre.ALL,
-    isPlayerOpened: false,
+    favouriteFilms: [],
     promoFilm: {},
     showedFilmsCount: SHOWING_FILMS_COUNT_ON_START,
   });

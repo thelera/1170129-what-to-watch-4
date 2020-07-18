@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
 const SignIn = (props) => {
-  const {validationMessage, onValidForm, onSubmit} = props;
+  const {validationMessage, onSubmit, onValidForm} = props;
+
   const loginRef = createRef();
   const passwordRef = createRef();
 
@@ -125,7 +126,9 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
+  validationMessage: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onValidForm: PropTypes.func.isRequired,
 };
 
 export default SignIn;

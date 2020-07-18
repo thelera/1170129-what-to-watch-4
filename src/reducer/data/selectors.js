@@ -4,6 +4,8 @@ import NameSpace from "../name-space.js";
 
 const getAllFilms = (state) => state[NameSpace.DATA].allFilms;
 
+const getFavouriteFilms = (state) => state[NameSpace.DATA].favouriteFilms;
+
 const getGenre = (state) => state[NameSpace.DATA].genre;
 
 const getId = (state) => state[NameSpace.DATA].id;
@@ -13,8 +15,6 @@ const getPromoFilm = (state) => state[NameSpace.DATA].promoFilm;
 const getShowedFilmsCount = (state) => state[NameSpace.DATA].showedFilmsCount;
 
 const getVideoPlayerInfo = (state) => state[NameSpace.DATA].isPlayerOpened;
-
-const getFavouriteFilms = (state) => state[NameSpace.DATA].favouriteFilms;
 
 const getFilmsListByGenre = createSelector(
     getAllFilms,

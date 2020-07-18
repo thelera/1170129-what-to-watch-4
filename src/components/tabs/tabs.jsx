@@ -15,8 +15,11 @@ const Tabs = (props) => {
               <Link
                 to={id}
                 className="movie-nav__link"
-                onClick={() => onTabClick(tabName)}>
-                  {tabName}
+                onClick={() => {
+                  onTabClick(tabName);
+                }}
+              >
+                {tabName}
               </Link>
             </li>
           ))}
@@ -31,8 +34,8 @@ const Tabs = (props) => {
 Tabs.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.number.isRequired,
-  onTabClick: PropTypes.func.isRequired,
   tab: PropTypes.oneOf([FilmDetailsTab.OVERVIEW, FilmDetailsTab.DETAILS, FilmDetailsTab.REVIEWS]).isRequired,
+  onTabClick: PropTypes.func.isRequired,
 };
 
 export default Tabs;

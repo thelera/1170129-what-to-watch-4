@@ -35,7 +35,7 @@ const FilmCard = (props) => {
         <Link
           to={`${AppRoute.FILMS}${id}`}
           className="small-movie-card__link">
-            {title}
+          {title}
         </Link>
       </h3>
     </article>

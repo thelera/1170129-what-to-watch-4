@@ -1,3 +1,4 @@
+const GENRES_COUNT = 9;
 const SIMILAR_FILMS_COUNT = 4;
 const SHOWING_FILMS_COUNT = 8;
 const SHOWING_FILMS_COUNT_ON_START = 8;
@@ -9,6 +10,7 @@ const API = {
 };
 
 const AppRoute = {
+  ADD_REVIEW: `/review`,
   FILMS: `/films/`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
@@ -19,6 +21,10 @@ const AppRoute = {
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
+};
+
+const Error = {
+  UNAUTHORIZED: 401,
 };
 
 const Video = {
@@ -50,6 +56,4 @@ const Genre = {
   THRILLERS: `Thriller`,
 };
 
-const GENRES_COUNT = 9;
-
-export {API, AppRoute, AuthorizationStatus, FilmDetailsTab, Genre, GENRES_COUNT, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};
+export {API, AppRoute, AuthorizationStatus, Error, FilmDetailsTab, Genre, GENRES_COUNT, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};

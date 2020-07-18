@@ -1,11 +1,7 @@
+import AddReview from "./add-review.jsx";
 import {BrowserRouter} from "react-router-dom";
-import configureStore from "redux-mock-store";
-import FilmCard from "./film-card.jsx";
-import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";
-
-const mockStore = configureStore([]);
 
 const film = {
   backgroundColor: `#E45322`,
@@ -27,19 +23,17 @@ const film = {
   year: 2015,
 };
 
-it(`FilmCard is rendered correctly`, () => {
-  const store = mockStore({});
-
+it(`AddReview is rendered correctly`, () => {
   const tree = renderer.create(
       <BrowserRouter>
-        <Provider store={store}>
-          <FilmCard
+          <AddReview
+            avatarImage={`image`}
+            id={5}
             film={film}
-            isPlaying={true}
-            onMouseEnter={() => { }}
-            onMouseLeave={() => { }}
+            history={{}}
+            onChange={() => {}}
+            onSubmit={() => {}}
           />
-        </Provider>
       </BrowserRouter>, {
         createNodeMock: () => {
           return {};
