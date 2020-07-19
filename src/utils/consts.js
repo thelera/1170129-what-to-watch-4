@@ -1,4 +1,7 @@
 const GENRES_COUNT = 9;
+const MAX_RATING = 5;
+const MIN_TEXT_LENGTH = 5;
+const MAX_TEXT_LENGTH = 500;
 const SIMILAR_FILMS_COUNT = 4;
 const SHOWING_FILMS_COUNT = 8;
 const SHOWING_FILMS_COUNT_ON_START = 8;
@@ -13,6 +16,7 @@ const AppRoute = {
   ADD_REVIEW: `/review`,
   FILMS: `/films/`,
   LOGIN: `/login`,
+  MAIN: `/main/`,
   MY_LIST: `/mylist`,
   PLAYER: `/player/`,
   ROOT: `/`,
@@ -24,7 +28,10 @@ const AuthorizationStatus = {
 };
 
 const Error = {
-  UNAUTHORIZED: 401,
+  BAD_REQUEST: {code: 400, errorMessage: 'Неверный запрос'},
+  UNAUTHORIZED: {code: 401, errorMessage: 'Пользователь не авторизован'},
+  NOT_FOUND: {code: 404, errorMessage: 'Ничего не найдено'},
+  DEFAULT: {errorMessage: 'Статус ответа: '},
 };
 
 const Video = {
@@ -56,4 +63,4 @@ const Genre = {
   THRILLERS: `Thriller`,
 };
 
-export {API, AppRoute, AuthorizationStatus, Error, FilmDetailsTab, Genre, GENRES_COUNT, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};
+export {API, AppRoute, AuthorizationStatus, Error, FilmDetailsTab, Genre, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};

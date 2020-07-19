@@ -22,7 +22,7 @@ import withForm from "../../hocs/with-form/with-form.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withValidation from "../../hocs/with-validation/with-validation.js";
 
-const AddReviewWrapped = withForm(AddReview);
+const AddReviewWrapped = withValidation(withForm(AddReview));
 const FilmDetailsWrapped = withActiveItem(FilmDetails);
 const SignInWrapped = withValidation(SignIn);
 const VideoPlayerWrapped = withVideo(VideoPlayer);
@@ -49,6 +49,9 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
+          <Redirect to={AppRoute.MAIN}/>
+        </Route>
+        <Route exact path={AppRoute.MAIN}>
           <Main
             authorizationStatus={authorizationStatus}
             avatarImage={avatarURL}
@@ -70,10 +73,13 @@ const App = (props) => {
             />
           );
         }}/>
-        <Route exact path={`${AppRoute.PLAYER}:id`} render={(properties) => {
-          const id = Number(properties.match.params.id);
+        <Route exact path={`${AppRoute.PLAYER}:id`} render={(props) => {
+          const id = Number(props.match.params.id);
           const movie = allFilms.find((film) => film.id === id);
           const {preview, videoLink} = movie;
+
+          console.log(props.history);
+
 
           return (
             <VideoPlayerWrapped
@@ -94,7 +100,7 @@ const App = (props) => {
               />
               : <Redirect to={AppRoute.ROOT} />);
         }}/>
-        <Route exact path={`${AppRoute.FILMS}:id${AppRoute.ADD_REVIEW}`} render={(props) => {
+        <PrivateRoute exact path={`${AppRoute.FILMS}:id${AppRoute.ADD_REVIEW}`} render={(props) => {
           const id = Number(props.match.params.id);
           const film = allFilms.find((film) => film.id === id);
 

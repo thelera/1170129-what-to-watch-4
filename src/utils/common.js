@@ -1,18 +1,42 @@
-import {Genre} from "./consts.js";
+import {Error, Genre} from "./consts.js";
+import moment from "moment";
 
-const fromMinToHours = (min) => {
-  const hours = Math.floor(min / 60);
-  const minutes = min % 60;
+const createRange = (from, to) => {
+  let result = [];
 
-  return `${hours}h ${minutes}m`;
+  for (let i = from; i <= to; i++) {
+    result.push(i);
+  }
+
+  return result;
 };
 
-const fromSecToHours = (sec) => {
-  const hours = Math.floor(sec / 3600);
-  const minutes = Math.floor((sec % 3600) / 60);
-  const seconds = Math.floor((sec % 3600) % 60);
+const fromMinToHours = (minutes) => {
+  return moment.utc(moment.duration(minutes,`minutes`).as(`milliseconds`)).format(`h[h] mm[m]`);
+};
 
-  return `${hours}:${minutes}:${seconds}`;
+const fromSecToHours = (seconds) => {
+  return moment.utc(moment.duration(seconds,`seconds`).as(`milliseconds`)).format(`HH:mm:ss`);
+};
+
+const getError = ({response}) => {
+  let error;
+
+  switch (response.status) {
+    case Error.BAD_REQUEST.code:
+      error = Error.BAD_REQUEST.errorMessage;
+      break;
+    case Error.UNAUTHORIZED.code:
+      error = Error.UNAUTHORIZED.errorMessage;
+      break;
+    case Error.NOT_FOUND.code:
+      error = Error.NOT_FOUND.errorMessage;
+      break;
+    default:
+      error = `${Error.DEFAULT.errorMessage} ${Error}`;
+  }
+
+  return error;
 };
 
 const getFilmsByFilter = (array, filterType) => {
@@ -54,6 +78,10 @@ const getUniqueArrayElements = (array) => {
   return result;
 };
 
+const parseDate = (date) => {
+  return moment(date).format(`MMMM Do YYYY`);
+};
+
 const removeFromArray = (array, id) => {
   const elementToRemove = array.find((it) => it.id === id);
 
@@ -79,4 +107,4 @@ const updateFilmsByNewFilm = (films, film) => {
   return films;
 };
 
-export {fromMinToHours, fromSecToHours, getFilmsByFilter, getRatingLevel, getUniqueArrayElements, removeFromArray, updateFilmsByNewFilm};
+export {createRange, fromMinToHours, fromSecToHours, getError, getFilmsByFilter, getRatingLevel, getUniqueArrayElements, parseDate, removeFromArray, updateFilmsByNewFilm};

@@ -6,7 +6,7 @@ const withValidation = (Component) => {
       super(props);
 
       this.state = {
-        message: null,
+        message: ``,
       };
 
       this._handleValidForm = this._handleValidForm.bind(this);

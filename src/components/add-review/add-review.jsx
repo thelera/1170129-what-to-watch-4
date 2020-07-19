@@ -1,34 +1,66 @@
 import {AppRoute} from "../../utils/consts";
+import {connect} from "react-redux";
+import {createRange} from "../../utils/common.js";
+import Error from "../error/error.jsx";
+import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
+import {MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH} from "../../utils/consts.js";
 import PropTypes from "prop-types";
-import React, {createRef, Fragment} from "react";
+import React, {Fragment} from "react";
 
-const MAX_RATING = 5;
+const getValidationMessage = (score, text) => {
+  let message = ``;
+
+  if (text.length <= MIN_TEXT_LENGTH || length >= MAX_TEXT_LENGTH) {
+    message = `Review should be between ${MIN_TEXT_LENGTH} - ${MAX_TEXT_LENGTH} symbols.`;
+  } else if (score === 0) {
+    message = `Please choose at least one star.`
+  }
+
+  return message;
+};
 
 const AddReview = (props) => {
   const {
     avatarImage,
-    id: ratingScore,
+    error: errorText,
+    isDisabled,
     film,
     history,
-    onChange,
-    onSubmit
+    score,
+    text,
+    validationMessage,
+    onDisable,
+    onRatingChange,
+    onSubmit,
+    onTextChange,
+    onValidForm,
   } = props;
 
   const {id: filmId, image, preview, title} = film;
 
-  const commentRef = createRef();
+  const range = createRange(1, MAX_RATING);
+
+  if (errorText !== ``) {
+    onDisable(false);
+  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    onSubmit(
+    if (getValidationMessage(score, text).length === 0) {// валидна
+      onDisable(true);
+      onSubmit(
         filmId,
         {
-          rating: ratingScore + 1,
-          text: commentRef.current.value,
+          rating: score,
+          text: text,
         },
-        history);
+        history
+      );
+    } else {
+      onValidForm(getValidationMessage(score, text));
+    }
   };
 
   return (
@@ -62,6 +94,15 @@ const AddReview = (props) => {
         </svg>
       </div>
 
+      {errorText !== `` &&
+        <Error
+          message={errorText}
+      />}
+
+      {/* {errorText !== `` &&
+        onDisable(false)
+      } */}
+      
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
@@ -82,7 +123,7 @@ const AddReview = (props) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`${AppRoute.FILMS}${filmId}`} href="movie-page.html" className="breadcrumbs__link">{title}</Link>
+                  <Link to={`${AppRoute.FILMS}${filmId}`} className="breadcrumbs__link">{title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -103,22 +144,35 @@ const AddReview = (props) => {
         </div>
 
         <div className="add-review">
-          <form action="#" className="add-review__form" onSubmit={handleSubmit}>
+          <form
+            action="#"
+            className="add-review__form"
+            onSubmit={(evt) => {
+              handleSubmit(evt);
+            }}
+          >
+
+            {validationMessage &&
+              <div>
+                <p>{validationMessage}</p>
+              </div>}
+
             <div className="rating">
               <div className="rating__stars">
-                {Array.from(Array(MAX_RATING).keys()).map((number) => {
+                {range.map((number) => {
                   return (
                     <Fragment key={number}>
                       <input
                         className="rating__input"
                         id={`star-${number}`}
+                        disabled={isDisabled}
                         type="radio"
                         name="rating"
                         value={number}
                         onChange={() => {
-                          onChange(number);
+                          onRatingChange(number);
                         }}
-                        checked={number === ratingScore}
+                        checked={number === score}
                       />
                       <label className="rating__label" htmlFor={`star-${number}`}>Rating {number}</label>
                     </Fragment>
@@ -128,9 +182,25 @@ const AddReview = (props) => {
             </div>
 
             <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" ref={commentRef}></textarea>
+              <textarea
+                className="add-review__textarea"
+                disabled={isDisabled}
+                name="review-text"
+                id="review-text"
+                placeholder="Review text from 50 to 500 symbols"
+                onChange={(evt) => {
+                  onTextChange(evt.target.value);
+                  onValidForm(getValidationMessage(score, text));
+                }
+              }>
+                </textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
+                <button
+                  className="add-review__btn"
+                  type="submit"
+                  disabled={validationMessage.length > 0 || isDisabled}>
+                    Post
+                </button>
               </div>
             </div>
           </form>
@@ -142,7 +212,7 @@ const AddReview = (props) => {
 
 AddReview.propTypes = {
   avatarImage: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  score: PropTypes.number.isRequired,
   film: PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -163,8 +233,14 @@ AddReview.propTypes = {
     year: PropTypes.number.isRequired,
   }).isRequired,
   history: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default AddReview;
+const mapStateToProps = (state) => ({
+  error: getError(state),
+});
+
+export {AddReview};
+export default connect(mapStateToProps)(AddReview);

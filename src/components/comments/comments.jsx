@@ -1,3 +1,4 @@
+import {parseDate} from "../../utils/common";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -5,6 +6,7 @@ const renderComments = (comments) => {
   return comments.map((comment) => {
     const {comment: text, date, id, rating, user} = comment;
     const {name} = user;
+    const formattedDate = parseDate(date);
 
     return (
       <div className="review" key={id}>
@@ -13,7 +15,7 @@ const renderComments = (comments) => {
 
           <footer className="review__details">
             <cite className="review__author">{name}</cite>
-            <time className="review__date" dateTime="2016-12-24">{date}</time>
+            <time className="review__date" dateTime="2016-12-24">{formattedDate}</time>
           </footer>
         </blockquote>
 

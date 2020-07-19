@@ -126,7 +126,7 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
-  validationMessage: PropTypes.string.isRequired,
+  validationMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onValidForm: PropTypes.func.isRequired,
 };

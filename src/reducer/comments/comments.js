@@ -1,3 +1,4 @@
+import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
 import {AppRoute} from "../../utils/consts.js";
 
 const initialState = {
@@ -23,9 +24,13 @@ const Operation = {
     })
     .then((response) => {
       dispatch(ActionCreator.loadComments(response.data));
-      dispatch(history.push(`${AppRoute.FILMS}${id}`));
+      history.push(`${AppRoute.FILMS}${id}`);
     })
     .catch((err) => {
+      console.log(err);
+      //const errorMessage = getError(err);
+      dispatch(ErrorActionCreator.loadError("Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу."));
+
       throw err;
     });
   },

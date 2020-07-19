@@ -6,26 +6,56 @@ const withForm = (Component) => {
       super(props);
 
       this.state = {
-        id: 0,
+        isDisabled: false,
+        score: 1,
+        text: ``,
       };
 
-      this._handleChange = this._handleChange.bind(this);
+      this._handleDisableForm = this._handleDisableForm.bind(this);
+      this._handleRatingChange = this._handleRatingChange.bind(this);
+      this._handleTextChange = this._handleTextChange.bind(this);
     }
 
-    _handleChange(number) {
+    _isLengthAllowed(length) {
+      return (length >= MIN_TEXT_LENGTH && length <= MAX_TEXT_LENGTH);
+    }
+
+    _handleDisableForm(value) {
+      this.setState(
+        {
+          isDisabled: value,
+        }
+      );
+    }
+
+    _handleRatingChange(number) {
       this.setState(
           {
-            id: number,
+            score: number,
           }
       );
     }
 
+    _handleTextChange(value) {
+      this.setState(
+        {
+          text: value,
+        }
+      );
+    }
+
     render() {
+      const {isDisabled, isValid, score, text} = this.state;
       return (
         <Component
           {...this.props}
-          id={this.state.id}
-          onChange={this._handleChange}
+          isDisabled={isDisabled}
+          isValid={isValid}
+          score={score}
+          text={text}
+          onDisable={this._handleDisableForm}
+          onRatingChange={this._handleRatingChange}
+          onTextChange={this._handleTextChange}
         />
       );
     }

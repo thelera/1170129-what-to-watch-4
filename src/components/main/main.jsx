@@ -25,6 +25,7 @@ const Main = (props) => {
   } = props;
 
   const {
+    backgroundImage,
     genre,
     id,
     image,
@@ -37,7 +38,7 @@ const Main = (props) => {
     <div>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={backgroundImage} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -134,7 +135,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  avatarImage: PropTypes.string.isRequired,
+  avatarImage: PropTypes.string,
   filmsCount: PropTypes.number.isRequired,
   filmsList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -157,6 +158,7 @@ Main.propTypes = {
         year: PropTypes.number.isRequired,
       })).isRequired,
   promoFilm: PropTypes.shape({
+    backgroundImage: PropTypes.string,
     genre: PropTypes.string,
     id: PropTypes.number,
     isFavourite: PropTypes.bool,
