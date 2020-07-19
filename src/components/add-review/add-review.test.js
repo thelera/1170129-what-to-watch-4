@@ -1,4 +1,4 @@
-import AddReview from "./add-review.jsx";
+import {AddReview} from "./add-review.jsx";
 import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import renderer from "react-test-renderer";
@@ -26,14 +26,21 @@ const film = {
 it(`AddReview is rendered correctly`, () => {
   const tree = renderer.create(
       <BrowserRouter>
-          <AddReview
-            avatarImage={`image`}
-            id={5}
-            film={film}
-            history={{}}
-            onChange={() => {}}
-            onSubmit={() => {}}
-          />
+        <AddReview
+          avatarImage={`image`}
+          error={``}
+          film={film}
+          history={{}}
+          isDisabled={false}
+          score={4}
+          text={``}
+          validationMessage={``}
+          onSubmit={() => {}}
+          onDisable={() => {}}
+          onRatingChange={() => {}}
+          onTextChange={() => {}}
+          onValidForm={() => {}}
+        />
       </BrowserRouter>, {
         createNodeMock: () => {
           return {};

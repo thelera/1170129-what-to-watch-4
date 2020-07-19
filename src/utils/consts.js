@@ -28,10 +28,10 @@ const AuthorizationStatus = {
 };
 
 const Error = {
-  BAD_REQUEST: {code: 400, errorMessage: 'Неверный запрос'},
-  UNAUTHORIZED: {code: 401, errorMessage: 'Пользователь не авторизован'},
-  NOT_FOUND: {code: 404, errorMessage: 'Ничего не найдено'},
-  DEFAULT: {errorMessage: 'Статус ответа: '},
+  BAD_REQUEST: {code: 400, errorMessage: `Неверный запрос`},
+  UNAUTHORIZED: {code: 401, errorMessage: `Пользователь не авторизован`},
+  NOT_FOUND: {code: 404, errorMessage: `Ничего не найдено`},
+  DEFAULT: {errorMessage: `Статус ответа: `},
 };
 
 const Video = {

@@ -9,8 +9,8 @@ exports[`App is rendered correctly 1`] = `
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       />
     </div>
     <h1

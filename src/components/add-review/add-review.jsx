@@ -14,7 +14,7 @@ const getValidationMessage = (score, text) => {
   if (text.length <= MIN_TEXT_LENGTH || length >= MAX_TEXT_LENGTH) {
     message = `Review should be between ${MIN_TEXT_LENGTH} - ${MAX_TEXT_LENGTH} symbols.`;
   } else if (score === 0) {
-    message = `Please choose at least one star.`
+    message = `Please choose at least one star.`;
   }
 
   return message;
@@ -48,15 +48,15 @@ const AddReview = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    if (getValidationMessage(score, text).length === 0) {// валидна
+    if (getValidationMessage(score, text).length === 0) {
       onDisable(true);
       onSubmit(
-        filmId,
-        {
-          rating: score,
-          text: text,
-        },
-        history
+          filmId,
+          {
+            rating: score,
+            text,
+          },
+          history
       );
     } else {
       onValidForm(getValidationMessage(score, text));
@@ -97,12 +97,8 @@ const AddReview = (props) => {
       {errorText !== `` &&
         <Error
           message={errorText}
-      />}
+        />}
 
-      {/* {errorText !== `` &&
-        onDisable(false)
-      } */}
-      
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
@@ -192,8 +188,8 @@ const AddReview = (props) => {
                   onTextChange(evt.target.value);
                   onValidForm(getValidationMessage(score, text));
                 }
-              }>
-                </textarea>
+                }>
+              </textarea>
               <div className="add-review__submit">
                 <button
                   className="add-review__btn"
@@ -213,6 +209,7 @@ const AddReview = (props) => {
 AddReview.propTypes = {
   avatarImage: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
+  error: PropTypes.string.isRequired,
   film: PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -234,8 +231,13 @@ AddReview.propTypes = {
   }).isRequired,
   history: PropTypes.object.isRequired,
   isDisabled: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+  validationMessage: PropTypes.string.isRequired,
+  onDisable: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onTextChange: PropTypes.func.isRequired,
+  onValidForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

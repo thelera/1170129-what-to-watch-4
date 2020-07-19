@@ -12,11 +12,11 @@ const createRange = (from, to) => {
 };
 
 const fromMinToHours = (minutes) => {
-  return moment.utc(moment.duration(minutes,`minutes`).as(`milliseconds`)).format(`h[h] mm[m]`);
+  return moment.utc(moment.duration(minutes, `minutes`).as(`milliseconds`)).format(`h[h] mm[m]`);
 };
 
 const fromSecToHours = (seconds) => {
-  return moment.utc(moment.duration(seconds,`seconds`).as(`milliseconds`)).format(`HH:mm:ss`);
+  return moment.utc(moment.duration(seconds, `seconds`).as(`milliseconds`)).format(`HH:mm:ss`);
 };
 
 const getError = ({response}) => {

@@ -219,6 +219,7 @@ Array [
         className="add-review__form"
         onSubmit={[Function]}
       >
+        
         <div
           className="rating"
         >
@@ -228,22 +229,7 @@ Array [
             <input
               checked={false}
               className="rating__input"
-              id="star-0"
-              name="rating"
-              onChange={[Function]}
-              type="radio"
-              value={0}
-            />
-            <label
-              className="rating__label"
-              htmlFor="star-0"
-            >
-              Rating 
-              0
-            </label>
-            <input
-              checked={false}
-              className="rating__input"
+              disabled={false}
               id="star-1"
               name="rating"
               onChange={[Function]}
@@ -260,6 +246,7 @@ Array [
             <input
               checked={false}
               className="rating__input"
+              disabled={false}
               id="star-2"
               name="rating"
               onChange={[Function]}
@@ -276,6 +263,7 @@ Array [
             <input
               checked={false}
               className="rating__input"
+              disabled={false}
               id="star-3"
               name="rating"
               onChange={[Function]}
@@ -290,8 +278,9 @@ Array [
               3
             </label>
             <input
-              checked={false}
+              checked={true}
               className="rating__input"
+              disabled={false}
               id="star-4"
               name="rating"
               onChange={[Function]}
@@ -305,6 +294,23 @@ Array [
               Rating 
               4
             </label>
+            <input
+              checked={false}
+              className="rating__input"
+              disabled={false}
+              id="star-5"
+              name="rating"
+              onChange={[Function]}
+              type="radio"
+              value={5}
+            />
+            <label
+              className="rating__label"
+              htmlFor="star-5"
+            >
+              Rating 
+              5
+            </label>
           </div>
         </div>
         <div
@@ -312,15 +318,18 @@ Array [
         >
           <textarea
             className="add-review__textarea"
+            disabled={false}
             id="review-text"
             name="review-text"
-            placeholder="Review text"
+            onChange={[Function]}
+            placeholder="Review text from 50 to 500 symbols"
           />
           <div
             className="add-review__submit"
           >
             <button
               className="add-review__btn"
+              disabled={false}
               type="submit"
             >
               Post

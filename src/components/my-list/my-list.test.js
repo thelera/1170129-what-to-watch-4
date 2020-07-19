@@ -108,10 +108,10 @@ const films = [
 it(`MyList is rendered correctly`, () => {
   const tree = renderer.create(
       <BrowserRouter>
-          <MyList
-            avatarImage={`image`}
-            filmsList={films}
-          />
+        <MyList
+          avatarImage={`image`}
+          filmsList={films}
+        />
       </BrowserRouter>, {
         createNodeMock: () => {
           return {};

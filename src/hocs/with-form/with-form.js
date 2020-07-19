@@ -16,15 +16,11 @@ const withForm = (Component) => {
       this._handleTextChange = this._handleTextChange.bind(this);
     }
 
-    _isLengthAllowed(length) {
-      return (length >= MIN_TEXT_LENGTH && length <= MAX_TEXT_LENGTH);
-    }
-
     _handleDisableForm(value) {
       this.setState(
-        {
-          isDisabled: value,
-        }
+          {
+            isDisabled: value,
+          }
       );
     }
 
@@ -38,9 +34,9 @@ const withForm = (Component) => {
 
     _handleTextChange(value) {
       this.setState(
-        {
-          text: value,
-        }
+          {
+            text: value,
+          }
       );
     }
 

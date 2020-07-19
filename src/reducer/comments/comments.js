@@ -27,9 +27,7 @@ const Operation = {
       history.push(`${AppRoute.FILMS}${id}`);
     })
     .catch((err) => {
-      console.log(err);
-      //const errorMessage = getError(err);
-      dispatch(ErrorActionCreator.loadError("Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу."));
+      dispatch(ErrorActionCreator.loadError(`Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу.`));
 
       throw err;
     });

@@ -58,9 +58,9 @@ const App = (props) => {
             onMyListClick={onMyListClick}
           />
         </Route>
-        <Route exact path={`${AppRoute.FILMS}:id`} render={(props) => {
-          const id = Number(props.match.params.id);
-          const film = allFilms.find((film) => film.id === id);
+        <Route exact path={`${AppRoute.FILMS}:id`} render={(args) => {
+          const id = Number(args.match.params.id);
+          const movie = allFilms.find((film) => film.id === id);
 
           loadComments(id);
 
@@ -68,22 +68,19 @@ const App = (props) => {
             <FilmDetailsWrapped
               authorizationStatus={authorizationStatus}
               avatarImage={avatarURL}
-              film={film}
+              film={movie}
               onMyListClick={onMyListClick}
             />
           );
         }}/>
-        <Route exact path={`${AppRoute.PLAYER}:id`} render={(props) => {
-          const id = Number(props.match.params.id);
+        <Route exact path={`${AppRoute.PLAYER}:id`} render={(properties) => {
+          const id = Number(properties.match.params.id);
           const movie = allFilms.find((film) => film.id === id);
           const {preview, videoLink} = movie;
 
-          console.log(props.history);
-
-
           return (
             <VideoPlayerWrapped
-              history={props.history}
+              history={properties.history}
               isMuted={false}
               isControled={true}
               isPlaying={true}
@@ -100,15 +97,15 @@ const App = (props) => {
               />
               : <Redirect to={AppRoute.ROOT} />);
         }}/>
-        <PrivateRoute exact path={`${AppRoute.FILMS}:id${AppRoute.ADD_REVIEW}`} render={(props) => {
-          const id = Number(props.match.params.id);
-          const film = allFilms.find((film) => film.id === id);
+        <PrivateRoute exact path={`${AppRoute.FILMS}:id${AppRoute.ADD_REVIEW}`} render={(p) => {
+          const id = Number(p.match.params.id);
+          const f = allFilms.find((film) => film.id === id);
 
           return (
             <AddReviewWrapped
               avatarImage={avatarURL}
-              film={film}
-              history={props.history}
+              film={f}
+              history={p.history}
               onSubmit={addComment}
             />
           );

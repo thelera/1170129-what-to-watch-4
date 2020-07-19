@@ -30,7 +30,7 @@ exports[`Comments is rendered correctly 1`] = `
             className="review__date"
             dateTime="2016-12-24"
           >
-            2019-05-08T14:13:56.569Z
+            May 8th 2019
           </time>
         </footer>
       </blockquote>
@@ -63,7 +63,7 @@ exports[`Comments is rendered correctly 1`] = `
             className="review__date"
             dateTime="2016-12-24"
           >
-            2019-05-08T14:13:56.569Z
+            May 8th 2019
           </time>
         </footer>
       </blockquote>
@@ -100,7 +100,7 @@ exports[`Comments is rendered correctly 1`] = `
             className="review__date"
             dateTime="2016-12-24"
           >
-            2019-05-08T14:13:56.569Z
+            May 8th 2019
           </time>
         </footer>
       </blockquote>

@@ -156,7 +156,7 @@ exports[`FilmsList is rendered correctly 1`] = `
   >
     <a
       className="small-movie-card__image"
-      href="/films/0.36496630185880385"
+      href="/films/0.7009066059207478"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -291,7 +291,7 @@ exports[`FilmsList is rendered correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/films/0.36496630185880385"
+        href="/films/0.7009066059207478"
         onClick={[Function]}
       >
         Bohemian Rhapsody
@@ -303,7 +303,7 @@ exports[`FilmsList is rendered correctly 1`] = `
   >
     <a
       className="small-movie-card__image"
-      href="/films/0.8109057115814242"
+      href="/films/0.7524951862353644"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -438,7 +438,7 @@ exports[`FilmsList is rendered correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/films/0.8109057115814242"
+        href="/films/0.7524951862353644"
         onClick={[Function]}
       >
         Macbeth
