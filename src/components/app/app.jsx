@@ -1,6 +1,5 @@
 import AddReview from "../add-review/add-review.jsx";
-import {AppRoute} from "../../utils/consts.js";
-import {AuthorizationStatus} from "../../utils/consts.js";
+import {AppRoute, AuthorizationStatus} from "../../utils/consts.js";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import FilmDetails from "../film-details/film-details.jsx";
@@ -39,19 +38,18 @@ const App = (props) => {
     onMyListClick
   } = props;
 
-  if (allFilms.length === 0) {
+  if (allFilms === null) {
     return (
       <div></div>
     );
   }
 
+  console.log(allFilms);
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <Redirect to={AppRoute.MAIN}/>
-        </Route>
-        <Route exact path={AppRoute.MAIN}>
           <Main
             authorizationStatus={authorizationStatus}
             avatarImage={avatarURL}
@@ -135,7 +133,8 @@ const App = (props) => {
 
 App.propTypes = {
   addComment: PropTypes.func.isRequired,
-  allFilms: PropTypes.arrayOf(PropTypes.shape({
+  allFilms: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(
+    PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -153,7 +152,7 @@ App.propTypes = {
     title: PropTypes.string.isRequired,
     videoLink: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
-  })),
+  }))]),
   authorizationStatus: PropTypes.string.isRequired,
   avatarURL: PropTypes.string,
   favouriteFilms: PropTypes.arrayOf(PropTypes.shape({

@@ -1,11 +1,11 @@
 import axios from "axios";
-import {API, Error} from "./utils/consts.js";
+import {Api, ErrorStatus} from "./utils/consts.js";
 
-const createAPI = (onUnauthorized) => {
+const createApi = (onUnauthorized) => {
   const api = axios.create({
-    baseURL: API.BASE_URL,
-    timeout: API.TIMEOUT,
-    withCredentials: API.CREDENTIALS,
+    baseURL: Api.BASE_URL,
+    timeout: Api.TIMEOUT,
+    withCredentials: Api.CREDENTIALS,
   });
 
   const onSuccess = (response) => {
@@ -15,7 +15,7 @@ const createAPI = (onUnauthorized) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response && response.status === Error.UNAUTHORIZED.code) {
+    if (response && response.status === ErrorStatus.UNAUTHORIZED.code) {
       onUnauthorized();
 
       throw err;
@@ -29,4 +29,4 @@ const createAPI = (onUnauthorized) => {
   return api;
 };
 
-export {createAPI};
+export {createApi};

@@ -1,14 +1,26 @@
 import {AppRoute} from "../../utils/consts";
+import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import {Link} from "react-router-dom";
-import React, {Fragment} from "react";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
+import React, {Fragment, PureComponent} from "react";
 import PropTypes from "prop-types";
 
 
-const MyList = (props) => {
-  const {avatarImage, filmsList} = props;
+class MyList extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
+  componentDidMount() {
+    const {onMyListClick} = this.props;
+    //onMyListClick();
+  }
+
+  render() {
+  const {avatarImage, filmsList} = this.props;
+
+  return(
     <Fragment>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -42,7 +54,7 @@ const MyList = (props) => {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link">
+            <Link to={AppRoute.MAIN} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -68,7 +80,7 @@ const MyList = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
+            <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -81,12 +93,20 @@ const MyList = (props) => {
         </footer>
       </div>
     </Fragment>
-  );
-};
+    );
+  }
+}
 
 MyList.propTypes = {
   avatarImage: PropTypes.string,
   filmsList: PropTypes.array.isRequired,
 };
 
-export default MyList;
+const mapDispatchToProps = (dispatch) => ({
+  onMyListClick() {
+    dispatch(DataOperation.loadFavouriteFilms());
+  },
+});
+
+export {MyList};
+export default connect(null, mapDispatchToProps)(MyList);

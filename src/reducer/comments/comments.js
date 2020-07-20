@@ -1,5 +1,5 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {AppRoute} from "../../utils/consts.js";
+import {AppRoute, ErrorMessage} from "../../utils/consts.js";
 
 const initialState = {
   comments: [],
@@ -24,10 +24,10 @@ const Operation = {
     })
     .then((response) => {
       dispatch(ActionCreator.loadComments(response.data));
-      history.push(`${AppRoute.FILMS}${id}`);
+      history.push(`${AppRoute.FILMS}/${id}`);
     })
     .catch((err) => {
-      dispatch(ErrorActionCreator.loadError(`Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу.`));
+      dispatch(ErrorActionCreator.loadError(ErrorMessage.SENDING));
 
       throw err;
     });
@@ -38,6 +38,8 @@ const Operation = {
       dispatch(ActionCreator.loadComments(response.data));
     })
     .catch((err) => {
+      dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
+
       throw err;
     });
   },

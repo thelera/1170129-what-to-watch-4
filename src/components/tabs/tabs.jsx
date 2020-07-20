@@ -1,5 +1,4 @@
 import {FilmDetailsTab} from "../../utils/consts.js";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -12,15 +11,15 @@ const Tabs = (props) => {
         <ul className="movie-nav__list">
           {Object.values(FilmDetailsTab).map((tabName, index) => (
             <li className={`movie-nav__item ${activeTab === tabName && `movie-nav__item--active`}`} key={tabName + index}>
-              <Link
-                to={id}
+              <a
+                href="#"
                 className="movie-nav__link"
                 onClick={() => {
                   onTabClick(tabName);
                 }}
               >
                 {tabName}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

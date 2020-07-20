@@ -1,10 +1,10 @@
 import MockAdapter from "axios-mock-adapter";
 import {createFilm, createFilms} from "../../adapters/films.js";
-import {createAPI} from "../../api.js";
+import {createApi} from "../../api.js";
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 import {reducer, ActionCreator, ActionType, Operation} from "./data.js";
 
-const api = createAPI(() => {});
+const api = createApi(() => {});
 
 const films = [
   {
@@ -145,10 +145,10 @@ describe(`Action creators work correctly`, () => {
 });
 
 describe(`Operation works correctly`, () => {
-  it(`Should make a correct API call to /films`, () => {
+  it(`Should make a correct Api call to /films`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const filmsLoader = Operation.loadMovies();
+    const filmsLoader = Operation.loadFilms();
 
     apiMock
       .onGet(`/films`)
@@ -164,7 +164,7 @@ describe(`Operation works correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to /films/promo`, () => {
+  it(`Should make a correct Api call to /films/promo`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const filmsLoader = Operation.loadPromoFilm();

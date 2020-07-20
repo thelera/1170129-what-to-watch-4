@@ -1,4 +1,5 @@
-import {API} from "../../utils/consts.js";
+import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
+import {Api, ErrorMessage} from "../../utils/consts.js";
 import {AuthorizationStatus} from "../../utils/consts.js";
 
 const initialState = {
@@ -27,9 +28,11 @@ const Operation = {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.avatarURL(`${API.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
+        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((error) => {
+        //dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+
         throw error;
       });
   },
@@ -40,9 +43,11 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.avatarURL(`${API.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
+        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
+        //dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+
         throw err;
       });
   },

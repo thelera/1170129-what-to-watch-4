@@ -19,9 +19,9 @@ const Main = (props) => {
     avatarImage,
     filmsCount,
     filmsList,
+    location,
     promoFilm,
     onAddToMyListClick,
-    onMyListClick
   } = props;
 
   const {
@@ -53,7 +53,7 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <Link to={AppRoute.MY_LIST} className="user-block__link" onClick={onMyListClick}>
+            <Link to={AppRoute.MY_LIST} className="user-block__link">
               {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
               {authorizationStatus === AuthorizationStatus.AUTH &&
                 <div className="user-block__avatar">
@@ -104,7 +104,9 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresListWrapped/>
+          <GenresListWrapped
+            location={location}
+          />
 
           <FilmsList
             films={filmsList}
@@ -167,7 +169,6 @@ Main.propTypes = {
     year: PropTypes.number,
   }).isRequired,
   onAddToMyListClick: PropTypes.func.isRequired,
-  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -179,7 +180,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onAddToMyListClick(id, isFavourite) {
     dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
-    dispatch(DataOperation.loadMovies());
+    dispatch(DataOperation.loadFilms());
     dispatch(DataOperation.loadPromoFilm());
   },
 });

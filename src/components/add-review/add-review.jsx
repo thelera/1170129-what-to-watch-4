@@ -41,6 +41,8 @@ const AddReview = (props) => {
 
   const range = createRange(1, MAX_RATING);
 
+  const textValidationMessage = getValidationMessage(score, text);
+
   if (errorText !== ``) {
     onDisable(false);
   }
@@ -48,7 +50,7 @@ const AddReview = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    if (getValidationMessage(score, text).length === 0) {
+    if (textValidationMessage.length === 0) {
       onDisable(true);
       onSubmit(
           filmId,
@@ -59,7 +61,7 @@ const AddReview = (props) => {
           history
       );
     } else {
-      onValidForm(getValidationMessage(score, text));
+      onValidForm(textValidationMessage);
     }
   };
 
@@ -109,7 +111,7 @@ const AddReview = (props) => {
 
           <header className="page-header">
             <div className="logo">
-              <Link to={AppRoute.ROOT} className="logo__link">
+              <Link to={AppRoute.MAIN} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -119,7 +121,7 @@ const AddReview = (props) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`${AppRoute.FILMS}${filmId}`} className="breadcrumbs__link">{title}</Link>
+                  <Link to={`${AppRoute.FILMS}/${filmId}`} className="breadcrumbs__link">{title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -186,7 +188,7 @@ const AddReview = (props) => {
                 placeholder="Review text from 50 to 500 symbols"
                 onChange={(evt) => {
                   onTextChange(evt.target.value);
-                  onValidForm(getValidationMessage(score, text));
+                  onValidForm(textValidationMessage);
                 }
                 }>
               </textarea>

@@ -1,4 +1,4 @@
-import {Error, Genre} from "./consts.js";
+import {ErrorStatus, Genre} from "./consts.js";
 import moment from "moment";
 
 const createRange = (from, to) => {
@@ -23,17 +23,17 @@ const getError = ({response}) => {
   let error;
 
   switch (response.status) {
-    case Error.BAD_REQUEST.code:
-      error = Error.BAD_REQUEST.errorMessage;
+    case ErrorStatus.BAD_REQUEST.code:
+      error = ErrorStatus.BAD_REQUEST.errorMessage;
       break;
-    case Error.UNAUTHORIZED.code:
-      error = Error.UNAUTHORIZED.errorMessage;
+    case ErrorStatus.UNAUTHORIZED.code:
+      error = ErrorStatus.UNAUTHORIZED.errorMessage;
       break;
-    case Error.NOT_FOUND.code:
-      error = Error.NOT_FOUND.errorMessage;
+    case ErrorStatus.NOT_FOUND.code:
+      error = ErrorStatus.NOT_FOUND.errorMessage;
       break;
     default:
-      error = `${Error.DEFAULT.errorMessage} ${Error}`;
+      error = `${ErrorStatus.DEFAULT.errorMessage} ${ErrorStatus}`;
   }
 
   return error;

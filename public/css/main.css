@@ -1394,6 +1394,7 @@ main {
           transform: translateY(-50%); }
 
 .modal {
+  color: ff0000;
   display: block;
   position: fixed;
   z-index: 1;
@@ -1413,3 +1414,4 @@ main {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+}

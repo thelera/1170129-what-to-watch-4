@@ -15,7 +15,7 @@ const FilmCard = (props) => {
   return (
     <article className="small-movie-card catalog__movies-card">
       <Link
-        to={`${AppRoute.FILMS}${id}`}
+        to={`${AppRoute.FILMS}/${id}`}
         className="small-movie-card__image"
         onMouseEnter={() => {
           onMouseEnter();
@@ -33,7 +33,7 @@ const FilmCard = (props) => {
       </Link>
       <h3 className="small-movie-card__title">
         <Link
-          to={`${AppRoute.FILMS}${id}`}
+          to={`${AppRoute.FILMS}/${id}`}
           className="small-movie-card__link">
           {title}
         </Link>

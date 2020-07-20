@@ -1,11 +1,14 @@
 
 import {AppRoute} from "../../utils/consts.js";
+import {connect} from "react-redux";
+import Error from "../error/error.jsx";
+import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
 const SignIn = (props) => {
-  const {validationMessage, onSubmit, onValidForm} = props;
+  const {validationMessage, error: errorText, onSubmit, onValidForm} = props;
 
   const loginRef = createRef();
   const passwordRef = createRef();
@@ -47,10 +50,15 @@ const SignIn = (props) => {
         </symbol></svg>
       </div>
 
+      {errorText !== `` &&
+        <Error
+          message={errorText}
+        />}
+      
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to={AppRoute.ROOT} href="main.html" className="logo__link">
+            <Link to={AppRoute.MAIN} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -109,11 +117,11 @@ const SignIn = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -126,9 +134,15 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
+  error: PropTypes.string.isRequired,
   validationMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onValidForm: PropTypes.func.isRequired,
 };
 
-export default SignIn;
+const mapStateToProps = (state) => ({
+  error: getError(state),
+});
+
+export {SignIn};
+export default connect(mapStateToProps)(SignIn);
