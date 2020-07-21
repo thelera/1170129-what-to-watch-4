@@ -3,7 +3,7 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import renderer from "react-test-renderer";
-import GenresList from "./genres-list.jsx";
+import {GenresList} from "./genres-list.jsx";
 
 const mockStore = configureStore([]);
 
@@ -17,7 +17,7 @@ it(`GenresList is rendered correctly`, () => {
         <Provider store={store}>
           <GenresList
             onActiveClick={() => { }}
-            onGenreCardClick={() => { }}
+            onGenreClick={() => { }}
           />
         </Provider>
       </BrowserRouter>, {

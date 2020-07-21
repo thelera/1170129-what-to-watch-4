@@ -1,26 +1,14 @@
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
-import {createRange, getElementById} from "../../utils/common.js";
+import {createRange, getElementById, getValidationMessage} from "../../utils/common.js";
 import Error from "../error/error.jsx";
 import {getAllFilms} from "../../reducer/data/selectors.js";
 import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
-import {MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH} from "../../utils/consts.js";
+import {MAX_RATING} from "../../utils/consts.js";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
 import PropTypes from "prop-types";
 import React, {Fragment} from "react";
-
-const getValidationMessage = (score, text) => {
-  let message = ``;
-
-  if (text.length <= MIN_TEXT_LENGTH || length >= MAX_TEXT_LENGTH) {
-    message = `Review should be between ${MIN_TEXT_LENGTH} - ${MAX_TEXT_LENGTH} symbols.`;
-  } else if (score === 0) {
-    message = `Please choose at least one star.`;
-  }
-
-  return message;
-};
 
 const AddReview = (props) => {
   const {
@@ -45,23 +33,18 @@ const AddReview = (props) => {
 
   const textValidationMessage = getValidationMessage(score, text);
 
-  if (errorText !== ``) {
-    onDisable(false);
-  }
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     if (textValidationMessage.length === 0) {
       onDisable(true);
-      onSubmit(
-          filmId,
-          {
-            rating: score,
-            text,
-          },
-          history
-      );
+      onSubmit(filmId, {rating: score, text})
+      .then(() => {
+        history.push(`${AppRoute.FILMS}/${filmId}`);
+      })
+      .catch(() => {
+        onDisable(false);
+      });
     } else {
       onValidForm(textValidationMessage);
     }
@@ -98,7 +81,7 @@ const AddReview = (props) => {
         </svg>
       </div>
 
-      {errorText !== `` &&
+      {errorText &&
         <Error
           message={errorText}
         />}
@@ -212,8 +195,7 @@ const AddReview = (props) => {
 
 AddReview.propTypes = {
   avatarImage: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   film: PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -235,6 +217,7 @@ AddReview.propTypes = {
   }).isRequired,
   history: PropTypes.object.isRequired,
   isDisabled: PropTypes.bool.isRequired,
+  score: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   validationMessage: PropTypes.string.isRequired,
   onDisable: PropTypes.func.isRequired,
@@ -250,8 +233,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(id, comment, history) {
-    dispatch(CommentsOperation.addComment(id, comment, history));
+  onSubmit(id, comment) {
+    return dispatch(CommentsOperation.addComment(id, comment));
   },
 });
 

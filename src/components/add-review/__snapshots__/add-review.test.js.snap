@@ -110,6 +110,7 @@ Array [
       </symbol>
     </svg>
   </div>,
+  "",
   <section
     className="movie-card movie-card--full"
   >

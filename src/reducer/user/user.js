@@ -1,5 +1,5 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {Api, ErrorMessage} from "../../utils/consts.js";
+import {Api, ErrorMessage, ErrorStatus} from "../../utils/consts.js";
 import {AuthorizationStatus} from "../../utils/consts.js";
 
 const initialState = {
@@ -27,13 +27,13 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
+        if (response) {
+          dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+          dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
+        }
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
-
-        throw error;
       });
   },
   login: (authData) => (dispatch, getState, api) => {
@@ -42,11 +42,15 @@ const Operation = {
       password: authData.password,
     })
       .then((response) => {
+        dispatch(ErrorActionCreator.resetError(response.data));
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+
         dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
-        dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+        if (err.status !== ErrorStatus.UNAUTHORIZED.code) {
+          dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+        }
       });
   },
 };

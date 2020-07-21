@@ -1,7 +1,12 @@
 import {BrowserRouter} from "react-router-dom";
-import MyList from "./my-list.jsx";
+import configureStore from "redux-mock-store";
+import {MyList} from "./my-list.jsx";
+import NameSpace from "../../reducer/name-space.js";
+import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";
+
+const mockStore = configureStore([]);
 
 const films = [
   {
@@ -106,12 +111,21 @@ const films = [
 ];
 
 it(`MyList is rendered correctly`, () => {
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      allFilms: films,
+    },
+  });
+
   const tree = renderer.create(
       <BrowserRouter>
-        <MyList
-          avatarImage={`image`}
-          filmsList={films}
-        />
+        <Provider store={store}>
+          <MyList
+            avatarImage={`image`}
+            filmsList={films}
+            loadMyList={() => {}}
+          />
+        </Provider>
       </BrowserRouter>, {
         createNodeMock: () => {
           return {};

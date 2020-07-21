@@ -1,6 +1,7 @@
 import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 import {Provider} from "react-redux";
 import renderer from "react-test-renderer";
 import {Main} from "./main.jsx";
@@ -129,17 +130,21 @@ const films = [
 
 it(`Main should render movie card and films catalog`, () => {
   const store = mockStore({
-    allFilms: films,
-    genre: `All genres`,
+    [NameSpace.DATA]: {
+      allFilms: films,
+      genre: `All genres`,
+    },
   });
 
   const tree = renderer.create(
       <BrowserRouter>
         <Provider store={store}>
           <Main
+            authorizationStatus={`AUTH`}
             filmsCount={10}
             filmsList={films}
             promoFilm={filmData}
+            onAddToMyListClick={() => {}}
           />
         </Provider>
       </BrowserRouter>, {

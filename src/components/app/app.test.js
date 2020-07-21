@@ -141,6 +141,8 @@ it(`App is rendered correctly`, () => {
       <Provider store={store}>
         <App
           allFilms={films}
+          authorizationStatus={`AUTH`}
+          filmsCount={5}
           login={() => {}}
         />
       </Provider>, {

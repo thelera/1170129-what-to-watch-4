@@ -41,7 +41,7 @@ const withVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {isMuted = true, film, height, width, } = this.props;
+      const {isMuted = true, film, height, width} = this.props;
       const {preview, videoLink} = film;
 
       const video = this._videoRef.current;
@@ -139,7 +139,7 @@ const withVideo = (Component) => {
   const mapStateToProps = (state, ownProps) => ({
     film: getElementById(getAllFilms(state), ownProps.id),
   });
-  
+
   return connect(mapStateToProps)(WithVideo);
 };
 

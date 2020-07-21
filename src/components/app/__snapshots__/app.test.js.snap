@@ -155,7 +155,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             All genres
@@ -166,7 +166,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Adventure
@@ -177,7 +177,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Comedy
@@ -188,7 +188,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Crime
@@ -199,7 +199,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Documentary
@@ -210,7 +210,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Drama
@@ -221,7 +221,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Fantasy
@@ -232,7 +232,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Horror
@@ -243,7 +243,7 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Kid's and Family

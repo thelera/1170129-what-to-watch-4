@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
 const SignIn = (props) => {
-  const {validationMessage, error: errorText, onSubmit, onValidForm} = props;
+  const {error: errorText, validationMessage, onSubmit, onValidForm} = props;
 
   const loginRef = createRef();
   const passwordRef = createRef();
@@ -50,11 +50,11 @@ const SignIn = (props) => {
         </symbol></svg>
       </div>
 
-      {errorText !== `` &&
+      {errorText &&
         <Error
           message={errorText}
         />}
-      
+
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
@@ -90,6 +90,7 @@ const SignIn = (props) => {
                   ref={loginRef}
                   onInvalid={(evt) => {
                     evt.preventDefault();
+
                     onValidForm(evt.target.validationMessage);
                   }}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
@@ -104,6 +105,7 @@ const SignIn = (props) => {
                   ref={passwordRef}
                   onInvalid={(evt) => {
                     evt.preventDefault();
+
                     onValidForm(evt.target.validationMessage);
                   }}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
@@ -134,7 +136,7 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   validationMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onValidForm: PropTypes.func.isRequired,

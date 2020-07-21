@@ -23,10 +23,10 @@ const FilmCard = (props) => {
         onMouseLeave={onMouseLeave}
       >
         <VideoPlayerWrapped
+          height={Video.HEIGHT}
           id={id}
           isPlaying={isPlaying}
-          height={Video.HEIGHT}
-          key={id}
+          key={props.isPlaying}
           width={Video.WIDTH}
         />
       </Link>

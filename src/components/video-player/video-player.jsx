@@ -108,16 +108,13 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = {
   children: PropTypes.node.isRequired,
-  duration: PropTypes.number,
-  height: PropTypes.number,
+  duration: PropTypes.number.isRequired,
   history: PropTypes.object,
   isControled: PropTypes.bool,
-  isMuted: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  progress: PropTypes.number,
-  width: PropTypes.number,
-  onFullScreenButtonClick: PropTypes.func,
-  onPlayButtonClick: PropTypes.func,
+  progress: PropTypes.number.isRequired,
+  onFullScreenButtonClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 export default VideoPlayer;

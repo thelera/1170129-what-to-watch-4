@@ -19,13 +19,16 @@ it(`VideoPlayer is rendered correctly`, () => {
 
   const tree = renderer.create(
       <VideoPlayer
-
+        duration={222}
         source={previewVideoLink}
         poster={preview}
+        progress={10}
         isMuted={Video.IS_MUTED}
         isPlaying={true}
         width={Video.WIDTH}
         height={Video.HEIGHT}
+        onFullScreenButtonClick={() => {}}
+        onPlayButtonClick={() => {}}
       >
         <video/>
       </VideoPlayer>, {

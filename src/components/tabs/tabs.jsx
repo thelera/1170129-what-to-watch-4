@@ -33,7 +33,6 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   children: PropTypes.node.isRequired,
-  id: PropTypes.number.isRequired,
   tab: PropTypes.oneOf([FilmDetailsTab.OVERVIEW, FilmDetailsTab.DETAILS, FilmDetailsTab.REVIEWS]).isRequired,
   onTabClick: PropTypes.func.isRequired,
 };

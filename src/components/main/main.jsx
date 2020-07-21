@@ -19,7 +19,6 @@ const Main = (props) => {
     avatarImage,
     filmsCount,
     filmsList,
-    location,
     promoFilm,
     onAddToMyListClick,
   } = props;
@@ -78,7 +77,7 @@ const Main = (props) => {
 
               <div className="movie-card__buttons">
                 <Link
-                  to={`${AppRoute.PLAYER}${id}`}
+                  to={`${AppRoute.PLAYER}/${id}`}
                   className="btn btn--play movie-card__button"
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
@@ -104,9 +103,7 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresListWrapped
-            location={location}
-          />
+          <GenresListWrapped/>
 
           <FilmsList
             films={filmsList}
@@ -180,8 +177,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onAddToMyListClick(id, isFavourite) {
     dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
-    //dispatch(DataOperation.loadFilms());
-    //dispatch(DataOperation.loadPromoFilm());
   },
 });
 

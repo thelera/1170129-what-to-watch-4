@@ -17,11 +17,7 @@ const createApi = (onUnauthorized) => {
 
     if (response && response.status === ErrorStatus.UNAUTHORIZED.code) {
       onUnauthorized();
-
-      throw err;
     }
-
-    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

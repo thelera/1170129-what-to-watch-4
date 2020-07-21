@@ -1,5 +1,5 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {AppRoute, ErrorMessage} from "../../utils/consts.js";
+import {ErrorMessage} from "../../utils/consts.js";
 
 const initialState = {
   comments: [],
@@ -17,25 +17,29 @@ const ActionCreator = {
 };
 
 const Operation = {
-  addComment: (id, comment, history) => (dispatch, getState, api) => {
+  addComment: (id, comment) => (dispatch, getState, api) => {
     return api.post(`/comments/${id}`, {
       rating: comment.rating,
       comment: comment.text,
     })
     .then((response) => {
+      dispatch(ErrorActionCreator.resetError(response.data));
       dispatch(ActionCreator.loadComments(response.data));
-      //history.push(`${AppRoute.FILMS}/${id}`);
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.SENDING));
+
+      throw err;
     });
   },
   loadComments: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
     .then((response) => {
-      dispatch(ActionCreator.loadComments(response.data));
+      if (response) {
+        dispatch(ActionCreator.loadComments(response.data));
+      }
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
     });
   },

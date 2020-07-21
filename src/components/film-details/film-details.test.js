@@ -1,11 +1,45 @@
 import {BrowserRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";
 import {FilmDetails} from "./film-details.jsx";
+import NameSpace from "../../reducer/name-space.js";
 import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";
 
 const mockStore = configureStore([]);
+
+const comments = [
+  {
+    comment: `This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 7,
+    rating: 11,
+    user: {
+      id: 11.7,
+      name: `Pete`,
+    }
+  },
+  {
+    comment: `This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 74,
+    rating: 1,
+    user: {
+      id: 2,
+      name: `Ann`,
+    }
+  },
+  {
+    comment: `This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 0,
+    rating: 131,
+    user: {
+      id: 7,
+      name: `George`,
+    }
+  },
+];
 
 const film = {
   backgroundColor: `#E45322`,
@@ -131,17 +165,23 @@ const films = [
 
 it(`FilmDetails is rendered correctly`, () => {
   const store = mockStore({
-    allFilms: films,
-    onTabClick: () => {},
+    [NameSpace.DATA]: {
+      allFilms: films,
+      onTabClick: () => {},
+    },
   });
 
   const tree = renderer.create(
       <BrowserRouter>
         <Provider store={store}>
           <FilmDetails
+            authorizationStatus={`AUTH`}
+            comments={comments}
             film={film}
             filmsList={films}
             key={film.id}
+            loadComments={() => {}}
+            onAddToMyListClick={() => {}}
             onActiveClick={() => {}}
           />
         </Provider>

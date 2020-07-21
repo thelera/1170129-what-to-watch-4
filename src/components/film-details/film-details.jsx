@@ -4,15 +4,14 @@ import Comments from "../../components/comments/comments.jsx";
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import {fromMinToHours, getRatingLevel, getSimilarFilmsByGenre} from "../../utils/common.js";
+import {getAllFilms} from "../../reducer/data/selectors.js";
 import {getComments} from "../../reducer/comments/selectors.js";
 import {getElementById} from "../../utils/common.js";
-import {getAllFilms} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
 import PropTypes from "prop-types";
-import React, { PureComponent } from "react";
-import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
+import React, {PureComponent} from "react";
 import Tabs from "../tabs/tabs.jsx";
 
 class FilmDetails extends PureComponent {
@@ -90,7 +89,7 @@ class FilmDetails extends PureComponent {
     }
 
     return null;
-  };
+  }
 
   componentDidMount() {
     const {film, loadComments} = this.props;
@@ -108,9 +107,9 @@ class FilmDetails extends PureComponent {
       onActiveClick: onTabClick,
       onAddToMyListClick,
     } = this.props;
-  
+
     const {backgroundImage, genre, id, image, isFavourite, title, year} = film;
-  
+
     return (
       <React.Fragment>
         <div className="visually-hidden">
@@ -136,15 +135,15 @@ class FilmDetails extends PureComponent {
             </g>
           </symbol></svg>
         </div >
-  
+
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={backgroundImage} alt={title} />
             </div>
-  
+
             <h1 className="visually-hidden">WTW</h1>
-  
+
             <header className="page-header movie-card__head">
               <div className="logo">
                 <Link to={AppRoute.MAIN} className="logo__link">
@@ -153,7 +152,7 @@ class FilmDetails extends PureComponent {
                   <span className="logo__letter logo__letter--3">W</span>
                 </Link>
               </div>
-  
+
               <div className="user-block">
                 <Link to={AppRoute.MY_LIST} className="user-block__link">
                   {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
@@ -164,7 +163,7 @@ class FilmDetails extends PureComponent {
                 </Link>
               </div>
             </header>
-  
+
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
                 <h2 className="movie-card__title">{title}</h2>
@@ -172,10 +171,10 @@ class FilmDetails extends PureComponent {
                   <span className="movie-card__genre">{genre}</span>
                   <span className="movie-card__year">{year}</span>
                 </p>
-  
+
                 <div className="movie-card__buttons">
                   <Link
-                    to={`${AppRoute.PLAYER}${id}`}
+                    to={`${AppRoute.PLAYER}/${id}`}
                     className="btn btn--play movie-card__button"
                   >
                     <svg viewBox="0 0 19 19" width="19" height="19">
@@ -196,13 +195,13 @@ class FilmDetails extends PureComponent {
               </div>
             </div>
           </div >
-  
+
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
               <div className="movie-card__poster movie-card__poster--big">
                 <img src={image} alt="The Grand Budapest Hotel poster" width="218" height="327" />
               </div>
-  
+
               <div className="movie-card__desc">
                 <Tabs
                   id={id}
@@ -215,16 +214,16 @@ class FilmDetails extends PureComponent {
             </div>
           </div>
         </section >
-  
+
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-  
+
             <FilmsList
               films={filmsByGenre}
             />
           </section>
-  
+
           <footer className="page-footer">
             <div className="logo">
               <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
@@ -233,7 +232,7 @@ class FilmDetails extends PureComponent {
                 <span className="logo__letter logo__letter--3">W</span>
               </Link>
             </div>
-  
+
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
             </div>
@@ -242,7 +241,7 @@ class FilmDetails extends PureComponent {
       </React.Fragment>
     );
   }
-};
+}
 
 FilmDetails.propTypes = {
   activeItem: PropTypes.oneOf(Object.values(FilmDetailsTab)),

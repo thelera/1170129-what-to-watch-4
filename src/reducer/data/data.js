@@ -58,38 +58,45 @@ const Operation = {
     const status = isFavourite ? 0 : 1;
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
-      dispatch(ActionCreator.updateFilms(createFilm(response.data)));
-      dispatch(ActionCreator.updatePromoFilm(createFilm(response.data)));
+      if (response) {
+        dispatch(ActionCreator.updateFilms(createFilm(response.data)));
+        dispatch(ActionCreator.updatePromoFilm(createFilm(response.data)));
+      }
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.DEFAULT));
     });
   },
   loadFavouriteFilms: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
     .then((response) => {
-      dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
+      if (response) {
+        dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
+      }
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
     });
   },
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
     .then((response) => {
-      dispatch(ActionCreator.setFilms(createFilms(response.data)));
+      if (response) {
+        dispatch(ActionCreator.setFilms(createFilms(response.data)));
+      }
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
     });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
     return api.get(`films/promo`)
       .then((response) => {
-        dispatch(ActionCreator.setPromoFilm(createFilm(response.data)));
+        if (response) {
+          dispatch(ActionCreator.setPromoFilm(createFilm(response.data)));
+        }
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
       });
   },

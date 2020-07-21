@@ -51,7 +51,17 @@ exports[`Main should render movie card and films catalog 1`] = `
           className="user-block__link"
           href="/mylist"
           onClick={[Function]}
-        />
+        >
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -155,7 +165,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             All genres
@@ -166,7 +176,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Adventure
@@ -177,7 +187,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Comedy
@@ -188,7 +198,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Crime
@@ -199,7 +209,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Documentary
@@ -210,7 +220,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Drama
@@ -221,7 +231,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Fantasy
@@ -232,7 +242,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Horror
@@ -243,7 +253,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="/"
+            href="#"
             onClick={[Function]}
           >
             Kid's and Family
@@ -405,7 +415,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.20142420853780307"
+            href="/films/0.023170135025921912"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -540,7 +550,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.20142420853780307"
+              href="/films/0.023170135025921912"
               onClick={[Function]}
             >
               Bohemian Rhapsody
@@ -552,7 +562,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.3234969909004324"
+            href="/films/0.815286065762689"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -687,7 +697,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.3234969909004324"
+              href="/films/0.815286065762689"
               onClick={[Function]}
             >
               Macbeth
@@ -699,7 +709,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.9575261568541296"
+            href="/films/0.120277737998572"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -834,7 +844,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.9575261568541296"
+              href="/films/0.120277737998572"
               onClick={[Function]}
             >
               Aviator
@@ -846,7 +856,7 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.7686565384322164"
+            href="/films/0.773361092212403"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -981,7 +991,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.7686565384322164"
+              href="/films/0.773361092212403"
               onClick={[Function]}
             >
               We Need To Talk About Kevin

@@ -1,6 +1,7 @@
 import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
-import {Genre, GENRES_COUNT, AppRoute} from "../../utils/consts.js";
+import {Genre, GENRES_COUNT} from "../../utils/consts.js";
+import {getGenre} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -39,7 +40,7 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  genre: state.genre,
+  genre: getGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

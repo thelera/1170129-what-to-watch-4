@@ -10,7 +10,6 @@ import Main from "../main/main.jsx";
 import MyList from "../my-list/my-list.jsx";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
 import PrivateRoute from "../private-route/private-route.jsx";
 import PropTypes from "prop-types";
 import React, {Fragment} from "react";
@@ -28,7 +27,6 @@ const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const App = (props) => {
   const {
-    addComment,
     allFilms,
     authorizationStatus,
     avatarURL,
@@ -36,9 +34,9 @@ const App = (props) => {
     login,
   } = props;
 
-  if (allFilms === null) {
+  if (!allFilms) {
     return (
-      <div>Loading data...</div>
+      <div></div>
     );
   }
 
@@ -59,6 +57,7 @@ const App = (props) => {
               authorizationStatus={authorizationStatus}
               avatarImage={avatarURL}
               id={id}
+              key={id}
             />
           );
         }}/>
@@ -120,25 +119,25 @@ const App = (props) => {
 
 App.propTypes = {
   allFilms: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(
-    PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  }))]),
+      PropTypes.shape({
+        backgroundColor: PropTypes.string.isRequired,
+        backgroundImage: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        isFavourite: PropTypes.bool.isRequired,
+        image: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
+        previewVideoLink: PropTypes.string.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        ratingScore: PropTypes.number.isRequired,
+        runTime: PropTypes.number.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+        title: PropTypes.string.isRequired,
+        videoLink: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+      }))]),
   authorizationStatus: PropTypes.string.isRequired,
   avatarURL: PropTypes.string,
   favouriteFilms: PropTypes.arrayOf(PropTypes.shape({
@@ -160,7 +159,6 @@ App.propTypes = {
     videoLink: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   })),
-  loadComments: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
 };
 

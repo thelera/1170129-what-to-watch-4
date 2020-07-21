@@ -165,7 +165,17 @@ Array [
             className="user-block__link"
             href="/mylist"
             onClick={[Function]}
-          />
+          >
+            <div
+              className="user-block__avatar"
+            >
+              <img
+                alt="User avatar"
+                height="63"
+                width="63"
+              />
+            </div>
+          </a>
         </div>
       </header>
       <div
@@ -276,7 +286,7 @@ Array [
                 >
                   <a
                     className="movie-nav__link"
-                    href="/"
+                    href="#"
                     onClick={[Function]}
                   >
                     Overview
@@ -287,7 +297,7 @@ Array [
                 >
                   <a
                     className="movie-nav__link"
-                    href="/"
+                    href="#"
                     onClick={[Function]}
                   >
                     Details
@@ -298,7 +308,7 @@ Array [
                 >
                   <a
                     className="movie-nav__link"
-                    href="/"
+                    href="#"
                     onClick={[Function]}
                   >
                     Reviews
@@ -527,7 +537,7 @@ Array [
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.045432167779751564"
+            href="/films/0.05632358828123496"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -662,7 +672,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.045432167779751564"
+              href="/films/0.05632358828123496"
               onClick={[Function]}
             >
               Bohemian Rhapsody
@@ -674,7 +684,7 @@ Array [
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.39607261884749123"
+            href="/films/0.2841159553971946"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -809,7 +819,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.39607261884749123"
+              href="/films/0.2841159553971946"
               onClick={[Function]}
             >
               Macbeth
@@ -821,7 +831,7 @@ Array [
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.07401114525806318"
+            href="/films/0.8579985636552259"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -956,7 +966,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.07401114525806318"
+              href="/films/0.8579985636552259"
               onClick={[Function]}
             >
               Aviator
@@ -968,7 +978,7 @@ Array [
         >
           <a
             className="small-movie-card__image"
-            href="/films/0.7321666241479738"
+            href="/films/0.48221265171759997"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -1103,7 +1113,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/films/0.7321666241479738"
+              href="/films/0.48221265171759997"
               onClick={[Function]}
             >
               We Need To Talk About Kevin

@@ -2,9 +2,9 @@ const GENRES_COUNT = 9;
 const MAX_RATING = 5;
 const MIN_TEXT_LENGTH = 5;
 const MAX_TEXT_LENGTH = 500;
-const SIMILAR_FILMS_COUNT = 4;
 const SHOWING_FILMS_COUNT = 8;
 const SHOWING_FILMS_COUNT_ON_START = 8;
+const SIMILAR_FILMS_COUNT = 4;
 
 const Api = {
   BASE_URL: `https://4.react.pages.academy/wtw`,
@@ -41,13 +41,6 @@ const ErrorStatus = {
   DEFAULT: {errorMessage: `Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу.`},
 };
 
-const Video = {
-  WIDTH: 280,
-  HEIGHT: 175,
-  INTERVAL_IN_SEC: 1000,
-  IS_MUTED: true,
-};
-
 const FilmDetailsTab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
@@ -70,4 +63,16 @@ const Genre = {
   THRILLERS: `Thriller`,
 };
 
-export {Api, AppRoute, AuthorizationStatus, ErrorMessage, ErrorStatus, FilmDetailsTab, Genre, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, Video};
+const ValidationMessage = {
+  SCORE: `Review should be between`,
+  TEXT: `Please choose at least one star.`,
+};
+
+const Video = {
+  WIDTH: 280,
+  HEIGHT: 175,
+  INTERVAL_IN_SEC: 1000,
+  IS_MUTED: true,
+};
+
+export {Api, AppRoute, AuthorizationStatus, ErrorMessage, ErrorStatus, FilmDetailsTab, Genre, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, ValidationMessage, Video};

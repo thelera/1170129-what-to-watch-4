@@ -1,4 +1,4 @@
-import {Genre, SIMILAR_FILMS_COUNT} from "./consts.js";
+import {Genre, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, ValidationMessage} from "./consts.js";
 import moment from "moment";
 
 const createRange = (from, to) => {
@@ -70,6 +70,18 @@ const getUniqueArrayElements = (array) => {
   return result;
 };
 
+const getValidationMessage = (score, text) => {
+  let message = ``;
+
+  if (text.length <= MIN_TEXT_LENGTH || length >= MAX_TEXT_LENGTH) {
+    message = `${ValidationMessage.SCORE} ${MIN_TEXT_LENGTH} - ${MAX_TEXT_LENGTH} symbols.`;
+  } else if (score === 0) {
+    message = ValidationMessage.TEXT;
+  }
+
+  return message;
+};
+
 const parseDate = (date) => {
   return moment(date).format(`MMMM Do YYYY`);
 };
@@ -91,4 +103,4 @@ const updateFilmsByNewFilm = (films, film) => {
   return films;
 };
 
-export {createRange, fromMinToHours, fromSecToHours, getElementById, getFilmsByFilter, getRatingLevel, getSimilarFilmsByGenre, getUniqueArrayElements, parseDate, removeFromArray, updateFilmsByNewFilm};
+export {createRange, fromMinToHours, fromSecToHours, getElementById, getFilmsByFilter, getRatingLevel, getSimilarFilmsByGenre, getUniqueArrayElements, getValidationMessage, parseDate, removeFromArray, updateFilmsByNewFilm};
