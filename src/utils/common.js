@@ -53,8 +53,9 @@ const getRatingLevel = (score) => {
 const getSimilarFilmsByGenre = (films, id) => {
   const film = getElementById(films, id);
   const filmsByGenre = getFilmsByFilter(films, film.genre);
+  const similarFilmsWithoutFilm = removeFromArray(filmsByGenre, id);
 
-  return filmsByGenre.slice(0, SIMILAR_FILMS_COUNT);
+  return similarFilmsWithoutFilm.slice(0, SIMILAR_FILMS_COUNT);
 };
 
 const getUniqueArrayElements = (array) => {

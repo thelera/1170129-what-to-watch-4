@@ -10,7 +10,7 @@ const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const FilmCard = (props) => {
   const {film, isPlaying, onMouseEnter, onMouseLeave} = props;
-  const {id, preview, previewVideoLink, title} = film;
+  const {id, title} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card">
@@ -23,12 +23,11 @@ const FilmCard = (props) => {
         onMouseLeave={onMouseLeave}
       >
         <VideoPlayerWrapped
+          id={id}
           isPlaying={isPlaying}
-          width={Video.WIDTH}
           height={Video.HEIGHT}
-          key={props.isPlaying}
-          preview={preview}
-          videoLink={previewVideoLink}
+          key={id}
+          width={Video.WIDTH}
         />
       </Link>
       <h3 className="small-movie-card__title">

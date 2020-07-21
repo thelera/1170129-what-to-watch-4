@@ -1,3 +1,6 @@
+import {connect} from "react-redux";
+import {getAllFilms} from "../../reducer/data/selectors.js";
+import {getElementById} from "../../utils/common.js";
 import React, {createRef, PureComponent} from "react";
 import PropTypes from "prop-types";
 
@@ -38,7 +41,8 @@ const withVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {isMuted = true, width, height, preview, videoLink} = this.props;
+      const {isMuted = true, film, height, width, } = this.props;
+      const {preview, videoLink} = film;
 
       const video = this._videoRef.current;
 
@@ -120,16 +124,23 @@ const withVideo = (Component) => {
   }
 
   WithVideo.propTypes = {
-    preview: PropTypes.string.isRequired,
     height: PropTypes.number,
+    id: PropTypes.number.isRequired,
+    film: PropTypes.shape({
+      preview: PropTypes.string.isRequired,
+      videoLink: PropTypes.string.isRequired,
+    }),
     isControled: PropTypes.bool,
     isMuted: PropTypes.bool,
     isPlaying: PropTypes.bool.isRequired,
-    videoLink: PropTypes.string.isRequired,
     width: PropTypes.number,
   };
 
-  return WithVideo;
+  const mapStateToProps = (state, ownProps) => ({
+    film: getElementById(getAllFilms(state), ownProps.id),
+  });
+  
+  return connect(mapStateToProps)(WithVideo);
 };
 
 export default withVideo;

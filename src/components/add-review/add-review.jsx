@@ -6,6 +6,7 @@ import {getAllFilms} from "../../reducer/data/selectors.js";
 import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
 import {MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH} from "../../utils/consts.js";
+import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
 import PropTypes from "prop-types";
 import React, {Fragment} from "react";
 
@@ -248,5 +249,11 @@ const mapStateToProps = (state, ownProps) => ({
   film: getElementById(getAllFilms(state), ownProps.id),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(id, comment, history) {
+    dispatch(CommentsOperation.addComment(id, comment, history));
+  },
+});
+
 export {AddReview};
-export default connect(mapStateToProps)(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

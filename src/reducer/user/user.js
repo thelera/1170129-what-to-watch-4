@@ -47,8 +47,6 @@ const Operation = {
       })
       .catch((err) => {
         dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
-
-        throw err;
       });
   },
 };

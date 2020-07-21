@@ -63,8 +63,6 @@ const Operation = {
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.DEFAULT));
-
-      throw err;
     });
   },
   loadFavouriteFilms: () => (dispatch, getState, api) => {
@@ -75,8 +73,6 @@ const Operation = {
     .catch((err) => {
       console.log(err);
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
-
-      throw err;
     });
   },
   loadFilms: () => (dispatch, getState, api) => {
@@ -86,8 +82,6 @@ const Operation = {
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
-
-      throw err;
     });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
@@ -97,8 +91,6 @@ const Operation = {
       })
       .catch((err) => {
         dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
-
-        throw err;
       });
   },
 };

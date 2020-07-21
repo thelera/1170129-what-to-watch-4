@@ -64,17 +64,14 @@ const App = (props) => {
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
           const id = Number(routeProps.match.params.id);
-          const movie = allFilms.find((film) => film.id === id);
-          const {preview, videoLink} = movie;
 
           return (
             <VideoPlayerWrapped
               history={routeProps.history}
               isMuted={false}
+              id={id}
               isControled={true}
               isPlaying={true}
-              preview={preview}
-              videoLink={videoLink}
             />
           );
         }}/>
@@ -95,7 +92,6 @@ const App = (props) => {
               avatarImage={avatarURL}
               history={history}
               id={id}
-              onSubmit={addComment}
             />
           );
         }}/>
@@ -123,7 +119,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  addComment: PropTypes.func.isRequired,
   allFilms: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(
     PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
@@ -177,9 +172,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addComment(id, comment, history) {
-    dispatch(CommentsOperation.addComment(id, comment, history));
-  },
   loadComments(id) {
     dispatch(CommentsOperation.loadComments(id));
   },

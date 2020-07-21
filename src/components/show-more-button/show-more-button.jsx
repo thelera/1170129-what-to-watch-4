@@ -11,7 +11,7 @@ const ShowMoreButton = (props) => {
     <button
       className="catalog__button"
       type="button"
-      onClick={() => onClick(SHOWING_FILMS_COUNT)}
+      onClick={onClick}
     >
       Show more
     </button>
@@ -23,8 +23,8 @@ ShowMoreButton.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick(count) {
-    dispatch(ActionCreator.incrementFilmsCount(count));
+  onClick() {
+    dispatch(ActionCreator.incrementFilmsCount(SHOWING_FILMS_COUNT));
   },
 });
 

@@ -24,12 +24,10 @@ const Operation = {
     })
     .then((response) => {
       dispatch(ActionCreator.loadComments(response.data));
-      history.push(`${AppRoute.FILMS}/${id}`);
+      //history.push(`${AppRoute.FILMS}/${id}`);
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.SENDING));
-
-      throw err;
     });
   },
   loadComments: (id) => (dispatch, getState, api) => {
@@ -39,8 +37,6 @@ const Operation = {
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
-
-      throw err;
     });
   },
 };

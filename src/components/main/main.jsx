@@ -180,8 +180,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onAddToMyListClick(id, isFavourite) {
     dispatch(DataOperation.addFilmToFavourites(id, isFavourite));
-    dispatch(DataOperation.loadFilms());
-    dispatch(DataOperation.loadPromoFilm());
+    //dispatch(DataOperation.loadFilms());
+    //dispatch(DataOperation.loadPromoFilm());
   },
 });
 

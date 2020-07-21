@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
 import {fromMinToHours, getRatingLevel, getSimilarFilmsByGenre} from "../../utils/common.js";
 import {getComments} from "../../reducer/comments/selectors.js";
-import {getElementById, getFilmsByFilter, removeFromArray} from "../../utils/common.js";
+import {getElementById} from "../../utils/common.js";
 import {getAllFilms} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
