@@ -74,7 +74,7 @@ const Operation = {
     })
     .catch((err) => {
       console.log(err);
-      //dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
+      dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
 
       throw err;
     });
@@ -85,7 +85,7 @@ const Operation = {
       dispatch(ActionCreator.setFilms(createFilms(response.data)));
     })
     .catch((err) => {
-      //dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
+      dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
 
       throw err;
     });
@@ -96,7 +96,7 @@ const Operation = {
         dispatch(ActionCreator.setPromoFilm(createFilm(response.data)));
       })
       .catch((err) => {
-        //dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
+        dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
 
         throw err;
       });

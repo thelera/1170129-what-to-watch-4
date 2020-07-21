@@ -1,4 +1,4 @@
-import {ErrorStatus, Genre} from "./consts.js";
+import {Genre, SIMILAR_FILMS_COUNT} from "./consts.js";
 import moment from "moment";
 
 const createRange = (from, to) => {
@@ -19,24 +19,8 @@ const fromSecToHours = (seconds) => {
   return moment.utc(moment.duration(seconds, `seconds`).as(`milliseconds`)).format(`HH:mm:ss`);
 };
 
-const getError = ({response}) => {
-  let error;
-
-  switch (response.status) {
-    case ErrorStatus.BAD_REQUEST.code:
-      error = ErrorStatus.BAD_REQUEST.errorMessage;
-      break;
-    case ErrorStatus.UNAUTHORIZED.code:
-      error = ErrorStatus.UNAUTHORIZED.errorMessage;
-      break;
-    case ErrorStatus.NOT_FOUND.code:
-      error = ErrorStatus.NOT_FOUND.errorMessage;
-      break;
-    default:
-      error = `${ErrorStatus.DEFAULT.errorMessage} ${ErrorStatus}`;
-  }
-
-  return error;
+const getElementById = (array, id) => {
+  return array.find((it) => it.id === id);
 };
 
 const getFilmsByFilter = (array, filterType) => {
@@ -66,6 +50,13 @@ const getRatingLevel = (score) => {
   return result;
 };
 
+const getSimilarFilmsByGenre = (films, id) => {
+  const film = getElementById(films, id);
+  const filmsByGenre = getFilmsByFilter(films, film.genre);
+
+  return filmsByGenre.slice(0, SIMILAR_FILMS_COUNT);
+};
+
 const getUniqueArrayElements = (array) => {
   let result = [];
 
@@ -83,15 +74,7 @@ const parseDate = (date) => {
 };
 
 const removeFromArray = (array, id) => {
-  const elementToRemove = array.find((it) => it.id === id);
-
-  const index = array.indexOf(elementToRemove);
-
-  if (index > -1) {
-    array.slice(0).splice(index, 1);
-  }
-
-  return array;
+  return array.filter((it) => it.id !== id);
 };
 
 const updateFilmsByNewFilm = (films, film) => {
@@ -107,4 +90,4 @@ const updateFilmsByNewFilm = (films, film) => {
   return films;
 };
 
-export {createRange, fromMinToHours, fromSecToHours, getError, getFilmsByFilter, getRatingLevel, getUniqueArrayElements, parseDate, removeFromArray, updateFilmsByNewFilm};
+export {createRange, fromMinToHours, fromSecToHours, getElementById, getFilmsByFilter, getRatingLevel, getSimilarFilmsByGenre, getUniqueArrayElements, parseDate, removeFromArray, updateFilmsByNewFilm};

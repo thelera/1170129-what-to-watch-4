@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const Tabs = (props) => {
-  const {children, id, tab: activeTab, onTabClick} = props;
+  const {children, tab: activeTab, onTabClick} = props;
 
   return (
     <div className="movie-card__desc">
@@ -11,10 +11,11 @@ const Tabs = (props) => {
         <ul className="movie-nav__list">
           {Object.values(FilmDetailsTab).map((tabName, index) => (
             <li className={`movie-nav__item ${activeTab === tabName && `movie-nav__item--active`}`} key={tabName + index}>
-              <a
-                href="#"
+              <a href="#"
                 className="movie-nav__link"
-                onClick={() => {
+                onClick={(evt) => {
+                  evt.preventDefault();
+
                   onTabClick(tabName);
                 }}
               >

@@ -1,7 +1,8 @@
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
-import {createRange} from "../../utils/common.js";
+import {createRange, getElementById} from "../../utils/common.js";
 import Error from "../error/error.jsx";
+import {getAllFilms} from "../../reducer/data/selectors.js";
 import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
 import {MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH} from "../../utils/consts.js";
@@ -242,8 +243,9 @@ AddReview.propTypes = {
   onValidForm: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   error: getError(state),
+  film: getElementById(getAllFilms(state), ownProps.id),
 });
 
 export {AddReview};

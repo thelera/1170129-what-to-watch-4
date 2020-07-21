@@ -8,8 +8,6 @@ const getFavouriteFilms = (state) => state[NameSpace.DATA].favouriteFilms;
 
 const getGenre = (state) => state[NameSpace.DATA].genre;
 
-const getId = (state) => state[NameSpace.DATA].id;
-
 const getPromoFilm = (state) => state[NameSpace.DATA].promoFilm;
 
 const getShowedFilmsCount = (state) => state[NameSpace.DATA].showedFilmsCount;
@@ -22,4 +20,4 @@ const getFilmsListByGenre = createSelector(
     (allFilms, genre) => getFilmsByFilter(allFilms, genre)
 );
 
-export {getAllFilms, getFavouriteFilms, getFilmsListByGenre, getGenre, getId, getPromoFilm, getShowedFilmsCount, getVideoPlayerInfo};
+export {getAllFilms, getFavouriteFilms, getFilmsListByGenre, getGenre, getPromoFilm, getShowedFilmsCount, getVideoPlayerInfo};

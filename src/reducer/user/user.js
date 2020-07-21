@@ -31,7 +31,7 @@ const Operation = {
         dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((error) => {
-        //dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+        dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
 
         throw error;
       });
@@ -46,7 +46,7 @@ const Operation = {
         dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
-        //dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+        dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
 
         throw err;
       });

@@ -13,8 +13,8 @@ class MyList extends PureComponent {
   }
 
   componentDidMount() {
-    const {onMyListClick} = this.props;
-    //onMyListClick();
+    const {loadMyList} = this.props;
+    loadMyList();
   }
 
   render() {
@@ -103,7 +103,7 @@ MyList.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onMyListClick() {
+  loadMyList() {
     dispatch(DataOperation.loadFavouriteFilms());
   },
 });

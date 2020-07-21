@@ -33,52 +33,43 @@ const App = (props) => {
     authorizationStatus,
     avatarURL,
     favouriteFilms,
-    loadComments,
     login,
-    onMyListClick
   } = props;
 
   if (allFilms === null) {
     return (
-      <div></div>
+      <div>Loading data...</div>
     );
   }
-
-  console.log(allFilms);
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.ROOT}>
+        <Route exact path={AppRoute.MAIN}>
           <Main
             authorizationStatus={authorizationStatus}
             avatarImage={avatarURL}
-            onMyListClick={onMyListClick}
           />
         </Route>
-        <Route exact path={`${AppRoute.FILMS}:id`} render={(args) => {
-          const id = Number(args.match.params.id);
-          const movie = allFilms.find((film) => film.id === id);
-
-          loadComments(id);
+        <Route exact path={`${AppRoute.FILMS}/:id`} render={(routeProps) => {
+          const id = Number(routeProps.match.params.id);
 
           return (
             <FilmDetailsWrapped
               authorizationStatus={authorizationStatus}
               avatarImage={avatarURL}
-              film={movie}
-              onMyListClick={onMyListClick}
+              id={id}
             />
           );
         }}/>
-        <Route exact path={`${AppRoute.PLAYER}:id`} render={(properties) => {
-          const id = Number(properties.match.params.id);
+        <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
+          const id = Number(routeProps.match.params.id);
           const movie = allFilms.find((film) => film.id === id);
           const {preview, videoLink} = movie;
 
           return (
             <VideoPlayerWrapped
-              history={properties.history}
+              history={routeProps.history}
               isMuted={false}
               isControled={true}
               isPlaying={true}
@@ -93,17 +84,17 @@ const App = (props) => {
               ? <SignInWrapped
                 onSubmit={login}
               />
-              : <Redirect to={AppRoute.ROOT} />);
+              : <Redirect to={AppRoute.MAIN} />);
         }}/>
-        <PrivateRoute exact path={`${AppRoute.FILMS}:id${AppRoute.ADD_REVIEW}`} render={(p) => {
-          const id = Number(p.match.params.id);
-          const f = allFilms.find((film) => film.id === id);
+        <PrivateRoute exact path={`${AppRoute.FILMS}/:id${AppRoute.ADD_REVIEW}`} render={(routeProps) => {
+          const id = Number(routeProps.match.params.id);
+          const history = routeProps.history;
 
           return (
             <AddReviewWrapped
               avatarImage={avatarURL}
-              film={f}
-              history={p.history}
+              history={history}
+              id={id}
               onSubmit={addComment}
             />
           );
@@ -123,7 +114,7 @@ const App = (props) => {
               <br />
               <small>Page not found</small>
             </h1>
-            <Link to={AppRoute.ROOT}>Go to main page</Link>
+            <Link to={AppRoute.MAIN}>Go to main page</Link>
           </Fragment>
         )}/>
       </Switch>
@@ -176,7 +167,6 @@ App.propTypes = {
   })),
   loadComments: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -195,9 +185,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login(authData) {
     dispatch(UserOperation.login(authData));
-  },
-  onMyListClick() {
-    dispatch(DataOperation.loadFavouriteFilms());
   },
 });
 

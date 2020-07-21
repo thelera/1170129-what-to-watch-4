@@ -3,14 +3,15 @@ import {AuthorizationStatus} from "../../utils/consts.js";
 import Comments from "../../components/comments/comments.jsx";
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
-import {fromMinToHours, getRatingLevel} from "../../utils/common.js";
+import {fromMinToHours, getRatingLevel, getSimilarFilmsByGenre} from "../../utils/common.js";
 import {getComments} from "../../reducer/comments/selectors.js";
-import {getFilmsListByGenre, getId} from "../../reducer/data/selectors.js";
+import {getElementById, getFilmsByFilter, removeFromArray} from "../../utils/common.js";
+import {getAllFilms} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
 import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
-import {removeFromArray} from "../../utils/common.js";
 import {SIMILAR_FILMS_COUNT} from "../../utils/consts.js";
 import Tabs from "../tabs/tabs.jsx";
 
@@ -20,8 +21,10 @@ class FilmDetails extends PureComponent {
   }
 
   _renderTabs() {
-    const {comments, film} = this.props;
-    const {description, director, ratingCount, ratingScore, runTime, starring} = film;
+    const {activeItem: activeTab = FilmDetailsTab.OVERVIEW, comments, film} = this.props;
+
+    const {description, director, genre, ratingCount, ratingScore, runTime, starring, year} = film;
+
     const time = fromMinToHours(runTime);
 
     switch (activeTab) {
@@ -90,9 +93,9 @@ class FilmDetails extends PureComponent {
   };
 
   componentDidMount() {
-    const {film} = this.props;
+    const {film, loadComments} = this.props;
 
-    //loadComments(film.id);
+    loadComments(film.id);
   }
 
   render() {
@@ -206,7 +209,7 @@ class FilmDetails extends PureComponent {
                   tab={activeTab}
                   onTabClick={onTabClick}
                 >
-                  {_renderTabs()}
+                  {this._renderTabs()}
                 </Tabs>
               </div>
             </div>
@@ -282,9 +285,10 @@ FilmDetails.propTypes = {
   onAddToMyListClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   comments: getComments(state),
-  filmsList: removeFromArray(getFilmsListByGenre(state), getId(state)).slice(0, SIMILAR_FILMS_COUNT),
+  film: getElementById(getAllFilms(state), ownProps.id),
+  filmsList: getSimilarFilmsByGenre(getAllFilms(state), ownProps.id),
 });
 
 const mapDispatchToProps = (dispatch) => ({
