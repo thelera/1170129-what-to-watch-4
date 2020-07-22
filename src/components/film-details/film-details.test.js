@@ -25,11 +25,11 @@ const film = {
 
 it(`FilmDetails is rendered correctly`, () => {
   const tree = renderer.create(
-    <BrowserRouter>
-      <FilmDetails
-        film={film}
-      />
-    </BrowserRouter>).toJSON();
+      <BrowserRouter>
+        <FilmDetails
+          film={film}
+        />
+      </BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

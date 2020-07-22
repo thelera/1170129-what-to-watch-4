@@ -16,16 +16,16 @@ it(`SignIn is rendered correctly`, () => {
   });
 
   const tree = renderer.create(
-    <BrowserRouter>
-      <Provider store={store}>
-        <SignIn
-          error={`It's error message.`}
-          validationMessage={`It's validation message.`}
-          onSubmit={() => {}}
-          onValidForm={() => {}}
-        />
-      </Provider>
-    </BrowserRouter>).toJSON();
+      <BrowserRouter>
+        <Provider store={store}>
+          <SignIn
+            error={`It's error message.`}
+            validationMessage={`It's validation message.`}
+            onSubmit={() => {}}
+            onValidForm={() => {}}
+          />
+        </Provider>
+      </BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

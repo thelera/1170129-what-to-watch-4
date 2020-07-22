@@ -6,7 +6,7 @@ const FilmOverview = (props) => {
   const {film} = props;
 
   const {description, director, ratingCount, ratingScore, starring} = film;
-  
+
   return (
     <div>
       <div className="movie-rating">
@@ -26,7 +26,7 @@ const FilmOverview = (props) => {
       </div>
     </div>
   );
-}
+};
 
 FilmOverview.propTypes = {
   film: PropTypes.shape({
@@ -36,6 +36,6 @@ FilmOverview.propTypes = {
     ratingScore: PropTypes.number.isRequired,
     starring: PropTypes.array.isRequired,
   })
-}
+};
 
 export default FilmOverview;

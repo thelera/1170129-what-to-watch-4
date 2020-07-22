@@ -5,9 +5,9 @@ import Error from "./error.jsx";
 
 it(`Error is rendered correctly`, () => {
   const tree = renderer.create(
-    <BrowserRouter>
-      <Error/>
-    </BrowserRouter>).toJSON();
+      <BrowserRouter>
+        <Error/>
+      </BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

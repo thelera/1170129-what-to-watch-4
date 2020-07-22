@@ -28,17 +28,17 @@ class FilmPage extends PureComponent {
     switch (activeTab) {
       case FilmPageTab.OVERVIEW:
         return (
-            <FilmOverview
-              film={film}
-            />
+          <FilmOverview
+            film={film}
+          />
         );
 
       case FilmPageTab.DETAILS:
-          return (
-            <FilmDetails
-              film={film}
-            />
-          );
+        return (
+          <FilmDetails
+            film={film}
+          />
+        );
 
       case FilmPageTab.REVIEWS:
         return (

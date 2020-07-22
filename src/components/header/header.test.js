@@ -5,12 +5,12 @@ import {Header} from "./header.jsx";
 
 it(`Header is rendered correctly`, () => {
   const tree = renderer.create(
-    <BrowserRouter>
-      <Header
-        authorizationStatus={`AUTH`}
-        avatarImage={`image`}
-      />
-    </BrowserRouter>).toJSON();
+      <BrowserRouter>
+        <Header
+          authorizationStatus={`AUTH`}
+          avatarImage={`image`}
+        />
+      </BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -17,7 +17,7 @@ describe(`withTimerOnHover works correctly`, () => {
           onMouseLeave={() => {}}
         />
     );
-  
+
     wrapper.props().onMouseEnter();
     expect(wrapper.props().isPlaying).toEqual(true);
   });
@@ -30,9 +30,9 @@ describe(`withTimerOnHover works correctly`, () => {
           onMouseLeave={() => {}}
         />
     );
-  
+
     wrapper.props().onMouseLeave();
     expect(wrapper.props().isPlaying).toEqual(false);
   });
-})
+});
 

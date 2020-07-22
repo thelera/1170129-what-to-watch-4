@@ -8,7 +8,7 @@ import renderer from "react-test-renderer";
 
 const mockStore = configureStore([]);
 
-const film =  {
+const film = {
   backgroundColor: `#444444`,
   backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
@@ -208,11 +208,11 @@ it(`FilmsList is rendered correctly`, () => {
             id={1}
             match={
               {
-                  params: {
-                      id: 1
-                  }
+                params: {
+                  id: 1
+                }
               }
-          }
+            }
           />
         </Provider>
       </BrowserRouter>, {

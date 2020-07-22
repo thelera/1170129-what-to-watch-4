@@ -134,7 +134,7 @@ it(`FilmCard is rendered correctly`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       allFilms: films,
-      film: film,
+      film,
       id: 1,
       preview: `ddd`,
       videoLink: `fff`,
@@ -155,11 +155,11 @@ it(`FilmCard is rendered correctly`, () => {
             videoLink={`fff`}
             match={
               {
-                  params: {
-                      id: 1
-                  }
+                params: {
+                  id: 1
+                }
               }
-          }
+            }
           />
         </Provider>
       </BrowserRouter>, {

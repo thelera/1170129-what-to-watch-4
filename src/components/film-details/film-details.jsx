@@ -8,7 +8,7 @@ const FilmDetails = (props) => {
   const {director, genre, runTime, starring, year} = film;
 
   const time = fromMinToHours(runTime);
-  
+
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -39,7 +39,7 @@ const FilmDetails = (props) => {
       </div>
     </div>
   );
-}
+};
 
 FilmDetails.propTypes = {
   film: PropTypes.shape({
@@ -49,6 +49,6 @@ FilmDetails.propTypes = {
     starring: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   })
-}
+};
 
 export default FilmDetails;

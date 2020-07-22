@@ -21,7 +21,7 @@ describe(`withForm works correctly`, () => {
           onTextChange={() => {}}
         />
     );
-  
+
     wrapper.props().onRatingChange(10);
     expect(wrapper.props().score).toEqual(10);
   });
@@ -38,7 +38,7 @@ describe(`withForm works correctly`, () => {
           onTextChange={() => {}}
         />
     );
-  
+
     wrapper.props().onTextChange(`new text`);
     expect(wrapper.props().text).toEqual(`new text`);
   });
@@ -55,9 +55,9 @@ describe(`withForm works correctly`, () => {
           onTextChange={() => {}}
         />
     );
-  
+
     wrapper.props().onDisable(true);
     expect(wrapper.props().isDisabled).toEqual(true);
   });
-})
+});
 

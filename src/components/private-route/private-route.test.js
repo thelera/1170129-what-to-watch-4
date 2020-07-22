@@ -25,14 +25,14 @@ const film = {
 
 it(`PrivateRoute is rendered correctly`, () => {
   const tree = renderer.create(
-    <BrowserRouter>
-      <PrivateRoute
-        authorizationStatus={`AUTH`}
-        exact={`exact`}
-        path={`path`}
-        render={() => {}}
-      />
-    </BrowserRouter>).toJSON();
+      <BrowserRouter>
+        <PrivateRoute
+          authorizationStatus={`AUTH`}
+          exact={`exact`}
+          path={`path`}
+          render={() => {}}
+        />
+      </BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
