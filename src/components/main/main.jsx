@@ -1,8 +1,9 @@
 import {AppRoute} from "../../utils/consts.js";
-import {AuthorizationStatus} from "../../utils/consts.js";
 import {connect} from "react-redux";
 import FilmsList from "../films-list/films-list.jsx";
+import Footer from "../footer/footer.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
+import Header from "../header/header.jsx";
 import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -15,8 +16,6 @@ const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {
-    authorizationStatus,
-    avatarImage,
     filmsCount,
     filmsList,
     promoFilm,
@@ -42,25 +41,12 @@ const Main = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <Link to={AppRoute.MY_LIST} className="user-block__link">
-              {authorizationStatus === AuthorizationStatus.NO_AUTH && `Sign In`}
-              {authorizationStatus === AuthorizationStatus.AUTH &&
-                <div className="user-block__avatar">
-                  <img src={avatarImage} alt="User avatar" width="63" height="63" />
-                </div>}
-            </Link>
-          </div>
-        </header>
+        <Header
+          className={`movie-card__head`}
+          isLinkToMyList={true}
+          isMain={true}
+          isUserBlock={true}
+        />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -114,26 +100,15 @@ const Main = (props) => {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer
+          isMain={true}
+        />
       </div>
     </div>
   );
 };
 
 Main.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
   avatarImage: PropTypes.string,
   filmsCount: PropTypes.number.isRequired,
   filmsList: PropTypes.arrayOf(

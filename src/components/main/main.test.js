@@ -134,6 +134,10 @@ it(`Main should render movie card and films catalog`, () => {
       allFilms: films,
       genre: `All genres`,
     },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`,
+      avatarURL: `url`,
+    },
   });
 
   const tree = renderer.create(

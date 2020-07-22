@@ -2,7 +2,7 @@ import AddReview from "../add-review/add-review.jsx";
 import {AppRoute, AuthorizationStatus} from "../../utils/consts.js";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
-import FilmDetails from "../film-details/film-details.jsx";
+import FilmPage from "../film-page/film-page.jsx";
 import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
 import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
@@ -21,7 +21,7 @@ import withVideo from "../../hocs/with-video/with-video.js";
 import withValidation from "../../hocs/with-validation/with-validation.js";
 
 const AddReviewWrapped = withValidation(withForm(AddReview));
-const FilmDetailsWrapped = withActiveItem(FilmDetails);
+const FilmPageWrapped = withActiveItem(FilmPage);
 const SignInWrapped = withValidation(SignIn);
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
@@ -44,18 +44,13 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.MAIN}>
-          <Main
-            authorizationStatus={authorizationStatus}
-            avatarImage={avatarURL}
-          />
+          <Main/>
         </Route>
         <Route exact path={`${AppRoute.FILMS}/:id`} render={(routeProps) => {
           const id = Number(routeProps.match.params.id);
 
           return (
-            <FilmDetailsWrapped
-              authorizationStatus={authorizationStatus}
-              avatarImage={avatarURL}
+            <FilmPageWrapped
               id={id}
               key={id}
             />

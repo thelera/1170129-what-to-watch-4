@@ -135,6 +135,10 @@ it(`App is rendered correctly`, () => {
       key: `vddssdg`,
       promoFilm: filmData,
     },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`,
+      avatarURL: `url`,
+    },
   });
 
   const tree = renderer.create(

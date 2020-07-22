@@ -14,7 +14,7 @@ const film = {
   description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
   director: `David Yates`,
   genre: `Fantasy`,
-  id: 345712414,
+  id: 1,
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   isFavourite: true,
   preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -35,7 +35,7 @@ const films = [
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     director: `David Yates`,
     genre: `Fantasy`,
-    id: 3523525245235,
+    id: 1,
     isFavourite: true,
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -153,6 +153,13 @@ it(`FilmCard is rendered correctly`, () => {
             onMouseLeave={() => { }}
             preview={`ddd`}
             videoLink={`fff`}
+            match={
+              {
+                  params: {
+                      id: 1
+                  }
+              }
+          }
           />
         </Provider>
       </BrowserRouter>, {

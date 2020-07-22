@@ -108,9 +108,9 @@ const withVideo = (Component) => {
           duration={duration}
           isLoading={isLoading}
           isPlaying={isPlaying}
+          progress={this.state.progress}
           onPlayButtonClick={this._handlePlayButtonClick}
           onFullScreenButtonClick={this._handleFullScreenClick}
-          progress={this.state.progress}
         >
           <video
             className={isControled ? `player__video` : ``}

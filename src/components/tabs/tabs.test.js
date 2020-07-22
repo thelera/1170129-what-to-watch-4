@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
 import Tab from "./tabs.jsx";
-import {FilmDetailsTab} from "../../utils/consts.js";
+import {FilmPageTab} from "../../utils/consts.js";
 
 const children = <div className="children-component" />;
 
@@ -11,7 +11,7 @@ it(`Tab is rendered correctly`, () => {
       <BrowserRouter>
         <Tab
           id={5}
-          tab={FilmDetailsTab.DETAILS}
+          tab={FilmPageTab.DETAILS}
           onTabClick={() => {}}
         >
           {children}

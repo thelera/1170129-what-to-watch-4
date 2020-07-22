@@ -4,6 +4,7 @@ import {createRange, getElementById, getValidationMessage} from "../../utils/com
 import Error from "../error/error.jsx";
 import {getAllFilms} from "../../reducer/data/selectors.js";
 import {getError} from "../../reducer/errors/selectors.js";
+import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
 import {MAX_RATING} from "../../utils/consts.js";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
@@ -12,7 +13,6 @@ import React, {Fragment} from "react";
 
 const AddReview = (props) => {
   const {
-    avatarImage,
     error: errorText,
     isDisabled,
     film,
@@ -94,16 +94,10 @@ const AddReview = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header">
-            <div className="logo">
-              <Link to={AppRoute.MAIN} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <nav className="breadcrumbs">
+          <Header
+            isLinkToMyList={true}
+          >
+            {<nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
                   <Link to={`${AppRoute.FILMS}/${filmId}`} className="breadcrumbs__link">{title}</Link>
@@ -112,14 +106,8 @@ const AddReview = (props) => {
                   <a className="breadcrumbs__link">Add review</a>
                 </li>
               </ul>
-            </nav>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src={avatarImage} alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
+            </nav>}
+          </Header>
 
           <div className="movie-card__poster movie-card__poster--small">
             <img src={image} alt={title} width="218" height="327" />

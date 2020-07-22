@@ -1,4 +1,4 @@
-import {FilmDetailsTab} from "../../utils/consts.js";
+import {FilmPageTab} from "../../utils/consts.js";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -9,9 +9,9 @@ const Tabs = (props) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {Object.values(FilmDetailsTab).map((tabName, index) => (
+          {Object.values(FilmPageTab).map((tabName, index) => (
             <li className={`movie-nav__item ${activeTab === tabName && `movie-nav__item--active`}`} key={tabName + index}>
-              <a href="#"
+              <a
                 className="movie-nav__link"
                 onClick={(evt) => {
                   evt.preventDefault();
@@ -33,7 +33,7 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   children: PropTypes.node.isRequired,
-  tab: PropTypes.oneOf([FilmDetailsTab.OVERVIEW, FilmDetailsTab.DETAILS, FilmDetailsTab.REVIEWS]).isRequired,
+  tab: PropTypes.oneOf([FilmPageTab.OVERVIEW, FilmPageTab.DETAILS, FilmPageTab.REVIEWS]).isRequired,
   onTabClick: PropTypes.func.isRequired,
 };
 

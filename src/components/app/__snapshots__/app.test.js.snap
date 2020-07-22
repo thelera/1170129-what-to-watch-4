@@ -51,7 +51,18 @@ exports[`App is rendered correctly 1`] = `
           className="user-block__link"
           href="/mylist"
           onClick={[Function]}
-        />
+        >
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="url"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -155,7 +166,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             All genres
@@ -166,7 +176,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Adventure
@@ -177,7 +186,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Comedy
@@ -188,7 +196,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Crime
@@ -199,7 +206,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Documentary
@@ -210,7 +216,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Drama
@@ -221,7 +226,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Fantasy
@@ -232,7 +236,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Horror
@@ -243,7 +246,6 @@ exports[`App is rendered correctly 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Kid's and Family

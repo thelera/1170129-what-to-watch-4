@@ -3,6 +3,7 @@ import {AppRoute} from "../../utils/consts.js";
 import {connect} from "react-redux";
 import Error from "../error/error.jsx";
 import {getError} from "../../reducer/errors/selectors.js";
+import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
@@ -56,17 +57,11 @@ const SignIn = (props) => {
         />}
 
       <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to={AppRoute.MAIN} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <h1 className="page-title user-page__title">Sign in</h1>
-        </header>
+      <Header
+        className={`user-page__head`}
+        isLinkToMyList={true}
+        isUserPage={true}
+      />
 
         <div className="sign-in user-page__content">
           <form

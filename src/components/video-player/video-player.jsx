@@ -44,7 +44,7 @@ const VideoPlayer = (props) => {
               <polygon id="Line" fill="#EEE5B5" fillRule="nonzero" points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21" />
             </g>
           </symbol>
-          <symbol id="play" viewBox="0 0 19 19">
+          <symbol id="play-s" viewBox="0 0 19 19">
             <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5" />
           </symbol>
         </svg>
@@ -85,7 +85,7 @@ const VideoPlayer = (props) => {
                 :
                 <React.Fragment>
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play"></use>
+                    <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </React.Fragment>}

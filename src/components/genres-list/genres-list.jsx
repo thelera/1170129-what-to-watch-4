@@ -16,7 +16,6 @@ const GenresList = (props) => {
           key={genre}
         >
           <a
-            href="#"
             className="catalog__genres-link"
             onClick={(evt) => {
               evt.preventDefault();

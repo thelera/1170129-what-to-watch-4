@@ -131,7 +131,7 @@ Array [
         WTW
       </h1>
       <header
-        className="page-header"
+        className="page-header undefined"
       >
         <div
           className="logo"
@@ -187,7 +187,7 @@ Array [
           </ul>
         </nav>
         <div
-          className="user-block"
+          class="user-block"
         >
           <div
             className="user-block__avatar"
@@ -195,7 +195,7 @@ Array [
             <img
               alt="User avatar"
               height="63"
-              src="image"
+              src="url"
               width="63"
             />
           </div>

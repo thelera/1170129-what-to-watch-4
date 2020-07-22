@@ -41,7 +41,7 @@ const ErrorStatus = {
   DEFAULT: {errorMessage: `Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу.`},
 };
 
-const FilmDetailsTab = {
+const FilmPageTab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
@@ -75,4 +75,4 @@ const Video = {
   IS_MUTED: true,
 };
 
-export {Api, AppRoute, AuthorizationStatus, ErrorMessage, ErrorStatus, FilmDetailsTab, Genre, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, ValidationMessage, Video};
+export {Api, AppRoute, AuthorizationStatus, ErrorMessage, ErrorStatus, FilmPageTab, Genre, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, ValidationMessage, Video};

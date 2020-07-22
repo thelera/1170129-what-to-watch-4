@@ -1,7 +1,12 @@
 import {AddReview} from "./add-review.jsx";
 import {BrowserRouter} from "react-router-dom";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+import {Provider} from "react-redux";
 import React from "react";
 import renderer from "react-test-renderer";
+
+const mockStore = configureStore([]);
 
 const film = {
   backgroundColor: `#E45322`,
@@ -24,23 +29,32 @@ const film = {
 };
 
 it(`AddReview is rendered correctly`, () => {
+  const store = mockStore({
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`,
+      avatarURL: `url`,
+    },
+  });
+
   const tree = renderer.create(
       <BrowserRouter>
-        <AddReview
-          avatarImage={`image`}
-          error={``}
-          film={film}
-          history={{}}
-          isDisabled={false}
-          score={4}
-          text={``}
-          validationMessage={``}
-          onSubmit={() => {}}
-          onDisable={() => {}}
-          onRatingChange={() => {}}
-          onTextChange={() => {}}
-          onValidForm={() => {}}
-        />
+        <Provider store={store}>
+          <AddReview
+            avatarImage={`image`}
+            error={``}
+            film={film}
+            history={{}}
+            isDisabled={false}
+            score={4}
+            text={``}
+            validationMessage={``}
+            onSubmit={() => {}}
+            onDisable={() => {}}
+            onRatingChange={() => {}}
+            onTextChange={() => {}}
+            onValidForm={() => {}}
+          />
+        </Provider>
       </BrowserRouter>, {
         createNodeMock: () => {
           return {};
