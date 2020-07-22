@@ -1,6 +1,7 @@
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
 import {Genre, GENRES_COUNT} from "../../utils/consts.js";
+import {getGenre} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -14,9 +15,11 @@ const GenresList = (props) => {
           className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}
           key={genre}
         >
-          <a href="#"
+          <a
             className="catalog__genres-link"
-            onClick={() => {
+            onClick={(evt) => {
+              evt.preventDefault();
+
               onGenreClick(genre);
               onActiveClick(genre);
             }}
@@ -31,18 +34,17 @@ const GenresList = (props) => {
 
 GenresList.propTypes = {
   activeItem: PropTypes.oneOf(Object.values(Genre)),
-  genre: PropTypes.oneOf(Object.values(Genre)),
   onActiveClick: PropTypes.func.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  genre: state.genre,
+  genre: getGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
-    dispatch(ActionCreator.genreAction(genre));
+    dispatch(ActionCreator.changeGenre(genre));
   },
 });
 

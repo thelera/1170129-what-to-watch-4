@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withVideo is rendered correctly 1`] = `
+<div>
+  <video
+    className=""
+  >
+    Sorry, your browser doesn't support embedded videos.
+  </video>
+</div>
+`;

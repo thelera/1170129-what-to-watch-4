@@ -15,7 +15,6 @@ exports[`Tab is rendered correctly 1`] = `
       >
         <a
           className="movie-nav__link"
-          href="#"
           onClick={[Function]}
         >
           Overview
@@ -26,7 +25,6 @@ exports[`Tab is rendered correctly 1`] = `
       >
         <a
           className="movie-nav__link"
-          href="#"
           onClick={[Function]}
         >
           Details
@@ -37,7 +35,6 @@ exports[`Tab is rendered correctly 1`] = `
       >
         <a
           className="movie-nav__link"
-          href="#"
           onClick={[Function]}
         >
           Reviews

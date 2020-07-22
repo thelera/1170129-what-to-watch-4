@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error is rendered correctly 1`] = `
+<div
+  className="modal"
+>
+  <div
+    className="modal-content"
+    style={
+      Object {
+        "color": "red",
+        "padding": "20px",
+      }
+    }
+  >
+    <p />
+  </div>
+</div>
+`;

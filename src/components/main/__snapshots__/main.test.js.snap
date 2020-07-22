@@ -9,8 +9,8 @@ exports[`Main should render movie card and films catalog 1`] = `
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       />
     </div>
     <h1
@@ -47,16 +47,22 @@ exports[`Main should render movie card and films catalog 1`] = `
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          className="user-block__link"
+          href="/mylist"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="url"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -69,7 +75,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           className="movie-card__poster"
         >
           <img
-            alt="No Country for Old Men"
+            alt="Fantastic Beasts: The Crimes of Grindelwald"
             height="327"
             src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="218"
@@ -81,7 +87,7 @@ exports[`Main should render movie card and films catalog 1`] = `
           <h2
             className="movie-card__title"
           >
-            No Country for Old Men
+            Fantastic Beasts: The Crimes of Grindelwald
           </h2>
           <p
             className="movie-card__meta"
@@ -89,20 +95,21 @@ exports[`Main should render movie card and films catalog 1`] = `
             <span
               className="movie-card__genre"
             >
-              Horror
+              Fantasy
             </span>
             <span
               className="movie-card__year"
             >
-              2005
+              2015
             </span>
           </p>
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
-              type="button"
+              href="/player/345712414"
+              onClick={[Function]}
             >
               <svg
                 height="19"
@@ -116,9 +123,10 @@ exports[`Main should render movie card and films catalog 1`] = `
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -158,7 +166,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             All genres
@@ -169,7 +176,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Adventure
@@ -180,7 +186,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Comedy
@@ -191,7 +196,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Crime
@@ -202,7 +206,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Documentary
@@ -213,7 +216,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Drama
@@ -224,7 +226,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Fantasy
@@ -235,7 +236,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Horror
@@ -246,7 +246,6 @@ exports[`Main should render movie card and films catalog 1`] = `
         >
           <a
             className="catalog__genres-link"
-            href="#"
             onClick={[Function]}
           >
             Kid's and Family
@@ -259,22 +258,145 @@ exports[`Main should render movie card and films catalog 1`] = `
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/1"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
-            <video>
+            <div
+              className="visually-hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <symbol
+                  id="add"
+                  viewBox="0 0 19 20"
+                >
+                  <title>
+                    +
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Page-1"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      id="+"
+                      points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="full-screen"
+                  viewBox="0 0 27 27"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M23.8571 0H16V3.14286H23.8571V11H27V3.14286V0H23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M27 23.8571V16H23.8571V23.8571H16V27H23.8571H27L27 23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M0 3.14286L0 11H3.14286L3.14286 3.14286L11 3.14286V0H3.14286H0L0 3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M3.14286 27H11V23.8571H3.14286L3.14286 16H0L0 23.8571V27H3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="in-list"
+                  viewBox="0 0 18 14"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="pause"
+                  viewBox="0 0 14 21"
+                >
+                  <title>
+                    Artboard
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Artboard"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+                    />
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="play-s"
+                  viewBox="0 0 19 19"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M0 0L19 9.5L0 19V0Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+              </svg>
+            </div>
+            <video
+              className=""
+            >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/1"
+              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -283,22 +405,145 @@ exports[`Main should render movie card and films catalog 1`] = `
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/2"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
-            <video>
+            <div
+              className="visually-hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <symbol
+                  id="add"
+                  viewBox="0 0 19 20"
+                >
+                  <title>
+                    +
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Page-1"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      id="+"
+                      points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="full-screen"
+                  viewBox="0 0 27 27"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M23.8571 0H16V3.14286H23.8571V11H27V3.14286V0H23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M27 23.8571V16H23.8571V23.8571H16V27H23.8571H27L27 23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M0 3.14286L0 11H3.14286L3.14286 3.14286L11 3.14286V0H3.14286H0L0 3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M3.14286 27H11V23.8571H3.14286L3.14286 16H0L0 23.8571V27H3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="in-list"
+                  viewBox="0 0 18 14"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="pause"
+                  viewBox="0 0 14 21"
+                >
+                  <title>
+                    Artboard
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Artboard"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+                    />
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="play-s"
+                  viewBox="0 0 19 19"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M0 0L19 9.5L0 19V0Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+              </svg>
+            </div>
+            <video
+              className=""
+            >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/2"
+              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -307,22 +552,145 @@ exports[`Main should render movie card and films catalog 1`] = `
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/3"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
-            <video>
+            <div
+              className="visually-hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <symbol
+                  id="add"
+                  viewBox="0 0 19 20"
+                >
+                  <title>
+                    +
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Page-1"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      id="+"
+                      points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="full-screen"
+                  viewBox="0 0 27 27"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M23.8571 0H16V3.14286H23.8571V11H27V3.14286V0H23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M27 23.8571V16H23.8571V23.8571H16V27H23.8571H27L27 23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M0 3.14286L0 11H3.14286L3.14286 3.14286L11 3.14286V0H3.14286H0L0 3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M3.14286 27H11V23.8571H3.14286L3.14286 16H0L0 23.8571V27H3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="in-list"
+                  viewBox="0 0 18 14"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="pause"
+                  viewBox="0 0 14 21"
+                >
+                  <title>
+                    Artboard
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Artboard"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+                    />
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="play-s"
+                  viewBox="0 0 19 19"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M0 0L19 9.5L0 19V0Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+              </svg>
+            </div>
+            <video
+              className=""
+            >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/3"
+              onClick={[Function]}
             >
               Macbeth
             </a>
@@ -331,22 +699,145 @@ exports[`Main should render movie card and films catalog 1`] = `
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/4"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
-            <video>
+            <div
+              className="visually-hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <symbol
+                  id="add"
+                  viewBox="0 0 19 20"
+                >
+                  <title>
+                    +
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Page-1"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      id="+"
+                      points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="full-screen"
+                  viewBox="0 0 27 27"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M23.8571 0H16V3.14286H23.8571V11H27V3.14286V0H23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M27 23.8571V16H23.8571V23.8571H16V27H23.8571H27L27 23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M0 3.14286L0 11H3.14286L3.14286 3.14286L11 3.14286V0H3.14286H0L0 3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M3.14286 27H11V23.8571H3.14286L3.14286 16H0L0 23.8571V27H3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="in-list"
+                  viewBox="0 0 18 14"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="pause"
+                  viewBox="0 0 14 21"
+                >
+                  <title>
+                    Artboard
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Artboard"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+                    />
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="play-s"
+                  viewBox="0 0 19 19"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M0 0L19 9.5L0 19V0Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+              </svg>
+            </div>
+            <video
+              className=""
+            >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/4"
+              onClick={[Function]}
             >
               Aviator
             </a>
@@ -355,22 +846,145 @@ exports[`Main should render movie card and films catalog 1`] = `
         <article
           className="small-movie-card catalog__movies-card"
         >
-          <div
+          <a
             className="small-movie-card__image"
+            href="/films/5"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
-            <video>
+            <div
+              className="visually-hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <symbol
+                  id="add"
+                  viewBox="0 0 19 20"
+                >
+                  <title>
+                    +
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Page-1"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      id="+"
+                      points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="full-screen"
+                  viewBox="0 0 27 27"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M23.8571 0H16V3.14286H23.8571V11H27V3.14286V0H23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M27 23.8571V16H23.8571V23.8571H16V27H23.8571H27L27 23.8571Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M0 3.14286L0 11H3.14286L3.14286 3.14286L11 3.14286V0H3.14286H0L0 3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    clipRule="evenodd"
+                    d="M3.14286 27H11V23.8571H3.14286L3.14286 16H0L0 23.8571V27H3.14286Z"
+                    fill="#FFF9D9"
+                    fillOpacity="0.7"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="in-list"
+                  viewBox="0 0 18 14"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+                <symbol
+                  id="pause"
+                  viewBox="0 0 14 21"
+                >
+                  <title>
+                    Artboard
+                  </title>
+                  <desc>
+                    Created with Sketch.
+                  </desc>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    id="Artboard"
+                    stroke="none"
+                    strokeWidth="1"
+                  >
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+                    />
+                    <polygon
+                      fill="#EEE5B5"
+                      fillRule="nonzero"
+                      id="Line"
+                      points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+                    />
+                  </g>
+                </symbol>
+                <symbol
+                  id="play-s"
+                  viewBox="0 0 19 19"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M0 0L19 9.5L0 19V0Z"
+                    fill="#EEE5B5"
+                    fillRule="evenodd"
+                  />
+                </symbol>
+              </svg>
+            </div>
+            <video
+              className=""
+            >
               Sorry, your browser doesn't support embedded videos.
             </video>
-          </div>
+          </a>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
+              href="/films/5"
+              onClick={[Function]}
             >
               We Need To Talk About Kevin
             </a>

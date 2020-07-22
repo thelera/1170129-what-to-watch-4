@@ -10,22 +10,28 @@ const Video = {
 };
 
 const film = {
-  preview: `https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4`,
-  image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewVideoLink: `https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4`,
 };
 
 it(`VideoPlayer is rendered correctly`, () => {
-  const {preview, image} = film;
+  const {preview, previewVideoLink} = film;
 
   const tree = renderer.create(
       <VideoPlayer
-        source={preview}
-        poster={image}
+        duration={222}
+        source={previewVideoLink}
+        poster={preview}
+        progress={10}
         isMuted={Video.IS_MUTED}
         isPlaying={true}
         width={Video.WIDTH}
         height={Video.HEIGHT}
-      />, {
+        onFullScreenButtonClick={() => {}}
+        onPlayButtonClick={() => {}}
+      >
+        <video/>
+      </VideoPlayer>, {
         createNodeMock: () => {
           return {};
         }
