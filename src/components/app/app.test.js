@@ -152,6 +152,7 @@ it(`App is rendered correctly`, () => {
           authorizationStatus={`AUTH`}
           avatarURL={`url`}
           login={() => {}}
+          onDefaultGenre={() => {}}
         />
       </Provider>, {
         createNodeMock: () => {

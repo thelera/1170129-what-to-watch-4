@@ -27,18 +27,17 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        if (response) {
-          if (response && response.status === ErrorStatus.OK.code) {
-            dispatch(ErrorActionCreator.resetError());
-            dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-            dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
-          }
+        if (response && response.status === ErrorStatus.OK.code) {
+          dispatch(ErrorActionCreator.resetError());
+          dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+          dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
         }
       })
       .catch((err) => {
-        if (err.response.status !== ErrorStatus.UNAUTHORIZED.code) {
-          dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+        if (err.response && err.response.status === ErrorStatus.UNAUTHORIZED.code) {
+          return;
         }
+        dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
       });
   },
   login: (authData) => (dispatch, getState, api) => {
@@ -54,9 +53,10 @@ const Operation = {
         }
       })
       .catch((err) => {
-        if (err.response.status !== ErrorStatus.UNAUTHORIZED.code) {
-          dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
+        if (err.response && err.response.status === ErrorStatus.UNAUTHORIZED.code) {
+          return;
         }
+        dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
       });
   },
 };
