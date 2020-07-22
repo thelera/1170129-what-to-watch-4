@@ -1,8 +1,10 @@
 import {AppRoute} from "../../utils/consts.js";
 import {connect} from "react-redux";
+import Error from "../error/error.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import Footer from "../footer/footer.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
+import {getError} from "../../reducer/errors/selectors.js";
 import Header from "../header/header.jsx";
 import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
@@ -16,6 +18,7 @@ const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {
+    errorText,
     filmsCount,
     filmsList,
     promoFilm,
@@ -34,6 +37,12 @@ const Main = (props) => {
 
   return (
     <div>
+      {
+        errorText &&
+        <Error
+          message={errorText}
+        />
+      }
       <section className="movie-card">
         <div className="movie-card__bg">
           <img src={backgroundImage} alt={title} />
@@ -110,6 +119,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   avatarImage: PropTypes.string,
+  errorText: PropTypes.string,
   filmsCount: PropTypes.number.isRequired,
   filmsList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -144,6 +154,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  errorText: getError(state),
   filmsCount: getShowedFilmsCount(state),
   filmsList: getFilmsListByGenre(state).slice(0, getShowedFilmsCount(state)),
   promoFilm: getPromoFilm(state),

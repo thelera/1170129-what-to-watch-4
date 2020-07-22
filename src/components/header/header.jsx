@@ -42,7 +42,7 @@ const Header = (props) => {
           </div> :
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src={avatarImage} alt="User avatar" width="63" height="63" />
+              {avatarImage && <img src={avatarImage} alt="User avatar" width="63" height="63" />}
             </div>
           </div>
       }

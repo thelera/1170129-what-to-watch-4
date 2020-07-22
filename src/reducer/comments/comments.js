@@ -1,5 +1,5 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {ErrorMessage} from "../../utils/consts.js";
+import {ErrorMessage, ErrorStatus} from "../../utils/consts.js";
 
 const initialState = {
   comments: [],
@@ -23,7 +23,10 @@ const Operation = {
       comment: comment.text,
     })
     .then((response) => {
-      dispatch(ErrorActionCreator.resetError(response.data));
+      if (response && response.status === ErrorStatus.OK.code) {
+        dispatch(ErrorActionCreator.resetError());
+      }
+
       dispatch(ActionCreator.loadComments(response.data));
     })
     .catch((err) => {
@@ -36,6 +39,10 @@ const Operation = {
     return api.get(`/comments/${id}`)
     .then((response) => {
       if (response) {
+        if (response && response.status === ErrorStatus.OK.code) {
+          dispatch(ErrorActionCreator.resetError());
+        }
+
         dispatch(ActionCreator.loadComments(response.data));
       }
     })

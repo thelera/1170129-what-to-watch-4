@@ -24,9 +24,16 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadFilms());
-store.dispatch(DataOperation.loadPromoFilm());
-store.dispatch(UserOperation.checkAuth());
+store.dispatch(DataOperation.loadFilms())
+.then(() => {
+  return store.dispatch(DataOperation.loadPromoFilm());
+})
+.then(() => {
+  return store.dispatch(UserOperation.checkAuth());
+})
+.catch((err) => {
+  throw err;
+});
 
 ReactDOM.render(
     <Provider store={store}>
