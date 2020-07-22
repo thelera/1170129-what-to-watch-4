@@ -47,7 +47,7 @@ const getRatingLevel = (score) => {
       result = `Bad`;
   }
 
-   result;
+  return result;
 };
 
 const getSimilarFilmsByGenre = (films, id) => {
@@ -59,11 +59,15 @@ const getSimilarFilmsByGenre = (films, id) => {
 };
 
 const getUniqueArrayElements = (array) => {
-return array.forEach((item) => {
+  let result = [];
+
+  array.forEach((item) => {
     if (!result.includes(item)) {
       result.push(item);
     }
-  });;
+  });
+
+  return result;
 };
 
 const getValidationMessage = (score, text) => {
@@ -94,7 +98,7 @@ const updateFilmsByNewFilm = (films, film) => {
     return false;
   }
 
-  return [].concat(films.slice(0, index), film, films.slice(index + 1));;
+  return [].concat(films.slice(0, index), film, films.slice(index + 1));
 };
 
 export {createRange, fromMinToHours, fromSecToHours, getElementById, getFilmsByFilter, getRatingLevel, getSimilarFilmsByGenre, getUniqueArrayElements, getValidationMessage, parseDate, removeFromArray, updateFilmsByNewFilm};
