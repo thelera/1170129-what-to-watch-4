@@ -187,7 +187,7 @@ Array [
           </ul>
         </nav>
         <div
-          class="user-block"
+          className="user-block"
         >
           <div
             className="user-block__avatar"

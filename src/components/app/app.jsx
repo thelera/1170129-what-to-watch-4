@@ -8,7 +8,6 @@ import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MyList from "../my-list/my-list.jsx";
-import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import PrivateRoute from "../private-route/private-route.jsx";
 import PropTypes from "prop-types";
@@ -165,9 +164,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadComments(id) {
-    dispatch(CommentsOperation.loadComments(id));
-  },
   login(authData) {
     dispatch(UserOperation.login(authData));
   },

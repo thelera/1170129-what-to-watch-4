@@ -9,7 +9,7 @@ exports[`FilmsList is rendered correctly 1`] = `
   >
     <a
       className="small-movie-card__image"
-      href="/films/3523525245235"
+      href="/films/1"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -121,7 +121,7 @@ exports[`FilmsList is rendered correctly 1`] = `
             </g>
           </symbol>
           <symbol
-            id="play"
+            id="play-s"
             viewBox="0 0 19 19"
           >
             <path
@@ -144,7 +144,7 @@ exports[`FilmsList is rendered correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/films/3523525245235"
+        href="/films/1"
         onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
@@ -156,7 +156,7 @@ exports[`FilmsList is rendered correctly 1`] = `
   >
     <a
       className="small-movie-card__image"
-      href="/films/0.7009066059207478"
+      href="/films/4"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -268,7 +268,7 @@ exports[`FilmsList is rendered correctly 1`] = `
             </g>
           </symbol>
           <symbol
-            id="play"
+            id="play-s"
             viewBox="0 0 19 19"
           >
             <path
@@ -291,7 +291,7 @@ exports[`FilmsList is rendered correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/films/0.7009066059207478"
+        href="/films/4"
         onClick={[Function]}
       >
         Bohemian Rhapsody
@@ -303,7 +303,7 @@ exports[`FilmsList is rendered correctly 1`] = `
   >
     <a
       className="small-movie-card__image"
-      href="/films/0.7524951862353644"
+      href="/films/3"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
@@ -415,7 +415,7 @@ exports[`FilmsList is rendered correctly 1`] = `
             </g>
           </symbol>
           <symbol
-            id="play"
+            id="play-s"
             viewBox="0 0 19 19"
           >
             <path
@@ -438,7 +438,7 @@ exports[`FilmsList is rendered correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/films/0.7524951862353644"
+        href="/films/3"
         onClick={[Function]}
       >
         Macbeth

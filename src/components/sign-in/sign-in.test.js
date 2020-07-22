@@ -11,6 +11,7 @@ const mockStore = configureStore([]);
 it(`SignIn is rendered correctly`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
+      authorizationStatus: `AUTH`,
       error: `Error`,
     },
   });

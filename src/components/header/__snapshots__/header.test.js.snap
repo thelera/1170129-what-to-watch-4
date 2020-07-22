@@ -30,7 +30,7 @@ exports[`Header is rendered correctly 1`] = `
     </a>
   </div>
   <div
-    class="user-block"
+    className="user-block"
   >
     <div
       className="user-block__avatar"

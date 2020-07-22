@@ -9,19 +9,6 @@ const MockComponent = () => <div />;
 const MockComponentWrapped = withTimerOnHover(MockComponent);
 
 describe(`withTimerOnHover works correctly`, () => {
-  it(`Should starts playing`, () => {
-    const wrapper = shallow(
-        <MockComponentWrapped
-          isPlaying={false}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-        />
-    );
-
-    wrapper.props().onMouseEnter();
-    expect(wrapper.props().isPlaying).toEqual(true);
-  });
-
   it(`Should stops playing`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
