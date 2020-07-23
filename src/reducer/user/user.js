@@ -27,11 +27,8 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        if (response && response.status === ErrorStatus.OK.code) {
-          dispatch(ErrorActionCreator.resetError());
-          dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-          dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
-        }
+        dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
         if (err.response && err.response.status === ErrorStatus.UNAUTHORIZED.code) {
@@ -46,11 +43,8 @@ const Operation = {
       password: authData.password,
     })
       .then((response) => {
-        if (response && response.status === ErrorStatus.OK.code) {
-          dispatch(ErrorActionCreator.resetError());
-          dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-          dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
-        }
+        dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
         if (err.response && err.response.status === ErrorStatus.UNAUTHORIZED.code) {

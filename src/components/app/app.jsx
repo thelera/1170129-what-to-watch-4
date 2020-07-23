@@ -1,6 +1,5 @@
-import {ActionCreator} from "../../reducer/data/data.js";
 import AddReview from "../add-review/add-review.jsx";
-import {AppRoute, AuthorizationStatus, Genre} from "../../utils/consts.js";
+import {AppRoute, AuthorizationStatus} from "../../utils/consts.js";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Error from "../error/error.jsx";
@@ -35,7 +34,6 @@ const App = (props) => {
     errorText,
     favouriteFilms,
     login,
-    onDefaultGenre,
   } = props;
 
   if (!allFilms) {
@@ -54,11 +52,9 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.MAIN} render={() => {
-          onDefaultGenre();
-
-          return <Main/>;
-        }}/>
+        <Route exact path={AppRoute.MAIN}>
+          <Main/>
+        </Route>
         <Route exact path={`${AppRoute.FILMS}/:id`} render={(routeProps) => {
           const id = Number(routeProps.match.params.id);
 
@@ -169,7 +165,6 @@ App.propTypes = {
     year: PropTypes.number.isRequired,
   })),
   login: PropTypes.func.isRequired,
-  onDefaultGenre: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -183,9 +178,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
-  },
-  onDefaultGenre() {
-    dispatch(ActionCreator.changeGenre(Genre.ALL));
   },
 });
 

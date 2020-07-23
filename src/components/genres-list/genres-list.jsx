@@ -6,13 +6,13 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const GenresList = (props) => {
-  const {activeItem: activeGenre = Genre.ALL, onActiveClick, onGenreClick} = props;
+  const {activeGenre, activeItem = activeGenre, onActiveClick, onGenreClick} = props;
 
   return (
     <ul className="catalog__genres-list">
       {Object.values(Genre).slice(0, GENRES_COUNT).map((genre) => (
         <li
-          className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}
+          className={`catalog__genres-item ${genre === activeItem ? `catalog__genres-item--active` : ``}`}
           key={genre}
         >
           <a
@@ -34,12 +34,13 @@ const GenresList = (props) => {
 
 GenresList.propTypes = {
   activeItem: PropTypes.oneOf(Object.values(Genre)),
+  activeGenre: PropTypes.oneOf(Object.values(Genre)),
   onActiveClick: PropTypes.func.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  genre: getGenre(state),
+  activeGenre: getGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

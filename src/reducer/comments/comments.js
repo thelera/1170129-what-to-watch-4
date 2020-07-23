@@ -1,5 +1,5 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {ErrorMessage, ErrorStatus} from "../../utils/consts.js";
+import {ErrorMessage} from "../../utils/consts.js";
 
 const initialState = {
   comments: [],
@@ -23,28 +23,18 @@ const Operation = {
       comment: comment.text,
     })
     .then((response) => {
-      if (response && response.status === ErrorStatus.OK.code) {
-        dispatch(ErrorActionCreator.resetError());
-      }
-
       dispatch(ActionCreator.loadComments(response.data));
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.SENDING));
 
-      throw err;
+      return Promise.reject(err);
     });
   },
   loadComments: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
     .then((response) => {
-      if (response) {
-        if (response && response.status === ErrorStatus.OK.code) {
-          dispatch(ErrorActionCreator.resetError());
-        }
-
-        dispatch(ActionCreator.loadComments(response.data));
-      }
+      dispatch(ActionCreator.loadComments(response.data));
     })
     .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));

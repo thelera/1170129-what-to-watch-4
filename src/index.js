@@ -3,7 +3,6 @@ import App from "./components/app/app.jsx";
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {createApi} from "./api.js";
-import {ErrorStatus} from "./utils/consts.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation} from "./reducer/user/user.js";
 import {Provider} from "react-redux";
@@ -26,17 +25,11 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadFilms())
-.then((response) => {
-  if (response.status === ErrorStatus.OK.code) {
-    return store.dispatch(DataOperation.loadPromoFilm());
-  }
-  return Promise.reject();
+.then(() => {
+  return store.dispatch(DataOperation.loadPromoFilm());
 })
-.then((response) => {
-  if (response.status === ErrorStatus.OK.code) {
-    return store.dispatch(UserOperation.checkAuth());
-  }
-  return Promise.reject();
+.then(() => {
+  return store.dispatch(UserOperation.checkAuth());
 });
 
 ReactDOM.render(

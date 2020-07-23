@@ -1,5 +1,5 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {ErrorMessage, ErrorStatus, Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
+import {ErrorMessage, Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 import {createFilm, createFilms} from "../../adapters/films.js";
 import {updateFilmsByNewFilm} from "../../utils/common.js";
 
@@ -58,11 +58,8 @@ const Operation = {
     const status = isFavourite ? 0 : 1;
     return api.post(`/favorite/${id}/${status}`)
     .then((response) => {
-      if (response && response.status === ErrorStatus.OK.code) {
-        dispatch(ErrorActionCreator.resetError());
-        dispatch(ActionCreator.updateFilms(createFilm(response.data)));
-        dispatch(ActionCreator.updatePromoFilm(createFilm(response.data)));
-      }
+      dispatch(ActionCreator.updateFilms(createFilm(response.data)));
+      dispatch(ActionCreator.updatePromoFilm(createFilm(response.data)));
     })
     .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.DEFAULT));
@@ -71,10 +68,7 @@ const Operation = {
   loadFavouriteFilms: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
     .then((response) => {
-      if (response && response.status === ErrorStatus.OK.code) {
-        dispatch(ErrorActionCreator.resetError());
-        dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
-      }
+      dispatch(ActionCreator.favouriteFilms(createFilms(response.data)));
     })
     .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
@@ -83,27 +77,23 @@ const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
     .then((response) => {
-      if (response && response.status === ErrorStatus.OK.code) {
-        dispatch(ErrorActionCreator.resetError());
-        dispatch(ActionCreator.setFilms(createFilms(response.data)));
-      }
-      return response;
+      dispatch(ActionCreator.setFilms(createFilms(response.data)));
     })
-    .catch(() => {
+    .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
+
+      return Promise.reject(err);
     });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
     return api.get(`films/promo`)
       .then((response) => {
-        if (response && response.status === ErrorStatus.OK.code) {
-          dispatch(ErrorActionCreator.resetError());
-          dispatch(ActionCreator.setPromoFilm(createFilm(response.data)));
-        }
-        return response;
+        dispatch(ActionCreator.setPromoFilm(createFilm(response.data)));
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
+
+        return Promise.reject(err);
       });
   },
 };

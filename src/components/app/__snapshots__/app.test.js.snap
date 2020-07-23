@@ -162,7 +162,7 @@ exports[`App is rendered correctly 1`] = `
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
