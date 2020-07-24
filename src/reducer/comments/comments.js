@@ -23,21 +23,18 @@ const Operation = {
       comment: comment.text,
     })
     .then((response) => {
-      dispatch(ErrorActionCreator.resetError(response.data));
       dispatch(ActionCreator.loadComments(response.data));
     })
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.SENDING));
 
-      throw err;
+      return Promise.reject(err);
     });
   },
   loadComments: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
     .then((response) => {
-      if (response) {
-        dispatch(ActionCreator.loadComments(response.data));
-      }
+      dispatch(ActionCreator.loadComments(response.data));
     })
     .catch(() => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));

@@ -1,7 +1,7 @@
 import axios from "axios";
 import {Api, ErrorStatus} from "./utils/consts.js";
 
-const createApi = (onUnauthorized) => {
+const createApi = (onUnauthorized, resetError) => {
   const api = axios.create({
     baseURL: Api.BASE_URL,
     timeout: Api.TIMEOUT,
@@ -9,6 +9,9 @@ const createApi = (onUnauthorized) => {
   });
 
   const onSuccess = (response) => {
+    if (response.status === ErrorStatus.OK.code) {
+      resetError();
+    }
     return response;
   };
 
@@ -18,6 +21,8 @@ const createApi = (onUnauthorized) => {
     if (response && response.status === ErrorStatus.UNAUTHORIZED.code) {
       onUnauthorized();
     }
+
+    return Promise.reject(err);
   };
 
   api.interceptors.response.use(onSuccess, onFail);

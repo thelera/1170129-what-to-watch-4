@@ -1,6 +1,7 @@
 import {AppRoute, FilmPageTab} from "../../utils/consts.js";
 import Comments from "../comments/comments.jsx";
 import {connect} from "react-redux";
+import Error from "../error/error.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import FilmOverview from "../film-overview/film-overview.jsx";
@@ -9,6 +10,7 @@ import {getSimilarFilmsByGenre} from "../../utils/common.js";
 import {getAllFilms} from "../../reducer/data/selectors.js";
 import {getComments} from "../../reducer/comments/selectors.js";
 import {getElementById} from "../../utils/common.js";
+import {getError} from "../../reducer/errors/selectors.js";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -60,6 +62,7 @@ class FilmPage extends PureComponent {
   render() {
     const {
       activeItem: activeTab = FilmPageTab.OVERVIEW,
+      errorText,
       film,
       filmsList: filmsByGenre,
       onActiveClick: onTabClick,
@@ -70,6 +73,13 @@ class FilmPage extends PureComponent {
 
     return (
       <React.Fragment>
+        {
+          errorText &&
+          <Error
+            message={errorText}
+          />
+        }
+
         <div className="visually-hidden">
           <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"> <symbol id="add" viewBox="0 0 19 20">
             <title>+</title>
@@ -190,6 +200,7 @@ FilmPage.propTypes = {
         date: PropTypes.string.isRequired,
       })
   ).isRequired,
+  errorText: PropTypes.string,
   film: PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -217,6 +228,7 @@ FilmPage.propTypes = {
 
 const mapStateToProps = (state, ownProps) => ({
   comments: getComments(state),
+  errorText: getError(state),
   film: getElementById(getAllFilms(state), ownProps.id),
   filmsList: getSimilarFilmsByGenre(getAllFilms(state), ownProps.id),
 });

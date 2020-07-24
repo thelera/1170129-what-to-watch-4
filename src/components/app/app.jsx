@@ -2,9 +2,11 @@ import AddReview from "../add-review/add-review.jsx";
 import {AppRoute, AuthorizationStatus} from "../../utils/consts.js";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
+import Error from "../error/error.jsx";
 import FilmPage from "../film-page/film-page.jsx";
 import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
 import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors.js";
+import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MyList from "../my-list/my-list.jsx";
@@ -29,13 +31,21 @@ const App = (props) => {
     allFilms,
     authorizationStatus,
     avatarURL,
+    errorText,
     favouriteFilms,
     login,
   } = props;
 
   if (!allFilms) {
     return (
-      <div></div>
+      <div>
+        {
+          errorText &&
+          <Error
+            message={errorText}
+          />
+        }
+      </div>
     );
   }
 
@@ -134,6 +144,7 @@ App.propTypes = {
       }))]),
   authorizationStatus: PropTypes.string.isRequired,
   avatarURL: PropTypes.string,
+  errorText: PropTypes.string,
   favouriteFilms: PropTypes.arrayOf(PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -160,6 +171,7 @@ const mapStateToProps = (state) => ({
   allFilms: getAllFilms(state),
   authorizationStatus: getAuthorizationStatus(state),
   avatarURL: getAvatarURL(state),
+  errorText: getError(state),
   favouriteFilms: getFavouriteFilms(state),
 });
 

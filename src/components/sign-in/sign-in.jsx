@@ -60,7 +60,7 @@ const SignIn = (props) => {
         <Header
           className={`user-page__head`}
           isLinkToMyList={true}
-          isUserPage={true}
+          isUserBlock={false}
         />
 
         <div className="sign-in user-page__content">

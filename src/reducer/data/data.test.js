@@ -4,7 +4,7 @@ import {createApi} from "../../api.js";
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 import {reducer, ActionCreator, ActionType, Operation} from "./data.js";
 
-const api = createApi(() => {});
+const api = createApi(() => {}, () => {});
 
 const films = [
   {

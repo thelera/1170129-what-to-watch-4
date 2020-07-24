@@ -1,6 +1,8 @@
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
+import Error from "../error/error.jsx";
 import FilmsList from "../films-list/films-list.jsx";
+import {getError} from "../../reducer/errors/selectors.js";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import PropTypes from "prop-types";
@@ -18,10 +20,16 @@ class MyList extends PureComponent {
   }
 
   render() {
-    const {avatarImage, filmsList} = this.props;
+    const {avatarImage, errorText, filmsList} = this.props;
 
     return (
       <Fragment>
+        {
+          errorText &&
+          <Error
+            message={errorText}
+          />
+        }
         <div className="visually-hidden">
           <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <symbol id="add" viewBox="0 0 19 20">
@@ -99,9 +107,14 @@ class MyList extends PureComponent {
 
 MyList.propTypes = {
   avatarImage: PropTypes.string,
+  errorText: PropTypes.string,
   filmsList: PropTypes.array.isRequired,
   loadMyList: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  errorText: getError(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   loadMyList() {
@@ -110,4 +123,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {MyList};
-export default connect(null, mapDispatchToProps)(MyList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);

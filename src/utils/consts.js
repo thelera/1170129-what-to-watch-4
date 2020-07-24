@@ -1,7 +1,7 @@
 const GENRES_COUNT = 9;
 const MAX_RATING = 5;
-const MIN_TEXT_LENGTH = 5;
-const MAX_TEXT_LENGTH = 500;
+const MIN_TEXT_LENGTH = 50;
+const MAX_TEXT_LENGTH = 400;
 const SHOWING_FILMS_COUNT = 8;
 const SHOWING_FILMS_COUNT_ON_START = 8;
 const SIMILAR_FILMS_COUNT = 4;
@@ -36,9 +36,10 @@ const ErrorMessage = {
 
 const ErrorStatus = {
   BAD_REQUEST: {code: 400, errorMessage: `Неверный запрос`},
-  UNAUTHORIZED: {code: 401, errorMessage: `Пользователь не авторизован`},
-  NOT_FOUND: {code: 404, errorMessage: `Ничего не найдено`},
   DEFAULT: {errorMessage: `Произошла ошибка. Попробуйте отправить сообщение еще раз или перезагрузить страницу.`},
+  NOT_FOUND: {code: 404, errorMessage: `Ничего не найдено`},
+  OK: {code: 200},
+  UNAUTHORIZED: {code: 401, errorMessage: `Пользователь не авторизован`},
 };
 
 const FilmPageTab = {

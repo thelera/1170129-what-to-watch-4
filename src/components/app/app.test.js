@@ -140,6 +140,9 @@ it(`App is rendered correctly`, () => {
       authorizationStatus: `AUTH`,
       avatarURL: `url`,
     },
+    [NameSpace.ERRORS]: {
+      errorText: `Error`,
+    },
   });
 
   const tree = renderer.create(
