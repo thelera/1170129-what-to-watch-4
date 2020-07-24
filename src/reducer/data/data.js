@@ -82,7 +82,7 @@ const Operation = {
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
 
-      return Promise.reject(err);
+      throw err;
     });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
@@ -93,7 +93,7 @@ const Operation = {
       .catch((err) => {
         dispatch(ErrorActionCreator.loadError(ErrorMessage.LOADING));
 
-        return Promise.reject(err);
+        throw err;
       });
   },
 };

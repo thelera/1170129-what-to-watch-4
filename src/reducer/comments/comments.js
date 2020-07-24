@@ -28,7 +28,7 @@ const Operation = {
     .catch((err) => {
       dispatch(ErrorActionCreator.loadError(ErrorMessage.SENDING));
 
-      return Promise.reject(err);
+      throw err;
     });
   },
   loadComments: (id) => (dispatch, getState, api) => {

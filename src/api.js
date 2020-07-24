@@ -22,7 +22,7 @@ const createApi = (onUnauthorized, resetError) => {
       onUnauthorized();
     }
 
-    return Promise.reject(err);
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
