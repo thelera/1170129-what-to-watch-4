@@ -1,4 +1,5 @@
-import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {ActionCreator as ErrorActionCreator} from "./reducer/errors/errors.js";
 import App from "./components/app/app.jsx";
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
@@ -12,10 +13,14 @@ import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 
 const onUnauthorized = () => {
-  store.dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreator.requireOfAuthorization(AuthorizationStatus.NO_AUTH));
 };
 
-const api = createApi(onUnauthorized);
+const resetError = () => {
+  store.dispatch(ErrorActionCreator.resetError());
+};
+
+const api = createApi(onUnauthorized, resetError);
 
 const store = createStore(
     reducer,

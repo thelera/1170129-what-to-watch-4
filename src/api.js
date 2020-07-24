@@ -1,9 +1,7 @@
 import axios from "axios";
 import {Api, ErrorStatus} from "./utils/consts.js";
-import {ActionCreator as ErrorActionCreator} from "./reducer/errors/errors.js";
-import {store} from "./index.js";
 
-const createApi = (onUnauthorized) => {
+const createApi = (onUnauthorized, resetError) => {
   const api = axios.create({
     baseURL: Api.BASE_URL,
     timeout: Api.TIMEOUT,
@@ -12,7 +10,7 @@ const createApi = (onUnauthorized) => {
 
   const onSuccess = (response) => {
     if (response.status === ErrorStatus.OK.code) {
-      store.dispatch(ErrorActionCreator.resetError());
+      resetError();
     }
     return response;
   };

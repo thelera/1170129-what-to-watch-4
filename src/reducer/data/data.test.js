@@ -4,7 +4,7 @@ import {createApi} from "../../api.js";
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
 import {reducer, ActionCreator, ActionType, Operation} from "./data.js";
 
-const api = createApi(() => {});
+const api = createApi(() => {}, () => {});
 
 const films = [
   {
@@ -171,8 +171,8 @@ describe(`Operation works correctly`, () => {
 
     return filmsLoader(dispatch, () => { }, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_FILMS,
           payload: createFilms([{fake: true}]),
         });
@@ -190,8 +190,8 @@ describe(`Operation works correctly`, () => {
 
     return filmsLoader(dispatch, () => { }, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_PROMO_FILM,
           payload: createFilm({fake: true}),
         });
