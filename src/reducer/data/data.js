@@ -1,7 +1,7 @@
-import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {ErrorMessage, Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts.js";
-import {createFilm, createFilms} from "../../adapters/films.js";
-import {updateFilmsByNewFilm} from "../../utils/common.js";
+import {ActionCreator as ErrorActionCreator} from "../errors/errors";
+import {ErrorMessage, Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
+import {createFilm, createFilms} from "../../adapters/films";
+import {updateFilmsByNewFilm} from "../../utils/common";
 
 const initialState = {
   allFilms: null,

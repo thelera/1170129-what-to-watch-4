@@ -1,9 +1,9 @@
 import {BrowserRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";
-import FilmsList from "./films-list.jsx";
-import NameSpace from "../../reducer/name-space.js";
+import FilmsList from "./films-listx";
+import NameSpace from "../../reducer/name-space";
 import {Provider} from "react-redux";
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 
 const mockStore = configureStore([]);

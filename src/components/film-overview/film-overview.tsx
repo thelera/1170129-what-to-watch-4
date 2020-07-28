@@ -1,6 +1,5 @@
-import {getRatingLevel} from "../../utils/common.js";
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {getRatingLevel} from "../../utils/common";
 
 const FilmOverview = (props) => {
   const {film} = props;

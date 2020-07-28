@@ -1,8 +1,8 @@
-import React, {PureComponent} from "react";
-import {Video} from "../../utils/consts.js";
+import * as React from "react";
+import {Video} from "../../utils/consts";
 
 const withTimerOnHover = (Component) => {
-  class WithTimerOnHover extends PureComponent {
+  class WithTimerOnHover extends React.PureComponent {
     constructor(props) {
       super(props);
 

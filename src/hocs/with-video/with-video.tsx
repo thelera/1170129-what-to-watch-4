@@ -1,15 +1,14 @@
+import * as React from "react";
 import {connect} from "react-redux";
-import {getAllFilms} from "../../reducer/data/selectors.js";
-import {getElementById} from "../../utils/common.js";
-import React, {createRef, PureComponent} from "react";
-import PropTypes from "prop-types";
+import {getAllFilms} from "../../reducer/data/selectors";
+import {getElementById} from "../../utils/common";
 
 const withVideo = (Component) => {
-  class WithVideo extends PureComponent {
+  class WithVideo extends React.PureComponent {
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
+      this._videoRef = React.createRef();
 
       this.state = {
         progress: 0,

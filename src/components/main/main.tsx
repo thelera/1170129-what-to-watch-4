@@ -1,18 +1,17 @@
-import {AppRoute} from "../../utils/consts.js";
+import * as React from "react";
+import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
-import Error from "../error/error.jsx";
-import FilmsList from "../films-list/films-list.jsx";
-import Footer from "../footer/footer.jsx";
-import GenresList from "../genres-list/genres-list.jsx";
-import {getError} from "../../reducer/errors/selectors.js";
-import Header from "../header/header.jsx";
-import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors.js";
+import Error from "../error/error";
+import FilmsList from "../films-list/films-list";
+import Footer from "../footer/footer";
+import GenresList from "../genres-list/genres-list";
+import {getError} from "../../reducer/errors/selectors";
+import Header from "../header/header";
+import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors";
 import {Link} from "react-router-dom";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import PropTypes from "prop-types";
-import React from "react";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {Operation as DataOperation} from "../../reducer/data/data";
+import ShowMoreButton from "../show-more-button/show-more-button";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
 const GenresListWrapped = withActiveItem(GenresList);
 

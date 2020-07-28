@@ -1,5 +1,5 @@
-import VideoPlayer from "./video-player.jsx";
-import React from "react";
+import VideoPlayer from "./video-playerx";
+import * as React from "react";
 import renderer from "react-test-renderer";
 
 const Video = {

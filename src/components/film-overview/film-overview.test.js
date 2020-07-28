@@ -1,6 +1,6 @@
 import {BrowserRouter} from "react-router-dom";
-import FilmOverview from "./film-overview.jsx";
-import React from "react";
+import FilmOverview from "./film-overviewx";
+import * as React from "react";
 import renderer from "react-test-renderer";
 
 const film = {

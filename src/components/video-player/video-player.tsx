@@ -1,6 +1,5 @@
-import {fromSecToHours} from "../../utils/common.js";
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {fromSecToHours} from "../../utils/common";
 
 const VideoPlayer = (props) => {
   const {

@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
-import {reducer as data} from "./data/data.js";
-import {reducer as errors} from "./errors/errors.js";
-import {reducer as user} from "./user/user.js";
-import {reducer as comments} from "./comments/comments.js";
-import NameSpace from "./name-space.js";
+import {reducer as data} from "./data/data";
+import {reducer as errors} from "./errors/errors";
+import {reducer as user} from "./user/user";
+import {reducer as comments} from "./comments/comments";
+import NameSpace from "./name-space";
 
 export default combineReducers({
   [NameSpace.COMMENTS]: comments,

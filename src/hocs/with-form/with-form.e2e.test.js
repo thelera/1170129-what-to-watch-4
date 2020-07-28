@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withForm from "./with-form.js";
+import withForm from "./with-form";
 
 configure({adapter: new Adapter()});
 

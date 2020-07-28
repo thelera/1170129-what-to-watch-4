@@ -1,6 +1,6 @@
-import Comments from "./comments.jsx";
+import Comments from "./commentsx";
 import {BrowserRouter} from "react-router-dom";
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 
 const comments = [

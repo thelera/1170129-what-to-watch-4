@@ -1,6 +1,5 @@
+import * as React from "react";
 import {parseDate} from "../../utils/common";
-import PropTypes from "prop-types";
-import React from "react";
 
 const renderComments = (comments) => {
   return comments.map((comment) => {

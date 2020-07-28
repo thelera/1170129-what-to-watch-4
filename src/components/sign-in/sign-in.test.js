@@ -1,9 +1,9 @@
 import configureStore from "redux-mock-store";
 import {BrowserRouter} from "react-router-dom";
-import NameSpace from "../../reducer/name-space.js";
+import NameSpace from "../../reducer/name-space";
 import {Provider} from "react-redux";
-import {SignIn} from "./sign-in.jsx";
-import React from "react";
+import {SignIn} from "./sign-inx";
+import * as React from "react";
 import renderer from "react-test-renderer";
 
 const mockStore = configureStore([]);

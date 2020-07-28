@@ -1,10 +1,9 @@
-import {AppRoute} from "../../utils/consts.js";
+import * as React from "react";
+import {AppRoute} from "../../utils/consts";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
-import {Video} from "../../utils/consts.js";
-import VideoPlayer from "../video-player/video-player.jsx";
-import withVideo from "../../hocs/with-video/with-video.js";
+import {Video} from "../../utils/consts";
+import VideoPlayer from "../video-player/video-player";
+import withVideo from "../../hocs/with-video/with-video";
 
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 

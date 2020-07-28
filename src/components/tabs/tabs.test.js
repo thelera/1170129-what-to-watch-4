@@ -1,8 +1,8 @@
-import React from "react";
+import * as React from "react";
 import {BrowserRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
-import Tab from "./tabs.jsx";
-import {FilmPageTab} from "../../utils/consts.js";
+import Tab from "./tabsx";
+import {FilmPageTab} from "../../utils/consts";
 
 const children = <div className="children-component" />;
 

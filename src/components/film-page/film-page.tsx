@@ -1,25 +1,25 @@
-import {AppRoute, FilmPageTab} from "../../utils/consts.js";
-import Comments from "../comments/comments.jsx";
+import * as React from "react";
+import {AppRoute, FilmPageTab} from "../../utils/consts";
+import Comments from "../comments/comments";
 import {connect} from "react-redux";
-import Error from "../error/error.jsx";
-import FilmDetails from "../film-details/film-details.jsx";
-import FilmsList from "../films-list/films-list.jsx";
-import FilmOverview from "../film-overview/film-overview.jsx";
-import Footer from "../footer/footer.jsx";
-import {getSimilarFilmsByGenre} from "../../utils/common.js";
-import {getAllFilms} from "../../reducer/data/selectors.js";
-import {getComments} from "../../reducer/comments/selectors.js";
-import {getElementById} from "../../utils/common.js";
-import {getError} from "../../reducer/errors/selectors.js";
-import Header from "../header/header.jsx";
+import Error from "../error/error";
+import FilmDetails from "../film-details/film-details";
+import FilmsList from "../films-list/films-listx";
+import FilmOverview from "../film-overview/film-overview";
+import Footer from "../footer/footerx";
+import {getSimilarFilmsByGenre} from "../../utils/common";
+import {getAllFilms} from "../../reducer/data/selectors";
+import {getComments} from "../../reducer/comments/selectors";
+import {getElementById} from "../../utils/common";
+import {getError} from "../../reducer/errors/selectors";
+import Header from "../header/headerx";
 import {Link} from "react-router-dom";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
+import {Operation as DataOperation} from "../../reducer/data/data";
+import {Operation as CommentsOperation} from "../../reducer/comments/comments";
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
-import Tabs from "../tabs/tabs.jsx";
+import Tabs from "../tabs/tabsx";
 
-class FilmPage extends PureComponent {
+class FilmPage extends React.PureComponent {
   constructor(props) {
     super(props);
   }

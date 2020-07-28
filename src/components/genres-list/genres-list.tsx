@@ -1,9 +1,8 @@
-import {ActionCreator} from "../../reducer/data/data.js";
+import * as React from "react";
+import {ActionCreator} from "../../reducer/data/data";
 import {connect} from "react-redux";
-import {Genre, GENRES_COUNT} from "../../utils/consts.js";
-import {getGenre} from "../../reducer/data/selectors.js";
-import PropTypes from "prop-types";
-import React from "react";
+import {Genre, GENRES_COUNT} from "../../utils/consts";
+import {getGenre} from "../../reducer/data/selectors";
 
 const GenresList = (props) => {
   const {activeGenre, activeItem = activeGenre, onActiveClick, onGenreClick} = props;

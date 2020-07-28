@@ -1,8 +1,7 @@
-import {ActionCreator} from "../../reducer/data/data.js";
+import * as React from "react";
+import {ActionCreator} from "../../reducer/data/data";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
-import React from "react";
-import {SHOWING_FILMS_COUNT} from "../../utils/consts.js";
+import {SHOWING_FILMS_COUNT} from "../../utils/consts";
 
 const ShowMoreButton = (props) => {
   const {onClick} = props;

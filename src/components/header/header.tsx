@@ -1,10 +1,9 @@
-import {AppRoute} from "../../utils/consts.js";
-import {AuthorizationStatus} from "../../utils/consts.js";
+import * as React from "react";
+import {AppRoute} from "../../utils/consts";
+import {AuthorizationStatus} from "../../utils/consts";
 import {connect} from "react-redux";
-import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
+import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
 
 const Header = (props) => {
   const {authorizationStatus, avatarImage, children, className, isMain = false, isLinkToMyList, isUserBlock = false} = props;

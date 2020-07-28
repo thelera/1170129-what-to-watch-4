@@ -1,6 +1,5 @@
-import {fromMinToHours} from "../../utils/common.js";
-import PropTypes from "prop-types";
-import React, {Fragment} from "react";
+import * as React from "react";
+import {fromMinToHours} from "../../utils/common";
 
 const FilmDetails = (props) => {
   const {film} = props;
@@ -19,7 +18,7 @@ const FilmDetails = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {starring.map((star, index) => <Fragment key={index}>{star}<br /></Fragment>)}
+            {starring.map((star, index) => <React.Fragment key={index}>{star}<br /></React.Fragment>)}
           </span>
         </p>
       </div>

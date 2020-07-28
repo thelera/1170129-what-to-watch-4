@@ -1,7 +1,7 @@
 import {BrowserRouter} from "react-router-dom";
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import {Header} from "./header.jsx";
+import {Header} from "./headerx";
 
 it(`Header is rendered correctly`, () => {
   const tree = renderer.create(

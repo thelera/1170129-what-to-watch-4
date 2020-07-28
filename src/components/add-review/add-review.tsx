@@ -1,15 +1,14 @@
+import * as React from "react";
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
-import {createRange, getElementById, getValidationMessage} from "../../utils/common.js";
-import Error from "../error/error.jsx";
-import {getAllFilms} from "../../reducer/data/selectors.js";
-import {getError} from "../../reducer/errors/selectors.js";
-import Header from "../header/header.jsx";
+import {createRange, getElementById, getValidationMessage} from "../../utils/common";
+import Error from "../error/error";
+import {getAllFilms} from "../../reducer/data/selectors";
+import {getError} from "../../reducer/errors/selectors";
+import Header from "../header/header";
 import {Link} from "react-router-dom";
-import {MAX_RATING} from "../../utils/consts.js";
-import {Operation as CommentsOperation} from "../../reducer/comments/comments.js";
-import PropTypes from "prop-types";
-import React, {Fragment} from "react";
+import {MAX_RATING} from "../../utils/consts";
+import {Operation as CommentsOperation} from "../../reducer/comments/comments";
 
 const AddReview = (props) => {
   const {
@@ -51,7 +50,7 @@ const AddReview = (props) => {
   };
 
   return (
-    <Fragment>
+    <React.Fragment>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -132,7 +131,7 @@ const AddReview = (props) => {
               <div className="rating__stars">
                 {range.map((number) => {
                   return (
-                    <Fragment key={number}>
+                    <React.Fragment key={number}>
                       <input
                         className="rating__input"
                         id={`star-${number}`}
@@ -146,7 +145,7 @@ const AddReview = (props) => {
                         checked={number === score}
                       />
                       <label className="rating__label" htmlFor={`star-${number}`}>Rating {number}</label>
-                    </Fragment>
+                    </React.Fragment>
                   );
                 })}
               </div>
@@ -177,7 +176,7 @@ const AddReview = (props) => {
           </form>
         </div>
       </section>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

@@ -1,7 +1,7 @@
 import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
-import {ShowMoreButton} from "./show-more-button.jsx";
-import React from "react";
+import {ShowMoreButton} from "./show-more-buttonx";
+import * as React from "react";
 
 Enzyme.configure({
   adapter: new Adapter()

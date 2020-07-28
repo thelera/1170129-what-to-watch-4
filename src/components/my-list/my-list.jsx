@@ -1,14 +1,14 @@
+import * as React from "react";
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
-import Error from "../error/error.jsx";
-import FilmsList from "../films-list/films-list.jsx";
-import {getError} from "../../reducer/errors/selectors.js";
+import Error from "../error/errorx";
+import FilmsList from "../films-list/films-listx";
+import {getError} from "../../reducer/errors/selectors";
 import {Link} from "react-router-dom";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as DataOperation} from "../../reducer/data/data";
 import PropTypes from "prop-types";
-import React, {Fragment, PureComponent} from "react";
 
-class MyList extends PureComponent {
+class MyList extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -23,7 +23,7 @@ class MyList extends PureComponent {
     const {avatarImage, errorText, filmsList} = this.props;
 
     return (
-      <Fragment>
+      <React.Fragment>
         {
           errorText &&
           <Error
@@ -100,7 +100,7 @@ class MyList extends PureComponent {
             </div>
           </footer>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

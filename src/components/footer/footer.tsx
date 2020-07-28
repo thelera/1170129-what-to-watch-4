@@ -1,7 +1,6 @@
-import {AppRoute} from "../../utils/consts.js";
+import * as React from "react";
+import {AppRoute} from "../../utils/consts";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
 
 const Footer = (props) => {
   const {isMain = false} = props;

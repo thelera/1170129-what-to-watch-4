@@ -1,7 +1,7 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 
 const withForm = (Component) => {
-  class WithForm extends PureComponent {
+  class WithForm extends React.PureComponent {
     constructor(props) {
       super(props);
 

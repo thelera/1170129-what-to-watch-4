@@ -1,18 +1,16 @@
-
-import {AppRoute} from "../../utils/consts.js";
+import * as React from "react";
+import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
-import Error from "../error/error.jsx";
-import {getError} from "../../reducer/errors/selectors.js";
-import Header from "../header/header.jsx";
+import Error from "../error/error";
+import {getError} from "../../reducer/errors/selectors";
+import Header from "../header/header";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import React, {createRef} from "react";
 
 const SignIn = (props) => {
   const {error: errorText, validationMessage, onSubmit, onValidForm} = props;
 
-  const loginRef = createRef();
-  const passwordRef = createRef();
+  const loginRef = React.createRef();
+  const passwordRef = React.createRef();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

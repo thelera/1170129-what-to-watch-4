@@ -1,7 +1,6 @@
-import FilmCard from "../film-card/film-card.jsx";
-import PropTypes from "prop-types";
-import React from "react";
-import withTimerOnHover from "../../hocs/with-timer-on-hover/with-timer-on-hover.js";
+import * as React from "react";
+import FilmCard from "../film-card/film-card";
+import withTimerOnHover from "../../hocs/with-timer-on-hover/with-timer-on-hover";
 
 const FilmCardWrapped = withTimerOnHover(FilmCard);
 

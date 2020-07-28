@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import withValidation from "./with-validation.js";
+import withValidation from "./with-validation";
 
 const MockComponent = () => <article />;
 

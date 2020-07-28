@@ -1,25 +1,24 @@
-import AddReview from "../add-review/add-review.jsx";
-import {AppRoute, AuthorizationStatus} from "../../utils/consts.js";
+import * as React from "react";
+import AddReview from "../add-review/add-review";
+import {AppRoute, AuthorizationStatus} from "../../utils/consts";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
-import Error from "../error/error.jsx";
-import FilmPage from "../film-page/film-page.jsx";
-import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors.js";
-import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors.js";
-import {getError} from "../../reducer/errors/selectors.js";
+import Error from "../error/error";
+import FilmPage from "../film-page/film-page";
+import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
+import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors";
+import {getError} from "../../reducer/errors/selectors";
 import {Link} from "react-router-dom";
-import Main from "../main/main.jsx";
-import MyList from "../my-list/my-list.jsx";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
-import PrivateRoute from "../private-route/private-route.jsx";
-import PropTypes from "prop-types";
-import React, {Fragment} from "react";
-import SignIn from "../sign-in/sign-in.jsx";
-import VideoPlayer from "../video-player/video-player.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import withForm from "../../hocs/with-form/with-form.js";
-import withVideo from "../../hocs/with-video/with-video.js";
-import withValidation from "../../hocs/with-validation/with-validation.js";
+import Main from "../main/main";
+import MyList from "../my-list/my-list";
+import {Operation as UserOperation} from "../../reducer/user/user";
+import PrivateRoute from "../private-route/private-route";
+import SignIn from "../sign-in/sign-in";
+import VideoPlayer from "../video-player/video-player";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withForm from "../../hocs/with-form/with-form";
+import withVideo from "../../hocs/with-video/with-video";
+import withValidation from "../../hocs/with-validation/with-validation";
 
 const AddReviewWrapped = withValidation(withForm(AddReview));
 const FilmPageWrapped = withActiveItem(FilmPage);
@@ -107,14 +106,14 @@ const App = (props) => {
           );
         }}/>
         <Route render={() => (
-          <Fragment>
+          <React.Fragment>
             <h1>
               404.
               <br />
               <small>Page not found</small>
             </h1>
             <Link to={AppRoute.MAIN}>Go to main page</Link>
-          </Fragment>
+          </React.Fragment>
         )}/>
       </Switch>
     </BrowserRouter>

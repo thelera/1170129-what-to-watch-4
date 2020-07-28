@@ -1,7 +1,7 @@
 import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
-import {Main} from "./main.jsx";
-import React from "react";
+import {Main} from "./mainx";
+import * as React from "react";
 
 const filmData = {
   image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,

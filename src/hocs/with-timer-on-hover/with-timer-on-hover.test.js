@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import withTimerOnHover from "./with-timer-on-hover.js";
+import withTimerOnHover from "./with-timer-on-hover";
 
 const MockComponent = () => <article />;
 
