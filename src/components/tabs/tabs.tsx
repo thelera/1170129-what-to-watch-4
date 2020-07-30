@@ -1,7 +1,14 @@
 import * as React from "react";
-import {FilmPageTab} from "../../utils/consts";
+import {FilmPageTab} from "../../types";
 
-const Tabs = (props) => {
+interface Props {
+  children: React.ReactNode,
+  id?: number,
+  tab: FilmPageTab,
+  onTabClick: (FilmPageTab) => void,
+}
+
+const Tabs: React.FunctionComponent<Props> = (props: Props) => {
   const {children, tab: activeTab, onTabClick} = props;
 
   return (
@@ -28,12 +35,6 @@ const Tabs = (props) => {
       {children}
     </div>
   );
-};
-
-Tabs.propTypes = {
-  children: PropTypes.node.isRequired,
-  tab: PropTypes.oneOf([FilmPageTab.OVERVIEW, FilmPageTab.DETAILS, FilmPageTab.REVIEWS]).isRequired,
-  onTabClick: PropTypes.func.isRequired,
 };
 
 export default Tabs;

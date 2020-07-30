@@ -4,7 +4,7 @@ import {createApi} from "../../api";
 import {Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
 import {reducer, ActionCreator, ActionType, Operation} from "./data";
 
-const api = createApi(() => {}, () => {});
+const api = createApi(() => null, () => null);
 
 const films = [
   {
@@ -38,7 +38,6 @@ const films = [
     preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 7.4,
-    ratingLevel: `good`,
     ratingCount: 150,
     runTime: 432,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
@@ -58,7 +57,6 @@ const films = [
     preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 6.9,
-    ratingLevel: `normal`,
     ratingCount: 548,
     runTime: 64,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
@@ -78,7 +76,6 @@ const films = [
     preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 8.9,
-    ratingLevel: `very good`,
     ratingCount: 140,
     runTime: 213,
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Matt Ross`],
@@ -98,7 +95,6 @@ const films = [
     preview: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     ratingScore: 9.5,
-    ratingLevel: `excellent`,
     ratingCount: 200,
     runTime: 154,
     starring: [`Tilda Swinton`, `Jonh Reilly`, `Erza Miller`],
@@ -169,7 +165,7 @@ describe(`Operation works correctly`, () => {
       .onGet(`/films`)
       .reply(200, [{fake: false}]);
 
-    return filmsLoader(dispatch, () => { }, api)
+    return filmsLoader(dispatch, () => null, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -188,7 +184,7 @@ describe(`Operation works correctly`, () => {
       .onGet(`/films/promo`)
       .reply(200, {fake: false});
 
-    return filmsLoader(dispatch, () => { }, api)
+    return filmsLoader(dispatch, () => null, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

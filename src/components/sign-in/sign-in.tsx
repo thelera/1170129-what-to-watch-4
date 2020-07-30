@@ -1,16 +1,24 @@
 import * as React from "react";
 import {AppRoute} from "../../utils/consts";
+import {AuthData} from "../../types";
 import {connect} from "react-redux";
 import Error from "../error/error";
 import {getError} from "../../reducer/errors/selectors";
 import Header from "../header/header";
 import {Link} from "react-router-dom";
 
-const SignIn = (props) => {
+interface Props {
+  error: string,
+  validationMessage: string,
+  onSubmit: (AuthData) => void,
+  onValidForm: (string) => void,
+}
+
+const SignIn: React.FunctionComponent<Props> = (props: Props) => {
   const {error: errorText, validationMessage, onSubmit, onValidForm} = props;
 
-  const loginRef = React.createRef();
-  const passwordRef = React.createRef();
+  const loginRef: React.RefObject<HTMLInputElement> = React.createRef();
+  const passwordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -84,7 +92,9 @@ const SignIn = (props) => {
                   onInvalid={(evt) => {
                     evt.preventDefault();
 
-                    onValidForm(evt.target.validationMessage);
+                    const target = evt.target as HTMLTextAreaElement;
+
+                    onValidForm(target.validationMessage);
                   }}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
@@ -99,7 +109,9 @@ const SignIn = (props) => {
                   onInvalid={(evt) => {
                     evt.preventDefault();
 
-                    onValidForm(evt.target.validationMessage);
+                    const target = evt.target as HTMLTextAreaElement;
+
+                    onValidForm(target.validationMessage);
                   }}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
@@ -126,13 +138,6 @@ const SignIn = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-SignIn.propTypes = {
-  error: PropTypes.string,
-  validationMessage: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
-  onValidForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

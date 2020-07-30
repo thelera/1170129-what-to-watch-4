@@ -1,10 +1,16 @@
 import * as React from "react";
+import {Film} from "../../types";
 import FilmCard from "../film-card/film-card";
 import withTimerOnHover from "../../hocs/with-timer-on-hover/with-timer-on-hover";
 
+interface Props {
+  films: Array<Film>,
+  id?: number,
+}
+
 const FilmCardWrapped = withTimerOnHover(FilmCard);
 
-const FilmsList = (props) => {
+const FilmsList: React.FunctionComponent<Props> = (props: Props) => {
   const {films} = props;
 
   return (
@@ -16,29 +22,6 @@ const FilmsList = (props) => {
         />)}
     </div>
   );
-};
-
-FilmsList.propTypes = {
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        backgroundColor: PropTypes.string.isRequired,
-        backgroundImage: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
-        isFavourite: PropTypes.bool.isRequired,
-        image: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        previewVideoLink: PropTypes.string.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        ratingScore: PropTypes.number.isRequired,
-        runTime: PropTypes.number.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-        title: PropTypes.string.isRequired,
-        videoLink: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-      })).isRequired,
 };
 
 export default FilmsList;

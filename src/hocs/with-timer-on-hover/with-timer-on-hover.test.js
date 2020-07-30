@@ -10,8 +10,8 @@ it(`withFilmCard is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       isPlaying={false}
-      onMouseEnter={() => { }}
-      onMouseLeave={() => { }}
+      onMouseEnter={() => null}
+      onMouseLeave={() => null}
     />
   ), {
     createNodeMock() {

@@ -1,5 +1,6 @@
 import {ActionCreator as ErrorActionCreator} from "../errors/errors";
-import {ErrorMessage, Genre, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
+import {Genre} from "../../types";
+import {ErrorMessage, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
 import {createFilm, createFilms} from "../../adapters/films";
 import {updateFilmsByNewFilm} from "../../utils/common";
 

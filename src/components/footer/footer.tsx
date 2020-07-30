@@ -2,7 +2,11 @@ import * as React from "react";
 import {AppRoute} from "../../utils/consts";
 import {Link} from "react-router-dom";
 
-const Footer = (props) => {
+interface Props {
+  isMain?: boolean,
+}
+
+const Footer: React.FunctionComponent<Props> = (props: Props) => {
   const {isMain = false} = props;
 
   return (
@@ -28,10 +32,6 @@ const Footer = (props) => {
       </div>
     </footer>
   );
-};
-
-Footer.propTypes = {
-  isMain: PropTypes.bool,
 };
 
 export default Footer;

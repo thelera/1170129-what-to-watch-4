@@ -1,25 +1,37 @@
 import * as React from "react";
-import {AppRoute, FilmPageTab} from "../../utils/consts";
+import {AppRoute} from "../../utils/consts";
+import {Comment, Film, FilmPageTab} from "../../types";
 import Comments from "../comments/comments";
 import {connect} from "react-redux";
 import Error from "../error/error";
 import FilmDetails from "../film-details/film-details";
-import FilmsList from "../films-list/films-listx";
+import FilmsList from "../films-list/films-list";
 import FilmOverview from "../film-overview/film-overview";
-import Footer from "../footer/footerx";
+import Footer from "../footer/footer";
 import {getSimilarFilmsByGenre} from "../../utils/common";
 import {getAllFilms} from "../../reducer/data/selectors";
 import {getComments} from "../../reducer/comments/selectors";
 import {getElementById} from "../../utils/common";
 import {getError} from "../../reducer/errors/selectors";
-import Header from "../header/headerx";
+import Header from "../header/header";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments";
-import PropTypes from "prop-types";
-import Tabs from "../tabs/tabsx";
+import Tabs from "../tabs/tabs";
 
-class FilmPage extends React.PureComponent {
+interface Props {
+  activeItem: FilmPageTab,
+  avatarImage: string,
+  comments: Array<Comment>,
+  errorText: string,
+  film: Film,
+  filmsList: Array<Film>
+  loadComments: (number) => void,
+  onActiveClick: () => void,
+  onAddToMyListClick: (number, boolean) => void,
+}
+
+class FilmPage extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -184,47 +196,6 @@ class FilmPage extends React.PureComponent {
     );
   }
 }
-
-FilmPage.propTypes = {
-  activeItem: PropTypes.oneOf(Object.values(FilmPageTab)),
-  avatarImage: PropTypes.string,
-  comments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        user: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired,
-        }).isRequired,
-        rating: PropTypes.number.isRequired,
-        comment: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      })
-  ).isRequired,
-  errorText: PropTypes.string,
-  film: PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  }),
-  filmsList: PropTypes.array.isRequired,
-  loadComments: PropTypes.func.isRequired,
-  onActiveClick: PropTypes.func.isRequired,
-  onAddToMyListClick: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => ({
   comments: getComments(state),

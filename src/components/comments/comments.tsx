@@ -1,7 +1,14 @@
 import * as React from "react";
+import {Comment} from "../../types";
 import {parseDate} from "../../utils/common";
 
-const renderComments = (comments) => {
+interface Props {
+  comments: Array<Comment>,
+}
+
+const renderComments: React.FunctionComponent<Props> = (props: Props) => {
+  const {comments} = this.props;
+
   return comments.map((comment) => {
     const {comment: text, date, id, rating, user} = comment;
     const {name} = user;
@@ -38,14 +45,6 @@ const Comments = (props) => {
       </div>
     </div>
   );
-};
-
-Comments.propTypes = {
-  comments: PropTypes.array,
-  date: PropTypes.string,
-  id: PropTypes.number,
-  rating: PropTypes.number,
-  user: PropTypes.object,
 };
 
 export default Comments;

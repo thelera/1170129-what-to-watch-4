@@ -12,7 +12,7 @@ it(`Should give active item`, () => {
   const wrapper = shallow(
       <MockComponentWrapped
         activeItem={`active item`}
-        onActiveClick={() => {}}
+        onActiveClick={() => null}
       />
   );
 

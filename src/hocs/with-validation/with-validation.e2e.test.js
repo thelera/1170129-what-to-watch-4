@@ -12,7 +12,7 @@ it(`Should change message`, () => {
   const wrapper = shallow(
       <MockComponentWrapped
         validationMessage={`message`}
-        onValidForm={() => {}}
+        onValidForm={() => null}
       />
   );
 

@@ -2,6 +2,7 @@ import * as React from "react";
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
 import Error from "../error/error";
+import {Film} from "../../types";
 import FilmsList from "../films-list/films-list";
 import Footer from "../footer/footer";
 import GenresList from "../genres-list/genres-list";
@@ -13,9 +14,18 @@ import {Operation as DataOperation} from "../../reducer/data/data";
 import ShowMoreButton from "../show-more-button/show-more-button";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
+interface Props {
+  avatarImage: string,
+  errorText: string,
+  filmsCount: number,
+  filmsList: Array<Film>,
+  promoFilm: Film,
+  onAddToMyListClick: (number, boolean) => void,
+}
+
 const GenresListWrapped = withActiveItem(GenresList);
 
-const Main = (props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {
     errorText,
     filmsCount,
@@ -114,42 +124,6 @@ const Main = (props) => {
       </div>
     </div>
   );
-};
-
-Main.propTypes = {
-  avatarImage: PropTypes.string,
-  errorText: PropTypes.string,
-  filmsCount: PropTypes.number.isRequired,
-  filmsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        backgroundColor: PropTypes.string.isRequired,
-        backgroundImage: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
-        isFavourite: PropTypes.bool.isRequired,
-        image: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        previewVideoLink: PropTypes.string.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        ratingScore: PropTypes.number.isRequired,
-        runTime: PropTypes.number.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-        title: PropTypes.string.isRequired,
-        videoLink: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-      })).isRequired,
-  promoFilm: PropTypes.shape({
-    backgroundImage: PropTypes.string,
-    genre: PropTypes.string,
-    id: PropTypes.number,
-    isFavourite: PropTypes.bool,
-    image: PropTypes.string,
-    title: PropTypes.string,
-    year: PropTypes.number,
-  }).isRequired,
-  onAddToMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

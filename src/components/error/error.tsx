@@ -1,6 +1,10 @@
 import * as React from "react";
 
-const Error = (props) => {
+interface Props {
+  message: string,
+}
+
+const Error: React.FunctionComponent<Props> = (props: Props) => {
   const {message} = props;
 
   return (
@@ -10,10 +14,6 @@ const Error = (props) => {
       </div>
     </div>
   );
-};
-
-Error.propTypes = {
-  message: PropTypes.string,
 };
 
 export default Error;

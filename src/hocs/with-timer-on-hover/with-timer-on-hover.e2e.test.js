@@ -13,8 +13,8 @@ describe(`withTimerOnHover works correctly`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
           isPlaying={true}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
+          onMouseEnter={() => null}
+          onMouseLeave={() => null}
         />
     );
 

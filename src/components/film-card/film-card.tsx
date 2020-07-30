@@ -1,13 +1,21 @@
 import * as React from "react";
 import {AppRoute} from "../../utils/consts";
+import {Film} from "../../types";
 import {Link} from "react-router-dom";
 import {Video} from "../../utils/consts";
 import VideoPlayer from "../video-player/video-player";
 import withVideo from "../../hocs/with-video/with-video";
 
+interface Props {
+  film: Film,
+  isPlaying: boolean,
+  onMouseEnter: () => void,
+  onMouseLeave: () => void,
+}
+
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
-const FilmCard = (props) => {
+const FilmCard: React.FunctionComponent<Props> = (props: Props) => {
   const {film, isPlaying, onMouseEnter, onMouseLeave} = props;
   const {id, title} = film;
 
@@ -38,31 +46,6 @@ const FilmCard = (props) => {
       </h3>
     </article>
   );
-};
-
-FilmCard.propTypes = {
-  film: PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  }),
-  isPlaying: PropTypes.bool.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default FilmCard;

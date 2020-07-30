@@ -1,8 +1,16 @@
 import * as React from "react";
 import {Video} from "../../utils/consts";
 
+interface State {
+  isPlaying: boolean,
+}
+
 const withTimerOnHover = (Component) => {
-  class WithTimerOnHover extends React.PureComponent {
+  type T = React.ComponentProps<typeof Component>;
+
+  class WithTimerOnHover extends React.PureComponent<T, State> {
+    timerId: NodeJS.Timer;
+
     constructor(props) {
       super(props);
 

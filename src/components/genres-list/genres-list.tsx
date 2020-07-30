@@ -1,10 +1,18 @@
 import * as React from "react";
 import {ActionCreator} from "../../reducer/data/data";
 import {connect} from "react-redux";
-import {Genre, GENRES_COUNT} from "../../utils/consts";
+import {Genre} from "../../types";
+import {GENRES_COUNT} from "../../utils/consts";
 import {getGenre} from "../../reducer/data/selectors";
 
-const GenresList = (props) => {
+interface Props {
+  activeItem: Genre,
+  activeGenre: Genre,
+  onActiveClick: (Genre) => void,
+  onGenreClick: (Genre) => void,
+}
+
+const GenresList: React.FunctionComponent<Props> = (props: Props) => {
   const {activeGenre, activeItem = activeGenre, onActiveClick, onGenreClick} = props;
 
   return (
@@ -29,13 +37,6 @@ const GenresList = (props) => {
       ))}
     </ul>
   );
-};
-
-GenresList.propTypes = {
-  activeItem: PropTypes.oneOf(Object.values(Genre)),
-  activeGenre: PropTypes.oneOf(Object.values(Genre)),
-  onActiveClick: PropTypes.func.isRequired,
-  onGenreClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

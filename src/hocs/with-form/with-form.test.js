@@ -18,9 +18,9 @@ it(`withForm is rendered correctly`, () => {
       isValid={true}
       score={5}
       text={`text`}
-      onDisable={() => {}}
-      onRatingChange={() => {}}
-      onTextChange={() => {}}
+      onDisable={() => null}
+      onRatingChange={() => null}
+      onTextChange={() => null}
     />
   ), {
     createNodeMock() {

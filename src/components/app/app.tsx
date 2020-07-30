@@ -1,9 +1,10 @@
 import * as React from "react";
 import AddReview from "../add-review/add-review";
-import {AppRoute, AuthorizationStatus} from "../../utils/consts";
+import {AppRoute} from "../../utils/consts";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Error from "../error/error";
+import {AuthData, AuthorizationStatus, Film} from "../../types";
 import FilmPage from "../film-page/film-page";
 import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
 import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors";
@@ -20,12 +21,21 @@ import withForm from "../../hocs/with-form/with-form";
 import withVideo from "../../hocs/with-video/with-video";
 import withValidation from "../../hocs/with-validation/with-validation";
 
+interface Props {
+  allFilms: Array<Film>,
+  authorizationStatus: AuthorizationStatus,
+  avatarURL: string,
+  errorText: string,
+  favouriteFilms: Array<Film>,
+  login: (AuthData) => void,
+}
+
 const AddReviewWrapped = withValidation(withForm(AddReview));
 const FilmPageWrapped = withActiveItem(FilmPage);
 const SignInWrapped = withValidation(SignIn);
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
-const App = (props) => {
+const App: React.FunctionComponent<Props> = (props: Props) => {
   const {
     allFilms,
     authorizationStatus,
@@ -118,52 +128,6 @@ const App = (props) => {
       </Switch>
     </BrowserRouter>
   );
-};
-
-App.propTypes = {
-  allFilms: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(
-      PropTypes.shape({
-        backgroundColor: PropTypes.string.isRequired,
-        backgroundImage: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
-        isFavourite: PropTypes.bool.isRequired,
-        image: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        previewVideoLink: PropTypes.string.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        ratingScore: PropTypes.number.isRequired,
-        runTime: PropTypes.number.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-        title: PropTypes.string.isRequired,
-        videoLink: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-      }))]),
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarURL: PropTypes.string,
-  errorText: PropTypes.string,
-  favouriteFilms: PropTypes.arrayOf(PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  })),
-  login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

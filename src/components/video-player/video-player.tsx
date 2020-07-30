@@ -1,7 +1,21 @@
 import * as React from "react";
 import {fromSecToHours} from "../../utils/common";
 
-const VideoPlayer = (props) => {
+interface Props {
+  children: React.ReactNode,
+  duration: number,
+  height?: number,
+  history: {goBack: () => void},
+  isMuted?: boolean,
+  isControled: boolean,
+  isPlaying: boolean,
+  progress: number,
+  width?: number,
+  onFullScreenButtonClick: () => void,
+  onPlayButtonClick: () => void,
+}
+
+const VideoPlayer: React.FunctionComponent<Props> = (props: Props) => {
   const {
     children,
     duration,
@@ -103,17 +117,6 @@ const VideoPlayer = (props) => {
       </React.Fragment>}
     </React.Fragment>
   );
-};
-
-VideoPlayer.propTypes = {
-  children: PropTypes.node.isRequired,
-  duration: PropTypes.number.isRequired,
-  history: PropTypes.object,
-  isControled: PropTypes.bool,
-  isPlaying: PropTypes.bool.isRequired,
-  progress: PropTypes.number.isRequired,
-  onFullScreenButtonClick: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 export default VideoPlayer;

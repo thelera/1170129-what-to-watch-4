@@ -3,6 +3,7 @@ import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
 import {createRange, getElementById, getValidationMessage} from "../../utils/common";
 import Error from "../error/error";
+import {Film} from "../../types";
 import {getAllFilms} from "../../reducer/data/selectors";
 import {getError} from "../../reducer/errors/selectors";
 import Header from "../header/header";
@@ -10,7 +11,23 @@ import {Link} from "react-router-dom";
 import {MAX_RATING} from "../../utils/consts";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments";
 
-const AddReview = (props) => {
+interface Props {
+  avatarImage: string
+  error: string,
+  film: Film,
+  history: {push: (string) => void};
+  isDisabled: boolean;
+  score: number;
+  text: string;
+  validationMessage: string;
+  onDisable: (boolean) => void;
+  onRatingChange: (number) => void;
+  onSubmit: (filmId: number, {rating: number, text: string}) => Promise<void>;
+  onTextChange: (string) => void;
+  onValidForm: (string) => void;
+}
+
+const AddReview: React.FunctionComponent<Props> = (props: Props) => {
   const {
     error: errorText,
     isDisabled,
@@ -37,6 +54,7 @@ const AddReview = (props) => {
 
     if (textValidationMessage.length === 0) {
       onDisable(true);
+
       onSubmit(filmId, {rating: score, text})
       .then(() => {
         history.push(`${AppRoute.FILMS}/${filmId}`);
@@ -178,40 +196,6 @@ const AddReview = (props) => {
       </section>
     </React.Fragment>
   );
-};
-
-AddReview.propTypes = {
-  avatarImage: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  film: PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    backgroundImage: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    runTime: PropTypes.number.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    videoLink: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  }).isRequired,
-  history: PropTypes.object.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
-  score: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  validationMessage: PropTypes.string.isRequired,
-  onDisable: PropTypes.func.isRequired,
-  onRatingChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onTextChange: PropTypes.func.isRequired,
-  onValidForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({

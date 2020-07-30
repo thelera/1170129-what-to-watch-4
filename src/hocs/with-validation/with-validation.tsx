@@ -1,7 +1,13 @@
 import * as React from "react";
 
+interface State {
+  message: string,
+}
+
 const withValidation = (Component) => {
-  class WithValidation extends React.PureComponent {
+  type T = React.ComponentProps<typeof Component>;
+
+  class WithValidation extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

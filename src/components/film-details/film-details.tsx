@@ -1,7 +1,12 @@
 import * as React from "react";
+import {Film} from "../../types";
 import {fromMinToHours} from "../../utils/common";
 
-const FilmDetails = (props) => {
+interface Props {
+  film: Film,
+}
+
+const FilmDetails: React.FunctionComponent<Props> = (props: Props) => {
   const {film} = props;
 
   const {director, genre, runTime, starring, year} = film;
@@ -38,16 +43,6 @@ const FilmDetails = (props) => {
       </div>
     </div>
   );
-};
-
-FilmDetails.propTypes = {
-  film: PropTypes.shape({
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    runTime: PropTypes.number.isRequired,
-    starring: PropTypes.array.isRequired,
-    year: PropTypes.number.isRequired,
-  })
 };
 
 export default FilmDetails;

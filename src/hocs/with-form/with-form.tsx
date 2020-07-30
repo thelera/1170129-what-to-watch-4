@@ -1,7 +1,16 @@
 import * as React from "react";
 
+interface State {
+  isDisabled: boolean,
+  isValid?: boolean,
+  score: number,
+  text: string,
+}
+
 const withForm = (Component) => {
-  class WithForm extends React.PureComponent {
+  type T = React.ComponentProps<typeof Component>;
+
+  class WithForm extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

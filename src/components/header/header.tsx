@@ -1,11 +1,21 @@
 import * as React from "react";
 import {AppRoute} from "../../utils/consts";
-import {AuthorizationStatus} from "../../utils/consts";
+import {AuthorizationStatus} from "../../types";
 import {connect} from "react-redux";
 import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
 import {Link} from "react-router-dom";
 
-const Header = (props) => {
+interface Props {
+  authorizationStatus: AuthorizationStatus,
+  avatarImage: string,
+  children: React.ReactNode,
+  className: string,
+  isMain: boolean,
+  isLinkToMyList: boolean,
+  isUserBlock: boolean,
+}
+
+const Header: React.FunctionComponent<Props> = (props: Props) => {
   const {authorizationStatus, avatarImage, children, className, isMain = false, isLinkToMyList, isUserBlock = false} = props;
 
   return (
@@ -47,16 +57,6 @@ const Header = (props) => {
       }
     </header>
   );
-};
-
-Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarImage: PropTypes.string,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  isMain: PropTypes.bool,
-  isLinkToMyList: PropTypes.bool,
-  isUserBlock: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

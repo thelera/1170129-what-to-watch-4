@@ -16,9 +16,9 @@ describe(`withForm works correctly`, () => {
           isValid={true}
           score={5}
           text={`text`}
-          onDisable={() => {}}
-          onRatingChange={() => {}}
-          onTextChange={() => {}}
+          onDisable={() => null}
+          onRatingChange={() => null}
+          onTextChange={() => null}
         />
     );
 
@@ -33,9 +33,9 @@ describe(`withForm works correctly`, () => {
           isValid={true}
           score={5}
           text={`text`}
-          onDisable={() => {}}
-          onRatingChange={() => {}}
-          onTextChange={() => {}}
+          onDisable={() => null}
+          onRatingChange={() => null}
+          onTextChange={() => null}
         />
     );
 
@@ -50,9 +50,9 @@ describe(`withForm works correctly`, () => {
           isValid={true}
           score={5}
           text={`text`}
-          onDisable={() => {}}
-          onRatingChange={() => {}}
-          onTextChange={() => {}}
+          onDisable={() => null}
+          onRatingChange={() => null}
+          onTextChange={() => null}
         />
     );
 

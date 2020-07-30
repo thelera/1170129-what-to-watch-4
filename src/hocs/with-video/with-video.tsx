@@ -1,14 +1,38 @@
 import * as React from "react";
 import {connect} from "react-redux";
+import {Film} from "../../types";
 import {getAllFilms} from "../../reducer/data/selectors";
 import {getElementById} from "../../utils/common";
 
+interface Props {
+  film: Film,
+  height: number,
+  isMuted: boolean,
+  isControled: boolean,
+  isPlaying: boolean,
+  width: number,
+}
+
+interface State {
+  progress: number,
+  isFullScreen: boolean,
+  isLoading: boolean,
+  isPlaying: boolean,
+}
+
+interface myHTMLVideoElement extends HTMLVideoElement {
+  exitFullScreen: () => Promise<void>;
+  requestFullscreen: () => Promise<void>;
+}
+
 const withVideo = (Component) => {
-  class WithVideo extends React.PureComponent {
+  class WithVideo extends React.PureComponent<Props, State> {
+    private videoRef: React.RefObject<myHTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = React.createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         progress: 0,
@@ -22,7 +46,7 @@ const withVideo = (Component) => {
     }
 
     _handleFullScreenClick() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       if (this.state.isFullScreen) {
         this.setState({isFullScreen: false});
@@ -43,7 +67,7 @@ const withVideo = (Component) => {
       const {isMuted = true, film, height, width} = this.props;
       const {preview, videoLink} = film;
 
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.muted = isMuted;
       video.height = height;
@@ -71,7 +95,7 @@ const withVideo = (Component) => {
     }
 
     componentDidUpdate() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       if (this.state.isPlaying) {
         video.play();
@@ -81,7 +105,7 @@ const withVideo = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.oncanplaythrough = null;
       video.onplay = null;
@@ -91,7 +115,7 @@ const withVideo = (Component) => {
     }
 
     render() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
       let duration;
       if (video) {
         duration = video.duration;
@@ -113,7 +137,7 @@ const withVideo = (Component) => {
         >
           <video
             className={isControled ? `player__video` : ``}
-            ref={this._videoRef}
+            ref={this.videoRef}
           >
             Sorry, your browser doesn&apos;t support embedded videos.
           </video>
@@ -121,19 +145,6 @@ const withVideo = (Component) => {
       );
     }
   }
-
-  WithVideo.propTypes = {
-    height: PropTypes.number,
-    id: PropTypes.number.isRequired,
-    film: PropTypes.shape({
-      preview: PropTypes.string.isRequired,
-      videoLink: PropTypes.string.isRequired,
-    }),
-    isControled: PropTypes.bool,
-    isMuted: PropTypes.bool,
-    isPlaying: PropTypes.bool.isRequired,
-    width: PropTypes.number,
-  };
 
   const mapStateToProps = (state, ownProps) => ({
     film: getElementById(getAllFilms(state), ownProps.id),

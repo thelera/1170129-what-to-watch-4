@@ -15,7 +15,7 @@ it(`withActiveItem is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       activeItem={`active item`}
-      onActiveClick={() => {}}
+      onActiveClick={() => null}
     />
   ), {
     createNodeMock() {

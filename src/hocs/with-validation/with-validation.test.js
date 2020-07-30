@@ -10,7 +10,7 @@ it(`withValidation is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       validationMessage={`message`}
-      onValidForm={() => {}}
+      onValidForm={() => null}
     />
   ), {
     createNodeMock() {

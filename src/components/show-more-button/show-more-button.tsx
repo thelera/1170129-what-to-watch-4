@@ -3,7 +3,11 @@ import {ActionCreator} from "../../reducer/data/data";
 import {connect} from "react-redux";
 import {SHOWING_FILMS_COUNT} from "../../utils/consts";
 
-const ShowMoreButton = (props) => {
+interface Props {
+  onClick: () => void,
+}
+
+const ShowMoreButton: React.FunctionComponent<Props> = (props: Props) => {
   const {onClick} = props;
 
   return (
@@ -15,10 +19,6 @@ const ShowMoreButton = (props) => {
       Show more
     </button>
   );
-};
-
-ShowMoreButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
