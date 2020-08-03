@@ -3,15 +3,13 @@ import * as renderer from "react-test-renderer";
 import {AddReview} from "./add-review";
 import {BrowserRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";
+import {createMemoryHistory} from 'history';
 import {Film} from "../../types";
 import NameSpace from "../../reducer/name-space";
 import {Provider} from "react-redux";
 
 const mockStore = configureStore([]);
-
-const mockRouteComponentProps = {
-  history: {} as any,
-};
+const history = createMemoryHistory();
 
 const film: Film = {
   backgroundColor: `#E45322`,
@@ -48,7 +46,7 @@ it(`AddReview is rendered correctly`, () => {
             avatarImage={`image`}
             error={``}
             film={film}
-            history={mockRouteComponentProps.history}
+            history={history}
             isDisabled={false}
             score={4}
             text={``}

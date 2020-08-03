@@ -6,10 +6,10 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors";
 import {Redirect, Route} from "react-router-dom";
 
 interface Props {
-  authorizationStatus: AuthorizationStatus,
-  exact: boolean,
-  path: string,
-  render: ({number}) => React.ReactNode;
+  authorizationStatus: AuthorizationStatus;
+  exact: boolean;
+  path: string;
+  render: (id: any) => React.ReactNode;
 }
 
 const PrivateRoute: React.FunctionComponent<Props> = (props: Props) => {

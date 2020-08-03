@@ -37,19 +37,11 @@ const comments: Array<Comment> = [
   },
 ];
 
-const user = {
-  id: 2, name: `Kate`
-};
-
 it(`Comments is rendered correctly`, () => {
   const tree = renderer.create(
       <BrowserRouter>
         <Comments
           comments={comments}
-          date={`Sat Jul 18 2020 11:37:10`}
-          id={8}
-          rating={10}
-          user={user}
         />
       </BrowserRouter>, {
         createNodeMock: () => {

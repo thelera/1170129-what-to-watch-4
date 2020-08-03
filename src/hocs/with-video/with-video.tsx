@@ -5,29 +5,29 @@ import {getAllFilms} from "../../reducer/data/selectors";
 import {getElementById} from "../../utils/common";
 
 interface Props {
-  film: Film,
-  height: number,
-  isMuted: boolean,
-  isControled: boolean,
-  isPlaying: boolean,
-  width: number,
+  film: Film;
+  height: number;
+  isMuted: boolean;
+  isControled: boolean;
+  isPlaying: boolean;
+  width: number;
 }
 
 interface State {
-  progress: number,
-  isFullScreen: boolean,
-  isLoading: boolean,
-  isPlaying: boolean,
+  progress: number;
+  isFullScreen: boolean;
+  isLoading: boolean;
+  isPlaying: boolean;
 }
 
-interface myHTMLVideoElement extends HTMLVideoElement {
+interface MyHTMLVideoElement extends HTMLVideoElement {
   exitFullScreen: () => Promise<void>;
   requestFullscreen: () => Promise<void>;
 }
 
 const withVideo = (Component) => {
   class WithVideo extends React.PureComponent<Props, State> {
-    private videoRef: React.RefObject<myHTMLVideoElement>;
+    private videoRef: React.RefObject<MyHTMLVideoElement>;
 
     constructor(props) {
       super(props);

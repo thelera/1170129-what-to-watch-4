@@ -3,7 +3,7 @@ import {getRatingLevel} from "../../utils/common";
 import {Film} from "../../types";
 
 interface Props {
-  film: Film,
+  film: Film;
 }
 
 const FilmOverview: React.FunctionComponent<Props> = (props: Props) => {

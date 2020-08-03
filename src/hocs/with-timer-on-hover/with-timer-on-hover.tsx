@@ -2,7 +2,7 @@ import * as React from "react";
 import {Video} from "../../utils/consts";
 
 interface State {
-  isPlaying: boolean,
+  isPlaying: boolean;
 }
 
 const withTimerOnHover = (Component) => {

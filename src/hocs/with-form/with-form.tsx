@@ -1,10 +1,10 @@
 import * as React from "react";
 
 interface State {
-  isDisabled: boolean,
-  isValid?: boolean,
-  score: number,
-  text: string,
+  isDisabled: boolean;
+  isValid?: boolean;
+  score: number;
+  text: string;
 }
 
 const withForm = (Component) => {

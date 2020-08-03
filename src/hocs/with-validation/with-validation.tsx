@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface State {
-  message: string,
+  message: string;
 }
 
 const withValidation = (Component) => {

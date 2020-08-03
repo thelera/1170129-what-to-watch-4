@@ -6,7 +6,7 @@ import {Provider} from "react-redux";
 import withVideo from "./with-video";
 
 interface MockComponentProps {
-  children: React.ReactNode,
+  children: React.ReactNode;
 }
 const mockStore = configureStore([]);
 

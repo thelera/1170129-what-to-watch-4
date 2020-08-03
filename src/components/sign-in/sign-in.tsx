@@ -1,6 +1,5 @@
 import * as React from "react";
 import {AppRoute} from "../../utils/consts";
-import {AuthData} from "../../types";
 import {connect} from "react-redux";
 import Error from "../error/error";
 import {getError} from "../../reducer/errors/selectors";
@@ -8,10 +7,10 @@ import Header from "../header/header";
 import {Link} from "react-router-dom";
 
 interface Props {
-  error: string,
-  validationMessage: string,
-  onSubmit: (AuthData) => void,
-  onValidForm: (string) => void,
+  error: string;
+  validationMessage: string;
+  onSubmit: (AuthData) => void;
+  onValidForm: (string) => void;
 }
 
 const SignIn: React.FunctionComponent<Props> = (props: Props) => {

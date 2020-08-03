@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {SHOWING_FILMS_COUNT} from "../../utils/consts";
 
 interface Props {
-  onClick: () => void,
+  onClick: () => void;
 }
 
 const ShowMoreButton: React.FunctionComponent<Props> = (props: Props) => {

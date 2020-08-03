@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface State {
-  activeItem: string,
+  activeItem: string;
 }
 
 const withActiveItem = (Component) => {

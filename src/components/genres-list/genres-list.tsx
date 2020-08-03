@@ -6,10 +6,10 @@ import {GENRES_COUNT} from "../../utils/consts";
 import {getGenre} from "../../reducer/data/selectors";
 
 interface Props {
-  activeItem: Genre,
-  activeGenre: Genre,
-  onActiveClick: (Genre) => void,
-  onGenreClick: (Genre) => void,
+  activeItem: Genre;
+  activeGenre: Genre;
+  onActiveClick: (Genre) => void;
+  onGenreClick: (Genre) => void;
 }
 
 const GenresList: React.FunctionComponent<Props> = (props: Props) => {

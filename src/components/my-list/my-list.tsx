@@ -9,10 +9,10 @@ import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data";
 
 interface Props {
-  avatarImage: string,
-  errorText: string,
-  filmsList: Array<Film>,
-  loadMyList: () => void,
+  avatarImage: string;
+  errorText: string;
+  filmsList: Array<Film>;
+  loadMyList: () => void;
 }
 
 class MyList extends React.PureComponent<Props, {}> {

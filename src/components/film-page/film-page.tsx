@@ -20,15 +20,15 @@ import {Operation as CommentsOperation} from "../../reducer/comments/comments";
 import Tabs from "../tabs/tabs";
 
 interface Props {
-  activeItem: FilmPageTab,
-  avatarImage: string,
-  comments: Array<Comment>,
-  errorText: string,
-  film: Film,
-  filmsList: Array<Film>
-  loadComments: (number) => void,
-  onActiveClick: () => void,
-  onAddToMyListClick: (number, boolean) => void,
+  activeItem: FilmPageTab;
+  avatarImage: string;
+  comments: Array<Comment>;
+  errorText: string;
+  film: Film;
+  filmsList: Array<Film>;
+  loadComments: (number) => void;
+  onActiveClick: () => void;
+  onAddToMyListClick: (number, boolean) => void;
 }
 
 class FilmPage extends React.PureComponent<Props, {}> {

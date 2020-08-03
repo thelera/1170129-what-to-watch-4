@@ -2,17 +2,17 @@ import * as React from "react";
 import {fromSecToHours} from "../../utils/common";
 
 interface Props {
-  children: React.ReactNode,
-  duration: number,
-  height?: number,
-  history: {goBack: () => void},
-  isMuted?: boolean,
-  isControled: boolean,
-  isPlaying: boolean,
-  progress: number,
-  width?: number,
-  onFullScreenButtonClick: () => void,
-  onPlayButtonClick: () => void,
+  children: React.ReactNode;
+  duration: number;
+  height?: number;
+  history: {goBack: () => void};
+  isMuted?: boolean;
+  isControled: boolean;
+  isPlaying: boolean;
+  progress: number;
+  width?: number;
+  onFullScreenButtonClick: () => void;
+  onPlayButtonClick: () => void;
 }
 
 const VideoPlayer: React.FunctionComponent<Props> = (props: Props) => {

@@ -15,12 +15,12 @@ import ShowMoreButton from "../show-more-button/show-more-button";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
 interface Props {
-  avatarImage: string,
-  errorText: string,
-  filmsCount: number,
-  filmsList: Array<Film>,
-  promoFilm: Film,
-  onAddToMyListClick: (number, boolean) => void,
+  avatarImage: string;
+  errorText: string;
+  filmsCount: number;
+  filmsList: Array<Film>;
+  promoFilm: Film;
+  onAddToMyListClick: (number, boolean) => void;
 }
 
 const GenresListWrapped = withActiveItem(GenresList);

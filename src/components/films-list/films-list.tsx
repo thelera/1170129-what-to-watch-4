@@ -4,8 +4,8 @@ import FilmCard from "../film-card/film-card";
 import withTimerOnHover from "../../hocs/with-timer-on-hover/with-timer-on-hover";
 
 interface Props {
-  films: Array<Film>,
-  id?: number,
+  films: Array<Film>;
+  id?: number;
 }
 
 const FilmCardWrapped = withTimerOnHover(FilmCard);

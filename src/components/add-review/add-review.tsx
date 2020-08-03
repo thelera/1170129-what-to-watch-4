@@ -12,9 +12,9 @@ import {MAX_RATING} from "../../utils/consts";
 import {Operation as CommentsOperation} from "../../reducer/comments/comments";
 
 interface Props {
-  avatarImage: string
-  error: string,
-  film: Film,
+  avatarImage: string;
+  error: string;
+  film: Film;
   history: {push: (string) => void};
   isDisabled: boolean;
   score: number;

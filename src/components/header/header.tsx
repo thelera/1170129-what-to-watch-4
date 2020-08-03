@@ -6,13 +6,13 @@ import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors
 import {Link} from "react-router-dom";
 
 interface Props {
-  authorizationStatus: AuthorizationStatus,
-  avatarImage: string,
-  children: React.ReactNode,
-  className: string,
-  isMain: boolean,
-  isLinkToMyList: boolean,
-  isUserBlock: boolean,
+  authorizationStatus: AuthorizationStatus;
+  avatarImage: string;
+  children: React.ReactNode;
+  className: string;
+  isMain: boolean;
+  isLinkToMyList: boolean;
+  isUserBlock: boolean;
 }
 
 const Header: React.FunctionComponent<Props> = (props: Props) => {

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface Props {
-  message: string,
+  message: string;
 }
 
 const Error: React.FunctionComponent<Props> = (props: Props) => {

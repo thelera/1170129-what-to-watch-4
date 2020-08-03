@@ -4,7 +4,7 @@ import {AppRoute} from "../../utils/consts";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Error from "../error/error";
-import {AuthData, AuthorizationStatus, Film} from "../../types";
+import {AuthorizationStatus, Film} from "../../types";
 import FilmPage from "../film-page/film-page";
 import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
 import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors";
@@ -22,12 +22,12 @@ import withVideo from "../../hocs/with-video/with-video";
 import withValidation from "../../hocs/with-validation/with-validation";
 
 interface Props {
-  allFilms: Array<Film>,
-  authorizationStatus: AuthorizationStatus,
-  avatarURL: string,
-  errorText: string,
-  favouriteFilms: Array<Film>,
-  login: (AuthData) => void,
+  allFilms: Array<Film>;
+  authorizationStatus: AuthorizationStatus;
+  avatarURL: string;
+  errorText: string;
+  favouriteFilms: Array<Film>;
+  login: (AuthData) => void;
 }
 
 const AddReviewWrapped = withValidation(withForm(AddReview));
@@ -45,7 +45,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
     login,
   } = props;
 
-  if (!allFilms) {
+  if (errorText) {
     return (
       <div>
         {

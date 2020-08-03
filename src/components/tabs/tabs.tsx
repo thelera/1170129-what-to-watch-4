@@ -2,10 +2,10 @@ import * as React from "react";
 import {FilmPageTab} from "../../types";
 
 interface Props {
-  children: React.ReactNode,
-  id?: number,
-  tab: FilmPageTab,
-  onTabClick: (FilmPageTab) => void,
+  children: React.ReactNode;
+  id?: number;
+  tab: FilmPageTab;
+  onTabClick: (FilmPageTab) => void;
 }
 
 const Tabs: React.FunctionComponent<Props> = (props: Props) => {

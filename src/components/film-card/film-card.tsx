@@ -7,10 +7,10 @@ import VideoPlayer from "../video-player/video-player";
 import withVideo from "../../hocs/with-video/with-video";
 
 interface Props {
-  film: Film,
-  isPlaying: boolean,
-  onMouseEnter: () => void,
-  onMouseLeave: () => void,
+  film: Film;
+  isPlaying: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
 const VideoPlayerWrapped = withVideo(VideoPlayer);

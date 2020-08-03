@@ -3,7 +3,7 @@ import {Film} from "../../types";
 import {fromMinToHours} from "../../utils/common";
 
 interface Props {
-  film: Film,
+  film: Film;
 }
 
 const FilmDetails: React.FunctionComponent<Props> = (props: Props) => {
