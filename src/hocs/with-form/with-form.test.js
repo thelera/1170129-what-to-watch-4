@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import withForm from "./with-form.js";
+import withForm from "./with-form";
 
 const MockComponent = () => {
   return (
@@ -18,9 +18,9 @@ it(`withForm is rendered correctly`, () => {
       isValid={true}
       score={5}
       text={`text`}
-      onDisable={() => {}}
-      onRatingChange={() => {}}
-      onTextChange={() => {}}
+      onDisable={() => null}
+      onRatingChange={() => null}
+      onTextChange={() => null}
     />
   ), {
     createNodeMock() {

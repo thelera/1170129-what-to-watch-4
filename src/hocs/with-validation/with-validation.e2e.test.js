@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withValidation from "./with-validation.js";
+import withValidation from "./with-validation";
 
 configure({adapter: new Adapter()});
 
@@ -12,7 +12,7 @@ it(`Should change message`, () => {
   const wrapper = shallow(
       <MockComponentWrapped
         validationMessage={`message`}
-        onValidForm={() => {}}
+        onValidForm={() => null}
       />
   );
 

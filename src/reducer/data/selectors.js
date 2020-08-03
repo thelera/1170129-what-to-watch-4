@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
-import {getFilmsByFilter} from "../../utils/common.js";
-import NameSpace from "../name-space.js";
+import {getFilmsByFilter} from "../../utils/common";
+import NameSpace from "../name-space";
 
 const getAllFilms = (state) => state[NameSpace.DATA].allFilms;
 

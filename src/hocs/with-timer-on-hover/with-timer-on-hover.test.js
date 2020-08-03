@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import withTimerOnHover from "./with-timer-on-hover.js";
+import withTimerOnHover from "./with-timer-on-hover";
 
 const MockComponent = () => <article />;
 
@@ -10,8 +10,8 @@ it(`withFilmCard is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       isPlaying={false}
-      onMouseEnter={() => { }}
-      onMouseLeave={() => { }}
+      onMouseEnter={() => null}
+      onMouseLeave={() => null}
     />
   ), {
     createNodeMock() {

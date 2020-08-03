@@ -1,5 +1,5 @@
-import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {ErrorMessage} from "../../utils/consts.js";
+import {ActionCreator as ErrorActionCreator} from "../errors/errors";
+import {ErrorMessage} from "../../utils/consts";
 
 const initialState = {
   comments: [],

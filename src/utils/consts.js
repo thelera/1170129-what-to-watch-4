@@ -21,11 +21,6 @@ const AppRoute = {
   MAIN: `/`,
 };
 
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-};
-
 const ErrorMessage = {
   AUTHORIZATION: `Authorization error. Please wait a little or reload the page.`,
   CONNECTION: `No internet connection.`,
@@ -42,28 +37,6 @@ const ErrorStatus = {
   UNAUTHORIZED: {code: 401, errorMessage: `Пользователь не авторизован`},
 };
 
-const FilmPageTab = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
-
-const Genre = {
-  ALL: `All genres`,
-  ADVENTURE: `Adventure`,
-  COMEDIES: `Comedy`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMAS: `Drama`,
-  FANTASY: `Fantasy`,
-  HORROR: `Horror`,
-  KIDS_AND_FAMILY: `Kid's and Family`,
-  ROMANCE: `Romance`,
-  SCI_FI: `Sci - Fi`,
-  STORY: `Story`,
-  THRILLERS: `Thriller`,
-};
-
 const ValidationMessage = {
   SCORE: `Review should be between`,
   TEXT: `Please choose at least one star.`,
@@ -76,4 +49,4 @@ const Video = {
   IS_MUTED: true,
 };
 
-export {Api, AppRoute, AuthorizationStatus, ErrorMessage, ErrorStatus, FilmPageTab, Genre, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, ValidationMessage, Video};
+export {Api, AppRoute, ErrorMessage, ErrorStatus, GENRES_COUNT, MAX_RATING, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, SHOWING_FILMS_COUNT, SHOWING_FILMS_COUNT_ON_START, ValidationMessage, Video};

@@ -1,4 +1,4 @@
-import NameSpace from "../name-space.js";
+import NameSpace from "../name-space";
 
 const getError = (state) => state[NameSpace.ERRORS].error;
 

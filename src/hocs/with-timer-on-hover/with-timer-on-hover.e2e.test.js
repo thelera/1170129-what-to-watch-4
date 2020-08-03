@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withTimerOnHover from "./with-timer-on-hover.js";
+import withTimerOnHover from "./with-timer-on-hover";
 
 configure({adapter: new Adapter()});
 
@@ -13,8 +13,8 @@ describe(`withTimerOnHover works correctly`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
           isPlaying={true}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
+          onMouseEnter={() => null}
+          onMouseLeave={() => null}
         />
     );
 

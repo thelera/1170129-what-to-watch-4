@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import withActiveItem from "./with-active-item.js";
+import withActiveItem from "./with-active-item";
 
 const MockComponent = () => {
   return (
@@ -15,7 +15,7 @@ it(`withActiveItem is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       activeItem={`active item`}
-      onActiveClick={() => {}}
+      onActiveClick={() => null}
     />
   ), {
     createNodeMock() {

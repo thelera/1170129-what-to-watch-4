@@ -1,4 +1,5 @@
-import {Genre, MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, ValidationMessage} from "./consts.js";
+import {Genre} from "../types";
+import {MAX_TEXT_LENGTH, MIN_TEXT_LENGTH, SIMILAR_FILMS_COUNT, ValidationMessage} from "./consts";
 import moment from "moment";
 
 const createRange = (from, to) => {

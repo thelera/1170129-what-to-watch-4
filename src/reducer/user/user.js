@@ -1,6 +1,6 @@
-import {ActionCreator as ErrorActionCreator} from "../errors/errors.js";
-import {Api, ErrorMessage, ErrorStatus} from "../../utils/consts.js";
-import {AuthorizationStatus} from "../../utils/consts.js";
+import {ActionCreator as ErrorActionCreator} from "../errors/errors";
+import {Api, ErrorMessage, ErrorStatus} from "../../utils/consts";
+import {AuthorizationStatus} from "../../types";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,

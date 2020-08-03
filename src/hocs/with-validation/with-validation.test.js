@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import withValidation from "./with-validation.js";
+import withValidation from "./with-validation";
 
 const MockComponent = () => <article />;
 
@@ -10,7 +10,7 @@ it(`withValidation is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       validationMessage={`message`}
-      onValidForm={() => {}}
+      onValidForm={() => null}
     />
   ), {
     createNodeMock() {
