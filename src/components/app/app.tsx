@@ -45,7 +45,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
     login,
   } = props;
 
-  if (errorText) {
+  if (!allFilms) {
     return (
       <div>
         {
