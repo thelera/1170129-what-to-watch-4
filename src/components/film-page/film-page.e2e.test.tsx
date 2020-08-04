@@ -1,10 +1,45 @@
 import * as Adapter from "enzyme-adapter-react-16";
 import * as React from "react";
+import {Comment, Film, FilmPageTab} from "../../types";
+import {FilmPage} from "./film-page";
 import {configure, shallow} from "enzyme";
-import {Film} from "../../types";
-import {Main} from "./main";
 
-const filmData: Film = {
+configure({adapter: new Adapter()});
+
+const comments: Array<Comment> = [
+  {
+    comment: `This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 7,
+    rating: 11,
+    user: {
+      id: 11.7,
+      name: `Pete`,
+    }
+  },
+  {
+    comment: `This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 74,
+    rating: 1,
+    user: {
+      id: 2,
+      name: `Ann`,
+    }
+  },
+  {
+    comment: `This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 0,
+    rating: 131,
+    user: {
+      id: 7,
+      name: `George`,
+    }
+  },
+];
+
+const film: Film = {
   backgroundColor: `#444444`,
   backgroundImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
@@ -122,29 +157,27 @@ const films: Array<Film> = [
   },
 ];
 
-configure({
-  adapter: new Adapter()
-});
+it(`Handler is loaded if user clicks to "Add to my list" button`, () => {
+  const onAddToMyListClick = jest.fn(() => null);
 
-it(`Card title should be clicked`, () => {
-  const onClick = jest.fn();
-
-  const main = shallow(
-      <Main
-        avatarImage={`image`}
-        errorText={`error`}
-        filmsCount={4}
+  const filmPage = shallow(
+      <FilmPage
+        activeItem={FilmPageTab.DETAILS}
+        avatarImage={`image source`}
+        comments={comments}
+        errorText={`new error`}
+        film={film}
         filmsList={films}
-        promoFilm={filmData}
-        onAddToMyListClick={() => null}
+        onCommentsLoad={() => null}
+        onAddToMyListClick={onAddToMyListClick}
+        onActiveClick={() => null}
       />
   );
 
-  const cardLink = main.find(`.small-movie-card__link`);
+  const button = filmPage.find(`.btn--list`);
 
-  cardLink.forEach((link) => {
-    link.simulate(`click`);
-  });
+  button.simulate(`click`);
 
-  expect(onClick.mock.calls.length).toBe(cardLink.length);
+  expect(onAddToMyListClick).toHaveBeenCalledTimes(1);
+  expect(onAddToMyListClick.mock.calls[0]).toEqual([film.id, film.isFavourite]);
 });
