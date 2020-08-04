@@ -12,7 +12,7 @@ import {getSimilarFilmsByGenre} from "../../utils/common";
 import {getAllFilms} from "../../reducer/data/selectors";
 import {getComments} from "../../reducer/comments/selectors";
 import {getElementById} from "../../utils/common";
-import {getError} from "../../reducer/errors/selectors";
+import {getError} from "../../reducer/error/selectors";
 import Header from "../header/header";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data";
@@ -26,7 +26,7 @@ interface Props {
   errorText: string;
   film: Film;
   filmsList: Array<Film>;
-  loadComments: (number) => void;
+  onCommentsLoad: (number) => void;
   onActiveClick: () => void;
   onAddToMyListClick: (number, boolean) => void;
 }
@@ -34,6 +34,12 @@ interface Props {
 class FilmPage extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const {film, onCommentsLoad} = this.props;
+
+    onCommentsLoad(film.id);
   }
 
   _renderTabs() {
@@ -63,12 +69,6 @@ class FilmPage extends React.PureComponent<Props, {}> {
     }
 
     return null;
-  }
-
-  componentDidMount() {
-    const {film, loadComments} = this.props;
-
-    loadComments(film.id);
   }
 
   render() {
@@ -205,7 +205,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadComments(id) {
+  onCommentsLoad(id) {
     dispatch(CommentsOperation.loadComments(id));
   },
   onAddToMyListClick(id, isFavourite) {

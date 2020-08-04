@@ -22,6 +22,10 @@ const withTimerOnHover = (Component) => {
       this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
+    componentWillUnmount() {
+      clearTimeout(this.timerId);
+    }
+
     _handleMouseEnter() {
       this.timerId = setTimeout(() => this.setState({isPlaying: true}), Video.INTERVAL_IN_SEC);
     }
@@ -43,10 +47,6 @@ const withTimerOnHover = (Component) => {
           onMouseLeave={this._handleMouseLeave}
         />
       );
-    }
-
-    componentWillUnmount() {
-      clearTimeout(this.timerId);
     }
   }
 

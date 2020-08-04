@@ -35,7 +35,7 @@ it(`AddReview is rendered correctly`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
-      avatarURL: `url`,
+      avatarUrl: `url`,
     },
   });
 

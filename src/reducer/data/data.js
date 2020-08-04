@@ -1,4 +1,4 @@
-import {ActionCreator as ErrorActionCreator} from "../errors/errors";
+import {ActionCreator as ErrorActionCreator} from "../error/error";
 import {Genre} from "../../types";
 import {ErrorMessage, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
 import {createFilm, createFilms} from "../../adapters/films";

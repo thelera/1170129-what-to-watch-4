@@ -2,7 +2,7 @@ import * as React from "react";
 import {AppRoute} from "../../utils/consts";
 import {connect} from "react-redux";
 import Error from "../error/error";
-import {getError} from "../../reducer/errors/selectors";
+import {getError} from "../../reducer/error/selectors";
 import Header from "../header/header";
 import {Link} from "react-router-dom";
 

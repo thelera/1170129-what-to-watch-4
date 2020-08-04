@@ -121,7 +121,7 @@ it(`MyList is rendered correctly`, () => {
             avatarImage={`image`}
             errorText={`error`}
             filmsList={films}
-            loadMyList={() => null}
+            onMyListLoad={() => null}
           />
         </Provider>
       </BrowserRouter>, {
