@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Error from "../error/error";
 import {Film} from "../../types";
 import FilmsList from "../films-list/films-list";
-import {getError} from "../../reducer/errors/selectors";
+import {getError} from "../../reducer/error/selectors";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from "../../reducer/data/data";
 
@@ -12,7 +12,7 @@ interface Props {
   avatarImage: string;
   errorText: string;
   filmsList: Array<Film>;
-  loadMyList: () => void;
+  onMyListLoad: () => void;
 }
 
 class MyList extends React.PureComponent<Props, {}> {
@@ -21,9 +21,9 @@ class MyList extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    const {loadMyList} = this.props;
+    const {onMyListLoad} = this.props;
 
-    loadMyList();
+    onMyListLoad();
   }
 
   render() {
@@ -117,7 +117,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadMyList() {
+  onMyListLoad() {
     dispatch(DataOperation.loadFavouriteFilms());
   },
 });

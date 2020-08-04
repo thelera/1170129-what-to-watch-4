@@ -138,9 +138,9 @@ it(`App is rendered correctly`, () => {
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
-      avatarURL: `url`,
+      avatarUrl: `url`,
     },
-    [NameSpace.ERRORS]: {
+    [NameSpace.ERROR]: {
       errorText: `Error`,
     },
   });
@@ -150,10 +150,10 @@ it(`App is rendered correctly`, () => {
         <App
           allFilms={films}
           authorizationStatus={AuthorizationStatus.AUTH}
-          avatarURL={`url`}
+          avatarUrl={`url`}
           errorText={`error`}
           favouriteFilms={films}
-          login={() => null}
+          onLogin={() => null}
         />
       </Provider>, {
         createNodeMock: () => {

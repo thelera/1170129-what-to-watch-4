@@ -2,7 +2,7 @@ import * as React from "react";
 import {AppRoute} from "../../utils/consts";
 import {AuthorizationStatus} from "../../types";
 import {connect} from "react-redux";
-import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
+import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors";
 import {Link} from "react-router-dom";
 
 interface Props {
@@ -61,7 +61,7 @@ const Header: React.FunctionComponent<Props> = (props: Props) => {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  avatarImage: getAvatarURL(state),
+  avatarImage: getAvatarUrl(state),
 });
 
 export {Header};

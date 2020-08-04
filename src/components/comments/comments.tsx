@@ -6,9 +6,7 @@ interface Props {
   comments: Array<Comment>;
 }
 
-const renderComments = (props) => {
-  const {comments} = props;
-
+const renderComments = (comments) => {
   if (comments) {
     return comments.map((comment) => {
       const {comment: text, date, id, rating, user} = comment;

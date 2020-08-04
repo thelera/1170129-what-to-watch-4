@@ -1,5 +1,5 @@
-import {ActionCreator as ErrorActionCreator} from "../errors/errors";
-import {Api, ErrorMessage, ErrorStatus} from "../../utils/consts";
+import {ActionCreator as ErrorActionCreator} from "../error/error";
+import {Api, ErrorMessage, ErrorStatusCode} from "../../utils/consts";
 import {AuthorizationStatus} from "../../types";
 
 const initialState = {
@@ -8,18 +8,18 @@ const initialState = {
 };
 
 const ActionType = {
-  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   AVATAR_URL: `AVATAR_URL`,
 };
 
 const ActionCreator = {
   requireOfAuthorization: (status) => ({
-    type: ActionType.REQUIRE_AUTHORIZATION,
+    type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
   }),
-  avatarURL: (URL) => ({
+  avatarUrl: (url) => ({
     type: ActionType.AVATAR_URL,
-    payload: URL,
+    payload: url,
   }),
 };
 
@@ -28,10 +28,10 @@ const Operation = {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
+        dispatch(ActionCreator.avatarUrl(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
-        if (err.response && err.response.status === ErrorStatus.UNAUTHORIZED.code) {
+        if (err.response && err.response.status === ErrorStatusCode.UNAUTHORIZED) {
           return;
         }
         dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
@@ -44,10 +44,10 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.requireOfAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.avatarURL(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
+        dispatch(ActionCreator.avatarUrl(`${Api.BASE_URL.slice(0, -4)}${response.data.avatar_url}`));
       })
       .catch((err) => {
-        if (err.response && err.response.status === ErrorStatus.UNAUTHORIZED.code) {
+        if (err.response && err.response.status === ErrorStatusCode.UNAUTHORIZED) {
           return;
         }
         dispatch(ErrorActionCreator.loadError(ErrorMessage.AUTHORIZATION));
@@ -57,10 +57,10 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REQUIRE_AUTHORIZATION:
+    case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {authorizationStatus: action.payload});
     case ActionType.AVATAR_URL:
-      return Object.assign({}, state, {avatarURL: action.payload});
+      return Object.assign({}, state, {avatarUrl: action.payload});
     default:
       return state;
   }

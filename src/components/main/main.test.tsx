@@ -135,7 +135,7 @@ it(`Main should render movie card and films catalog`, () => {
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
-      avatarURL: `url`,
+      avatarUrl: `url`,
     },
   });
 

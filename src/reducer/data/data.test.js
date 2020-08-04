@@ -115,6 +115,17 @@ it(`Reducer without additional parameters should return initial state`, () => {
   });
 });
 
+it(`Reducer should update films by set films`, () => {
+  expect(reducer({
+    allFilms: [],
+  }, {
+    type: ActionType.SET_FILMS,
+    payload: films,
+  })).toEqual({
+    allFilms: films,
+  });
+});
+
 it(`Reducer should change key "genre" by a given value`, () => {
   expect(reducer({
     allFilms: films,
@@ -147,11 +158,86 @@ it(`Reducer should change key "genre" by a given value`, () => {
   });
 });
 
+it(`Reducer should update favourite films by favourite films`, () => {
+  expect(reducer({
+    favouriteFilms: [],
+  }, {
+    type: ActionType.FAVOURITE_FILMS,
+    payload: films,
+  })).toEqual({
+    favouriteFilms: films,
+  });
+});
+
+it(`Reducer should update promo film films by set promo film`, () => {
+  expect(reducer({
+    promoFilm: {},
+  }, {
+    type: ActionType.SET_PROMO_FILM,
+    payload: films[1],
+  })).toEqual({
+    promoFilm: films[1],
+  });
+});
+
+it(`Reducer should increment showed films count by increment showed films count`, () => {
+  expect(reducer({
+    showedFilmsCount: 10,
+  }, {
+    type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
+    payload: 5,
+  })).toEqual({
+    showedFilmsCount: 15,
+  });
+});
+
 describe(`Action creators work correctly`, () => {
   it(`Action creator for changing genre returns correct action`, () => {
     expect(ActionCreator.changeGenre(`Sci-fi`)).toEqual({
       type: ActionType.CHANGE_GENRE,
       payload: `Sci-fi`,
+    });
+  });
+
+  it(`Action creator for incrementing films count returns correct action`, () => {
+    expect(ActionCreator.incrementFilmsCount(5)).toEqual({
+      type: ActionType.INCREMENT_SHOWED_FILMS_COUNT,
+      payload: 5,
+    });
+  });
+
+  it(`Action creator for loading favourites films returns correct action`, () => {
+    expect(ActionCreator.favouriteFilms(films)).toEqual({
+      type: ActionType.FAVOURITE_FILMS,
+      payload: films,
+    });
+  });
+
+  it(`Action creator for setting films returns correct action`, () => {
+    expect(ActionCreator.setFilms(films)).toEqual({
+      type: ActionType.SET_FILMS,
+      payload: films,
+    });
+  });
+
+  it(`Action creator for setting promo film returns correct action`, () => {
+    expect(ActionCreator.setPromoFilm(films[0])).toEqual({
+      type: ActionType.SET_PROMO_FILM,
+      payload: films[0],
+    });
+  });
+
+  it(`Action creator for updating promo film returns correct action`, () => {
+    expect(ActionCreator.updatePromoFilm(films[0])).toEqual({
+      type: ActionType.UPDATE_PROMO_FILM,
+      payload: films[0],
+    });
+  });
+
+  it(`Action creator for updating films returns correct action`, () => {
+    expect(ActionCreator.updateFilms(films)).toEqual({
+      type: ActionType.UPDATE_FILMS,
+      payload: films,
     });
   });
 });
@@ -190,6 +276,44 @@ describe(`Operation works correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_PROMO_FILM,
+          payload: createFilm({fake: true}),
+        });
+      });
+  });
+
+  it(`Should make a correct Api call to /favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.loadFavouriteFilms();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [{fake: false}]);
+
+    return filmsLoader(dispatch, () => null, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.FAVOURITE_FILMS,
+          payload: createFilms([{fake: true}]),
+        });
+      });
+  });
+
+  it(`Should make a correct Api call to /favorite/id`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.addFilmToFavourites(5, false);
+
+    apiMock
+      .onPost(`/favorite/5/1`)
+      .reply(200, {fake: false});
+
+    return filmsLoader(dispatch, () => null, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.UPDATE_PROMO_FILM,
           payload: createFilm({fake: true}),
         });
       });

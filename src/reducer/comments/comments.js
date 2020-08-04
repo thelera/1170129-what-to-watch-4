@@ -1,4 +1,4 @@
-import {ActionCreator as ErrorActionCreator} from "../errors/errors";
+import {ActionCreator as ErrorActionCreator} from "../error/error";
 import {ErrorMessage} from "../../utils/consts";
 
 const initialState = {

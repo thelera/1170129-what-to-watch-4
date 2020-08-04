@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Api, ErrorStatus} from "./utils/consts";
+import {Api, ErrorStatusCode} from "./utils/consts";
 
 const createApi = (onUnauthorized, resetError) => {
   const api = axios.create({
@@ -9,7 +9,7 @@ const createApi = (onUnauthorized, resetError) => {
   });
 
   const onSuccess = (response) => {
-    if (response.status === ErrorStatus.OK.code) {
+    if (response.status === ErrorStatusCode.OK) {
       resetError();
     }
     return response;
@@ -18,7 +18,7 @@ const createApi = (onUnauthorized, resetError) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response && response.status === ErrorStatus.UNAUTHORIZED.code) {
+    if (response && response.status === ErrorStatusCode.UNAUTHORIZED) {
       onUnauthorized();
     }
 

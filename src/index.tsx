@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {AuthorizationStatus} from "./types";
 import {ActionCreator as UserActionCreator} from "./reducer/user/user";
-import {ActionCreator as ErrorActionCreator} from "./reducer/errors/errors";
+import {ActionCreator as ErrorActionCreator} from "./reducer/error/error";
 import App from "./components/app/app";
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";

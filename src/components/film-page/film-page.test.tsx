@@ -168,7 +168,7 @@ it(`FilmPage is rendered correctly`, () => {
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
-      avatarURL: `url`,
+      avatarUrl: `url`,
     },
   });
 
@@ -182,7 +182,7 @@ it(`FilmPage is rendered correctly`, () => {
             errorText={`new error`}
             film={film}
             filmsList={films}
-            loadComments={() => null}
+            onCommentsLoad={() => null}
             onAddToMyListClick={() => null}
             onActiveClick={() => null}
           />

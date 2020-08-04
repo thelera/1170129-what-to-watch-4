@@ -6,7 +6,7 @@ import {Film} from "../../types";
 import FilmsList from "../films-list/films-list";
 import Footer from "../footer/footer";
 import GenresList from "../genres-list/genres-list";
-import {getError} from "../../reducer/errors/selectors";
+import {getError} from "../../reducer/error/selectors";
 import Header from "../header/header";
 import {getFilmsListByGenre, getShowedFilmsCount, getPromoFilm} from "../../reducer/data/selectors";
 import {Link} from "react-router-dom";

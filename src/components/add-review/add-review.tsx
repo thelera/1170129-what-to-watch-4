@@ -5,7 +5,7 @@ import {createRange, getElementById, getValidationMessage} from "../../utils/com
 import Error from "../error/error";
 import {Film} from "../../types";
 import {getAllFilms} from "../../reducer/data/selectors";
-import {getError} from "../../reducer/errors/selectors";
+import {getError} from "../../reducer/error/selectors";
 import Header from "../header/header";
 import {Link} from "react-router-dom";
 import {MAX_RATING} from "../../utils/consts";

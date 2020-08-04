@@ -45,24 +45,6 @@ const withVideo = (Component) => {
       this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
     }
 
-    _handleFullScreenClick() {
-      const video = this.videoRef.current;
-
-      if (this.state.isFullScreen) {
-        this.setState({isFullScreen: false});
-
-        video.exitFullScreen();
-      } else {
-        this.setState({isFullScreen: true});
-
-        video.requestFullscreen();
-      }
-    }
-
-    _handlePlayButtonClick() {
-      this.setState((prevState) => ({isPlaying: !prevState.isPlaying}));
-    }
-
     componentDidMount() {
       const {isMuted = true, film, height, width} = this.props;
       const {preview, videoLink} = film;
@@ -112,6 +94,24 @@ const withVideo = (Component) => {
       video.onpause = null;
       video.ontimeupdate = null;
       video.src = ``;
+    }
+
+    _handleFullScreenClick() {
+      const video = this.videoRef.current;
+
+      if (this.state.isFullScreen) {
+        this.setState({isFullScreen: false});
+
+        video.exitFullScreen();
+      } else {
+        this.setState({isFullScreen: true});
+
+        video.requestFullscreen();
+      }
+    }
+
+    _handlePlayButtonClick() {
+      this.setState((prevState) => ({isPlaying: !prevState.isPlaying}));
     }
 
     render() {

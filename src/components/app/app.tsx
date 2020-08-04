@@ -1,14 +1,14 @@
 import * as React from "react";
 import AddReview from "../add-review/add-review";
-import {AppRoute} from "../../utils/consts";
+import {AppRoute, GO_BACK_MESSAGE, ErrorStatusCode, ErrorMessage} from "../../utils/consts";
 import {BrowserRouter, Switch, Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Error from "../error/error";
 import {AuthorizationStatus, Film} from "../../types";
 import FilmPage from "../film-page/film-page";
-import {getAuthorizationStatus, getAvatarURL} from "../../reducer/user/selectors";
+import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors";
 import {getAllFilms, getFavouriteFilms} from "../../reducer/data/selectors";
-import {getError} from "../../reducer/errors/selectors";
+import {getError} from "../../reducer/error/selectors";
 import {Link} from "react-router-dom";
 import Main from "../main/main";
 import MyList from "../my-list/my-list";
@@ -24,10 +24,10 @@ import withValidation from "../../hocs/with-validation/with-validation";
 interface Props {
   allFilms: Array<Film>;
   authorizationStatus: AuthorizationStatus;
-  avatarURL: string;
+  avatarUrl: string;
   errorText: string;
   favouriteFilms: Array<Film>;
-  login: (AuthData) => void;
+  onLogin: (AuthData) => void;
 }
 
 const AddReviewWrapped = withValidation(withForm(AddReview));
@@ -39,10 +39,10 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
   const {
     allFilms,
     authorizationStatus,
-    avatarURL,
+    avatarUrl,
     errorText,
     favouriteFilms,
-    login,
+    onLogin,
   } = props;
 
   if (!allFilms) {
@@ -91,7 +91,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
           return (
             authorizationStatus === AuthorizationStatus.NO_AUTH
               ? <SignInWrapped
-                onSubmit={login}
+                onSubmit={onLogin}
               />
               : <Redirect to={AppRoute.MAIN} />);
         }}/>
@@ -101,7 +101,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
 
           return (
             <AddReviewWrapped
-              avatarImage={avatarURL}
+              avatarImage={avatarUrl}
               history={history}
               id={id}
             />
@@ -110,7 +110,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
         <PrivateRoute exact path={AppRoute.MY_LIST} render={() => {
           return (
             <MyList
-              avatarImage={avatarURL}
+              avatarImage={avatarUrl}
               filmsList={favouriteFilms}
             />
           );
@@ -118,11 +118,11 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
         <Route render={() => (
           <React.Fragment>
             <h1>
-              404.
+              {ErrorStatusCode.NOT_FOUND}.
               <br />
-              <small>Page not found</small>
+              <small>{ErrorMessage.NOT_FOUND}</small>
             </h1>
-            <Link to={AppRoute.MAIN}>Go to main page</Link>
+            <Link to={AppRoute.MAIN}>{GO_BACK_MESSAGE}</Link>
           </React.Fragment>
         )}/>
       </Switch>
@@ -133,13 +133,13 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
 const mapStateToProps = (state) => ({
   allFilms: getAllFilms(state),
   authorizationStatus: getAuthorizationStatus(state),
-  avatarURL: getAvatarURL(state),
+  avatarUrl: getAvatarUrl(state),
   errorText: getError(state),
   favouriteFilms: getFavouriteFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
+  onLogin(authData) {
     dispatch(UserOperation.login(authData));
   },
 });
