@@ -1,5 +1,6 @@
 import * as React from "react";
 import {AppRoute} from "../../utils/consts";
+import {AuthData} from "../../types";
 import {connect} from "react-redux";
 import Error from "../error/error";
 import {getError} from "../../reducer/error/selectors";
@@ -22,10 +23,14 @@ const SignIn: React.FunctionComponent<Props> = (props: Props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    onSubmit({
-      login: loginRef.current.value,
-      password: passwordRef.current.value,
-    });
+    if (loginRef.current.value && passwordRef.current.value) {
+      onSubmit({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+    } else {
+      onValidForm(`Please fill both email and password fields`);
+    }
   };
 
   return (

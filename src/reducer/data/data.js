@@ -1,6 +1,6 @@
 import {ActionCreator as ErrorActionCreator} from "../error/error";
 import {Genre} from "../../types";
-import {ErrorMessage, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
+import {ErrorMessage, ErrorStatusCode, SHOWING_FILMS_COUNT_ON_START} from "../../utils/consts";
 import {createFilm, createFilms} from "../../adapters/films";
 import {updateFilmsByNewFilm} from "../../utils/common";
 
@@ -62,7 +62,11 @@ const Operation = {
       dispatch(ActionCreator.updateFilms(createFilm(response.data)));
       dispatch(ActionCreator.updatePromoFilm(createFilm(response.data)));
     })
-    .catch(() => {
+    .catch((err) => {
+      if (err.response && err.response.status === ErrorStatusCode.UNAUTHORIZED) {
+        return;
+      }
+
       dispatch(ErrorActionCreator.loadError(ErrorMessage.DEFAULT));
     });
   },
