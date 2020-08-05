@@ -1,5 +1,5 @@
 import * as React from "react";
-import {AppRoute} from "../../utils/consts";
+import {AppRoute, SIGN_IN_EMPTY_MESSAGE} from "../../utils/consts";
 import {AuthData} from "../../types";
 import {connect} from "react-redux";
 import Error from "../error/error";
@@ -29,7 +29,7 @@ const SignIn: React.FunctionComponent<Props> = (props: Props) => {
         password: passwordRef.current.value,
       });
     } else {
-      onValidForm(`Please fill both email and password fields`);
+      onValidForm(SIGN_IN_EMPTY_MESSAGE);
     }
   };
 
