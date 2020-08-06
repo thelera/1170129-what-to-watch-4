@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 interface Props {
   error: string;
   validationMessage: string;
-  onSubmit: (authData: {login: string; password: string}) => void;
+  onSubmit: (AuthData: {login: string; password: string}) => void;
   onValidForm: (string) => void;
 }
 
