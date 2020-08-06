@@ -9,7 +9,7 @@ interface Props {
   authorizationStatus: AuthorizationStatus;
   exact: boolean;
   path: string;
-  render: (id: any) => React.ReactNode;
+  render: (RouteProps) => React.ReactNode;
 }
 
 const PrivateRoute: React.FunctionComponent<Props> = (props: Props) => {

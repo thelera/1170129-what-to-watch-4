@@ -1,5 +1,5 @@
 import * as React from "react";
-import {fromSecToHours} from "../../utils/common";
+import {getHoursFromSec} from "../../utils/common";
 
 interface Props {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ const VideoPlayer: React.FunctionComponent<Props> = (props: Props) => {
     onPlayButtonClick,
   } = props;
 
-  const timeToEnd = fromSecToHours(duration - progress);
+  const timeToEnd = getHoursFromSec(duration - progress);
 
   return (
     <React.Fragment>

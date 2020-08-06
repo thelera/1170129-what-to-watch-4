@@ -1,6 +1,5 @@
 import * as React from "react";
 import {AppRoute, SIGN_IN_EMPTY_MESSAGE} from "../../utils/consts";
-import {AuthData} from "../../types";
 import {connect} from "react-redux";
 import Error from "../error/error";
 import {getError} from "../../reducer/error/selectors";
@@ -10,7 +9,7 @@ import {Link} from "react-router-dom";
 interface Props {
   error: string;
   validationMessage: string;
-  onSubmit: (AuthData) => void;
+  onSubmit: (authData: {login: string; password: string}) => void;
   onValidForm: (string) => void;
 }
 

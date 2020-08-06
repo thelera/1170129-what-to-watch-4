@@ -12,20 +12,20 @@ const createRange = (from, to) => {
   return result;
 };
 
-const fromMinToHours = (minutes) => {
-  return moment.utc(moment.duration(minutes, `minutes`).as(`milliseconds`)).format(`h[h] mm[m]`);
-};
-
-const fromSecToHours = (seconds) => {
-  return moment.utc(moment.duration(seconds, `seconds`).as(`milliseconds`)).format(`HH:mm:ss`);
-};
-
 const getElementById = (array, id) => {
   return array.find((it) => it.id === id);
 };
 
 const getFilmsByFilter = (array, filterType) => {
   return filterType === Genre.ALL ? array : array.filter((item) => item.genre === filterType);
+};
+
+const getHoursFromMin = (minutes) => {
+  return moment.utc(moment.duration(minutes, `minutes`).as(`milliseconds`)).format(`h[h] mm[m]`);
+};
+
+const getHoursFromSec = (seconds) => {
+  return moment.utc(moment.duration(seconds, `seconds`).as(`milliseconds`)).format(`HH:mm:ss`);
 };
 
 const getRatingLevel = (score) => {
@@ -102,4 +102,4 @@ const updateFilmsByNewFilm = (films, film) => {
   return [].concat(films.slice(0, index), film, films.slice(index + 1));
 };
 
-export {createRange, fromMinToHours, fromSecToHours, getElementById, getFilmsByFilter, getRatingLevel, getSimilarFilmsByGenre, getUniqueArrayElements, getValidationMessage, parseDate, removeFromArray, updateFilmsByNewFilm};
+export {createRange, getElementById, getFilmsByFilter, getHoursFromMin, getHoursFromSec, getRatingLevel, getSimilarFilmsByGenre, getUniqueArrayElements, getValidationMessage, parseDate, removeFromArray, updateFilmsByNewFilm};

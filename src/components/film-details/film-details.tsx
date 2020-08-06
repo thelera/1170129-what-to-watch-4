@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Film} from "../../types";
-import {fromMinToHours} from "../../utils/common";
+import {getHoursFromMin} from "../../utils/common";
 
 interface Props {
   film: Film;
@@ -11,7 +11,7 @@ const FilmDetails: React.FunctionComponent<Props> = (props: Props) => {
 
   const {director, genre, runTime, starring, year} = film;
 
-  const time = fromMinToHours(runTime);
+  const time = getHoursFromMin(runTime);
 
   return (
     <div className="movie-card__text movie-card__row">
